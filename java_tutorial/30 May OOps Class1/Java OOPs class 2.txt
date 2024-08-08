@@ -1,0 +1,698 @@
+1) Inheritance 
+	- there are different types in inheritance	
+		I) Single level inheritance
+		2) Multilevel inheritance
+		3) Hierarchical inheritance
+		4) Multiple Inheritance
+		5) Hybrid Framework
+-------------------------------------------------------------------------------------------------------------------------------------------
+Scenario 1:  if we mention reference of ParentClass and object of ParentClass then we can access all methods from Parent Class.
+				ParentClass obj =new ParentClass();
+
+Scenario 2:  if we mention reference of ChildClass and object of ChildClass then we can access all methods from Parent Class as well as ChildClass.
+			ChildClass obj =new ChildClass();
+
+Scenario 3:  if we mention reference of ParentClass and object of ChildClass then we can access all methods from Parent Class.
+
+			Scenario 3a) if we have same static method parent inside the ParentClass as well in ChildClass then priority goes to reference class.
+
+			Scenario 3b) if we have same non static method parent inside the ParentClass as well in ChildClass then priority goes to Object Creation class.
+			
+				ParentClass obj =new ChildClass();
+
+Scenario 4:  if we mention reference of ChildClass and object of ParentClass then we can access all methods from Parent Class.
+				ChildClass obj =new ParentClass();					/////invalid scenario.
+		
+-------------------------------------------------------------------------------------------------------------------------------------------
+2) Multilevel inheritance:
+		- in Multilevel inheritance, we have to extends one class in another class, and another class in another class.
+	
+		- just imagine we have 3 classes , ClassA , ClassB and ClassC.
+		- we have extends ClassA in ClassB and 
+		we have extends ClassB in ClassC.
+
+ClassA: ClassA is parent of ClassB,
+		ClassA grand parent class of ClassC
+
+ClassB: ClassB is parent of ClassC
+		ClassB is child class of ClassA
+
+ClassC: ClassC is child class of ClassB
+		grand child of ClassA.
+
+just take example in ClassA we have defined 10 methods , in ClassB we have defined 5 Methods and in ClassC we have defined 3 Methods
+
+Scenario1 :
+				ClassA obj1 =new ClassA();		//we can access 10 methods from ClassA
+
+Scenario 2:
+				ClassB obj2 =new ClassB();		//we can access 15 methods from ClassA and ClassB
+
+Scenario 3:
+				ClassC obj3 =new ClassC();			//we can access 18 methods from ClassA , ClassB and ClassC
+
+scenario 4:
+				ClassA obj4 =new ClassB();		//we can access 10 methods from ClassA
+
+Scenario 5:
+				ClassA obj6 =new ClassC();		//we can access 10 methods from ClassA
+
+Scenario 6:
+				ClassB obj5 =new ClassC();		//we can access 15 methods from ClassA and ClassB
+
+
+---------------------------------------------------------------------------------------------------------------------
+package Tutorial6;
+
+public class ClassA {
+
+	public void a1() {
+		System.out.println("A1 method");
+	}
+
+	public void a2() {
+		System.out.println("A2 method");
+	}
+
+	public void a3() {
+		System.out.println("A3 method");
+	}
+
+	public void a4() {
+		System.out.println("A4 method");
+	}
+
+	public static void main(String[] args) {
+
+//		ClassB obj = new ClassC();
+//
+//		obj.a1();
+//		obj.a2();
+//		obj.a3();
+//		obj.a4();
+//		obj.b1();
+//		obj.b2();
+//		obj.c1();
+
+	}
+
+}
+
+package Tutorial6;
+
+public class ClassB extends ClassA{
+
+	public void b1()
+	{
+		System.out.println("B1 method");
+	}
+	
+	public void b2()
+	{
+		System.out.println("B2 method");
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+}
+
+package Tutorial6;
+
+public class ClassC extends ClassB {
+
+	public void c1() {
+		System.out.println("C1 method");
+	}
+
+	public static void main(String[] args) {
+
+		ClassB obj6 = new ClassC();// we can access ClassA and ClassB
+		obj6.a1();
+		obj6.a2();
+		obj6.a3();
+		obj6.a4();
+		obj6.b1();
+		obj6.b2();
+
+//		ClassA obj5 =new ClassC();  //we can access ClassA
+//		
+//		obj5.a1();
+//		obj5.a2();
+//		obj5.a3();
+//		obj5.a4();
+
+//		ClassA obj4 =new ClassB();//we can access ClassA 
+//		obj4.a1();
+//		obj4.a2();
+//		obj4.a3();
+//		obj4.a4();
+
+//		ClassC obj3 =new ClassC();//we can access ClassA, ClassB and ClassC
+//		obj3.a1();
+//		obj3.a2();
+//		obj3.a3();
+//		obj3.a4();
+//		obj3.b1();
+//		obj3.b2();
+//		obj3.c1();
+
+//		ClassB obj2 =new ClassB();//we can access ClassA and ClassB
+//		obj2.a1();
+//		obj2.a2();
+//		obj2.a3();
+//		obj2.a4();
+//		obj2.b1();
+//		obj2.b2();
+
+//		ClassA obj1 =new ClassA();//we can access 4 Methods from ClassA
+//		obj1.a1();
+//		obj1.a2();
+//		obj1.a3();
+//		obj1.a4();
+
+	}
+
+}
+
+
+package Tutorial6;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		ClassB obj =new ClassC();
+		
+		obj.a1();
+		obj.a2();
+		obj.a3();
+		obj.a4();
+		obj.b1();
+		obj.b2();
+	}
+
+}
+=============================================================================
+package Tutorial7;
+
+public class ClassA {
+
+	public static void a1()
+	{
+		System.out.println("A1 static :: ClassA");
+	}
+	
+	public static void a2()
+	{
+		System.out.println("A2 static :: ClassA");
+	}
+	
+	
+}
+
+
+package Tutorial7;
+
+public class ClassB extends ClassA{
+
+	public static void a1()
+	{
+		System.out.println("A1 static :: ClassB");
+	}
+	
+	
+	public static void b1()
+	{
+		System.out.println("b1 static :: ClassB");
+	}
+	
+	
+}
+
+package Tutorial7;
+
+public class ClassC extends ClassB {
+
+	public static void a1() {
+		System.out.println("A1 static :: ClassC");
+	}
+
+	public static void c1() {
+		System.out.println("c1 static :: ClassC");
+	}
+
+	public static void main(String[] args) {
+
+		ClassB obj6 = new ClassC();
+		obj6.a1();// ClassB
+		obj6.a2();// ClassA
+		obj6.b1();// ClassB
+
+//		ClassA obj5 =new ClassC();
+//		obj5.a1();//ClassA
+//		obj5.a2();//ClassA
+
+//		ClassA obj4 =new ClassB();
+//		obj4.a1();//ClassA
+//		obj4.a2();//ClassA
+
+//		ClassC obj3 =new ClassC();
+//		obj3.a1();//ClassC
+//		obj3.a2();//ClassA
+//		obj3.b1();//ClassB
+//		obj3.c1();//ClassC
+
+//		ClassB obj2 =new ClassB();
+//		obj2.a1();//ClassB
+//		obj2.a2();//ClassA
+//		obj2.b1();//ClassB
+
+//		ClassA obj1 =new ClassA();
+//		obj1.a1();//ClassA
+//		obj1.a2();//ClassA
+
+	}
+
+}
+
+package Tutorial7;
+
+public class ClassA {
+
+	public static void a1()
+	{
+		System.out.println("A1 static :: ClassA");
+	}
+	
+	public static void a2()
+	{
+		System.out.println("A2 static :: ClassA");
+	}
+	
+	
+	public static void main(String[] args) {
+		ClassC obj =new ClassC();
+		obj.a1();
+		obj.a2();
+		obj.b1();
+		obj.c1();
+		
+	}
+	
+}
+
+package Tutorial7;
+
+public class ClassB extends ClassA {
+
+	public static void a1() {
+		System.out.println("A1 static :: ClassB");
+	}
+	
+	public static void b1() {
+		System.out.println("b1 static :: ClassB");
+	}
+
+}
+
+package Tutorial7;
+
+public class ClassC extends ClassB {
+
+	public static void a1() {
+		System.out.println("A1 static :: ClassC");
+	}
+
+	public static void c1() {
+		System.out.println("c1 static :: ClassC");
+	}
+
+	public static void main(String[] args) {
+
+		ClassB obj6 = new ClassC();
+		obj6.a1();// ClassB
+		obj6.a2();// ClassA
+		obj6.b1();// ClassB
+
+
+
+	}
+
+}
+
+package Tutorial7;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		ClassC obj =new ClassC();
+		obj.a1();
+		obj.a2();
+		obj.b1();
+		obj.c1();
+
+	}
+
+}
+-----------------------------------------------------------------------
+package Tutorial8;
+
+public class ClassA {
+	
+	public void a1()
+	{
+		System.out.println("A1 Non Static : ClassA");
+	}
+	
+	public void a2()
+	{
+		System.out.println("A2 Non Static : ClassA");
+	}
+	
+
+}
+
+package Tutorial8;
+
+public class ClassB extends ClassA {
+
+	public void a1()
+	{
+		System.out.println("A1 Non Static : ClassB");
+	}
+	
+	public void b1()
+	{
+		System.out.println("B1 Non Static : ClassB");
+	}
+	
+}
+
+package Tutorial8;
+
+public class ClassC extends ClassB {
+
+	public void a1() {
+		System.out.println("A1 Non Static : ClassC");
+	}
+
+	public void c1() {
+		System.out.println("c1 Non Static : ClassC");
+	}
+
+	public static void main(String[] args) {
+		ClassB obj6 = new ClassC();
+		obj6.a1();// ClassC
+		obj6.a2();// ClassA
+		obj6.b1();// ClassB
+
+//		ClassA obj5 =new ClassC();
+//		obj5.a1();//ClassC
+//		obj5.a2();//ClassA
+
+//		ClassA obj4 =new ClassB();
+//		obj4.a1();//ClassB
+//		obj4.a2();//ClassA
+
+//		ClassC obj3 =new ClassC();
+//		obj3.a1();//ClassC
+//		obj3.a2();//ClassA
+//		obj3.b1();//ClassB
+//		obj3.c1();//ClassC
+
+//		ClassB obj2 =new ClassB();
+//		obj2.a1();//ClassB
+//		obj2.a2();//ClassA
+//		obj2.b1();//ClassB
+//		
+
+//		ClassA obj1 =new ClassA();
+//		obj1.a1();
+//		obj1.a2();
+
+	}
+
+}
+
+package Tutorial8;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+
+		ClassC obj = new ClassC();
+		obj.a1();
+		obj.a2();
+		obj.b1();
+		obj.c1();
+	}
+
+}
+=============================================================================
+3) Hierarchical inheritance
+		one parent class have multiple child class.
+
+		just imagine we have 3 classes, ClassA , ClassB and ClassC
+		ClassA extends in ClassB 
+		and ClassA extends in ClassC.
+ClassA
+ClassB extends ClassA
+ClassC extends ClassA
+
+		- just example in ClassA we have defines 10 methods, in ClassB we have defined 5 Methods and in ClassC we have defined 3 Methods
+
+Scenario 1
+		ClassA obj =new ClassA();		//we can access all methods from ClassA
+
+Scenario 2:
+		ClassB obj =new ClassB();		//we can access all methods from ClassA and ClassB
+
+Scenario 3:
+		ClassC obj =new ClassC();			////we can access all methods from ClassA and ClassC
+
+scenario 4:
+		ClassA obj =new ClassB();		//we can access all methods from ClassA
+
+Scenario 5;
+		ClassA obj =new ClassC();			//we can access all methods from ClassA
+
+Scenario 6:
+		ClassB obj =new ClassC();				//invalid scenario
+
+
+
+package Tutorial9;
+
+public class ClassA {
+
+	public void a1() {
+		System.out.println("A1 method");
+	}
+
+	public void a2() {
+
+		System.out.println("A2 method");
+	}
+
+	public void a3() {
+		System.out.println("A3 method");
+	}
+
+	public void a4() {
+
+		System.out.println("A4 method");
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+}
+
+package Tutorial9;
+
+public class ClassB extends ClassA {
+
+	public void b1() {
+		System.out.println("B1 method");
+	}
+
+	public void b2() {
+		System.out.println("B2 method");
+	}
+
+	
+	
+}
+
+package Tutorial9;
+
+public class ClassC extends ClassA {
+
+	public void c1() {
+		System.out.println("C1 method");
+	}
+
+	public static void main(String[] args) {
+		ClassA obj5 = new ClassC();
+		obj5.a1();
+		obj5.a2();
+		obj5.a3();
+		obj5.a4();
+
+//		ClassA obj4 =new ClassB();
+//		obj4.a1();
+//		obj4.a2();
+//		obj4.a3();
+//		obj4.a4();
+
+//		ClassC obj3 = new ClassC();
+//		obj3.a1();
+//		obj3.a2();
+//		obj3.a3();
+//		obj3.a4();
+//		obj3.c1();
+
+//		ClassB obj2 =new ClassB();
+//		obj2.a1();
+//		obj2.a2();
+//		obj2.a3();
+//		obj2.a4();
+//		obj2.b1();
+//		obj2.b2();
+
+//		ClassA obj1 =new ClassA();
+//		obj1.a1();
+//		obj1.a2();
+//		obj1.a3();
+//		obj1.a4();
+
+	}
+
+}
+=============================================================================
+package Tutorial10;
+
+public class ClassA {
+
+	public static void a1() {
+		System.out.println("A1 Static in ClassA");
+	}
+
+	public void a2() {
+		System.out.println("A2 Non Static in ClassA");
+	}
+
+}
+
+package Tutorial10;
+
+public class ClassB extends ClassA{
+
+	public static void a1() {
+		System.out.println("A1 Static in ClassB");
+	}
+
+	public void a2() {
+		System.out.println("A2 Non Static in ClassB");
+	}
+	
+	
+}
+
+
+package Tutorial10;
+
+public class ClassC extends ClassA {
+
+	public static void a1() {
+		System.out.println("A1 Static in ClassC");
+	}
+
+	public void a2() {
+		System.out.println("A2 Non Static in ClassC");
+	}
+
+	public static void main(String[] args) {
+		
+		ClassA obj4 =new ClassC();
+		obj4.a1();//ClassA
+		obj4.a2();//ClassC
+		
+		
+//		ClassA obj3=new ClassB();
+//		obj3.a1();//ClassA
+//		obj3.a2();//ClassB
+
+//		ClassC obj2 = new ClassC();
+//		obj2.a1();// ClassC
+//		obj2.a2();// ClassC
+
+//		ClassB obj1 =new ClassB();
+//		obj1.a1();//ClassB
+//		obj1.a2();//ClassB
+
+//		ClassA obj =new ClassA();
+//		obj.a1();//ClassA
+//		obj.a2();//ClassA
+	}
+
+}
+======================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,688 @@
+Java Star Pattern  or Number Pattern programs
+=========================================================
+1 
+1 2
+1 2 3
+-----------------------------------------------------------
+e.g.
+	step 1: loop to iterate the rows
+	 //i=3
+	for(int i=1;i<=3;i++)
+	{
+				step 2:loop to  iterate the columns
+						  //j<=3
+				for(int j=1;j<=i;j++)
+				{
+					Syso(j); 1		1  2		1 2 3
+				}
+			System.out.println();
+	}
+
+package Tutorial5;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		//loop for iterate the rows
+				//i=4
+		for(int i=1;i<=3;i++)
+		{
+			
+			//loop for iterate the columns
+						//4<=3
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(j + " ");//1   1 2    1 2 3
+			}
+			
+			System.out.println();
+		}
+		
+		
+
+	}
+
+}
+==========================================================
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+package Tutorial5;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		//loop for iterate the rows
+				
+		for(int i=1;i<=5;i++)
+		{
+			
+			//loop for iterate the columns
+						
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(j + " ");
+			}
+			
+			System.out.println();
+		}
+		
+		
+
+	}
+
+}
+
+------------------------------------------------
+*
+* *
+* * *
+* * * *
+* * * * *
+------------------------------------------------
+package Tutorial5;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		//loop for iterate the rows
+				
+		for(int i=1;i<=5;i++)
+		{
+			
+			//loop for iterate the columns
+						
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print("*" + " ");
+			}
+			
+			System.out.println();
+		}
+		
+		
+
+	}
+
+}
+===============================================================
+package Tutorial5;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// 1
+		// 1  2
+		// 1  2  3
+		// 1  2  3  4 
+		// 1  2  3  4  5
+		
+		//step 1 : iterate the rows
+		for(int i=1;i<=5;i++)
+		{
+			//step 1: iterate the columns
+			//if i values 1 then it will iterate inner loop 1 times
+			//if i values 2 then it will iterate inner loop 2 times
+			//if i values 3 then it will iterate inner loop 3 times
+			//if i values 4 then it will iterate inner loop 4 times
+			//if i values 5 then it will iterate inner loop 5 times
+			//Because we take condition as like j<=i
+			for(int j=1;j<=i;j++) {
+				System.out.print(j + " ");
+			}
+			
+			System.out.println();
+
+		}
+		
+		
+		
+	}
+
+}
+=============================================================
+package Tutorial5;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// *
+		// *  *
+		// *  *  *
+		// *  *  *  * 
+		// *  *  *  *  *
+		
+		//step 1 : iterate the rows
+		for(int i=1;i<=5;i++)
+		{
+			//step 1: iterate the columns
+			//if i values 1 then it will iterate inner loop 1 times
+			//if i values 2 then it will iterate inner loop 2 times
+			//if i values 3 then it will iterate inner loop 3 times
+			//if i values 4 then it will iterate inner loop 4 times
+			//if i values 5 then it will iterate inner loop 5 times
+			//Because we take condition as like j<=i
+			for(int j=1;j<=i;j++) {
+				System.out.print("* ");
+			}
+			
+			System.out.println();
+
+		}
+		
+		
+		
+	}
+
+}
+=============================================================
+Number Pattern 
+
+5  4  3  2 1
+4 3 2 1
+3 2 1
+2 1 
+1
+-------------------------------------------------------------
+Star Pattern
+*  *  *  *  *
+*  *  *  *
+*  *  *
+*  * 
+*  
+-------------------------------------------------------------
+
+3 2 1
+2 1 
+1 
+
+	//step 1: iterate the for loop for rows 
+			//i=0
+	for(int i=3;i>=1;i--)
+	{
+
+		//step 2: iterate the for loop for columns
+			//j=0
+		for(int j=i;j>=1;j--)
+		{
+				syso(j); 	3  2 1		2  1			1
+		}
+
+		syso();
+
+	}
+
+package Tutorial5;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		// 3 2 1
+		// 2 1
+		// 1
+		
+		//loop for iterate the rows
+				//i=0
+		for(int i=3;i>=1;i--)
+		{
+			//loop for iterate the columns
+			//if i values is 3 then it will iterate the loop 3 times
+			//if i values is 2 then it will iterate the loop 2 times
+			//if i values is 1 then it will iterate the loop 1 times
+				//j=0
+			for(int j=i;j>=1;j--)
+			{
+				System.out.print(j+" ");//3 2 1   2 1    1
+			}
+			
+			System.out.println();
+			
+		}
+			
+		
+		
+
+	}
+
+}
+=====================================================package Tutorial5;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		//  5  4  3  2  1
+		//  4  3  2  1
+		//  3  2  1
+		//  2  1
+		//  1
+		
+		//loop for iterate the row 5 to 1
+		for(int i=5;i>=1;i--)
+		{
+			//if i values is 5 then it will iterate inner loop 5 times
+			//if i values is 4 then it will iterate inner loop 4 times
+			//if i values is 3 then it will iterate inner loop 3 times
+			//if i values is 2 then it will iterate inner loop 2 times
+			//if i values is 1 then it will iterate inner loop 1 times
+			// Because we mention initial condition as j=i
+			//loop for iterate the columns
+			for(int j=i;j>=1;j--)
+			{
+				System.out.print(j+" ");
+			}
+			
+			System.out.println();
+		}
+		
+		
+	}
+
+}
+============================================================================
+package Tutorial5;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		//  *  *  *  *  *
+		//  *  *  *  *
+		//  *  *  *
+		//  *  *
+		//  *
+		
+		//loop for iterate the row 5 to 1
+		for(int i=5;i>=1;i--)
+		{
+			//if i values is 5 then it will iterate inner loop 5 times
+			//if i values is 4 then it will iterate inner loop 4 times
+			//if i values is 3 then it will iterate inner loop 3 times
+			//if i values is 2 then it will iterate inner loop 2 times
+			//if i values is 1 then it will iterate inner loop 1 times
+			// Because we mention initial condition as j=i
+			//loop for iterate the columns
+			for(int j=i;j>=1;j--)
+			{
+				System.out.print("* ");
+			}
+			
+			System.out.println();
+		}
+		
+		
+	}
+
+}
+=======================================================
+Old pattern
+//  5  4  3  2  1
+//  4  3  2  1
+//  3  2  1
+//  2  1
+//  1
+========================================
+pattern
+
+1 	2 	3 	4 	5
+1 	2 	3	4
+1	2 	3
+1	2
+1
+========================================
+			//i=0
+	for(int i=5;i>=1;i--)
+		{
+							2<=1
+				for(int j=1;j<=i;j++)
+				{
+						syso(j);  1 2 3 4  5			1 2 3  4     1  2  3   1 2   1
+				}
+
+				syso();
+		}
+
+package Tutorial5;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		// 1	2	3	4	5
+		// 1	2	3	4
+		// 1	2	3
+		// 1	2
+		// 1
+		
+		//iterate the loop for rows
+		for(int i=5;i>=1;i--)
+		{
+			//if i values is 5 then it will iterate the inner loop 5 times
+			//if i values is 4 then it will iterate the inner loop 4 times
+			//if i values is 3 then it will iterate the inner loop 3 times
+			//if i values is 2 then it will iterate the inner loop 2 times
+			//if i values is 1 then it will iterate the inner loop 1 times
+			//Because we mention condition as like j<=i 
+			//iterate the loop for columns
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(j + " ");
+			}
+			
+			System.out.println();
+		}
+		
+
+	}
+
+}
+================================================
+1
+2	2
+3	3	3
+4	4 	4	4
+5	5	5	5 	5
+-------------------------------------------------------------------------------------------
+			//i=6
+	for(int i=1;i<=5;i++)
+	{
+				// 6<=5
+		for(int j=1;j<=i;j++)
+			{
+				syso(i);//1		2   2		3  3  3	4 4  4  4		5 5 5 5 5
+			}	
+		syso();
+	}
+
+package Tutorial5;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+//		1
+//		2	2
+//		3	3	3
+//		4	4 	4	4
+//		5	5	5	5 	5
+
+		for(int i=1;i<=5;i++)
+		{
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(i+" ");
+			}
+			
+			System.out.println();
+		}
+			
+		
+		
+	}
+
+}
+================================================
+package Tutorial5;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+
+//		5	5	5	5 	5
+//		4	4 	4	4
+//		3	3	3
+//		2	2
+//		1
+		
+		
+		for (int i = 5; i >= 1; i--) 
+		{
+			for (int j = i; j >= 1; j--) 
+			{
+				System.out.print(i + " ");
+			}
+
+			System.out.println();
+		}
+
+	}
+
+}
+====================================================================
+1 	2	3	4	5
+1	2 	3	4
+1	2 	3
+1	2
+1
+1	2
+1	2 	3
+1	2 	3	4
+1 	2	3	4	5
+-----------------------------------------------------------------
+1
+1	2
+1	2 	3
+1	2 	3	4
+1 	2	3	4	5
+1	2	2	4
+1	2 	3
+1	2
+1
+-----------------------------------------------------------------
+1
+2	3
+4	5	6
+7	8	9	10
+11	12	13	14	15
+-----------------------------------------------------------------
+package Tutorial5;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+//		1
+//		2	3
+//		4	5	6
+		int counter=1;//
+			//i=4
+		for(int i=1;i<=5;i++)
+		{				
+					  //4<=3
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(counter + " ");//1   2 3   4 5 6
+				counter++; 
+			}
+			System.out.println();
+		}
+		
+		
+		
+	}
+
+}
+
+
+
+package Tutorial5;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+//		1
+//		2	3
+//		4	5	6
+		int counter=1;//
+			//i=4
+		for(int i=1;i<=3;i++)
+		{				
+					  //4<=3
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(counter + " ");//1   2 3   4 5 6
+				counter++; 
+			}
+			System.out.println();
+		}
+		
+		
+		
+	}
+
+}
+
+===================================
+package Tutorial5;
+
+public class Demo8 {
+
+	public static void main(String[] args) {
+//		1
+//		2	3
+//		4	5	6
+//		7	8	9	10
+//		11	12	13	14	15
+		
+		int counter=1;
+		
+		for(int i=1;i<=5;i++)
+		{
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(counter + " ");
+				counter++;
+			}
+			System.out.println();
+		}
+		
+		
+
+	}
+
+}
+
+====================================
+//		
+//		15 14 13 12 11 
+//		10 9 8 7 
+//		6 5 4 
+//		3 2 
+//		1 
+
+
+		int counter = 15;
+				//i=4
+		for (int i = 5; i >=1; i--) 
+		{
+							//3>=1
+			for (int j = i; j >= 1; j--) 
+			{
+				System.out.print(counter + " ");//15 14 13 12 11 
+												//10  9
+				counter--;
+			}
+			System.out.println();
+		}
+
+	}
+
+}
+======================================
+package Tutorial5;
+
+public class Demo8 {
+
+	public static void main(String[] args) {
+
+//		11	12	13	14	15
+//		7	8	9	10
+//		4	5	6
+//		2	3
+//		1
+
+		int counter = 11;// 16 11 7 4 2
+
+		for (int i = 5; i >= 1; i--) {
+
+			for (int j = 1; j <= i; j++) {
+				System.out.print(counter + " ");
+				counter++;
+			}
+
+			counter = counter - (i + (i - 1));
+			System.out.println();
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

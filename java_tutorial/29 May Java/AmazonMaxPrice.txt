@@ -1,0 +1,61 @@
+package allAssignments;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Amazon {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		//connect to browser
+		
+		//up casting
+		WebDriver driver = new ChromeDriver();
+		
+		//open url
+		driver.get("https://www.amazon.in");
+		
+		//maximize screen
+		driver.manage().window().maximize();
+		
+		Thread.sleep(3000);
+		
+		//find search object
+		WebElement wbClick = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
+		wbClick.click();
+		
+		Thread.sleep(2000);
+		wbClick.sendKeys("Samsung");
+		
+		Actions act = new Actions(driver);
+		act.sendKeys(Keys.ENTER).build().perform();
+		
+		List<WebElement> ls =driver.findElements(By.xpath("//span[starts-with(text(),'Samsung')]/ancestor::div[@class='a-section a-spacing-small a-spacing-top-small']/descendant::span[@class='a-price-whole']"));
+		
+		int max = 0;
+		
+		for(WebElement abc : ls)
+		{
+			String mob =abc.getText();
+			
+			String price = mob.replaceAll("[^0-9]", "");
+			
+			int pr = Integer.parseInt(price);
+			
+			System.out.println(pr);
+			
+			if(pr>max)
+			{
+				max = pr;
+			}
+		}
+		System.out.println(max);
+	}
+
+}

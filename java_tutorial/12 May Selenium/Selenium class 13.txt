@@ -1,0 +1,785 @@
+Actions class Events
+-----------------------------------------------------------------------------------------------------------
+Mouse Events in Actions class
+-----------------------------------------------------------------------------------------------------------
+			1) click(WebElement wb)
+			2) doubleClick(WebElement wb)
+			3) contextClick(WebElement wb)
+			4) moveToElement(WebElement wb)
+			5) clickAndHold(WebElement wb)
+			6) release(WebElement wb)
+			7) dragAndDrop(WebElement src, WebElement trg)
+			8) scroll up and scroll down			----> we perform using JavascriptExecutor interface.
+		 		
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+5) clickAndHold(WebElement wb)									VVVVVVIMMMPPPPPPPP
+		- if you want to hold the specific element without dropping then we use clickAndHold() method.
+		- clickAndHold() method is present inside the Actions class and return type is Actions class.
+		- if u want to use clickAndHold()method, first we find the web element using findElement() method and then
+		we create Object of Actions class by passing WebDriver instance.
+		- then we use clickAndHold() method by passing WebElement instance from Actions class and  then build() and perform() method.
+		- clickAndHold() method is used to hold the element and build()method is used to combine the multiple actions in single statement 	
+	                and build() method present inside the Actions class and return type is Action interface. and perform() method used to execute each 		
+                              and every combined actions.
+
+syntax:
+		WebElement wb = driver.findElement(By.id(""));
+		Actions act =new Actions(driver);
+		act.clickAndHold(wb).build().perform();
+
+Scenario 1:
+		open a http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html
+		find the Washington element and hold the Washington element
+		
+Step 1: Connect to actual browser
+		System.setProperty("webdriver.chrome.driver", "chrome path");
+
+Step 2: Up casting
+		WebDriver driver = new ChromeDriver();
+
+Step 3: open a URL
+		driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+
+Step 4: find the WebElement using findElement() method and using given locator
+		WebElement wb = driver.findElement(By.id("box3"));
+
+Step 5: create Object of Actions class by passing WebDriver instance
+		Actions act =new Actions(driver);
+
+step 6: use clickAndHold() to hold the element from Actions class and then build() and perform() method
+		act.clickAndHold(wb).build().perform();
+
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+
+		// find the WebElement using findElement() method and using given locator
+		WebElement wb = driver.findElement(By.id("box3"));
+
+		// create Object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// use clickAndHold() method by passing WebElement instance and build() and
+		// perform() methodF
+		act.clickAndHold(wb).build().perform();
+	}
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------
+6) release(WebElement wb)										VVVVVIMMMPPPP
+		- release() method is used to release the hold elements.
+		-  release() method present inside the Actions class and return type is Actions class.
+		- if u want to release() method then first we find the element or object using findElement() method and then we create object of
+		Actions class by passing WebDriver instance and 
+		then we use release() method by passing WebElement instance from Actions class and then build() method and perform() method.
+		release() method is used to release the hold element and build() method used to combine the multiple Actions in single statement
+		and this build() method is present inside the Actions class and return type is Action interface and perform() method is used to 
+		execute each and every combined actions and perform() method is present inside the Action interface and return type is void.
+
+syntax:
+		WebElement wb = driver.findElement(By.id(""));
+		Actions act =new Actions(driver);
+		act.clickAndHold(wb).build().perform();
+			
+		WebElement wb1 = driver.findElement(By.id(""));
+		act.release(wb1).build().perform();
+
+Scenario 1:
+		open a http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html
+		find the Washington element and hold the Washington element
+		and release Washington elements in Spain box.
+
+Step 1: Connect to browser code
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+			driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+
+step 4: find the Washington elements or box
+			WebElement wb1 = driver.findElement(By.id("box3"));
+
+step 5: create Object of Actions class by passing WebDriver instance
+			Actions act =new Actions(driver);
+
+step 6: hold the Washington elements  by using clickAndHold() method and then build() and perform() method
+			act.clickAndHold(wb1).build().perform();
+
+step 7: find the Spain elements or box
+			WebElement wb2 = driver.findElement(By.id("box107"));
+
+step 8: release the Washington elements on Spain box.
+			act.release(wb2).build().perform();
+
+-----------------------------------------------------------------------------------------------
+		act.clickAndHold(wb1).release(wb2).build().perform();
+-----------------------------------------------------------------------------------------------
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+
+		// find the WebElement using findElement() method and using given locator
+		WebElement wb1 = driver.findElement(By.id("box3"));
+
+		// create object of Actions class by pasing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// step 6: hold the Washington elements by using clickAndHold() method and then
+		// build() and perform() method
+		act.clickAndHold(wb1).build().perform();
+
+		Thread.sleep(10000);
+		
+		// find the Spain elements or box
+		WebElement wb2 = driver.findElement(By.id("box103"));
+
+		// release the Washington elements on Spain box.
+		act.release(wb2).build().perform();
+
+	}
+
+}
+---------------------------------------------------------------------------------------
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+
+		// find the WebElement using findElement() method and using given locator
+		WebElement wb1 = driver.findElement(By.id("box3"));
+
+		// create object of Actions class by pasing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// find the Spain elements or box
+		WebElement wb2 = driver.findElement(By.id("box103"));
+
+		// hold the Washington elements by using clickAndHold() method and then
+		// release the Washington elements on US box.
+		act.clickAndHold(wb1).release(wb2).build().perform();
+
+	}
+
+}
+==============================================================================
+ 2) dragAndDrop(WebElement src, WebElement trg)
+		- dragAndDrop() method used to drag the element from source location and drop the target location,
+		- dragAndDrop() method present inside the Actions and return type is Actions class.
+		- if u want to use dragAndDrop()method then we find the source element and target element using findElement() method and
+		then we create Object of Actions class by passing WebDriver instance and then we dropAndDrop() method by passing
+		source web element location and target element location from Actions class and then build() and perform() method
+		dropAndDrop() is used to drag the element from source location and drop the target location,
+		build() method is used to combine the multiple actions and this method present inside the Actions class and return type is Action interface. 
+                             and perform() method is used to execute each and every combined actions.
+		
+syntax:
+		WebElement src = driver.findElement(By.id("id value"));
+		WebElement trg = driver.findElement(By.id("id value"));
+		Actions act =new Actions(driver);
+		act.dragAndDrop(src,trg). build().perform();
+
+Scenario :
+		open a http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html
+		find the Washington element
+		find the Spain Element 
+		and drag the Washington element and drop Washington elements in Spain box.
+
+Step 1: connect browser
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+step 3: open a url
+			driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+
+step 4; find the Washington element
+			WebElement src = driver.findElement(By.id("box3"));
+
+step 5: find Spain Element 
+			WebElement trg = driver.findElement(By.id("box107"));
+
+step 6: create Object of Actions class by passing WebDriver instance
+			Actions act =new Actions(driver);
+
+step 7: use dragAndDrop() method by passing source and target location then build() and perform() method
+			act.dragAndDrop(src,trg).build().perform();
+		
+
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+
+		// step 4; find the Washington element
+		WebElement src = driver.findElement(By.id("box3"));
+
+		// step 5: find US Element
+		WebElement trg = driver.findElement(By.id("box103"));
+
+		// step 6: create Object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// step 7: use dragAndDrop() method by passing source and target location then
+		// build() and perform() method
+		act.dragAndDrop(src, trg).build().perform();
+
+	}
+
+}
+====================================================================================
+2) Keyboard events in Actions class.
+		there are 3 main method present inside the Actions class keyboard events
+
+		1) keyDown(Keys keys)				it used to press any key
+											this  present inside the Actions and return type Actions
+
+		2) keyUp(Keys keys)				it is used to release the pressed key
+											this  present inside the Actions and return type Actions.
+
+		3) sendKeys(WebElement wb, String string)
+											it is used to send text to the elements or object.
+
+=====================================================================================
+how many ways we can send text to text box?						VVVVVIMMMMPPPPPP
+		there are 3 ways we can send text to text box
+		1) by using WebElement sendKeys() method
+		2) by using Actions class sendKeys() method
+		3) by using JavascriptExecutor interface value attribute 
+=====================================================================================
+Enter the value in Text box using Actions class								VVVVVVIMMMPPPPP
+
+Scenario:
+		open a fb register page application
+		find the first name text box
+		enter values
+
+Step 1: connect browser
+
+step 2: up casting
+				WebDriver driver = new ChromeDriver();
+step 3: open a url
+				driver.get("https://www.facebook.com/reg");
+
+step 4: find the first name text box
+				WebElement wb =driver.findElement(By.name("firstname"));
+
+step 5: create object of Actions class by passing WebDriver instance
+				Actions act =new Actions(driver);
+
+step 6: use sendKeys() method by passing WebElement instance and text from Actions class and then build() and perform() method
+				act.sendKeys(wb,"selenium").build().perform();
+
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("https://www.facebook.com/reg");
+
+		// find the first name text box
+		WebElement wb = driver.findElement(By.name("firstname"));
+
+		// create object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// use sendKeys() method by passing WebElement instance and text from Actions
+		// class and then build and perform() method
+
+		act.sendKeys(wb, "poonam").build().perform();
+
+	}
+
+}
+========================================================================
+Enter Upper case Letter in text box 										VVVVVVVIMMMMPPPP
+
+Scenario 
+		open fb register page and enter upper case value in first name text box
+
+		Actions act =new Actions(driver);
+		act.keyDown(Keys.SHIFT).sendKeys(wb,"anjali").build().perform();
+
+Step 1: connect browser
+
+step 2: up casting
+				WebDriver driver = new ChromeDriver();
+step 3: open a url
+				driver.get("https://www.facebook.com/reg");
+
+step 4: find the first name text box
+				WebElement wb =driver.findElement(By.name("firstname"));
+
+step 5: create object of Actions class by passing WebDriver instance
+				Actions act =new Actions(driver);
+
+step 6: use keyDown()method to press the key by passing Keys.SHIFT key and then use sendKeys() method by passing WebElement instance 		and text from Actions class then build() and perform() method
+
+		act.keyDown(Keys.SHIFT).sendKeys(wb,"anjali").build().perform();
+
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("https://www.facebook.com/reg");
+
+		// find the first name text box
+		WebElement wb = driver.findElement(By.name("firstname"));
+
+		// create object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// use keyDown() to press key by passing Keys.SHIFT keyword and then use
+		// sendKeys()method by passing
+		// WebElement instance and text from Actions class and then build() and
+		// perform() method
+
+		act.keyDown(Keys.SHIFT).sendKeys(wb, "anjali").build().perform();
+
+	}
+
+}
+====================================================================
+Scenario:
+		open fb register page application
+		find the first name text box and 
+		enter value in first name ,last name text box, username text box and password text box
+
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("https://www.facebook.com/reg");
+
+		// find the first name text box
+		WebElement wb = driver.findElement(By.name("firstname"));
+		
+		Actions act =new Actions(driver);
+		
+		act.sendKeys(wb,"Anjali").build().perform();
+		
+		//it will focus on last name
+		act.keyDown(Keys.TAB).build().perform();
+		
+		//enter value in last name text box
+		act.sendKeys("Patil").build().perform();
+		
+		//focus on username text box by pressing tab
+		act.keyDown(Keys.TAB).build().perform();
+		
+		//enter username
+		act.sendKeys("anjali@gmail.com").build().perform();
+		
+		//press tab
+		act.keyDown(Keys.TAB).build().perform();
+		
+		//enter the confirm username
+		act.sendKeys("anjali@gmail.com").build().perform();
+		
+		//press tab
+		act.keyDown(Keys.TAB).build().perform();
+		
+		//enter password
+		act.sendKeys("Anjali@123").build().perform();
+				
+
+	}
+
+}
+===================================================================
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("https://www.facebook.com/reg");
+
+		// find the first name text box
+		WebElement wb = driver.findElement(By.name("firstname"));
+
+		Actions act = new Actions(driver);
+		
+		act.sendKeys(wb,"Anjali")
+		.keyDown(Keys.TAB).sendKeys("Patil")
+		.keyDown(Keys.TAB).sendKeys("anjali@gmail.com")
+		.keyDown(Keys.TAB).sendKeys("anjali@gmail.com")
+		.keyDown(Keys.TAB).sendKeys("Anjali@123")
+		.build().perform();
+		
+	
+		
+	}
+
+}
+=========================================================================
+Scenario:
+	open https://www.saucedemo.com/
+	find the username text box
+	and enter value in username text box, password text box and click on login button
+
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo8 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("https://www.saucedemo.com/");
+
+		WebElement wb = driver.findElement(By.id("user-name"));
+
+		Actions act = new Actions(driver);
+		
+		act.sendKeys(wb,"standard_user").build().perform();
+		
+		act.keyDown(Keys.TAB).build().perform();
+		
+		act.sendKeys("secret_sauce").build().perform();
+		
+		act.keyDown(Keys.TAB).build().perform();
+		
+		//click on login button
+		act.sendKeys(Keys.ENTER).build().perform();
+		
+	
+	}
+
+}
+=============================================================
+package Tutorial12;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo8 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a URL
+		driver.get("https://www.saucedemo.com/");
+
+		WebElement wb = driver.findElement(By.id("user-name"));
+
+		Actions act = new Actions(driver);
+		
+		act.sendKeys(wb,"standard_user")
+		.keyDown(Keys.TAB).sendKeys("secret_sauce")
+		.keyDown(Keys.TAB).sendKeys(Keys.ENTER)
+		.build().perform();
+	
+	
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------
+Ass:
+	open a fb register page https://www.facebook.com/reg
+	enter the value in first name text, copy the value from first name text box and paste in last name box
+-------------------------------------------------------------------------------------------------------------------
+ass:
+	open a fb register page https://www.facebook.com/reg
+	enter value in first name box and delete the last 2 character.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Ass:
+	open https://www.amazon.com/ 
+	navigate end of page
+	wait for 5 seconds
+	navigate home page
+------------------------------------------------------------------------------------------------------------------------------------------
+Ass:
+	open a fb register page https://www.facebook.com/reg
+	enter the value in
+			 first name text, 		
+			last name
+			username
+			confirm username
+			password
+			select date
+			select month
+			select year
+			select gender
+--------------------------------------------------------
+open https://demo.guru99.com/test/newtours/register.php
+		find the first name text box only
+	enter value
+				First Name:	
+				Last Name:	
+				Phone:	
+				Email:	
+
+				Address:	
+				City:				
+				State/Province:	
+				Postal Code:	
+				select Country			INDIA
+
+				User Name:	
+				Password:	
+				Confirm Password:	
+			
+				click on submit button
+
+				click on sign up link
+				enter username
+				enter password
+				click on submit button
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

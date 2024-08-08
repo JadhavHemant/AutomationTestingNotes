@@ -1,0 +1,347 @@
+Hybrid Framework revision
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Scenario:
+		- Automate the Login Page
+		- Automate the Home Page
+		- Automate the PIM Page to create the employee, search Employee, delete employee.
+		using BaseLayer package and Test Layer Package.
+-----------------------------------------------------------------------------------------------------------------------------------------------
+package BaseLayer;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BaseClass {
+	protected static WebDriver driver;
+
+	public static void initialization() {
+		// connect browser
+		// UP casting
+		driver = new ChromeDriver();
+
+		// implicitly Wait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+		// pageLoadTimeout
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+
+		// maximize
+		driver.manage().window().maximize();
+
+		// deleteAllCookies
+		driver.manage().deleteAllCookies();
+
+		// open URL
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+	}
+
+}
+
+
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class LoginPageTest extends BaseClass {
+
+	@BeforeTest
+	public void setUp() {
+		BaseClass.initialization();
+	}
+
+	@Test(priority = 1)
+	public void validateLoginFunctionality() {
+		driver.findElement(By.name("username")).sendKeys("Admin");
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		driver.findElement(By.xpath("//button[text()=' Login ']")).click();
+	}
+
+	@AfterTest
+	public void tearDown() {
+		//driver.quit();
+	}
+
+}
+
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class HomePageTest extends BaseClass {
+
+	@Test(priority = 1)
+	public void validateUserOnHomePage() {
+
+		String actualResult = driver.findElement(By.xpath("//")).getText();
+		Assert.assertEquals(actualResult, "Dashboard");
+	}
+
+	@Test(priority = 2)
+	public void validateTitle() {
+		String actualTitle = driver.getTitle();
+		Assert.assertEquals(actualTitle, "OrangeHRM");
+	}
+
+	@Test(priority = 3)
+	public void validateUrl() {
+		String actualUrl = driver.getCurrentUrl();
+		boolean actualResult = actualUrl.contains("orangehrm");
+		Assert.assertTrue(actualResult);
+	}
+
+	@Test(priority = 4)
+	public void validateLogo() {
+		boolean actualLogo = driver.findElement(By.xpath("//img")).isDisplayed();
+		Assert.assertTrue(actualLogo);
+	}
+
+}
+
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class PIMPageTest extends BaseClass {
+	private static String employeeId;
+
+	@Test(priority = 1)
+	public void validateUrl() {
+		driver.findElement(By.xpath("//span[text()='PIM']")).click();
+		String actualUrl = driver.getCurrentUrl();
+		boolean actualResult = actualUrl.contains("pim");
+		Assert.assertEquals(actualResult, true);
+	}
+
+	@Test(priority = 2)
+	public void validateNewEmployee() {
+		driver.findElement(By.xpath("//button[text()='Add Employee']")).click();
+		driver.findElement(By.name("firstname")).sendKeys("Ashish");
+		driver.findElement(By.name("lastname")).sendKeys("Shah");
+		employeeId = driver.findElement(By.xpath("//")).getAttribute("value");
+		driver.findElement(By.xpath("//button[text()=' Save ']")).click();
+	}
+
+	@Test(priority = 3)
+	public void validateSearchFunctionality() {
+		driver.findElement(By.xpath("//button[text()=' Employee List ']")).click();
+		driver.findEleme
+nt(By.xpath("")).sendKeys(employeeId);
+		driver.findElement(By.xpath("//button[text()='Search']")).click();
+	}
+
+	@Test(priority = 4)
+	public void validateDeleteEmployee() {
+		driver.findElement(By.xpath("//")).click();
+		driver.findElement(By.xpath("//")).click();
+		driver.findElement(By.xpath("//")).click();
+
+	}
+
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.PIMPageTest" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.orangehrm</groupId>
+	<artifactId>OrangeHRM</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>OrangeHRM</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.16.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/pimpage.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
+
+=====================================================
+Selenium
+		- frame
+		- handle drop down
+		- alert
+		- window
+		- takes
+		- wait
+		- Actions
+		WebElement
+		WeDriver
+		Navigation
+		Options
+		TargetLocator	
+		Action	interface
+				perform
+		Actions class
+		Relative xpath
+
+TestNG
+		- pre condition
+		- post condition
+		- Test
+				- run same test cases multiple times
+				- ignore test cases
+				- within the time
+				- group the test cases
+				- threadPoolSize
+				- expectedException= Exception.class
+
+
+	@Parameters
+	@DataProvider
+---------------
+Cucumber
+	- Feature:
+	- Scenario			Example
+	Scenario Outline	Scenario Template
+	Examples:			Scenarios
+	Given
+	When
+	Then
+	And
+	But
+	*
+	Background
+	
+	Parameters 		use double quote
+	
+	tags/groups
+
+
+
+Test runner
+		@RunWith
+		@CucumberOptions
+					features
+					glue/extreaGlue
+					dryRun			/ strict
+					monochrome
+					plugin
+					tags
+
+
+
+		extends AbstractTestNGCucumberTests
+
+	
+		cucumber-core
+		cucumber-java
+		cucumber-junit or testng
+		junit 
+		testng
+		selenium
+
+
+	
+		cucumber-core
+		cucumber-java
+		cucumber-junit or testng
+		junit 
+		testng
+		Rest assured
+							5 Request
+											POST
+											PUT
+											PATCH
+											GET
+											DELETE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

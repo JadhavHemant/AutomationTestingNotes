@@ -1,0 +1,427 @@
+How to handle Window POP in selenium?								VVVVVVIMMMMPPPPPPP
+		or
+How to handle multiple tabs in selenium?								VVVVVVIMMMMPPPPPPP
+		or 
+how to handle multiple window in selenium?							VVVVVVIMMMMPPPPPPP
+-----------------------------------------------------------------------------------------------------------------------------------------------
+	- If u want to handle the ""window pop"" or ""multiple tabs in browser""" or ""multiple window"" in selenium then we use
+	getWindowHandle() and getWindowHandles() method.
+
+	- if u want to switch focus to the window pop /browser tab /browser window then we need the window id number.
+	
+	- getWindowHandle() method is used to capture the current window id numbers.
+	- getWindowHandle() method is present inside the WebDriver interface and return type is String.
+	- getWindowHandle() method it return the window id number which is combination of character and integer numbers.
+
+syntax;
+		String a = driver.getWindowHandle();
+
+	- getWindowHandles() method is used to capture all window id numbers which is opened by selenium script.
+	- getWindowHandles() method is present inside the WebDriver interface and return type is """Set<String>""".
+
+syntax;
+		Set<String>  b = driver.getWindowHandles();	
+
+	-if u want to switch focus to the window then we use switchTo().window() method by passing the window id number.
+	-switchTo() present inside the WebDriver interface and return type is TargetLocator interface.
+	- window() method is present inside the TargetLocator interface and return type is WebDriver interface.
+
+syntax;
+		driver.switchTo().window("window id number");
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Scenario 1:
+		- Open a url https://prafpawar11.github.io/multiplewindows.html
+
+		- capture current window id number
+		- Enter the values in first name text box
+		- click on orange HRM link
+		- capture all window id Number
+		- capture the orange HRM id number
+		- switch focus to orange HRM window
+		- enter value in username text box 
+		- switch focus to main window 
+		- enter the text in last name text box.
+
+Step 1: connect browser
+step 2: up casting
+step 3: open a url
+step 4: capture current window id number
+		String parentWindowId = driver.getWindowHandle();
+
+step 5: find and enter text in first name text box
+		driver.findElement(By.name("")).sendKeys("");
+
+step 6: click on orange HRM link
+		driver.findElement(By.linkText("Visit Orange HRM")).click();
+
+step 7: capture all window id numbers
+		Set<String> allWindowId = driver.getWindowHandles();
+
+step 8: capture the Orange HRM application Id number
+		String orangeHrmWindowId=null;
+				
+		//it will iterate both window id number
+		for(String abc: allWindowId)
+			{
+					//it check condition as if parentWindowId not equal to other id number then run the if block of code.
+					if(!abc.equals(parentWindowId))
+					{
+							orangeHrmWindowId=abc;
+					}
+			}
+
+step 9: switch focus to orange HRM window 
+		
+		driver.switchTo().window(orangeHrmWindowId);
+
+step 10: find and enter the values in username text box
+		driver.findElement(By.name("")).sendKeys("");
+
+step 11: switch focus to main window
+		
+		driver.switchTo().window(parentWindowId);
+
+
+step 12: find and enter the values in last name text box
+		driver.findElement(By.name("")).sendKeys("");
+
+package Tutorial16;
+
+import java.time.Duration;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		// step 3: open a url
+		driver.get("https://prafpawar11.github.io/multiplewindows.html");
+
+		// step 4: capture the current or parent window id number
+
+		String parentWindowId = driver.getWindowHandle();
+		System.out.println(parentWindowId);
+		System.out.println("-------------------------------------------------");
+
+		// step 5: find and enter values in first name text box
+		driver.findElement(By.name("fname")).sendKeys("Amruta");
+
+		Thread.sleep(5000);
+
+		// step 6: find and click on orange HRM link
+		driver.findElement(By.linkText("Visit Orange HRM")).click();
+
+		// step 7: capture all window id numbers
+		Set<String> allWindowId = driver.getWindowHandles();
+
+		// step 8: capture the child window id or orange HRM application id Number
+		// step 8a) define the string null variable
+
+		String orangeHrmWindowID = null;
+
+		// step 8a) : iterate the all window id numbers
+		for (String abc : allWindowId) {
+
+			if (!abc.equals(parentWindowId)) {
+				// reassign value for orangeHrmWindowID
+				orangeHrmWindowID = abc;
+			}
+		}
+
+		// step 9: switch focus to Orange HRM application
+
+		driver.switchTo().window(orangeHrmWindowID);
+
+		// step 10: find and enter the value in username text box
+		driver.findElement(By.name("username")).sendKeys("Admin");
+
+		Thread.sleep(5000);
+
+		// step 11: switch to parent window
+
+		driver.switchTo().window(parentWindowId);
+
+		// step 12: find and enter text in last name text box
+
+		driver.findElement(By.name("lname")).sendKeys("Patil");
+
+	}
+
+}
+===================================================================================
+Scenario 2:
+		Open a https://prafpawar11.github.io/multiplewindows.html
+		capture current or parent window id number
+		find and enter the firstname
+		click on facebook link
+		capture all window id number
+		capture the facebook window id number
+		switch focus to facebook window
+		enter first name last name , username and password
+		switch focus to parent window
+		find and enter last name
+		click on orange HRM link
+		capture all window id number
+		capture the orange hrm window id number
+		switch focus to orange hrm window
+		find and enter username, password and click on login button
+		switch to parent window
+		find and enter the address
+
+Step 1: connect to actual browser
+step 2; up casting
+step 3: open a url
+step 4: capture the current or parent window id numbers
+		String parentWindowId = driver.getWindowHandle();
+
+step 5: find and enter value in first name text box
+		driver.findElement(By.name("")).sendKeys("");
+
+step 6: click on facebook  link
+		driver.findElement(By.name("")).click();
+
+step 7: capture all window id number
+		Set<String> allWindowID= driver.getWindowHandles();
+	
+step 8: capture the Facebook window id number
+		String facebookWindowID=null;
+
+		for(String abc: allWindowID)
+			{
+					if(!abc.equals(parentWindowId))
+					{
+							facebookWindowID=abc;
+					}
+			}
+step 9: switch focus to facebook window
+		driver.switchTo().window(facebookWindowID);
+
+
+step 10: find and enter value in firstname, last name, username text box
+			driver.findElement(By.name("")).sendKeys("");
+			driver.findElement(By.name("")).sendKeys("");
+			driver.findElement(By.name("")).sendKeys("");
+
+step 11: switch focus to parent window
+		driver.switchTo().window(parentWindowId);
+
+step 12: find and enter value in last name text box
+		driver.findElement(By.name("")).sendKeys("");
+
+step 13: find and click on orange HRM link
+		driver.findElement(By.linkText("")).click();
+
+
+step 14: capture all window id number
+		Set<String> allWindowIDNumber = driver.getWindowHandles();
+
+
+step 15: capture the orange HRM window id 
+		String orangeHRMWindowID=null;
+
+		for(String abc: allWindowIDNumber )
+				{
+						if(!(abc.equals(parentWindowId) || abc.equals(facebookWindowID))
+						{
+									orangeHRMWindowID=abc;
+						}
+				}		
+	
+
+step 16: switch focus to orange HRM window
+		driver.switchTo().window(orangeHRMWindowID);
+
+step 17:find and enter the value username and password text box and click on login button
+				driver.findElement(By.name("")).sendKeys("");
+				driver.findElement(By.name("")).sendKeys("");
+				driver.findElement(By.name("")).click();
+
+step 18: switch focus to the main window
+			driver.switchTo().window(parentWindowId);
+
+step 19: find and enter value in address text box
+			driver.findElement(By.name("")).sendKeys("");
+
+
+package Tutorial16;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://prafpawar11.github.io/multiplewindows.html");
+
+		// step 4:capture the current or parent window id
+		String parentWindowId = driver.getWindowHandle();
+
+		// step 5: find and enter value in first name
+		driver.findElement(By.name("fname")).sendKeys("Amar");
+
+		Thread.sleep(5000);
+		// step 6: click on facebook link
+		driver.findElement(By.linkText("Visit Facebook")).click();
+
+		// step 7: capture all window id number
+		Set<String> allWindowId = driver.getWindowHandles();
+
+		// step 8: capture the facebook window id number
+		String facebookWindowID = null;
+
+		for (String abc : allWindowId) {
+			if (!abc.equals(parentWindowId)) {
+				facebookWindowID = abc;
+			}
+		}
+++
+		// step 9: switch focus to facebook window
+		driver.switchTo().window(facebookWindowID);
+
+		// step 10: find and enter value in first name lastname and username
+		driver.findElement(By.name("firstname")).sendKeys("Dipali");
+		driver.findElement(By.name("lastname")).sendKeys("patil");
+		driver.findElement(By.name("reg_email__")).sendKeys("dipali@gmail.com");
+
+		Thread.sleep(5000);
+
+		// step 11: switch focus to main window
+		driver.switchTo().window(parentWindowId);
+
+		// step 12: find and enter value in last name text box
+		driver.findElement(By.name("lname")).sendKeys("patil");
+
+		Thread.sleep(5000);
+
+		// step 13: click on orange HRM link
+		driver.findElement(By.partialLinkText("Orange HRM")).click();
+		Thread.sleep(5000);
+		// step 14: capture all window id numbers
+		Set<String> allwindowIdNumbers = driver.getWindowHandles();
+
+		// step 15: capture orange hrm window id
+		String orangeHrmWindowID = null;
+
+		for (String abc : allwindowIdNumbers) {
+			if (!(abc.equals(parentWindowId) || abc.equals(facebookWindowID))) {
+				orangeHrmWindowID = abc;
+			}
+		}
+
+		// step 16: switch focus to orange hrm
+		driver.switchTo().window(orangeHrmWindowID);
+
+		// step 17: find and enter value in username, password and click on login button
+		driver.findElement(By.name("username")).sendKeys("Admin");
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		Thread.sleep(5000);
+
+		driver.findElement(By.xpath("//button[text()=' Login ']")).click();
+
+		Thread.sleep(5000);
+
+		// step 18: switch focus to main window
+		driver.switchTo().window(parentWindowId);
+
+		// step 19:find and enter value in address
+
+		driver.findElement(By.name("address")).sendKeys("Pune");
+
+	}
+
+}
+======================================================================================
+Ass 1:
+	open https://prafpawar11.github.io/multiplewindows.html
+	enter value in first name text box
+	take screenshot
+	click on sauce demo link
+				enter valid credential	
+				take screenshot
+				add 3 products in add to cart
+				click on add to container
+				take screenshot
+				click on checkout
+				enter first name, last name and pincode and click on continue
+				click on finish
+				take screenshot
+	switch focus to main window
+	enter lastname
+	take screenshot
+	click on cogmento CRM Link link
+				enter valid credentials 					prafulp1010@gmail.com		Pr@ful0812
+				take screenshot
+				click on contact links
+				click on create button
+				enter firstname, last name , select status as on Hold,  click on do not call toggle switch
+				take screenshot and click on save button
+				delete the created user
+				click on logout
+
+	switch focus to main window
+	take screenshot
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Ass 2:
+	open a https://www.flipkart.com/
+	mouse over Electronics
+	mouse over Gaming
+	take screenshot
+	click on Gaming mouse
+
+	click on 1st one item
+	capture the price
+	take screenshot
+
+	go to main window or search window
+	click on 2nd item
+	capture the price
+	take screenshot
+
+	compare the captured price
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

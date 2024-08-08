@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="18.247" tests="3" skipped="0" failures="0" errors="0">
+<testcase classname="Test the Orange HRM application" name="Validate login functionality" time="13.189">
+<system-out><![CDATA[
+Given user is on login page.................................................passed
+When user enter username and password.......................................passed
+Then user click on login button.............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Test the Orange HRM application" name="validate Home Page Functionality" time="0.358">
+<system-out><![CDATA[
+When user is on home page and validate home page title......................passed
+And user validate home page url.............................................passed
+And user validate home page logo............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Test the Orange HRM application" name="validate pim page functionality" time="4.465">
+<system-out><![CDATA[
+Given user is on pim page and verify the url................................passed
+When user click on add employee.............................................passed
+And user enter first name, middle name and last name........................passed
+And user click on save button...............................................passed
+]]></system-out>
+</testcase>
+</testsuite>

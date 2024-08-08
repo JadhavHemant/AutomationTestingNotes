@@ -1,0 +1,45 @@
+package Static_Methods;
+
+public class Demo1 {
+	
+	/*Create static method with 1 int arguments
+
+	conditions
+			i) if a number is between 1 to 100 then print a small number
+			ii) if a number is between 101 to 1000 then print a number is medium
+			iii) if a numbers is between 1001 to 10000 the print a number is large
+			iv) if a number is above 10001 then a number is biggest number
+			v) if a number is below 1 then a number is zero or negative number.
+
+	*/
+	public static void number(int a)
+	{
+	    if(a<=100 &&a>0)
+	    {
+          System.out.println("a is small number");
+	    }
+	    else if(a>=101 && a<=1000)
+	    {
+	    	System.out.println("a is  medium number");
+	    }
+	    else if(a>1000 && a<=10000 )
+	    {
+	    	System.out.println("a number is large");
+	    	
+	    }
+	    else if(a>10001)
+	    {
+	    	System.out.println("Number is biggest number");
+	    }
+	    else {
+	    	System.out.println("a number is Zero or Negative number");
+	    }
+	}
+	    
+
+	public static void main(String[] args) {
+		
+       Demo1.number(10000);
+	}
+
+}

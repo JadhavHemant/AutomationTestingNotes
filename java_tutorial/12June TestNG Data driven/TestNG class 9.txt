@@ -1,0 +1,250 @@
+What is Data Driven Testing?
+		or
+What is Data driven framework?
+-----------------------------------------------------------------------------------
+public class ExcelReader
+{
+		//step 1: create constructor with 1 String arguments:		
+				//step 1a) check file is present or not by creating object of File class and by passing file location
+				//step 1b) read all file content by creating object of FileInputStream class by passing File instance
+				//step 1c) load all work sheets by creating object of XSSFWorkbook class and by passing FileInputStream instance
+
+		//step 2: create non static method with int return type and 1 int arguments
+				//step 2a): focus on specific sheet using getSheetAt() method and by passing sheet index.
+				//step 2b) capture last row number of sheet using getLastRowNum() method
+		
+		//step 3: create non static method with int return type and 1 int arguments
+				//step 3a) :  focus on specific sheet using getSheetAt() method and by passing sheet index.
+				//step 3b) : capture the last column number using getLastCellNum() method
+			
+		//step 4:create non static method with Object return type and 3 int arguments
+				//step 4a) : focus on specific sheet using getSheetAt() method and by passing sheet index.
+				//step 4b) : focus on specific cell using getRow().getCell() by passing row and column number
+
+				//step 4c) : check the cell is null or not by using if condition cells.getCellType()==XSSFCell.CELL_TYPE_BLANK
+				//step 4d) : check the cell value is string or not by using else if condition as cells.getCellType()==XSSFCell.CELL_TYPE_STRING
+				//step 4e) check cell value is numeric or not by using else if condition as cells.getCellType()==XSSFCell.CELL_TYPE_NUMERIC
+				//step 4f) : check the cell value is boolean or not by using else is condition as cells.getCellType()==XSSFCell.CELL_TYPE_BOOLEAN
+				//step 5g: check cell value is formula or not by using else if condition as cells.getCellType()==XSSFCell.CELL_TYPE_FORMULA
+
+				//step 5h): if cell type does not matches then return the null.
+
+
+		//step 5: create non static method with Object[][] return type and 1 int arguments
+				//step 5a): call getTotalRowCount() method by passing sheet index
+				//step 5b) call getTotalColumnCount() method by passing sheet index
+				//step 5c): create object of Object[][] array and by passing rows and columns
+				//step 5d) iterate all excel sheet rows
+				//step 5e) iterate all excel sheet columns
+				//step 5f) : capture all values from excel sheet by calling getSheetTestData() method by passing sheet index, rows and columns and 
+						store all captured values to Object[][] arrays.
+
+				//step 5g) return the Object[][] array.
+ 
+}
+
+public class Demo1
+{
+		//if excel sheet contains if we have 3 columns then we have to take 3 arguments for test cases.
+		@Test(dataProvider="testData")
+		public void abc(String firstName, String middleName , String lastName)
+		{
+				//selenium code
+		}
+
+		//Match dataProvider attribute name to @DataProvide annotation name.
+		@DataProvider(name="testData")
+		public Object[][] getTestData()
+		{
+					//Step 1: create object of ExcelReader class by passing location
+				
+					//Step 2: call getAllSheetTestData() by using object name and return type is Object[][] array
+
+					//Step 3: return type Object[][] array.
+					
+		}
+
+}
+===============================================================================================
+public class ExcelReader
+{
+XSSFWorkbook workbook;
+
+		public ExcelReader(String excelPath)
+		{
+				File f =new File(excelPath);
+				FileInputStream fis =new FileInputStream(f);
+				workbook =new XSSFWorkbook(fis);
+		}
+		public int getTotalRowCount(int sheetIndex)
+		{		
+			XSSFSheet sheet = workbook.getSheetAt(sheetIndex);
+			int rows = sheet.getLastRowNum()=1;
+			return rows;
+			//return workbook.getSheetAt(sheetIndex).getLastRowNum()+1;
+		}	
+
+		public int getTotalColumnCount(int sheetIndex)
+		{
+			XSSFSheet sheet = workbook.getSheetAt(sheetIndex);
+			int cells = sheet.getRow(0).getLastCellNum();
+			return cells;
+
+			//return workbook.getSheetAt(sheetIndex).getRow(0).getLastCellNum();
+		}
+	
+		public Object getSheetTestData(int sheetIndex, int row, int cell)
+		{
+			XSSFSheet sheet = workbook.getSheetAt(sheetIndex);
+			XSSFCell cells = sheet.getRow(row).getCell(cell);
+			//XSSFCell cells = workbook.getSheetAt(sheetIndex).getRow(row).getCell(cell);
+
+			if(cells.getCellType()==XSSFCell.CELL_TYPE_BLANK)
+			{
+					return " ";			
+			}
+			else if (cells.getCellType()==XSSFCell.CELL_TYPE_STRING)
+			{
+					return cells.getStringCellValue();
+			}
+			else if(cells.getCellType()==XSSFCell.CELL_TYPE_NUMERIC)
+			{
+					return cells.getRawValue();
+			}
+			else if(cells.getCellType()==XSSFCell.CELL_TYPE_BOOLEAN)
+			{
+					return cells.getBooleanCellValue();
+			}
+			else if(cells.getCellType()==XSSFCell.CELL_TYPE_FORMULA)
+			{
+					return cells.getFormulaValue();
+			}
+
+			return null;
+		}
+	
+		public Object[][] getAllSheetTestData(int sheetIndex)
+		{
+				int rows = getTotalRowCount(sheetIndex);
+				int cells = getTotalColumnCount(sheetIndex);
+		
+				Object [][] data = new Object[rows][cells];
+
+				for(int i=0;i<rows; i++)
+				{
+						for(int j=0;j<cells; j++)
+						{
+									data[i][j] =getSheetTestData(sheetIndex, i, j);
+						}
+
+				}
+
+			return data;
+
+		}
+
+}
+
+public class Demo1
+{
+		@BeforeTest
+		public void setup()
+		{		
+						//connect browser
+						//up casting
+						//open a url
+						//implicitly wait
+						//page load time out
+						
+		}
+
+		@Test(priority=1)
+		public void validateLoginFunctionality()
+		{
+					//find the username text box and enter value
+					//find the password text box and enter value
+					//find the login button and click on it
+		}
+
+		@Test(priority=2)
+		public void validateHomePageTitle()
+		{
+					//capture home page title
+					//add hard assertion
+		}
+
+		@Test(priority=3)
+		public void validateHomePageUrl()
+		{
+					//capture home page Url and check orange keyword is present or not
+					//add hard assertion
+		}
+
+		@Test(priority=4)
+		public void validatePIMPageurl()
+		{
+					//click on pim page
+					//capture home page URL and verify the pim keyword is present or not in url
+					//add hard assertion
+		}
+		
+		@Test(priority=5, dataProvider="UserTestData")
+		public void validateNewUser(String firstName, String middleName, String lastName)
+		{
+			//find and click on add employee button
+			//find and enter value in first name text box
+			//find and enter value in middle name text box
+			//find and enter value in last name text box
+			//find and click on save button
+		}
+		
+		@DataProvider(name="UserTestData")
+		public Object[] [] getTestData()
+		{
+			ExcelReader obj =new ExcelReader("file location");
+			Object [] []data = obj.getAllSheetTestData(0);
+
+			return data;
+		}
+
+
+		@Test(priority=6)
+		public void logout()
+		{	
+			//find and click on profile logo
+			//find and click on logout button
+
+		}
+
+		@AfterTest
+		public void teardown()
+		{
+			driver.quit();
+		}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

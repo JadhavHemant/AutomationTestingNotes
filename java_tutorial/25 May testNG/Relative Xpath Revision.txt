@@ -1,0 +1,172 @@
+Relative Xpath Revision
+-------------------------------------------------------------------------------------------------
+1 attribute xpath
+
+						https://demo.guru99.com/test/newtours/register.php
+
+			//tagname[@attribute='value']
+		WebElement wb = driver.findElement(By.xpath("//input[@name='lastName']"));
+
+		WebElement wb1 = driver.findElement(By.xpath("//input[@name='submit']"));
+
+		WebElement wb2= driver.findElement(By.xpath("//input[@type='submit']"));
+	
+		WebElement wb3= driver.findElement(By.xpath("//input[@src='images/submit.gif']"));
+
+		WebElement wb4 = driver.findElement(By.xpath("//button[@class='_6j mvm _6wk _6wl _58mi _3ma _6o _6v']"));
+
+		WebElement wb4 = driver.findElement(By.xpath("//button[@name='websubmit']"));
+
+-------------------------------------------------------------------------------------------------
+starts-with()method
+			//tagname[starts-with(@attribute,'value')]
+
+		WebElement wb5 = driver.findElement(By.xpath("//button[starts-with(@id,'u_0_s')]"));
+
+contains()method		
+			//tagname[contains(@attribute,'value')]
+
+		WebElement wb6 = driver.findElement(By.xpath("//button[contains(@id,'u_0_s')]"));
+
+-------------------------------------------------------------------------------------------------
+text() method
+			//tagname[text()='physical text']
+
+		WebElement wb7 = driver.findElement(By.xpath("//a[text()='Already have an account?']"));
+
+
+contains() and text() method combination
+		
+		//tagname[contains(text(),'physical text')]
+
+		WebElement wb7 = driver.findElement(By.xpath("//a[contains(text(),'account?')]"));		
+
+		WebElement wb7 = driver.findElement(By.xpath("//a[contains(text(),'ready')]"));	
+
+		WebElement wb7 = driver.findElement(By.xpath("//a[contains(text(),'have')]"));	
+
+
+starts-with() method and text() method combination
+
+		//tagname[starts-with(text(),'physical text')]
+
+
+		WebElement wb7 = driver.findElement(By.xpath("//a[starts-with(text(),'Already')]"));
+	
+		WebElement wb7 = driver.findElement(By.xpath("//a[starts-with(text(),'Already have')]"));
+
+		WebElement wb7 = driver.findElement(By.xpath("//a[starts-with(text(),'Already have an')]"));
+
+		WebElement wb7 = driver.findElement(By.xpath("//a[starts-with(text(),'Already have an account')]"));
+
+-------------------------------------------------------------------------------------------------
+following-sibling keyword
+
+			//tagname[@attribute='value']/following-sibling::tagname[@attribute='value']
+			//tagname[@attribute='value']/following-sibling::tagname
+
+		WebElement wb8 = driver.findElement(By.xpath("//div[text()='Mobile number or email address']/following-sibling::input"));
+
+		WebElement wb8 = driver.findElement(By.xpath("//div[contains(text(),'Mobile')]/following-sibling::input"));
+
+
+preceding-sibling keyword
+		//tagname[@attribute='value']/preceding-sibling::tagname[@attribute='value']
+
+		WebElement wb9 = driver.findElement(By.xpath("//input[@name='reg_email__']/preceding-sibling::div"));
+
+		WebElement wb9 = driver.findElement(By.xpath("//input[starts-with(@name,'reg_email__')]/preceding-sibling::div"));
+
+
+https://rahulshettyacademy.com/AutomationPractice/
+
+
+		WebElement wb10 = driver.findElement(By.xpath("//input[@id='alertbtn']/preceding-sibling::input"));
+
+		WebElement wb11 = driver.findElement(By.xpath("//input[@id='alertbtn']/following-sibling::input"));
+================================================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <input type="text">
+     <input type="text">
+
+    <br>
+    <br>
+    <a href="https://facebook.com">facebook</a>
+    <a href="https://facebook.com">facebook</a>
+
+</body>
+</html>
+
+
+		WebElement wb11 = driver.findElement(By.xpath("//input[@type='text']/following-sibling::input"));
+	
+
+		WebElement wb12 = driver.findElement(By.xpath("//a[text()='facebook']/preceding-sibling::a"));
+
+---------------------------------------------------------------------------------------------------------------------
+parent keyword
+		//tagname[@attribute='value']/parent::tagname[@attribute='value']
+		
+		//tagname[@attribute='value']/parent::tagname
+
+https://rahulshettyacademy.com/AutomationPractice/
+		WebElement wb13 = driver.findElement(By.xpath("//input[@id='alertbtn']/parent::fieldset"));
+
+
+child keyword
+		//tagname[@attribute='value']/child::tagname[@attribute='value']
+		
+		//tagname[@attribute='value']/child::tagname
+
+		WebElement wb14 = driver.findElement(By.xpath("//div[@class='oxd-table-filter']/child::div"));
+
+---------------------------------------------------------------------------------------------------------------------
+
+	WebElement wb15 = driver.findElement(By.xpath("//label[starts-with(text(),'Driver')]/parent::div/following-sibling::div/child::input"));
+
+
+---------------------------------------------------------------------------------------------------------------------
+following keyword
+		//tagname[@attribute='value']/following::tagname[@attribute='value']
+		
+		//tagname[@attribute='value']/following::tagname
+
+		WebElement wb17 = driver.findElement(By.xpath("//input[@name='lastname']/following::select[@id='day']"));
+
+---------------------------------------------------------------------------------------------------------------------
+
+preceding keyword
+
+		//tagname[@attribute='value']/preceding::tagname[@attribute='value']
+		
+		//tagname[@attribute='value']/preceding::tagname
+
+
+		WebElement wb18 = driver.findElement(By.xpath("//select[@name='birthday_year']/preceding::input[@name='firstname']"));
+
+		WebElement wb19 = driver.findElement(By.xpath("//select[@name='birthday_year']/preceding::img"));
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+		
+
+
+
+
+
+
+
+
+	

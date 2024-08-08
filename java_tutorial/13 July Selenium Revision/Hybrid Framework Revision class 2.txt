@@ -1,0 +1,363 @@
+Hybrid Framework Revision
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Scenario:
+		Automate the Login Page
+		Automate Home Page
+		Automate Contact Page
+		
+		by using BaseLayer package, Configuration Layer , Page Layer Package and Test Layer package
+--------------------------------------------------------------------------------------------------------------------------------------------------
+package BaseLayer;
+
+import java.io.FileInputStream;
+import java.time.Duration;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BaseClass {
+	protected static Properties prop;
+	protected static WebDriver driver;
+	
+	public BaseClass() {
+		// create Object of Properties class
+		prop = new Properties();
+		// Read all properties file content by creating object of FileInputStream class
+		// by passing File location
+		String path = System.getProperty("user.dir") + "//src//main//java//ConfigurationLayer//config.properties";
+
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			// load Properties file in current class.
+			prop.load(fis);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	//create initialization static method
+	
+	public static void initialization()
+	{
+		//Connect to actual browser code
+		
+		//up casting
+		driver = new ChromeDriver();
+		
+		//implicitlyWait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		
+		//pageLoadTimeout
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		
+		//maximize
+		driver.manage().window().maximize();
+		
+		//delete all cookies
+		driver.manage().deleteAllCookies();
+		
+		//capture URL from properties file.
+		String url = prop.getProperty("URL");
+		
+		driver.get(url);
+	}
+	
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------
+# SIT Environment URL
+URL=https://ui.cogmento.com/
+
+#SIT Environment Credentail
+USERNAME=prafulp1010@gmail.com 
+PASSWORD=Pr@ful0812
+--------------------------------------------------------------------------------------------------------------------------------------------------
+package PageLayer;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import BaseLayer.BaseClass;
+
+public class LoginPage extends BaseClass {
+
+	// Create Object Repository using POM with Page Factory
+	@FindBy(name = "email")
+	private WebElement username;
+
+	@FindBy(name = "password")
+	private WebElement password;
+
+	@FindBy(xpath = "//div[text()='Login']")
+	private WebElement loginbutton;
+
+	// initialize the object repository using PageFactory.initElements() method in
+	// constructor
+
+	public LoginPage() {
+		PageFactory.initElements(driver, this);
+	}
+
+	// create associated non static method for each and every object repository
+	// without entering test data
+	public void loginFunctionality(String Username, String Password) {
+		username.sendKeys(Username);
+		password.sendKeys(Password);
+		loginbutton.click();
+	}
+
+}
+
+package PageLayer;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import BaseLayer.BaseClass;
+
+public class HomePage extends BaseClass {
+
+	// Create Object Repository using POM with Page Factory
+	@FindBy(xpath = "//div[@class='header item']")
+	private WebElement logo;
+
+	@FindBy(xpath = "//div[@id='main-content']/descendant::div[@class='homepage-container']/preceding-sibling::div/descendant::div[@class='header']")
+	private WebElement homePageText;
+
+	// initialize the OR using PageFactory.initElements() method in constructor
+	public HomePage() {
+		PageFactory.initElements(driver, this);
+	}
+
+	// create non static assiociated method for each and every object repository
+	// without entering test data
+
+	public boolean checkLogoStatus() {
+		return logo.isDisplayed();
+	}
+
+	public String captureHomePageText() {
+		return homePageText.getText();
+	}
+
+	public String getHomePageTitle() {
+		return driver.getTitle();
+	}
+
+	public String getHomePageUrl() {
+		return driver.getCurrentUrl();
+	}
+
+}
+
+package PageLayer;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import BaseLayer.BaseClass;
+
+public class ContactPage extends BaseClass {
+
+	@FindBy(xpath = "//a[@href='/contacts']")
+	private WebElement contactlink;
+
+	@FindBy(xpath = "//a[@href='/contacts/new']")
+	private WebElement createbutton;
+
+	@FindBy(name = "first_name")
+	private WebElement firstname;
+
+	@FindBy(name = "last_name")
+	private WebElement lastname;
+
+	@FindBy(xpath = "//label[text()='Email']/following-sibling::div/descendant::input[@name='value']")
+	private WebElement email;
+
+	@FindBy(xpath = "//button[text()='Save']")
+	private WebElement savebutton;
+
+	// initialize the OR by using PageFactory.initElements() method
+	public ContactPage() {
+		PageFactory.initElements(driver, this);
+	}
+
+	public void createNewContact(String Fname, String Lname, String Email) {
+		contactlink.click();
+		createbutton.click();
+		firstname.sendKeys(Fname);
+		lastname.sendKeys(Lname);
+		email.sendKeys(Email);
+		savebutton.click();
+	}
+
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+package TestLayer;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import PageLayer.LoginPage;
+
+public class LoginPageTest extends BaseClass {
+	private static LoginPage loginpage;
+
+	@BeforeTest
+	public void setup() {
+		BaseClass.initialization();
+	}
+
+	@Test
+	public void validateLoginFunctionality() {
+		// capture username and password from properties file.
+		String username = prop.getProperty("USERNAME");
+		String password = prop.getProperty("PASSWORD");
+
+		// create object of LoginPage class
+		loginpage = new LoginPage();
+		// call associated method from LoginPage class.
+		loginpage.loginFunctionality(username, password);
+	}
+	
+	
+	@AfterTest
+	public void tearDown()
+	{
+//		driver.quit();
+	}
+
+}
+
+
+package TestLayer;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import PageLayer.HomePage;
+
+public class HomePageTest extends BaseClass {
+	private static HomePage homepage;
+
+	@Test(priority = 1)
+	public void validateHomePageLogo() {
+
+		// create object of HomePage class
+		homepage = new HomePage();
+		boolean actualLogoStatus = homepage.checkLogoStatus();
+		Assert.assertTrue(actualLogoStatus);
+	}
+
+	@Test(priority = 2)
+	public void validateHomePageText() {
+		String actualText = homepage.captureHomePageText();
+		Assert.assertEquals(actualText, "Deals Summary");
+	}
+
+	@Test(priority = 3)
+	public void validateHomePageTitle() {
+		Assert.assertEquals(homepage.getHomePageTitle(), "Cogmento CRM");
+	}
+
+	@Test(priority = 4)
+	public void validateHomePageUrl() {
+		boolean actualResult = homepage.getHomePageUrl().contains("cogmento");
+		Assert.assertEquals(actualResult, true);
+	}
+
+}
+
+package TestLayer;
+
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import PageLayer.ContactPage;
+
+public class ContactPageTest extends BaseClass {
+	private static ContactPage contactpage;
+
+	@Test(priority = 1)
+	public void validateNewContact() {
+		ContactPage contactpage = new ContactPage();
+		contactpage.createNewContact("Rahul", "Patil", "rahul@gmail.com");
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cogmento CRM Application">
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.cogmentocrm</groupId>
+	<artifactId>CogmentoCRM</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>CogmentoCRM</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.16.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
+
+

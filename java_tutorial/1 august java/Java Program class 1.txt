@@ -1,0 +1,828 @@
+Java important Program
+--------------------------------------------------------------------------------------------------------------
+1) Swag 2 String using third variables
+
+			String a="selenium";
+			String b="cucumber";
+			
+			//assign a value in c variable.
+			String c=a;	//selenium
+
+			//assign b value in a variable	
+			a=b;		//cucumber	
+		
+			//assign c value in b variable.	
+			b=c;		//selenium	
+
+			System.out.println(a);//cucumber
+			System.out.println(b);//selenium
+
+package Tutorial1;
+
+public class SwapString1 {
+
+	public static void main(String[] args) {
+		String a="selenium";
+		String b="cucumber";
+		
+		//Assign a value in c variable
+		String c=a; //selenium
+		
+		//Assign b value in a variable
+		a=b;//cucumber
+		
+		//Assign c value in b variable
+		b=c; //selenium
+		
+		System.out.println(a);//cucumber
+		
+		System.out.println(b);//selenium
+		
+	}
+	
+	
+}
+
+--------------------------------------------------------------------------------------------------------------
+2) Swag String without third variables
+		
+		String a="selenium";
+
+		String b="java";
+
+		a=a.concat(b);//seleniumjava
+
+		b=a.substring(0,a.length()- b.length());		//a.substring(0,8);		//selenium
+
+		a=a.substring(b.length());		//a.substring(8)					//java
+		
+
+		System.out.println(a);//java
+
+		System.out.println(b);//selenium
+
+
+
+		String a="cucumber";
+
+		String b="POM";
+
+		//step 1: concat the string
+
+		a=a.concat(b);				//cucumberPOM
+
+		b=a.substring(0, a.length()-b.length());		a.substring(0,8);	//cucumber
+		
+		a=a.substring(b.length());	//POM
+
+		System.out.println(a);//POM
+		
+		System.out.println(b);	//cucumber
+
+package Tutorial1;
+
+public class SwapString2 {
+
+	public static void main(String[] args) {
+		String a="selenium";
+		
+		String b="java";
+		
+		//combine the 2 String and store in a variable
+		
+		a=a.concat(b);//seleniumjava
+		
+		//Assign a value in b variable
+		//a.substring(0,12-4);	//a.substring(0,8)
+		b=a.substring(0,a.length()-b.length());//selenium
+		
+		
+		//assign b value to a variable
+		//a.substring(8)
+		a=a.substring(b.length());
+		
+		
+		System.out.println(a);//java
+		
+		System.out.println(b);//selenium
+		
+	}
+}
+=======================================================================================
+package Tutorial1;
+
+public class SwapString3 {
+
+	
+	public static void main(String[] args) {
+		String a="POM";
+		
+		String b="jenkins";
+		
+		a= a.concat(b);//POMjenkins
+		
+							//10-7=3
+		b=a.substring(0, a.length()-b.length());//POM
+		
+		a=a.substring(b.length());//a.substring(3)	jenkins
+		
+		
+		System.out.println(a);	//jenkins
+		
+		System.out.println(b);	//POM
+		
+		
+	}
+		
+}
+=====================================================================================
+3) check String is Palindrome or not
+
+		Palindrome means after reverse string value should be same.
+
+		String a="madam";
+		
+		String rev="";//madam
+
+		//iterate the loop 
+
+		for(int i=a.length()-1;i>=0;i--)
+		{
+			rev= rev+a.charAt(i);//madam
+		}
+
+		if(a.equals(rev))
+		{
+				System.out.println("String is Palindrome");	
+		}
+		else
+		{
+			System.out.println("String is not Palindrome");	
+		}
+--------------------------------------------------------------------------------------------------------------------
+
+		String a="madam"';
+		String rev="";	//madam
+		
+		//convert string into char [] array
+		char [] abc = a.toCharArray();	//[ 'm'	'a'	'd'	'a'	'm' ]
+		
+		//iterate char [] array
+
+		for(int i=abc.length-1;i>=0;i--)
+		{
+			//capture value from array and assing value to rev variable
+			
+			rev = rev + abc[i];//"mada" + 'm'
+		}
+
+
+		if(a.equals(rev))
+		{
+				System.out.println("String is Palindrome");	
+		}
+		else
+		{
+			System.out.println("String is not Palindrome");	
+		}
+
+==========================================================
+package Tutorial1;
+
+public class PalindromString1 {
+	
+	public static void main(String[] args) {
+		String a="madam";
+		
+		//step 1: declare the string variable
+		String rev="";	//madam
+		
+		//step 2: iterate the loop using string length
+		
+		for(int i=a.length()-1;i>=0;i--)
+		{
+			//capture character from String variable and assign to Rev variable
+			rev = rev + a.charAt(i);//"mada" + 'm' = "madam"
+			
+		}
+		
+		//step 4: compare a and rev variable actual value
+		
+		if(a.equals(rev))
+		{
+			System.out.println("String is Palindrome");
+		}
+		else
+		{
+			System.err.println("String is not Palindrome");
+		}
+		
+				
+	}
+
+}
+===================================================================================
+package Tutorial1;
+
+public class PalindromString2 {
+
+	public static void main(String[] args) {
+		
+		String a="madam";
+		
+		//step 1: declare the String variable
+		String reverse="";//madam
+		
+		//Step 2: convert the String into char [] array
+		char [] abc = a.toCharArray();
+		
+		
+		//step3: iterate char [] array
+		
+		for(int i=abc.length-1;i>=0;i--)
+		{
+			//step 4: capture value from array and assign to reverse variable
+			
+			reverse =reverse + abc[i];//"mada" + 'm' ="madam
+			
+		}
+		
+		//step 5: compare a and reverse variable actual value
+		
+		if(a.equalsIgnoreCase(reverse))
+		{
+			System.out.println("String is Palindrome");
+		}
+		else
+		{
+			System.out.println("String is not palindrome");
+		}
+		
+		
+		
+	}
+}
+===========================================================================
+package Tutorial1;
+
+public class PalindromString3 {
+
+	public static void main(String[] args) {
+
+		String a = "selenium";
+
+		// convert string into StringBuffer
+		StringBuffer sb1 = new StringBuffer(a);
+
+		// reverse the String
+		StringBuffer sb2 = sb1.reverse();
+
+		// convert StringBuffer string into String variable
+		String reverse = sb2.toString();
+
+		// compare the 1 and reverse string actual content
+		if (a.equals(reverse)) {
+			System.out.println("String is Palindrome");
+		} else {
+			System.out.println("String is not Palindrome");
+		}
+
+	}
+
+}
+--------------------------------------------------
+package Tutorial1;
+
+public class PalindromString3 {
+
+	public static void main(String[] args) {
+
+		String a = "madam";
+
+		// convert string into StringBuilder
+		StringBuilder sb1 = new StringBuilder(a);
+
+		// reverse the String
+		StringBuilder sb2 = sb1.reverse();
+
+		// convert StringBuilder string into String variable
+		String reverse = sb2.toString();
+
+		// compare the 1 and reverse string actual content
+		if (a.equals(reverse)) {
+			System.out.println("String is Palindrome");
+		} else {
+			System.out.println("String is not Palindrome");
+		}
+
+	}
+
+}
+=========================================================================
+check the String is anagram or not
+	
+	anagram means both string should have same character
+
+	String a="race";
+
+	String b="care";
+
+	//convert the String into char [] array
+	
+	char [] abc = a.toCharArray();
+
+	char [] xyz = b.toCharArray();
+
+	//sort the array 
+	Arrays.sort(abc);
+
+	Arrays.sort(xyz);
+
+	//compare both array value
+
+	if(Arrays.equals(abc, xyz))
+	{
+		System.out.println("String is Anagram");
+	}
+	else
+	{
+		System.out.println("String is not Anagram");
+	}
+
+
+
+package Tutorial1;
+
+import java.util.Arrays;
+
+public class AnagramString {
+
+	public static void main(String[] args) {
+		String a="race";
+		String b="care";
+		
+		//convert string into char [] array
+		char [] abc = a.toCharArray();
+		
+		char [] xyz = b.toCharArray();
+		
+		//sort the array using sort() method
+		Arrays.sort(abc);
+		Arrays.sort(xyz);
+		
+		//compare the arrays
+		
+		if(Arrays.equals(abc, xyz))
+		{
+			System.out.println("String is Anagram");
+		}
+		else
+		{
+			System.out.println("String is not Anagram");
+		}
+		
+		
+		
+	}
+}
+========================================================
+package Tutorial1;
+
+import java.util.Arrays;
+
+public class AnagramString {
+
+	public static void main(String[] args) {
+		String a="Race";
+		String b="Care";
+		
+		//convert string into lower case
+		a= a.toLowerCase();
+		b=b.toLowerCase();
+		
+		if(a.length()==b.length())
+		{
+			//convert string into char [] array
+			char [] abc = a.toCharArray();
+			
+			char [] xyz = b.toCharArray();
+			
+			//sort the array using sort() method
+			Arrays.sort(abc);
+			Arrays.sort(xyz);
+			
+			//compare the arrays
+			
+			if(Arrays.equals(abc, xyz))
+			{
+				System.out.println("String is Anagram");
+			}
+			else
+			{
+				System.out.println("String is not Anagram");
+			}
+		}
+		else
+		{
+			System.out.println("String is not Anagram");
+		}
+	
+
+	}
+}
+========================================================================
+package Tutorial1;
+
+import java.util.Arrays;
+
+public class AnagramString1 {
+
+	public static void main(String[] args) {
+		String a="Care";
+		String b="Race";
+		
+		a= a.toLowerCase();
+		b= b.toLowerCase();
+		
+		if(a.length()==b.length())
+		{
+			char [] abc = a.toCharArray();
+			char [] xyz = b.toCharArray();
+			
+			Arrays.sort(abc);
+			Arrays.sort(xyz);
+			
+			if(Arrays.equals(abc, xyz))
+			{
+				System.out.println("String is Anagram");
+			}
+			else
+			{
+				System.out.println("String is not Anagram");
+			}
+		}
+		else
+		{
+			System.out.println("String is not Anagram");
+		}
+		
+		
+		
+	}
+}
+=====================================================================
+find vowels in String
+		a	e	i	o 		u
+
+		String a="selenium";
+
+		//convert the String into char [] array
+
+		char [] abc = a.toCharArray();
+
+		//iterate the char [] array
+
+		for(int i=0;i<abc.length;i++)
+		{
+				if(abc[i]=='a' || abc[i]=='e' || abc[i]=='i' || abc[i]=='o' || abc[i] =='u')
+				{
+							System.out.println(abc[i]);
+				}
+			
+		}
+========================================================================
+package Tutorial1;
+
+public class VowelsString1 {
+
+	public static void main(String[] args) {
+		String a="selenium";
+		
+		//convert string into char [] array
+		char [] abc = a.toCharArray();
+		
+		//iterate the char [] array
+		
+		for(int i=0;i<abc.length;i++)
+		{
+			if(abc[i]=='a' || abc[i]=='e' || abc[i]=='i' || abc[i]=='o' || abc[i]=='u')
+			{
+				System.out.println(abc[i]);
+			}
+		}
+		
+	}
+}
+==============================================================================
+count how many vowels in String
+
+		String a="selenium";
+
+		int vowelsCounter=0;
+	
+		int constantCounter=0;
+		//convert the char [] array
+		char [] abc = a.toCharArray();
+
+		//iterate char [] arrays values
+
+		for(int i=0;i<abc.length;i++)
+		{
+					if(abc[i]=='a' || abc[i]=='e' || abc[i]=='i' || abc[i]=='o' || abc[i]=='u')
+					{
+						vowelsCounter++:
+					}
+					else
+					{
+						constantCounter++;
+					}
+		}
+			
+		System.out.println(vowelsCounter);
+		System.out.println(constantCounter);
+
+
+package Tutorial1;
+
+public class VowelsAndConstantsString1 {
+
+	public static void main(String[] args) {
+		String a = "cucumber";
+
+		int vowelsCounter = 0;
+		int constantCounter = 0;
+		
+		char [] abc = a.toCharArray();
+		
+		for (int i = 0; i < abc.length; i++) 
+		{
+			if(abc[i]=='a' || abc[i]=='e' || abc[i]=='i' || abc[i]=='o' || abc[i]=='u')
+			{
+				vowelsCounter++;
+			}
+			else
+			{
+				constantCounter++;
+			}
+			
+		}
+		
+		System.out.println(vowelsCounter);
+		System.out.println(constantCounter);
+			
+		
+	}
+
+}
+=========================================================================
+package Tutorial1;
+
+public class VowelsAndConstantsString2 {
+
+	public static void main(String[] args) {
+		
+		String a="Sel123!&^#niumTEst";
+		int counter=0;
+		//find upper case and lower case character
+		String b = a.replaceAll("[^A-Za-z]", "");
+		
+		b=b.toLowerCase();
+		System.out.println(b);
+		
+		//convert string into char [] array
+		char [] abc = b.toCharArray();
+		
+		for (int i = 0; i < abc.length; i++) 
+		{
+			if(abc[i]=='a' || abc[i]=='e' || abc[i]=='i' || abc[i]=='o' || abc[i]=='u')
+			{
+				counter++;
+				System.out.println(abc[i]);
+			}
+				
+		}
+		
+		System.out.println("Total Vowels is "+counter);
+		
+		
+		
+		
+	}
+}
+=================================================================================
+package Tutorial1;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class VowelsString2 {
+	// print vowels and its occurrence
+
+	public static void main(String[] args) {
+		String a = "cucumber test";
+
+		char[] abc = a.toCharArray();
+
+		LinkedHashMap<Character, Integer> h1 = new LinkedHashMap<Character, Integer>();
+
+		for (int i = 0; i < abc.length; i++) 
+		{
+			if(abc[i]=='a' || abc[i]=='e' || abc[i]=='i' || abc[i]=='o' || abc[i]=='u')
+			{
+				char captureArrayValue = abc[i];
+				
+				if(h1.containsKey(captureArrayValue))
+				{
+					int linkedHashMapValue = h1.get(captureArrayValue);
+					
+					h1.put(captureArrayValue, linkedHashMapValue+1);
+				}
+				else
+				{
+					h1.put(captureArrayValue, 1);
+				}
+		
+			}
+		}
+		
+		Set<Entry<Character,Integer>> all = h1.entrySet();
+		
+		for(Entry<Character,Integer> s: all)
+		{
+			System.out.println(s.getKey() +" :: "+s.getValue());
+		}
+		
+		
+		
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

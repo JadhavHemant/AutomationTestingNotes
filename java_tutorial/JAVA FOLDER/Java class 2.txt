@@ -1,0 +1,449 @@
+Datatypes in Java
+---------------------------------------------------------------------------------------------------------------------------------------
+	- it is used to store the values.
+	there are 2 main datatypes in java
+	1) Primitive Datatype
+	2) Non Primitive Datatype
+-------------------------------------------------------------------------------------------
+1) Primitive Datatype
+	there are 8 types of primitive datatypes
+	1) byte
+	2) short
+	3) int
+	4) long
+	5) float
+	6) double
+	7) boolean
+	8) char
+----------------------------------------------------------------------------------------------
+if u want to store numbers in java program
+	1) byte
+	2) short
+	3) int
+	4) long
+----------------------------------------------------------------------------------------------
+1) byte
+		- it is used to store numbers between -128 to 127 values.
+syntax:
+			datatype variablename=value;
+e.g
+			byte abc=10;
+
+		System.out.println(abc);
+
+	byte		datatype
+	abc			variable name
+	10 			is value for abc variable
+
+-----------------------------------------------------------------
+package Tutorial2;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		byte abc=20;
+		
+		System.out.println(abc);
+
+	}
+
+}
+===============================================
+package Tutorial2;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		
+		byte pune=-50;
+
+		System.out.println(pune);
+		
+	}
+
+}
+===========================================================
+2) short datatype
+	- it used to store the numbers between -32768 to 32767 
+
+syntax:
+		datatype variablename=value;
+
+e.g
+		short abc=4000;
+
+		System.out.println(abc);
+
+		short	datatype
+		abc		variablename
+		1000	is value for abc variable
+
+
+package Tutorial2;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		short pqr = -500;
+		
+		System.out.println(pqr);
+		
+	}
+
+}
+
+package Tutorial2;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+
+		byte a = 10;
+
+		System.out.println(a);
+
+		short b = 3000;
+
+		System.out.println(b);
+
+	}
+
+}
+---------------------------------------------------------------------------------------------
+3) int datatype
+	- it is used to store the numbers between -2,147,483,648 to 2,147,483,647 values
+
+syntax:
+		datatype variablename=values;
+e.g
+		int abc =100000;
+
+		System.out.println(abc);
+
+
+package Tutorial2;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		
+		int abc=555000;
+		
+		System.out.println(abc);
+
+	}
+
+}
+---------------------------------------------------------------------------------------------
+4) long datatype
+	it used to store the values between -9,223,372,036,854,775,808 to 9,223,372,038,775,807 values
+	-if we have large values then at end of values we use upper case L or lower case l.
+
+syntax:		
+		datatype variablename=valuesl;
+
+e.g
+		long a=190;
+		long abc = 909000000000L;
+		long xyz = 909000000000l;
+
+
+		System.out.println(abc);
+
+package Tutorial2;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+		
+		long abc = 190000000000L;
+		
+		System.out.println(abc);
+
+	}
+
+}
+
+package Tutorial2;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		
+		byte a=100;
+		
+		short b=2000;
+		
+		int c=1900000;
+		
+		long d=100000000000L;
+		
+		System.out.println(a);
+
+		System.out.println(b);
+		
+		System.out.println(c);
+		
+		System.out.println(d);
+	}
+
+}
+==========================================================
+If want to store decial values then we use 
+1) float datatype
+2) double datatype
+--------------------------------------------------------------------------------------------------
+1) float datatype
+	- it used to store the decimal values between 6 to 7 digits
+	-  at the end of values we have use upper case F or lower case f.
+syntax:
+		datatype variablename=valuef;
+
+e,g
+		float abc = 190.55f;
+
+		System.out.println(abc);
+
+package Tutorial2;
+
+public class Demo8 {
+
+	public static void main(String[] args) {
+		
+		float abc = 155.55666F;
+
+		System.out.println(abc);
+		
+		
+	}
+
+}
+----------------------------------------------------------------------
+2) double datatype
+	- it used to store the decimal values upto 15 digits
+syntax:
+		datatype variablename=value;
+
+e.g
+		double abc = 8999.717374744;
+
+		System.out.println(abc);
+
+package Tutorial2;
+
+public class Demo9 {
+
+	public static void main(String[] args) {
+
+		double abc = 989188343.3555234335;
+
+		System.out.println(abc);
+
+	}
+
+}
+=============================================================
+If u want to store boolean values
+
+1) boolean datatype
+	- it used to store the boolean values (true or false)
+
+syntax
+		datatype variablename=value;
+e.g.
+		boolean abc = false;
+		
+		System.out.println(abc);
+
+
+package Tutorial2;
+
+public class Demo10 {
+
+	public static void main(String[] args) {
+		
+		boolean abc = true;
+		
+		System.out.println(abc);
+		
+
+	}
+
+}
+===========================================
+if u want to store single character then we use char datatype
+
+1) char datatype
+	- it used to store the single character in single quote.
+	- Always we have to use single quote for values.
+
+syntax:
+		datatype variablename='value';
+e.
+		char abc = 'p';
+
+		System.out.println(abc);
+
+
+package Tutorial2;
+
+public class Demo11 {
+
+	public static void main(String[] args) {
+		
+		
+		char abc = 'a';
+		
+		System.out.println(abc);
+		
+
+	}
+
+}
+======================================================================
+Primitive datatype
+
+store the numbers
+1)byte
+				datatype variablename=value;
+2) short
+				datatype variablename=value;
+3) int
+				datatype variablename=value;
+4) long
+				datatype variablename=valueL;
+-----------------------------------------------------------------------------
+store the decimal values
+
+5) float
+				datatype variablename=valueF;
+6) double
+				datatype variablename=value;
+-----------------------------------------------------------------------------
+store the boolean values
+
+7) boolean
+				datatype variablename=value;//true or false
+-----------------------------------------------------------------------------
+store the single character
+
+8) char
+				datatype variablename='value';
+---------------------------------------------------------------------------------------------				
+package Tutorial2;
+
+public class Demo12 {
+
+	public static void main(String[] args) {
+		
+		byte a=100;
+		short b=2000;
+		int c =90000;
+		long d=1900999999999990l;
+		float e=82983.35f;
+		double f=23484.34432;
+		char g = '4';
+		boolean h= false;
+		
+		System.out.println(a);
+		System.out.println(b);
+		System.out.println(c);
+		System.out.println(d);
+		System.out.println(e);
+		System.out.println(f);
+		System.out.println(g);
+		System.out.println(h);
+		
+	}
+
+}
+==========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

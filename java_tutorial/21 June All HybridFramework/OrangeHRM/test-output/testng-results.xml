@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="13" passed="13" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-06-21T08:44:04 IST" name="Suite" finished-at="2024-06-21T08:46:47 IST" duration-ms="162417">
+    <groups>
+      <group name="AdminPage">
+        <method signature="AdminPageTest.validateCaptureCurrentUrl()[pri:1, instance:TestLayer.AdminPageTest@6fdbe764]" name="validateCaptureCurrentUrl" class="TestLayer.AdminPageTest"/>
+        <method signature="AdminPageTest.validateLogoutFunctionality()[pri:2, instance:TestLayer.AdminPageTest@6fdbe764]" name="validateLogoutFunctionality" class="TestLayer.AdminPageTest"/>
+      </group> <!-- AdminPage -->
+      <group name="HomePage">
+        <method signature="HomePageTest.validateHomePageLogo()[pri:3, instance:TestLayer.HomePageTest@576d5deb]" name="validateHomePageLogo" class="TestLayer.HomePageTest"/>
+        <method signature="HomePageTest.validateHomePageTitle()[pri:1, instance:TestLayer.HomePageTest@576d5deb]" name="validateHomePageTitle" class="TestLayer.HomePageTest"/>
+        <method signature="HomePageTest.validateHomePageUrl()[pri:2, instance:TestLayer.HomePageTest@576d5deb]" name="validateHomePageUrl" class="TestLayer.HomePageTest"/>
+      </group> <!-- HomePage -->
+      <group name="PimPage">
+        <method signature="PimPageTest.validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" name="validatePimPageFunctionality" class="TestLayer.PimPageTest"/>
+        <method signature="PimPageTest.validatePimUrl()[pri:1, instance:TestLayer.PimPageTest@70e9c95d]" name="validatePimUrl" class="TestLayer.PimPageTest"/>
+      </group> <!-- PimPage -->
+      <group name="LoginPage">
+        <method signature="LoginPageTest.validateLoginFunctionality()[pri:0, instance:TestLayer.LoginPageTest@783a467b]" name="validateLoginFunctionality" class="TestLayer.LoginPageTest"/>
+      </group> <!-- LoginPage -->
+      <group name="endToEndAdminTest">
+        <method signature="LoginPageTest.validateLoginFunctionality()[pri:0, instance:TestLayer.LoginPageTest@783a467b]" name="validateLoginFunctionality" class="TestLayer.LoginPageTest"/>
+        <method signature="HomePageTest.validateHomePageLogo()[pri:3, instance:TestLayer.HomePageTest@576d5deb]" name="validateHomePageLogo" class="TestLayer.HomePageTest"/>
+        <method signature="HomePageTest.validateHomePageTitle()[pri:1, instance:TestLayer.HomePageTest@576d5deb]" name="validateHomePageTitle" class="TestLayer.HomePageTest"/>
+        <method signature="HomePageTest.validateHomePageUrl()[pri:2, instance:TestLayer.HomePageTest@576d5deb]" name="validateHomePageUrl" class="TestLayer.HomePageTest"/>
+        <method signature="PimPageTest.validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" name="validatePimPageFunctionality" class="TestLayer.PimPageTest"/>
+        <method signature="PimPageTest.validatePimUrl()[pri:1, instance:TestLayer.PimPageTest@70e9c95d]" name="validatePimUrl" class="TestLayer.PimPageTest"/>
+        <method signature="AdminPageTest.validateCaptureCurrentUrl()[pri:1, instance:TestLayer.AdminPageTest@6fdbe764]" name="validateCaptureCurrentUrl" class="TestLayer.AdminPageTest"/>
+        <method signature="AdminPageTest.validateLogoutFunctionality()[pri:2, instance:TestLayer.AdminPageTest@6fdbe764]" name="validateLogoutFunctionality" class="TestLayer.AdminPageTest"/>
+      </group> <!-- endToEndAdminTest -->
+    </groups>
+    <test started-at="2024-06-21T08:44:04 IST" name="Test1" finished-at="2024-06-21T08:46:47 IST" duration-ms="162417">
+      <class name="TestLayer.HomePageTest">
+        <test-method signature="validateHomePageTitle()[pri:1, instance:TestLayer.HomePageTest@576d5deb]" started-at="2024-06-21T08:44:21 IST" name="validateHomePageTitle" depends-on-groups="LoginPage" finished-at="2024-06-21T08:44:21 IST" duration-ms="133" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomePageTitle -->
+        <test-method signature="validateHomePageUrl()[pri:2, instance:TestLayer.HomePageTest@576d5deb]" started-at="2024-06-21T08:44:21 IST" name="validateHomePageUrl" depends-on-groups="LoginPage" finished-at="2024-06-21T08:44:21 IST" duration-ms="25" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomePageUrl -->
+        <test-method signature="validateHomePageLogo()[pri:3, instance:TestLayer.HomePageTest@576d5deb]" started-at="2024-06-21T08:44:21 IST" name="validateHomePageLogo" depends-on-groups="LoginPage" finished-at="2024-06-21T08:44:21 IST" duration-ms="43" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomePageLogo -->
+      </class> <!-- TestLayer.HomePageTest -->
+      <class name="TestLayer.LoginPageTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:TestLayer.LoginPageTest@783a467b]" started-at="2024-06-21T08:44:05 IST" name="setUp" finished-at="2024-06-21T08:44:18 IST" duration-ms="13584" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="validateLoginFunctionality()[pri:0, instance:TestLayer.LoginPageTest@783a467b]" started-at="2024-06-21T08:44:18 IST" name="validateLoginFunctionality" finished-at="2024-06-21T08:44:19 IST" duration-ms="860" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateLoginFunctionality -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:TestLayer.LoginPageTest@783a467b]" started-at="2024-06-21T08:46:47 IST" name="tearDown" finished-at="2024-06-21T08:46:47 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- TestLayer.LoginPageTest -->
+      <class name="TestLayer.AdminPageTest">
+        <test-method signature="validateCaptureCurrentUrl()[pri:1, instance:TestLayer.AdminPageTest@6fdbe764]" started-at="2024-06-21T08:46:44 IST" name="validateCaptureCurrentUrl" depends-on-groups="PimPage" finished-at="2024-06-21T08:46:45 IST" duration-ms="943" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateCaptureCurrentUrl -->
+        <test-method signature="validateLogoutFunctionality()[pri:2, instance:TestLayer.AdminPageTest@6fdbe764]" started-at="2024-06-21T08:46:45 IST" name="validateLogoutFunctionality" depends-on-groups="PimPage" finished-at="2024-06-21T08:46:47 IST" duration-ms="1652" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateLogoutFunctionality -->
+      </class> <!-- TestLayer.AdminPageTest -->
+      <class name="TestLayer.PimPageTest">
+        <test-method signature="validatePimUrl()[pri:1, instance:TestLayer.PimPageTest@70e9c95d]" started-at="2024-06-21T08:44:22 IST" name="validatePimUrl" depends-on-groups="HomePage" finished-at="2024-06-21T08:44:23 IST" duration-ms="889" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePimUrl -->
+        <test-method signature="validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" started-at="2024-06-21T08:44:24 IST" name="validatePimPageFunctionality" data-provider="orangeHrmTestData" depends-on-groups="HomePage" finished-at="2024-06-21T08:44:47 IST" duration-ms="23592" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Sonali]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Ramesh]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Kale]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Indian]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Female]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePimPageFunctionality -->
+        <test-method signature="validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" started-at="2024-06-21T08:44:47 IST" name="validatePimPageFunctionality" data-provider="orangeHrmTestData" depends-on-groups="HomePage" finished-at="2024-06-21T08:45:10 IST" duration-ms="22559" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Dipali]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pqr]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Joshi]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[American]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Female]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePimPageFunctionality -->
+        <test-method signature="validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" started-at="2024-06-21T08:45:10 IST" name="validatePimPageFunctionality" data-provider="orangeHrmTestData" depends-on-groups="HomePage" finished-at="2024-06-21T08:45:33 IST" duration-ms="23165" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Suraj]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[rrr]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Shinde]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[British]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Male]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePimPageFunctionality -->
+        <test-method signature="validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" started-at="2024-06-21T08:45:33 IST" name="validatePimPageFunctionality" data-provider="orangeHrmTestData" depends-on-groups="HomePage" finished-at="2024-06-21T08:45:57 IST" duration-ms="23482" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Ganesh]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[ggg]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Jagtap]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Irish]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Male]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePimPageFunctionality -->
+        <test-method signature="validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" started-at="2024-06-21T08:45:57 IST" name="validatePimPageFunctionality" data-provider="orangeHrmTestData" depends-on-groups="HomePage" finished-at="2024-06-21T08:46:20 IST" duration-ms="23193" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Rupali]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[nnn]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Wable]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Dutch]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Female]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePimPageFunctionality -->
+        <test-method signature="validatePimPageFunctionality(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:2, instance:TestLayer.PimPageTest@70e9c95d]" started-at="2024-06-21T08:46:20 IST" name="validatePimPageFunctionality" data-provider="orangeHrmTestData" depends-on-groups="HomePage" finished-at="2024-06-21T08:46:44 IST" duration-ms="23389" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Vaishali]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[new]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Kale]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Greek]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Female]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePimPageFunctionality -->
+      </class> <!-- TestLayer.PimPageTest -->
+    </test> <!-- Test1 -->
+  </suite> <!-- Suite -->
+</testng-results>

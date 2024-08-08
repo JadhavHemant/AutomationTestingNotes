@@ -1,0 +1,71 @@
+package practice;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class NonStatic {
+
+	public String checkButtonType(String a)
+	{
+		//connect browser
+		
+		//up casting
+		WebDriver driver = new ChromeDriver();
+		
+		//open url
+		driver.get("https://demoqa.com/buttons");
+		
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		
+		//find   doubleclick webElement
+		WebElement wbDouble = driver.findElement(By.id("doubleClickBtn"));
+		
+		//find   rightclick webElement
+		WebElement wbRight  = driver.findElement(By.id("rightClickBtn"));
+		
+		//find   rightclick webElement
+		WebElement wbClick = driver.findElement(By.xpath("//button[text()='Click Me']"));
+		
+		Actions act = new Actions(driver);
+		
+		if(a.equals("double"))
+		{
+			act.doubleClick(wbDouble).build().perform();
+			
+			WebElement wbmsg1 = driver.findElement(By.id("doubleClickMessage"));
+			String b = wbmsg1.getText();
+			return b;
+		}
+		else if(a.equals("right"))
+		{
+			act.contextClick(wbRight).build().perform();
+			WebElement wbmsg2 =  driver.findElement(By.id("rightClickMessage"));
+			String c = wbmsg2.getText();
+			return c;
+		}
+		else
+		{
+			act.click(wbClick).build().perform();
+			WebElement wbmsg3 = driver.findElement(By.id("dynamicClickMessage"));
+			String d = wbmsg3.getText();
+			return d;
+		}
+	}
+	public static void main(String[] args) 
+	{
+		NonStatic obj = new NonStatic();
+		String e =obj.checkButtonType("click");
+		System.out.println(e);
+
+	}
+
+}

@@ -1,0 +1,746 @@
+How to capture all drop down values?
+	- we can capture drop down all values using 2 ways
+	1) by using getOptions() method
+	2) by using findElements() methods
+
+1) by using getOptions() method
+	- we can capture drop down all value using getOptions() methods but drop down should be starts with select tag HTML DOM.
+	 - first we have to locate the drop down element using findElement() method.
+	- then next we have to create object of Select class by passing Drop Down Element instance.
+	- then we us getOptions() method from Select class.
+	- return type of getOptions() method is List<WebElement>
+
+Scenario:
+		- open a guru99 application
+		- find country drop down
+		- capture all values and print in console
+
+Step 1: up casting
+		WebDriver driver = new ChromeDriver();'
+
+step 2: open a url
+		driver.get("");
+
+step 3: find the country drop down using findElement() method
+		WebElement wb = driver.findElement(By.name(""));
+
+step 4: create object of Select class by passing Drop Down WebElement instance name
+		Select sel =new Select(wb);
+
+step 5: use getOptions() method from Select class to capture all drop down values.
+		List<WebElement> listValues = sel.getOptions();
+
+step 6: iterate all drop down values using loops
+
+		for(WebElement value: listValues)
+		{
+					//step 7: capture actual drop down value
+				String actualValue = value.getText();
+
+				syso(actualValue);
+		}
+
+
+package Tutorial4;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.name("country"));
+
+		// step 4: create object of Select class by passing WebElement instance
+		Select sel = new Select(wb);
+
+		// step 5: getOptions() method from Select class to capture all drop down values
+		List<WebElement> listDropDown = sel.getOptions();
+
+		// step 6: iterate all drop down values using loop
+		for(WebElement dropdown : listDropDown)
+		{
+			//capture actual values
+			String actualValue = dropdown.getText();
+			System.out.println(actualValue);
+		}
+
+	}
+
+}
+=======================================================================
+2) by using findElements() methods
+	- we can capture all drop down values using findElements() method.
+	- we can use findElements() methods to capture all drop down values if drop down starts with select or without select tag.
+	- find the drop down element using findElement() method and given locator and then click on drop down.
+	- then capture all drop down values using findElements() method.
+	- then iterate all drop down value using loop and then we capture actual values and print in console.
+
+Scenario:
+		- open a guru99 application
+		- find country drop down
+		- capture all values and print in console
+
+Step 1: up casting
+		WebDriver driver = new ChromeDriver();'
+
+step 2: open a url
+		driver.get("");
+
+step 3: find the country drop down using findElement() method
+		WebElement wb = driver.findElement(By.name(""));
+
+step 4: click on drop down
+		wb.click();
+
+step 5: find all drop down values using findElements() method
+	List<WebElement> listDropDown = driver.findElements(By.xpath(""));
+
+
+step 6: iterate all drop down values using for loop
+		
+	for(WebElement dropdown: listDropDown)
+	{
+			//capture actual drop down value
+			String actualValue = dropdown.getText();
+			syso(actualValue);
+	}
+
+
+package Tutorial4;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.name("country"));
+
+		// step 4: click on drop down
+		wb.click();
+
+		// step 5: find all drop down list using findElements() methpd
+		List<WebElement> listDropDown = driver.findElements(By.xpath("//select[@name='country']/child::option"));
+
+		// step 6: iterate all drop down values using loop
+		for (WebElement dropdown : listDropDown) {
+			// capture actual values
+			String actualValue = dropdown.getText();
+			System.out.println(actualValue);
+		}
+
+	}
+
+}
+===================================================================================
+Note:
+	if drop down tag name starts select tag in HTML DOM then we can capture all drop down using 2 ways
+							1) getOptions()method
+							2) using findElements() method
+ 
+
+	if drop down tag name starts without select tag in HTML DOM then we can capture all drop down using 1 ways
+							1) using findElements() method
+
+package Tutorial4;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://www.vsp.com/create-account");
+
+		Thread.sleep(7000);
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.name("preferredLanguage"));
+
+		// step 4: click on drop down
+		wb.click();
+
+		// step 5: find all drop down list using findElements() methpd
+		List<WebElement> listDropDown = driver
+				.findElements(By.xpath("//span[@class='ng-option-label ng-star-inserted']"));
+
+		// step 6: iterate all drop down values using loop
+		for (WebElement dropdown : listDropDown) {
+			// capture actual values
+			String actualValue = dropdown.getText();
+			System.out.println(actualValue);
+		}
+
+	}
+
+}
+=====================================================================================
+How to capture drop down selected values?
+	there are 2 ways we can capture the drop down selected values.
+	1) getFirstSelectedOption().getText() method
+	2) getText() method.
+
+1) getFirstSelectedOption().getText() method
+	 - if drop down tag name start with select tag in HTML DOM structure then we can capture drop down values using 
+	getFirstSelectedOption() method then getText() method
+	- first we have to find the drop down using findElement() method and using given locator
+	- then create object of Select class by passing WebElement instance
+	- select drop down values using any ways
+	- then use getFirstSelectedOption() method to find the selected value, to capture actual drop down text using getText() method
+
+
+Scenario:
+		- open a guru99 application
+		- find country drop down
+		- select any drop down values
+		- capture the selected value
+
+Step 1: up casting
+		WebDriver driver = new ChromeDriver();'
+
+step 2: open a url
+		driver.get("");
+
+step 3: find the country drop down using findElement() method
+		WebElement wb = driver.findElement(By.name(""));
+
+step 4: create object of Select class by passing WebElement instance
+
+		Select sel = new Select(wb);
+
+step 5; select any drop down values
+		sel.selectByVisibleText("INDIA");
+
+step 6: find selected value from drop down using getFirstSelectedOption() method
+
+		WebElement wb1 = sel.getFirstSelectedOption();
+
+
+step 7: capture selected value actual text
+
+		String a= wb1.getText();
+		syso(a);
+
+package Tutorial4;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.name("country"));
+
+		// step 4: create object of Select class by passing WebElement instance
+		Select sel = new Select(wb);
+
+		// step 5: select value from drop down
+		sel.selectByVisibleText("INDIA");
+
+		// step 6: find selected value from drop down using getFirstSelectedOption()
+		// method
+		WebElement dropDown = sel.getFirstSelectedOption();
+
+		// step 7: capture selected drop down physical text
+		String a = dropDown.getText();
+		System.out.println(a);
+
+	}
+}
+============================================================================
+2) getText() method
+	- if drop down tagname start without select tag in HTML DOM structure.
+	- find the drop down element and click on it
+	- find all drop down list and iterate all list, then use if condition to select the expected value and click on it
+	- find selected value drop down and use getText() method
+
+
+Scenario:
+	open a https://www.vsp.com/create-account
+	- find drop down and click on it
+	-select the drop down any value	
+	- capture selected values.
+
+
+step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+step 2: open a url
+		driver.get("");
+
+step 3: find drop down element using findElement() and given locator
+		WebElement wb = driver.findElement(By.xpath(""));
+
+step 4: click on it
+		wb.click();
+
+step 5: find all drop down values using findElements() method
+		List<WebElement> listDropDown= driver.findElements(By.xpath(""));
+
+step 6: iterate the drop down value
+		for(WebElement dropdown: listDropDown)
+		{
+					//step 7: capture actual drop down values
+				String actualValue = dropdown.getText();
+
+					//step 8: compare actual value with expected value
+					if(actualValue.equalsIgnoreCase("Expected value"))
+					{		
+							//step 9: click on it 
+							dropdown.click();
+							//step 10: break the loop
+					}
+		}
+
+step 11: find the selected value from drop down list
+	WebElement selectedDP = driver.findElement(By.xpath(""));
+
+step 12:capture actual selected values
+
+	String a = selectedDP.getText();
+	syso(a);
+
+
+
+package Tutorial4;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo4 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://www.vsp.com/create-account");
+		Thread.sleep(7000);
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.name("preferredLanguage"));
+
+		// step 4: click on drop down
+		wb.click();
+
+		// step 5: find all drop down values using findElements() method
+		List<WebElement> listDropDown = driver
+				.findElements(By.xpath("//span[@class='ng-option-label ng-star-inserted']"));
+
+		// step 6: iterate all drop down values
+		for (WebElement dropdown : listDropDown) {
+			// step 7: capture actual drop down value
+			String actualValue = dropdown.getText();
+			Thread.sleep(1000);
+			// step 8;compare actual value with expected value
+			if (actualValue.equalsIgnoreCase("Korean")) {
+				// step 9: click on drop down values
+				dropdown.click();
+
+				// step 10: break the loop;
+				break;
+			}
+		}
+
+		Thread.sleep(3000);
+		// step 11:find the drop down selected value
+		WebElement selectedWb = driver.findElement(By.xpath("//span[@class='ng-value-label ng-star-inserted']"));
+
+		// step 12: capture actual value
+		String a = selectedWb.getText();
+		System.out.println(a);
+
+	}
+
+}
+===============================================================
+package Tutorial4;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo4 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://demoqa.com/automation-practice-form");
+		Thread.sleep(7000);
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.xpath("(//div[@class=' css-1wa3eu0-placeholder'])[1]"));
+
+		// step 4: click on drop down
+		wb.click();
+
+		// step 5: find all drop down values using findElements() method
+		List<WebElement> listDropDown = driver.findElements(By.xpath("//div[@class=' css-11unzgr']/child::div"));
+
+		// step 6: iterate all drop down values
+		for (WebElement dropdown : listDropDown) {
+			// step 7: capture actual drop down value
+			String actualValue = dropdown.getText();
+			Thread.sleep(1000);
+			// step 8;compare actual value with expected value
+			if (actualValue.equalsIgnoreCase("Uttar Pradesh")) {
+				// step 9: click on drop down values
+				dropdown.click();
+
+				// step 10: break the loop;
+				break;
+			}
+		}
+
+		Thread.sleep(3000);
+		// step 11:find the drop down selected value
+		WebElement selectedWb = driver.findElement(By.xpath("//div[@class=' css-1uccc91-singleValue']"));
+
+		// step 12: capture actual value
+		String a = selectedWb.getText();
+		System.out.println(a);
+
+	}
+
+}
+==================================================================================
+How to handle alert Pop up?
+	- We can' t inspect the  alert pop up objects.
+	- if u want to handle these type of pop up then first we have switch focus to main window to alert pop up window by using switchTo().alert() method.
+	- switchTo() method present inside the WebDriver interface and return type is TargetLocator interface.
+	- alert() method present inside the TargetLocator interface and return type is Alert interface.
+	- In Alert pop up we have 4 objects are available.
+		1) ok button
+		2) cancel button
+		3) physical text 
+		4) text box.
+
+	- if u want to click on ok button then we use accept() method
+	- if u want to click on cancel button then we use dismiss() method
+	- if u want to capture pop up text then we use getText() method
+	- if u want to enter text then we use sendKeys() method
+
+
+
+Scenario:
+	- open a https://demoqa.com/alerts
+	- click on 1st click on button
+	- capture alert physical text and click in ok button
+
+
+step 1: up casting
+		WebDriver driver = new ChromeDriver();
+
+step 2: open a url
+		driver.get("https://demoqa.com/alerts");
+
+step 3: find the button 
+		WebElement wb = driver.findElement(By.name(""));
+
+step 4: click on it
+		wb.click();
+
+step 5: switch focus from main window to alert pop up
+	Alert alt = driver.switchTo().alert();
+
+step 6: capture physical text
+	String a = alt.getText();
+
+
+step 7: click on ok button
+	alt.accept();
+
+package Tutorial4;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo5 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://demoqa.com/alerts");
+		Thread.sleep(7000);
+
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.id("alertButton"));
+
+		// step 4: click on it
+		wb.click();
+
+		// step 5: switch focus from main window to alert pop up
+		Alert alt = driver.switchTo().alert();
+
+		// step 6: capture alert pop up physical text
+		String a = alt.getText();
+		System.out.println(a);
+
+		Thread.sleep(3000);
+
+		// step 7: click on ok button
+		alt.accept();
+
+	}
+}
+==========================================================
+package Tutorial4;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo5 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://demoqa.com/alerts");
+		Thread.sleep(7000);
+
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.id("confirmButton"));
+
+		// step 4: click on it
+		wb.click();
+
+		// step 5: switch focus from main window to alert pop up
+		Alert alt = driver.switchTo().alert();
+
+		// step 6: capture alert pop up physical text
+		String a = alt.getText();
+		System.out.println(a);
+
+		Thread.sleep(3000);
+
+		// step 7: click on cancel button
+		alt.dismiss();
+
+	}
+}
+========================================================================
+package Tutorial4;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo5 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: Up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 2: open a url
+		driver.get("https://demoqa.com/alerts");
+		Thread.sleep(7000);
+
+		// step 3: find the country drop down
+		WebElement wb = driver.findElement(By.id("promtButton"));
+
+		// step 4: click on it
+		wb.click();
+
+		// step 5: switch focus from main window to alert pop up
+		Alert alt = driver.switchTo().alert();
+
+		// enter text in alert pop up
+		alt.sendKeys("Aboli Shinde");
+
+		// step 6: capture alert pop up physical text
+		String a = alt.getText();
+		System.out.println(a);
+
+		Thread.sleep(5000);
+
+		// step 7: click on cancel buttons
+		alt.accept();
+
+	}
+}
+============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

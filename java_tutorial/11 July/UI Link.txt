@@ -1,0 +1,80 @@
+
+1.	https://demo.guru99.com/test/newtours/register.php
+2.	https://demoqa.com/automation-practice-form
+3.	https://www.facebook.com/reg
+4.	https://www.saucedemo.com/
+5.	https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+6.	https://ui.cogmento.com/
+7.	https://www.salesforce.com/in/form/signup/freetrial-sales/?d=topnav2-btn-ft
+8.	https://www.india.gov.in/user/register
+9.	https://portal2.passportindia.gov.in/AppOnlineProject/user/RegistrationBaseAction?request_locale=en
+10.	https://oag.iitk.ac.in/Oa_Rec_Pg/NewUser.do
+11.	https://www.nseindia.com/portfolioTracker/content/mynse/registration.htm
+12.	https://apps2.fcc.gov/fccUserReg/pages/createAccount.htm		----------------------------------------------------------------------------> Pratiksha [26th dec Evening]
+13.	https://www.indiapost.gov.in/VAS/pages/userregistration.aspx
+14.	https://www.goibibo.com/trains/create-irctc-account/
+15.	https://www.automationanywhere.com/new-user-registration
+16.	https://register.usp.org/register/public/NewUser
+17.	https://www.microfocus.com/selfreg/jsp/createAccount.jsp
+18.	https://cds.climate.copernicus.eu/user/register	---------------------------------------------------------------------------------------------------------> [ Om-- 26th Dec 26th Dec [Morning]
+19.	https://www.name.com/account/create
+20.	https://dynamicforms.ngwebsolutions.com/Account/CreateAccount
+21.	https://indiankanoon.org/members/signup/
+22.	https://opcfoundation.org/register	-------------------------------------------------------------------------------------------------------------------------> [ Monika-- 26th Dec [Morning]  ********* later
+23.	https://visionease.com/support/create-online-account/
+24.	https://visionease.com/support/create-online-account/		-------------------------------------------------------------------------------------------> 
+25.	https://edistrict.kerala.gov.in/registerPortalUser.do
+26.	https://edistrict.kerala.gov.in/registerPortalUser.do
+27.	https://accounts.digilocker.gov.in/signup/smart_v2/1bad09c305565fabf8122991da6bd537--en
+28.	https://www.vsp.com/create-account	---------------------------------------------------------------------------------------------------------------------> without select tag drop down
+29.	https://copyright.gov.in/UserRegistration/frmNewUser.aspx
+
+
+
+===============================================================================================
+alert Popup URL:
+
+https://demoqa.com/alerts
+https://mail.rediff.com/cgi-bin/login.cgi
+https://rahulshettyacademy.com/AutomationPractice/
+
+
+===============================================================================================
+Actions class link
+
+https://demoqa.com/buttons
+https://demo.guru99.com/test/simple_context_menu.html
+https://swisnl.github.io/jQuery-contextMenu/demo.html
+https://www.amazon.com/
+http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html
+https://jqueryui.com/droppable/
+https://prafpawar11.github.io/
+https://rahulshettyacademy.com/AutomationPractice/
+https://testkru.com/Interactions/KeyboardActions
+
+https://demoqa.com/buttons
+https://demo.guru99.com/test/simple_context_menu.html
+https://swisnl.github.io/jQuery-contextMenu/demo.html
+https://www.amazon.com/
+http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html
+https://jqueryui.com/droppable/
+https://prafpawar11.github.io/
+https://rahulshettyacademy.com/AutomationPractice/
+https://selenium08.blogspot.com/2019/11/double-click.html
+https://www.qafeast.com/demo
+https://testkru.com/Elements/Buttons
+https://kybarg.github.io/bootstrap-dropdown-hover/
+
+
+====================================================================================
+Frames:
+
+https://chercher.tech/practice/frames-example-selenium-webdriver
+
+https://demo.automationtesting.in/Frames.html
+
+https://www.hyrtutorials.com/p/frames-practice.html
+
+https://praf002.github.io/
+
+https://prafpawar11.github.io/

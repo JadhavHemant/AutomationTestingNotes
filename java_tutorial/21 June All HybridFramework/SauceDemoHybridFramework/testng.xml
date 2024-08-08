@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SauceDemo Application">
+	<listeners>
+		<listener class-name="UtilityLayer.Listener"></listener>
+		<listener class-name="UtilityLayer.AnnotationTransformer"></listener>
+		
+	</listeners>
+	<parameter name="browsername" value="chrome"></parameter>
+	<test name="End To End">
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.AddToCartPageTest" />
+			<class name="TestLayer.AddPersonalInformationPageTest" />
+			<class name="TestLayer.OrderSuccessPageTest" />
+		</classes>
+	</test>
+
+</suite> 
+

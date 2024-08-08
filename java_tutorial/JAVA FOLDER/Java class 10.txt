@@ -1,0 +1,582 @@
+I) Static method without return type and 0 arguments
+ii) Static method without return type and multiple arguments
+iii) Static method with return type and 0 arguments
+iv) Static method with return type and multiple arguments
+-------------------------------------------------------------------------------------------------------
+iii) Static method with return type and 0 arguments
+
+syntax:
+			AccessModifier nonAccessModifier returntype methodName()
+			{
+						//statement
+				return variableName/value;
+			}
+e.g.
+			public static String abc()
+			{
+						//statement
+				return "selenium";
+			}
+
+what are the different access modifier in java
+		there are 4  types
+		1) public		: if declare any method as public then we can access this method anywhere in project
+		2) private		: if we declare any method as private then we can access this method within the class
+		3) default		: if we declare any method as default then we can access this method within the package
+		4) protected		: if we declare any method as protected then we can access this method within the package  as well as outside the package 
+						by using inheritance concepts.
+
+what is non Access modifier keyword
+		static keyword
+
+what is return type keywords
+		i) byte
+		ii) short
+		iii) int
+		iv) long
+		v) float
+		vi) double
+		vii) char
+		viii) boolean
+		ix) String
+		x) array
+		xi) own class name
+		xii) interface
+
+what is method name?
+		any method name
+
+
+where we write the static method?
+		before the main method or after the main method but inside the class.
+
+how to access static method in main method?
+		there are 3 ways we can access in main method
+		i) directly method name
+		ii) by using class name dot method name
+		iii) by using object name
+-----------------------------------------------------------------------------------------------------------
+Scenario:
+		create static method with String return type and
+				find upper case and lower case string and then concat the string and return the combined string.
+
+public class Demo1
+{
+
+		public static String concatString()
+		{
+					String abc="2553^%rohitPATIL&%%8090";
+
+					String uppercase= abc.replaceAll("[^A-Z]","");
+					String lowerCase = abc.replaceAll("[^a-z]","");
+
+					String xyz = uppercase.concat(lowerCase);
+
+					return xyz;
+		}
+
+	
+
+		public static void main(String [] args)
+		{
+				String pqr = Demo1.concatString();
+				System.out.println(pqr);
+			
+		}
+
+}
+
+package Tutorial11;
+
+public class Demo1 {
+	// Scenario:create static method with String return type and
+	
+	public static String concatString()
+	{
+		String a="172rohit@#$$PATIL9182";
+		
+		//String xyz = a.replaceAll("[^A-Za-z]", "");
+		String uc =a.replaceAll("[^A-Z]", "");
+		
+		String lc = a.replaceAll("[^a-z]", "");
+		
+		String xyz = lc.concat(uc);
+		
+		return xyz;
+	}
+
+	
+
+	public static void main(String[] args) {
+	
+		String pqr = Demo1.concatString();
+		
+		System.out.println(pqr);
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------
+anagram String means all character should be same in String.						VVVVVIMMMPPPPPPPP
+scenario:
+		create static method with String return type and
+		and declare the 2 string and check string is anagram or not?
+		return the String is anagram or not
+
+
+public class Demo2
+{
+		public static String checkAnagramString()
+		{
+					String a="race";
+					String b="care";
+					//it will convert string into char [] array
+					char [] abc = a.toCharArray();
+					
+					char [] pqr = b.toCharArray();
+		
+					//it used to convert the arrays values as per the ascending order.
+					Arrays.sort(abc);	//acer
+
+					Arrays.sort(pqr);//acer
+
+					if(Arrays.equals(abc, pqr)
+					{
+							return "String is anagram";
+					}
+					else
+					{
+							return "String is not anagram";;
+					}
+		}
+		
+
+
+	public static void main(String[] args) {
+	
+		String p = Demo2.checkAnagramString();
+		
+		System.out.println(p);
+	}
+}
+------------------------------------------------------------------------------------------
+package Tutorial11;
+
+import java.util.Arrays;
+
+public class Demo2 {
+	//check String is anagram or not
+	
+	public static String checkAnagramString()
+	{
+		String a="madam";
+		String b="care";
+		
+		//convert String into char [] array
+		char [] abc= a.toCharArray();
+		char [] pqr = b.toCharArray();
+		
+		//sort the char [] values as per the ascending order
+		Arrays.sort(abc);//aadmm
+		Arrays.sort(pqr);//acer
+		
+		//compare the both array values after sorting
+		if(Arrays.equals(abc, pqr))
+		{
+			return "String is anagram";
+		}
+		else
+		{
+			return "String is not anagram";
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		String p = Demo2.checkAnagramString();
+		System.out.println(p);
+	}
+
+}
+=====================================================================
+Scenario:
+		find the max values from array and return the max value.
+
+package Tutorial11;
+
+public class Demo3 {
+	//find the max values from array and return the max value.
+	
+	public static int findMaxValue()
+	{
+		int [] abc = {10,330,4344,2454,355,5555};
+		int max = abc[2];
+		
+		for (int i = 0; i < abc.length; i++) 
+		{
+				if(abc[i]>max)
+				{
+					max=abc[i];
+				}
+		}
+		
+		return max;
+	}
+	
+
+	public static void main(String[] args) {
+		
+		int p = findMaxValue();
+		System.out.println(p);
+	}
+
+}
+===========================================================================
+iv) Static method with return type and multiple arguments
+
+syntax
+			AccessModifier nonAccessModifier returnType methodName(datatype variableName, datatype variableName,datatype variableName)
+			{
+
+						//statement
+
+				return variableName/value;
+			}
+
+
+Access Modifier			:public , private, default and protected
+
+non Access Modifier		:static 
+
+Return type				: byte, short, int, long, float, double, char, boolean, String, array , own class name
+
+method Name			:any name
+
+how to access static method in main method / static method
+			there are 3 ways we can access
+				I) directly method name
+				ii) by using class name dot method name
+				iii) by using object name
+where we define the static method
+		before the main method or after the main method but inside the class.
+-------------------------------------------------------------------------------------------
+Scenario:
+		create static method with String return type and with 2 String arguments
+		and check the string is anagram or not
+
+
+
+		public static String checkAnagramString(String abc, String pqr)
+		{
+				//convert the String into the char [] 
+				char [] a = abc.toCharArray();
+				char [] b = pqr.toCharArray();
+
+				//sort the char [] arrays values as per the ascending order
+				Arrays.sort(a);
+				Arrays.sort(b);
+
+				//compare the both arrays values
+			
+				if(Arrays.equals(a, b))
+				{
+					return "String is anagram";
+				}	
+				else
+				{
+					return "String  is not anagram";
+				}
+
+		}
+----------------------------------------------------------------------------------------------
+package Tutorial11;
+
+import java.util.Arrays;
+
+public class Demo4 {
+	
+	public static boolean checkAnagramString(String abc,String pqr)
+	{
+		//convert the String into char [] array
+		char [] a= abc.toCharArray();
+		char [] b= pqr.toCharArray();
+		
+		//sort the char [] arrays values as per the ascending order
+		Arrays.sort(a);
+		Arrays.sort(b);
+		
+		//compare the both array values
+		if(Arrays.equals(a, b))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) 
+	{
+			boolean p = Demo4.checkAnagramString("race", "madam");
+
+			if(p)
+			{
+				System.out.println("String is anagram");
+			}
+			else
+			{
+				System.out.println("String is not anagram");
+			}
+	}
+
+}
+===================================================================================
+Ass:
+	create static method with boolean return type and 0 args 
+	and search Pusha  the Rise keyword in google 
+	- click on Wikipedia link and capture the release date
+	- click on IMDB link and capture the release date
+	- and compare Wikipedia date vs IMDB date if both are same return true keyword or false keyword.
+===================================================================================
+package Tutorial11;
+
+public class Demo5 {
+
+	// find max value out of 3 values
+	// create static method with int return type and 3 int args
+	
+	public static int findMaxValue(int a, int b, int c)
+	{
+		
+		if((a>b)&&(a>c))
+		{
+			return a;
+		}
+		else if(b>c)
+		{
+			return b;
+		}
+		else
+		{
+			return c;
+		}		
+	}
+
+	
+	public static void main(String[] args) {
+		
+		int p = Demo5.findMaxValue(100, 2000, 300);
+		System.out.println(p);
+	}
+
+}
+
+=========================================================================
+package Tutorial11;
+
+public class Demo7 {
+	
+	public void abc()
+	{
+		System.out.println("abc method ");//2  3
+	}
+	
+	public void xyz()
+	{
+		abc();
+		Demo7 obj =new Demo7();
+		obj.abc();
+		System.out.println("xyz method");//4
+	}
+	
+
+	public static void main(String[] args) {
+		System.out.println("MMS");//1
+		Demo7 obj1 =new Demo7();
+		obj1.xyz();
+		System.out.println("MME");//5
+
+	}
+
+}
+
+
+package Tutorial11;
+
+public class Demo8 {
+
+	public static void abc() 
+	{
+		
+		System.out.println("abc static method");//2 3 4
+	}
+
+	public void xyz() 
+	{
+		abc();
+		Demo8.abc();
+		Demo8 obj =new Demo8();
+		obj.abc();
+		System.out.println("xyz non static method");//5
+	}
+
+	public static void main(String[] args) 
+	{
+		System.out.println("MMS");//1
+		Demo8 obj1 =new Demo8();
+		obj1.xyz();
+		System.out.println("MME");//6
+	}
+
+}
+=====================================================================================
+How to access static method in main method/static method?
+there are  3 ways
+		- directly method name
+		- class name dot method name
+		- by using object name
+
+how to access static method in non static method?
+there are  3 ways
+		- directly method name
+		- class name dot method name
+		- by using object name
+---------------------------------------------------------------------------------------
+how to access non static method in non static method
+	there are 2 ways
+		- directly method name
+		- by using object name
+
+how to access non static method in static method or main method
+	- by using object name
+===================================================================================
+i) Non static method without return type and 0 args / parameter
+ii) Non static method without return type and multiple args / parameter
+iii) Non static method with return type and 0 args / parameter
+iv) Non static method with return type and multiple args / parameter
+
+
+v) static method without return type and 0 args / parameter
+vi) static method without return type and multiple args / parameter
+vii) static method with return type and 0 args / parameter
+viii) static method with return type and multiple args / parameter
+
+=======================================================================================
+Ass:										
+	create static method with boolean return type and 0 args 
+	and search Pusha  the Rise keyword in google 
+	- click on Wikipedia link and capture the release date
+	- click on IMDB link and capture the release date
+	- and compare Wikipedia date vs IMDB date if both are same return true keyword or false keyword.
+=======================================================================================
+open amazon.in
+	create static method with int return type and 1 string arguments
+			return max price
+
+	from main method search 
+	at the time of calling pass below keyword
+				Samsung mobile phone
+				apple mobile phone 
+
+	compare both value and print Samsung or apple keyword.
+
+public class Demo1
+{
+		public static int searchMobileAndFindMaxValue(String mobileName)
+		{		
+					//connect browser
+					//incognito 
+					//up casting
+					//maximize
+					//implicit wait
+					//page load time
+					//open a url
+					//find search button and use arguments name
+					..find all price
+					iterate all price
+						find max price
+					return max price
+		}
+
+
+	public static void main(String [] args)
+	{
+			int samsungprice = Demo1.searchMobileAndFindMaxValue("Samsung mobile Phone")
+
+			int appleprice = Demo1.searchMobileAndFindMaxValue("apple mobile Phone")
+
+			if(samsungprice>appleprice)
+			{
+					System.out.println("Samsung price is bigger ");
+			}
+			else
+			{
+					System.out.println("apple price is bigger ");
+			}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

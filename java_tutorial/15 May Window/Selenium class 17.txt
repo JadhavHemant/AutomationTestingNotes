@@ -1,0 +1,350 @@
+How to Handle multiple windows?				VVVVVIMMPPPPPPPPPP
+			or
+How to handle Multiple tabs?					VVVVVIMMPPPPPPPPPP
+			or
+How to handle window pop up?					VVVVVIMMPPPPPPPPPP
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Handle multiple windows or tabs or window pop up by using ArrayList class.
+
+Scenario 1:
+			- open a url https://prafpawar11.github.io/multiplewindows.html
+			- capture  the parent window id number
+			- find and enter the value in first name text box
+			- click on sauce demo link
+			- capture all window id number
+			- convert the Set<String> into ArrayList<String> because we capture the window id number as per the index position.
+			- capture sauce demo window id number
+			- switch focus to sauce demo application
+			- enter valid credentials
+			- switch focus to main window
+			- find and enter values in last name text
+
+Step 1: connect to actual browser
+step 2; up casting
+		WebDriver driver =new ChromeDriver();
+step 3: open a url 
+		driver.get("https://prafpawar11.github.io/multiplewindows.html");
+
+step 4: find and enter value in first name text box
+		driver.findElement(By.name("fname")).sendKeys("abc");
+
+step 5: capture the parent/current window id number
+		String parentWindowId = driver.getWindowHandle();
+
+step 6: find and click on sauce demo link
+		driver.findElement(By.linkText("SauceDemo Link")).click();
+
+step 7: capture all window id numbers
+		Set<String> allWindow = driver.getWindowHandles();
+
+step 8: convert the Set<String> into ArrayList<String> because we can capture the window id number as per the index position.
+		we have to create object of ArrayList<String> class by passing Set<String> object name or instance name
+		
+		ArrayList<String> arr = new ArrayList<String>(allWindow);
+
+step 9: capture window id of sauce demo application
+		
+		String sauceDemoWindowID = arr.get(1);
+
+
+step 10: switch focus to sauce demo application
+	
+		driver.switchTo().window(sauceDemoWindowID);
+
+step 11: find and enter valid credentials
+		
+		driver.findElement(By.id("user-name")).sendKeys("standard_user");
+		driver.findElement(By.id("password")).sendKeys("secret_sauce");
+		driver.findElement(By.id("login-button")).click();
+
+step 12: switch focus to main window
+		String parentId = arr.get(0);
+		driver.switchTo().window(parentId);
+
+step 13: find and enter value in last name text box
+		driver.findElement(By.name("lname")).sendKeys("abc");
+
+package Tutorial17;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: Connect to browser
+
+		// Step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://prafpawar11.github.io/multiplewindows.html");
+
+		// step 4: find and enter value in first name text box
+		driver.findElement(By.name("fname")).sendKeys("Akash");
+
+		Thread.sleep(5000);
+		// step 5: find and click on sauce demo link
+		driver.findElement(By.linkText("SauceDemo Link")).click();
+
+		// step 6; capture all window id numbers
+		Set<String> allwindow = driver.getWindowHandles();
+
+		// step 7: convert the Set<String> into ArrayList<String> because by using
+		// ArrayList object we capture window id Number as per the index position
+		ArrayList<String> arr = new ArrayList<String>(allwindow);
+
+		// step 8: capture sauce demo window id
+		String sauceDemoWindowID = arr.get(1);
+
+		// step 9: switch focus to sauce demo application
+		driver.switchTo().window(sauceDemoWindowID);
+		Thread.sleep(5000);
+
+		// step 10: find and enter valid credentails
+		driver.findElement(By.id("user-name")).sendKeys("standard_user");
+		driver.findElement(By.id("password")).sendKeys("secret_sauce");
+		driver.findElement(By.id("login-button")).click();
+
+		Thread.sleep(5000);
+		// step 11: capture the parent window id
+		String parentWindowID = arr.get(0);
+
+		// step 12: switch focus to parent window
+		driver.switchTo().window(parentWindowID);
+
+		// step 13: find and enter value in last name text box
+		driver.findElement(By.name("lname")).sendKeys("secret_sauce");
+
+	}
+
+}
+=============================================================================
+Scenario 2:
+		open a https://prafpawar11.github.io/multiplewindows.html
+		capture title
+		click on facebook link
+		capture all window id
+		convert Set<String> into ArrayList<String> because  by using ArrayList object we can capture window id as per the index position.
+		capture fb window id
+		switch focus to facebook window
+		capture the title
+		capture the main window id
+		switch focus to main window
+		capture url
+		click on  cogmento CRM link
+		capture all window id 
+		convert Set<String> into ArrayList<String> because  by using ArrayList object we can capture window id as per the index position.
+		capture the cogmento CRM window id number
+		switch focus to cogmento CRM window
+		capture title
+		switch focus to fb window 
+		capture url
+		switch focus to main window
+		capture url
+		switch focus to cogmento CRM window 
+		capture url
+
+Step 1: connect to browser
+step 2: up casting
+step 3: open a url
+step 4: capture title
+		String a = driver.getTitle();
+
+step 5: find and click on facebook link
+		driver.findElement(By.linkText("Visit Facebook")).click();
+
+step 6: capture all window id number
+		Set<String> allWindow = driver.getWindowHandles();
+
+step 7: convert the Set<String> into ArrayList<String> because by using ArrayList object we can capture the values as index position.
+		
+		ArrayList<String> arr = new ArrayList<String>(allWindow);
+
+
+step 8: capture the facebook window id number
+		String facebookWindowID = arr.get(1);
+
+step 9: switch focus to facebook window
+		driver.switchTo().window(facebookWindowID);
+
+step 10: capture the title
+		String b = driver.getTitle();
+		
+step 11: capture the main window id number		
+		String parentWindowId = arr.get(0);
+
+step 12: switch focus to parent window
+		driver.switchTo().window(parentWindowId);
+
+step 13: capture url
+		String c = driver.getCurrentUrl();
+
+step 14: find and click on cogmento CRM
+		driver.findElement(By.linkText("cogmento CRM Link")).click();
+
+step 15: capture all window id number
+		allWindow = driver.getWindowHandles();
+
+step 16: convert the Set<String> into ArrayList<String> because by using ArrayList object we can capture window id as per the index position
+		arr = new ArrayList<String>(allWindow);
+
+step 17: capture cogmento crm window id number
+		
+		String cogmentoCRMWindowID = arr.get(2);
+
+step 18; switch focus to cogmento window
+		driver.switchTo().window(cogmentoCRMWindowID);
+
+step 19:capture title
+		String d = driver.getTitle();
+
+step 20: switch focus to fb window
+		driver.switchTo().window(facebookWindowID);
+
+step 21:capture url
+		String e = driver.getCurrentUrl();
+
+step 22: switch focus to main window
+		driver.switchTo().window(parentWindowId);
+
+step 23:capture url
+		String e = driver.getCurrentUrl();
+
+step 24: switch focus to cogmento window
+		driver.switchTo().window(cogmentoCRMWindowID);
+
+step 25: capture url
+		String f = driver.getCurrentUrl();
+
+
+package Tutorial17;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver.SystemProperty;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: Connect to browser
+
+		// Step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://prafpawar11.github.io/multiplewindows.html");
+
+		// step 4: capture title
+		System.out.println(driver.getTitle());
+
+		Thread.sleep(5000);
+		// step 5: find and click on sauce demo link
+		driver.findElement(By.partialLinkText("Facebook")).click();
+
+		// step 6: capture all window id
+		Set<String> allWindow = driver.getWindowHandles();
+
+		// step 7: convert the Set<String> into ArrayList<String>
+		ArrayList<String> arr = new ArrayList<String>(allWindow);
+
+		// step 8: switch focus to fb window
+		driver.switchTo().window(arr.get(1));
+
+		// step 9: capture title
+		System.out.println(driver.getTitle());
+		Thread.sleep(5000);
+
+		// step 10: switch focus to main window
+		driver.switchTo().window(arr.get(0));
+
+		// step 11: capture url
+		System.out.println(driver.getCurrentUrl());
+		Thread.sleep(5000);
+
+		// step 12: find and click on cogmento crm link
+		driver.findElement(By.partialLinkText("CRM")).click();
+
+		// step 13: capture all window id
+		allWindow = driver.getWindowHandles();
+
+		// step 14: convert Set<String> into ArrayList<String> because by using
+		// ArrayList object we can capture the values as per the inde posittion
+		arr = new ArrayList<String>(allWindow);
+
+		Thread.sleep(5000);
+		// step 15: switch focus to cogmento window
+		driver.switchTo().window(arr.get(2));
+
+		// step 16: capture url
+		System.out.println(driver.getCurrentUrl());
+
+		Thread.sleep(5000);
+
+		// step 17: switch to focus to fb window
+		driver.switchTo().window(arr.get(1));
+
+		// step 18: capture fb url
+		System.out.println(driver.getCurrentUrl());
+
+		// step 19: switch focus to main window
+		driver.switchTo().window(arr.get(0));
+
+		// step 20: capture fb url
+		System.out.println(driver.getCurrentUrl());
+
+	}
+
+}
+===============================================================
+Scenario: 
+		open a https://prafpawar11.github.io/multiplewindows.html
+		find and enter value in first name text  box in main window
+		click on fb link
+		enter fname, lastname , username ,dob 
+		switch focus to main window
+		find and enter lastname
+		click on sauce demo
+		enter valid credentials
+		take screenshot
+		switch focus to fb window	
+		take screenshot----------> take full screenshot
+		switch focus to main window
+		find and enter address
+		take screenshot
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+

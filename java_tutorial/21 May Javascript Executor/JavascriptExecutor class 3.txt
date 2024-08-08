@@ -1,0 +1,452 @@
+How to generate Alert Pop or Confirm Pop up or prompt Pop up in selenium WebDriver using JavascriptExecutor 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+if we generate Alert Pop then it provide the physical text in alert pop up as well as ok button
+
+if we generate Confirm Pop up then it provide the physical text in alert pop up, ok button and cancel button
+
+if we generate the prompt Pop up then provide the physical text, text box, ok button and cancel button
+
+	we have convert the WebDriver object into the JavascriptExecutor
+						JavascriptExecutor js = (JavascriptExecutor)driver;
+
+	then we use executeScript() method by passing alert('message');
+						js.executeScript("alert('User is on Register Page');");
+
+------------------------------------------------------------------------
+Scenario:
+		open a fb application
+		generate alert pop up
+		handle alert pop up
+
+Step 1:: connect browser
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+			driver.get("https://www.facebook.com/reg");
+step 4: convert the WebDriver object into the JavascriptExecutor
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+
+step 5: use executeScript() method by passing alert('custom message')
+			js.executeScript("alert('User is on Facebook Register page');");
+
+step 6: switch focus to alert pop by using switchTo().alert() method
+			Alert alt = driver.switchTo().alert();
+step 7: capture the alert pop physical text 
+			String a = alt.getText();
+			System.out.println(a);
+step 8: click on ok button
+			alt.accept();
+
+
+package JavascriptExecutorTutorial3;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect browser
+		// up Casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a url
+		driver.get("https://www.facebook.com/reg");
+
+		Thread.sleep(5000);
+		// convert the WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// use executeScript() method by passing alert('custom message');
+
+		js.executeScript("alert('User is on facebook Register page');");
+
+		// switch focus to alert pop up by using switchTo().alert() method
+		Alert alt = driver.switchTo().alert();
+
+		// capture the physical text in alert pop uo
+		String a = alt.getText();
+		System.out.println(a);
+
+		Thread.sleep(5000);
+		// click on ok button
+		alt.accept();
+
+		Thread.sleep(5000);
+
+		driver.quit();
+
+	}
+
+}
+----------------------------------------------------------------------------------------------------------
+if we generate Confirm Pop up then it provide the physical text in alert pop up, ok button and cancel button
+	- convert the WebDriver object into JavascriptExecutor
+				JavascriptExecutor js = (JavascriptExecutor)driver;
+
+	- use executeScript() method by passing confirm('custom message');
+		
+				js.executeScript("confirm('custom message');");
+
+Scenario:	
+	open a google application
+	generate confirm pop up
+	handle confirm pop up
+
+Step 1: connect browser
+step 2: up casting
+step 3: open a url
+step 4: convert the WebDriver object into the JavascriptExecutor 
+		JavascriptExecutor  js = (JavascriptExecutor)driver;
+
+step 5: use executeScript() method by passing confirm('custom message')
+		js.executeScript("confirm('user is on Google Home Page');");
+
+step 6: switch focus to confirm up pop up/alert pop
+		Alert alt = driver.switchTo().alert();
+
+step 7: capture the alert pop up physical text using getText() method
+		String a = alt.getText();
+		System.out.println(a);
+
+step 8: click on cancel button using dismiss()method
+		alt.dismiss();
+
+
+package JavascriptExecutorTutorial3;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect browser
+		// up Casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a url
+		driver.get("https://www.google.com");
+
+		Thread.sleep(5000);
+		// convert the WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// use executeScript() method by passing confirm('custom message');
+
+		js.executeScript("confirm('User is on Google home Page');");
+
+		// switch focus to alert pop or confirm pop up using driver.switchTo().alert()
+		// method
+
+		Alert alt = driver.switchTo().alert();
+
+		// capture the alert/confirm pop physical text
+		String a = alt.getText();
+		System.out.println(a);
+		Thread.sleep(5000);
+		// click on cancel button
+		alt.dismiss();
+
+		Thread.sleep(5000);
+
+		driver.quit();
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------
+if we generate the prompt Pop up then provide the physical text, text box, ok button and cancel button
+	- 	- convert the WebDriver object into JavascriptExecutor
+				JavascriptExecutor js = (JavascriptExecutor)driver;
+
+	- use executeScript() method by passing confirm('custom message');
+		
+				js.executeScript("prompt('custom message');");
+	
+Scenario:
+		open a google app
+		generate the prompt pop up
+		switch focus to prompt pop up or alert pop up
+		click on ok button
+
+step 1: connect browser
+step 2: up casting
+		WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+		driver.get("https://www.google.com");
+
+step 4: convert the WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+
+step 5: use executeScript() by passing prompt('custom message');
+		js.executeScript("prompt('user is on google Home page');");
+
+step 6: switch focus to prompt pop up using driver.switchTo().alert()
+		Alert alt = driver.switchTo().alert();
+
+step 7: capture the alert pop up physical text
+		String a = alt.getText();
+
+step 8: enter text in alert pop up text box
+		alt.sendKeys("selenium testing");
+
+step 9: click on ok button
+		alt.accept();
+
+package JavascriptExecutorTutorial3;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo3 {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		// Connect browser
+		// up Casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a url
+		driver.get("https://www.google.com");
+
+		Thread.sleep(5000);
+		// convert the WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// use executeScript() method by passing prompt('custom message');
+
+		js.executeScript("prompt('User is on Google home Page');");
+
+		// switch focus to prompt pop up
+		Alert alt = driver.switchTo().alert();
+
+		// capture pop up message
+		String a = alt.getText();
+		System.out.println(a);
+
+		// enter text in pop up
+		alt.sendKeys("selenium testing");
+		Thread.sleep(5000);
+		// click on ok button
+		alt.accept();
+		Thread.sleep(5000);
+		driver.quit();
+
+	}
+
+}
+===================================================================================
+Handle drop down using JavascriptExecutor 
+		- convert the WebDriver Object into the JavascriptExecutor
+					JavascriptExecutor js = (JavascriptExecutor)driver;
+
+		- use executeScript() method by passing document.getElementsByName() method and inside the method pass the HTML DOM value 				attribute values name.
+					js.executeScript("document.getElementsByName('html drop down values');");
+
+Scenario:
+		open a facebook application
+		select the Nov month values
+
+step1: connect to actual browser
+step 2: up casting
+step 3: open a url
+			driver.get("https://www.facebook.com/reg");
+step 4: convert the WebDriver object into JavascriptExecutor
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+
+step 5: use executeScript() method by passing document.getElementsByName() method and name locator value and value attribute value
+			js.executeScript("document.getElementsByName('birthday_month'[0].value='11';)';");
+
+
+package JavascriptExecutorTutorial3;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo4 {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		// Connect browser
+		// up Casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a url
+		driver.get("https://www.facebook.com/reg");
+
+		Thread.sleep(5000);
+		// convert WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// use executeScript() method by passing getElementsByName() and inside the
+		// method pass name locator value and value attribute value
+
+		js.executeScript("document.getElementsByName('birthday_month')[0].value='2';");
+	}
+
+}
+
+package JavascriptExecutorTutorial3;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo5 {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		// Connect browser
+		// up Casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a url
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+		Thread.sleep(5000);
+		// convert WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		js.executeScript("document.getElementsByName('country')[0].value='ISRAEL';");
+	}
+
+}
+---------------------------------------------------------------------------------------
+package JavascriptExecutorTutorial3;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo6 {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		// Connect browser
+		// up Casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a url
+		driver.get(
+				"https://portal2.passportindia.gov.in/AppOnlineProject/user/RegistrationBaseAction?request_locale=en");
+
+		Thread.sleep(5000);
+		// convert WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		js.executeScript("document.getElementsByClassName('dropdown-box')[0].value='31';");
+
+	}
+
+}
+===================================================================================
+Scenario:
+		open a https://demoqa.com/automation-practice-form
+		select state Haryana 
+		
+
+Step 1: connect browser
+step 2: up casting
+step 3: open a url
+			driver.get("https://demoqa.com/automation-practice-form");
+step 4:click on state drop down
+			driver.findElement(By.id("state")).click();
+
+step 5: convert the WebDriver object into the JavascriptExecutor
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+
+step 6: use executeScript() method by passing drop down value location and then use click() method
+			js.executeScript("document.getElementById('react-select-3-option-2').click();");
+
+
+package JavascriptExecutorTutorial3;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo7 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect browser
+		// up Casting
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+
+		// open a url
+		driver.get("https://demoqa.com/automation-practice-form");
+
+		Thread.sleep(5000);
+
+		driver.findElement(By.xpath("//div[text()='Select State']")).click();
+
+		// convert WebDriver object into the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		Thread.sleep(5000);
+		js.executeScript("document.getElementById('react-select-3-option-2').click();");
+
+	}
+
+}
+============================================================================
+1) click on button using JavascriptExecutor									VVVVIMMMPPPPPPP
+2) enter text in text box using JavascriptExecutor							VVVVIMMMPPPPPPP
+3) scroll up and scroll down using JavascriptExecutor						VVVVIMMMPPPPPPP
+4)  border for element using JavascriptExecutor								VVVVIMMMPPPPPPP
+5) handle drop down using JavascriptExecutor								VVVVIMMMPPPPPPP
+============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,355 @@
+Dependency
+		- Rest Assured dependency		
+		- JSON Path Dependency
+		- JSON Simple Dependency
+		- Hamcrest Dependency
+		- Jackson-databind Dependency
+		- Lombok Dependency
+		- Cucumber-java dependency
+		- cucumber-core dependency
+		- cucumber-junit dependency
+		- Junit dependency
+=============================================================================
+What is API?														VVVVIMMPPPPPPPPPPP
+	- API means Application Programming interface.
+	- API layer is used to communication between 2 or more software components.
+	- API Layer is used to exchange the test data between 2 or more software components
+	- Everyday we use application like what's up, facebook, mobile device, mobile based application, any global application we use APIs.
+
+
+What is API Testing?
+	-  API testing is type of Software Testing
+	 - inside the API Testing we focus on business logic of the application functionality
+	- API layer is lack of GUI/UI means inside the API we dont have GUI/UI/Front End.
+	- API Testing is perform on Message Layer.
+
+=============================================================================
+What are the different Request in API Testing/ Web Service Testing / REST API Testing?					VVVVIMMPPPPPPPPPPP
+		there are 5 different types of Request in API
+		1) GET Request
+		2) POST Request
+		3) PUT Request
+		4) PATCH Request
+		5) DELETE Request
+
+
+1) GET Request
+		- it is used to retrieve the data from server (database).
+		- Once we hit the GET Request we verify different things as like
+			1) Status code / Response code
+			2) Status Line/ response line
+			3) Response time
+			4) Response size
+			5) Response body
+			6) Response Cookies
+
+Note:
+	1) We have different URL for GUI and API Layer
+--------------------------------------------------------------------------------------------------
+	Development team gives the swagger documentation, and in this documentation they will provide detailed description APIs.
+
+	Swagger documentation																	VVVVVVVIMMPPPPPPPPP
+			- Swagger documentation is used to create the API Documentations.
+	1) API Url
+	2) Status code / Response code
+	3) Status Line/ response line
+	4) Response time
+	5) Response size
+	6) Response body format (JSON/ XML format)
+	7) Response Cookies
+--------------------------------------------------------------------------------------------------
+Swagger documentation for Local JSON Server.
+	
+GET Request:
+
+	API URL			http://localhost:3000/employees/1
+
+	Response Code				200 (Success)
+	Response Line				HTTP/1.1 200 OK
+	Response time				< 2sec
+	Response Size				< 1MB	
+	Response body Format 		JSON
+								{		
+									"id" : int
+									"firstname" : "{string}",
+									"lastname" : "{string}",
+									"address" : "{string}",		
+								        "mobileNumber" : int,
+							                "gender" : "{string}"		
+								}
+
+	Response Cookies
+
+--------------------------------------------------------------------------------------------------
+Postman tool is used to test the API manually without Java Programs
+Rest Assured dependency used to Test API by using Automation  means by using Java Programs
+--------------------------------------------------------------------------------------------------
+Start JSON Server
+				- go to created JSON folder 
+				- open a JSON folder
+				- open folder in VS code (Right click anywhere and open a folder in vs code)
+				- verify the db.json file is present or not in VS code.
+				-  run below command
+					json-server --watch db.json
+
+Note:
+	- we dont require to start the JSON server in real time organization/ company
+--------------------------------------------------------------------------------------------------
+Postman tool is used to test the API manually without Java Programs
+
+	- open a Postman tool
+	- click on create collection
+	- click on create request
+	- enter the API URL									http://localhost:3000/employees/1
+	- select the HTTP Request type						GET Request
+	- Click on send button
+
+	- Verify
+			I) status code								200
+			2) status line								HTTP/1.1 200 OK
+			3) response time							< 2 sec
+			4) response size							< 1 MB
+			5) response body							JSON
+														{		
+															"id" : int
+															"firstname" : "{string}",
+															"lastname" : "{string}",
+															"address" : "{string}",		
+														        "mobileNumber" : int,
+													                "gender" : "{string}"		
+														}				
+			6) response cookies
+			7) Response header
+
+--------------------------------------------------------------------------------------------------
+Dependency
+		- Rest Assured dependency		
+
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>4.4.0</version>
+    <scope>test</scope>
+</dependency>
+--------------------------------------------------------------------------------------------------
+Diff between RequestSpecification interface and Response Interface
+--------------------------------------------------------------------------------------------------
+API Automation GET Request
+
+
+step 1: Set/Configure the Base URI or API URI vs URL
+
+		RestAssured.baseURI="http://localhost:3000/employees/1";
+
+
+step 2: get the RequestSpecification interface object so we can select HTTP GET Request
+	
+		RequestSpecification httpRequest = RestAssured.given();
+
+step 3: Select the HTTP GET Request
+					
+		Response response = httpRequest.get();
+				
+							return type of get() method is Response interface
+
+step 4: capture status code		
+		int a = response.getStatusCode();
+
+step 5: capture status line
+		String b = response.getStatusLine();
+
+step 6: capture response time
+		long c = response.getTime();
+
+step 7: capture response body
+		String d = response.getBody().asString();
+
+
+package Tutorial1;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		//Step 1: configure Base URI
+		RestAssured.baseURI="http://localhost:3000/employees/3";
+		
+		//Step 2: get the RequestSpecification interface object so we can select HTTP GET Request
+		
+		RequestSpecification httpRequest = RestAssured.given();
+		
+		//Step 3: select the HTTP GET Request
+		
+		Response response = httpRequest.get();
+		
+		//step 4: capture status code
+		int a = response.getStatusCode();
+		System.out.println(a);
+		
+		//step 5: capture status line
+		String b = response.getStatusLine();
+		System.out.println(b);
+		
+		//step 6: capture response time
+		long c = response.getTime();
+		System.out.println(c);
+		
+		//step 7" capture response body
+		String d = response.getBody().asString();
+		System.out.println(d);
+		
+
+		
+		
+	}
+
+}
+=================================================================
+What is use of RequestSpecification interface?										VVVVIMMPPPPPPPPPPPPPP
+		1) add base URI
+		2 add Base Path
+		3) add different authorization means basic auth. digest auth , OAuth 1,0. OAuth 2,0, bearer token, access token etc.
+		4) add path parameter
+		5) add query parameter
+		6) add request header
+		7) add request body
+		8) generate request log
+		9) select the HTTP Request
+		10) upload the files
+		11) add request cookies
+		
+What is use of Response interface?											VVVVIMMPPPPPPPPPPPPPP
+		1) capture status code
+		2) capture status line
+		3) capture response time
+		4) capture response size
+		5) capture response body
+		6) capture response cookies
+		7) capture response header
+
+=====================================================================================
+package Tutorial1;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		//Configure the Base URI
+		RestAssured.baseURI="http://localhost:3000/employees/1";
+		
+		//get the RequestSpecification interface object so we can Select the HTTP GET Request
+		RequestSpecification httpRequest = RestAssured.given();
+		
+		//select HTTP GET Request
+		Response response = httpRequest.get();
+		
+		//capture status code
+		int a = response.getStatusCode();
+		System.out.println(a);
+		
+		//capture status line
+		String b = response.getStatusLine();
+		System.out.println(b);
+		
+		//capture response time
+		long c = response.getTime();
+		System.out.println(c);
+		
+		//capture response body 
+		String d = response.getBody().asString();
+		System.out.println(d);
+
+	}
+
+}
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

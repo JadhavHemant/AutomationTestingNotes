@@ -1,0 +1,21 @@
+
+Scenario: validate login functionality        # src/test/java/Features/cogmento.feature:3
+  Given user is on login page                 # StepDefinition.CogmentoTestSteps.user_is_on_login_page()
+  When user enter valid username and password # StepDefinition.CogmentoTestSteps.user_enter_valid_username_and_password()
+  Then user click on login button             # StepDefinition.CogmentoTestSteps.user_click_on_login_button()
+
+Scenario: validate home page functionality # src/test/java/Features/cogmento.feature:8
+  Then user validte home page title        # StepDefinition.CogmentoTestSteps.user_validte_home_page_title()
+  And user validate home page logo         # StepDefinition.CogmentoTestSteps.user_validate_home_page_logo()
+  And user validate home page url          # StepDefinition.CogmentoTestSteps.user_validate_home_page_url()
+
+Scenario: validate contact page                                 # src/test/java/Features/cogmento.feature:13
+  When user click on contact link                               # StepDefinition.CogmentoTestSteps.user_click_on_contact_link()
+  And click on create button                                    # StepDefinition.CogmentoTestSteps.click_on_create_button()
+  Then user enters firstname, lastname, email and select status # StepDefinition.CogmentoTestSteps.user_enters_firstname_lastname_email_and_select_status()
+  And user click on save button                                 # StepDefinition.CogmentoTestSteps.user_click_on_save_button()
+  Then user delete the contact                                  # StepDefinition.CogmentoTestSteps.user_delete_the_contact()
+
+Scenario: validate logout functionality # src/test/java/Features/cogmento.feature:20
+  Then user click on profile icon       # StepDefinition.CogmentoTestSteps.user_click_on_profile_icon()
+  And user click on logout              # StepDefinition.CogmentoTestSteps.user_click_on_logout()

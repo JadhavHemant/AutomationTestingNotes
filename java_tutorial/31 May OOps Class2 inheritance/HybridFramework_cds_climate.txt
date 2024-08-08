@@ -1,0 +1,233 @@
+package BaseLayer;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class BaseClass {
+	protected static WebDriver driver;
+	
+	public static void initialization(String browsername) {
+	
+	//Connect to browser
+	//up casting
+		if(browsername.equals("chrome"))
+		{
+			driver = new ChromeDriver();
+		}
+		else if(browsername.equals("edge"))
+		{
+		driver = new EdgeDriver();
+		}
+		else if(browsername.equals("incognito"))
+		{
+			ChromeOptions opt = new ChromeOptions();
+			opt.addArguments("--incognito");
+			driver = new ChromeDriver(opt);
+		}
+		
+		
+	//maximize
+		driver.manage().window().maximize();
+		
+	//implicit wait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		
+	//page load timeout
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		
+	//open a url
+		driver.get("https://cds.climate.copernicus.eu/user/register");
+	
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import BaseLayer.BaseClass;
+
+public class HandleDropDown extends BaseClass {
+	
+	public static void selectByVisibleText(WebElement wb, String value)
+	{
+		Select sel = new Select(wb);
+		sel.selectByVisibleText(value);
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+import org.openqa.selenium.WebElement;
+
+import BaseLayer.BaseClass;
+
+public class Utils extends BaseClass
+{
+	public static void click(WebElement wb)
+	{
+		if(wb.isEnabled() && wb.isDisplayed())
+		{
+			wb.click();
+		}
+	}
+	
+	public static void sendKeys(WebElement wb, String value)
+	{
+		if(wb.isEnabled() && wb.isDisplayed())
+		{
+			wb.sendKeys(value);
+		}
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import BaseLayer.BaseClass;
+
+public class HandleActions extends BaseClass {
+	
+	public static void click(WebElement wb)
+	{
+		Actions act = new Actions(driver);
+		act.click(wb).build().perform();
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+
+import BaseLayer.BaseClass;
+
+public class HandleJavascriptExecutor extends BaseClass{
+	
+	public static void click(WebElement wb)
+	{
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", wb);
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------
+package TestLayer;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import UtilityLayer.HandleActions;
+import UtilityLayer.HandleDropDown;
+import UtilityLayer.HandleJavascriptExecutor;
+import UtilityLayer.Utils;
+
+public class RegisterTest extends BaseClass {
+	
+	@Parameters({"browsername"})
+	@BeforeClass
+	public void setUp(String browsername)
+	{
+		BaseClass.initialization(browsername);
+	}
+	
+	@Test
+	public void validateRegisterFunctionality() throws InterruptedException
+	{
+		//find the element for email text box
+		WebElement wb = driver.findElement(By.name("mail"));
+		Utils.sendKeys(wb, "supriya@gmail.com");
+		
+		//find the element for firstname text box
+		WebElement firstnamewb = driver.findElement(By.name("field_first_name[0][value]"));
+		Utils.sendKeys(firstnamewb, "Supriya");
+		
+		//find the element for surname text box
+		WebElement surnamewb = driver.findElement(By.name("field_surname[0][value]"));
+		Utils.sendKeys(surnamewb, "Pandit");
+		
+		//find the element for dropdown box
+		
+		WebElement wb1 = driver.findElement(By.name("field_country"));
+		HandleDropDown.selectByVisibleText(wb1, "India");
+		
+		WebElement wb2 = driver.findElement(By.name("field_sector"));
+		HandleDropDown.selectByVisibleText(wb2, "Academic/Research");
+		
+		//find the check box element
+		Thread.sleep(3000);
+		WebElement checkwb = driver.findElement(By.id("edit-field-reg-behalf-of-value"));
+		HandleJavascriptExecutor.click(checkwb);
+		
+		//find the element for organization text box
+		WebElement orgwb = driver.findElement(By.name("field_organisation[0][value]"));
+		Utils.sendKeys(orgwb, "Government");
+		
+		//find the element for check box
+		Thread.sleep(5000);
+		WebElement checkwb1 = driver.findElement(By.name("field_tc_terms-of-use-cds"));
+		HandleActions.click(checkwb1);
+		
+		
+		//find the element for check box
+		Thread.sleep(3000);
+		WebElement checkwb2 = driver.findElement(By.name("field_tc_data-protection-privacy-statement"));
+		HandleActions.click(checkwb2);
+	}
+	
+	@AfterMethod
+	public void screenshot() throws IOException
+	{
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		SimpleDateFormat simple = new SimpleDateFormat("ddMMyyyy_HHmmss");
+		String date1 = simple.format(new Date());
+		
+		File dest = new File(System.getProperty("user.dir")+"\\MayScreenshot\\"+date1+".png");
+		FileUtils.copyFile(src, dest);
+	}
+	
+	@AfterClass
+	public void close()
+	{
+		driver.quit();
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Hybrid Famework">
+<parameter name="browsername" value="incognito" />
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="TestLayer.RegisterTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+=========================================================================================

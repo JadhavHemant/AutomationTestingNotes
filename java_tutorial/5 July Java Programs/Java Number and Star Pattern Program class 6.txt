@@ -1,0 +1,620 @@
+Numbers Program 
+----------------------------------------------------------------------------------------
+1	2	3	4	5
+     2    3      4     5
+         3    4     5
+             4    5
+	        5
+----------------------------------------------------------------------------------------
+*	*	*	*	*
+    *	    *     *      * 
+       *       *     *
+           *       *
+               *
+----------------------------------------------------------------------------------------
+package Tutorial6;
+
+public class Demo1 {
+//	1	2	3	4	5
+//    2    3      4     5
+//       3    4     5
+//           4    5
+//	        5
+
+	public static void main(String[] args) {
+		//i=3
+		for (int i = 1; i <= 5; i++) 
+		{
+					//2<3
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+			
+			//1st time 5 times
+			//2nd time 4 times
+			//3rd time 3 times
+			//4th time 2 times
+			//5th time 1 times
+					//j=3
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print(j +" ");//1  2  3  4  5
+				                         //  2  3  4  5 
+				                         //   3   4  5
+			}
+			
+			System.out.println();
+		}
+
+	}
+
+}
+===============================================
+package Tutorial6;
+
+public class Demo2 {
+//	1	2	3	4	5
+//    2    3      4     5
+//       3    4     5
+//          4    5
+//	        5
+	public static void main(String[] args) {
+			//i=3
+		for (int i = 1; i <= 5; i++) 
+		{
+					//1<4
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+			
+			
+				//j=3
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print(j+" ");
+			}
+			
+			System.out.println();
+		}
+
+	}
+
+}
+===========================================
+package Tutorial6;
+
+public class Demo2 {
+//	1	2	3	4	5
+//    2    3      4     5
+//       3    4     5
+//          4    5
+//	        5
+	public static void main(String[] args) {
+			//i=3
+		for (int i = 1; i <= 5; i++) 
+		{
+					//1<4
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+			
+			
+				//j=3
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print("*"+" ");
+			}
+			
+			System.out.println();
+		}
+
+	}
+
+}
+=======================================================
+           5			
+   	4  5
+     3 4  5
+  2  3  4  5
+1  2  3  4  5
+
+package Tutorial6;
+
+public class Demo3 {
+//    5			
+//	 4 5
+//  3 4 5
+// 2 3 4 5
+//1 2 3 4 5
+
+	public static void main(String[] args) {
+          //i=3
+		for(int i=5;i>=1;i--)
+		{
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+				//j=5
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print(j + " ");//5
+			}
+			
+			System.out.println();
+			
+		}
+		
+		
+	}
+
+}
+==========================================
+package Tutorial6;
+
+public class Demo3 {
+//    5			
+//	 4 5
+//  3 4 5
+// 2 3 4 5
+//1 2 3 4 5
+
+	public static void main(String[] args) {
+          //i=3
+		for(int i=5;i>=1;i--)
+		{
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+				//j=5
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print("*" + " ");//5
+			}
+			
+			System.out.println();
+			
+		}
+		
+		
+	}
+
+}
+=======================================================
+1	2	3	4	5
+     2    3      4     5
+         3    4     5
+             4    5
+	        5
+             4    5
+         3    4     5
+     2    3      4     5
+1	2	3	4	5
+
+package Tutorial6;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		
+		for(int i=1;i<=5;i++)
+		{
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+			
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print(j + " ");
+			}
+			
+			System.out.println();
+			
+		}
+		
+		for(int i=4;i>=1;i--)
+		{
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+			
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print(j + " ");
+			}
+			
+			System.out.println();
+		}
+		
+		
+
+	}
+
+}
+===============================================
+package Tutorial6;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+	
+		for(int i=1;i<=5;i++)
+		{
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+			
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print("* ");
+			}
+			
+			System.out.println();
+			
+		}
+		
+		for(int i=4;i>=1;i--)
+		{
+			for(int k=1;k<i;k++)
+			{
+				System.out.print(" ");
+			}
+			
+			for(int j=i;j<=5;j++)
+			{
+				System.out.print("* ");
+			}
+			System.out.println();
+		}
+		
+
+	}
+
+}
+
+==================================================
+	package Tutorial6;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Demo6 {
+	//find  out int value and perform addition
+	public static void main(String[] args) {
+		String a="111java123Selenium";
+		
+		Matcher m = Pattern.compile("[0-9]").matcher(a);
+		int c=0;
+		
+		while(m.find())
+		{
+			String b = m.group();
+			
+			int d = Integer.parseInt(b);
+			c=c+d;
+		}
+		
+		System.out.println(c);
+		
+		
+				
+
+	}
+
+}
+
+package Tutorial6;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		String a = "111java123Selenium";
+
+		int b = 0;
+
+		for (int i = 0; i < a.length(); i++) {
+			if (Character.isDigit(a.charAt(i))) {
+				b = b + Integer.parseInt(String.valueOf(a.charAt(i)));
+			}
+		}
+
+		System.out.println(b);
+
+	}
+
+}
+
+package Tutorial6;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		String a = "111java123Selenium";
+
+		int b = 0;
+
+		for (int i = 0; i < a.length(); i++) {
+			
+			if (a.charAt(i)>=48 && a.charAt(i)<=57)
+			{
+				b = b + Integer.parseInt(String.valueOf(a.charAt(i)));
+			}
+		}
+
+		System.out.println(b);
+
+	}
+
+}
+
+package Tutorial6;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		String a = "111java123Selenium";
+
+		String b = a.replaceAll("[^0-9]", "");
+
+		int c = 0;
+
+		for (int i = 0; i < b.length(); i++) {
+			if (b.charAt(i) >= 48 && b.charAt(i) <= 57) {
+				c = c + Integer.parseInt(String.valueOf(b.charAt(i)));
+			}
+
+		}
+
+		System.out.println(c);
+
+	}
+
+}
+===============================================================
+package Tutorial6;
+
+public class Demo8 {
+
+	public static void main(String[] args) {
+		String a = "28/03/2024";
+
+		// remove / and print only number
+
+		String b = a.replaceAll("/", "");
+		System.out.println(b);
+
+	}
+
+}
+
+package Tutorial6;
+
+public class Demo9 {
+
+	public static void main(String[] args) {
+		String a = "radar";
+		String b = "";
+
+		for (int i = a.length()-1; i >=0 ; i--) 
+		{
+			b=b+a.charAt(i);
+		}
+		
+		if(a.equalsIgnoreCase(b))
+		{
+			System.out.println("String is Palindrome");
+		}
+		else
+		{
+			System.out.println("String is not Palindrome");
+
+		}
+		
+	}
+
+}
+=======================================================================
+package Tutorial6;
+
+public class Demo10 {
+
+	public static void main(String[] args) {
+		
+		int a=121;
+		
+		String b = Integer.toString(a);
+		
+		String c = "";
+
+		for (int i = b.length()-1; i >=0 ; i--) 
+		{
+			c=c+b.charAt(i);
+		}
+		
+		if(b.equalsIgnoreCase(c))
+		{
+			System.out.println("int is Palindrome");
+		}
+		else
+		{
+			System.out.println("int is not Palindrome");
+
+		}
+		
+
+	}
+
+}
+
+package Tutorial6;
+
+public class Demo10 {
+
+	public static void main(String[] args) {
+
+		int a = 12241;
+		int c = a;
+
+		int b = 0;
+
+		while (a > 0) {
+
+			b = b * 10 + a % 10;
+
+			a = a / 10;
+
+		}
+
+		System.out.println(c);
+		System.out.println(b);
+
+		if (c == b) {
+			System.out.println("Int is Palindrome");
+		} else {
+			System.out.println("Int is not Palindrome");
+
+		}
+
+	}
+
+}
+
+package Tutorial6;
+
+public class Demo10 {
+
+	public static void main(String[] args) {
+
+		int a = 1221;
+
+		String b = Integer.toString(a);
+		String c = "";
+
+		for (int i = b.length() - 1; i >= 0; i--) {
+			c = c + b.charAt(i);
+		}
+
+		if (b.equalsIgnoreCase(c)) {
+			System.out.println("int is Palindrome");
+		} else {
+			System.out.println("int is not Palindrome");
+
+		}
+
+	}
+
+}
+
+package Tutorial6;
+
+public class Demo101 {
+
+	public static void main(String[] args) {
+//		Input = "how are you",   output = "h@w are y@@u"
+
+		String a = "how are you";
+
+		String b = a.replaceAll("o", "@");
+		System.out.println(b);
+
+	}
+
+}
+
+package Tutorial6;
+
+public class SwapStringWithThirdVariable {
+
+	public static void main(String[] args) {
+
+		String a = "java";
+
+		String b = "selenium";
+
+		// Step 1 : Assign a value into c variable
+		String c = a;
+
+		// Step 2: assign b values into a variable
+
+		a = b;
+
+		// Step 3: Assign c values into b variable
+		b = c;
+
+		System.out.println(a);// selenium
+		System.out.println(b);// java
+
+	}
+
+}
+
+package Tutorial6;
+
+public class SwapStringWithoutThirdVariable {
+
+	public static void main(String[] args) {
+		String a = "java";
+		String b = "selenium";
+
+		a = a + b; // javaselenium
+
+		// 12-8
+		b = a.substring(0, a.length() - b.length());// java
+		System.out.println(b);
+
+		a = a.substring(b.length());
+		System.out.println(a);
+
+	}
+
+}
+package Tutorial6;
+
+public class SwapStringWithoutThirdVariable {
+
+	public static void main(String[] args) {
+		String a = "cucumber";
+		String b = "jenkins";
+
+		a = a + b;
+
+		b = a.substring(0, a.length() - b.length());
+
+		a = a.substring(b.length());
+
+		System.out.println(a);
+		System.out.println(b);
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

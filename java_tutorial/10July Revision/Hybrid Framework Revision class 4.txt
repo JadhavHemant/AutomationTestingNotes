@@ -1,0 +1,496 @@
+Hybrid Framework Revision
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scenario:
+		Automate the Login Page
+		Automate Home Page
+		Automate Contact Page,
+						at the time of creating new contact read test data from Excel sheet.
+		by using 
+						1) BaseLayer package, 
+						2) Configuration Layer , 
+						3) Page Layer Package, 
+						4) Test Data Package, 
+						5) Utility Layer package (Excel Reader class, Wait class and Handle Drop Down class) 
+
+						6)Test Layer package
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+package BaseLayer;
+
+import java.io.FileInputStream;
+import java.time.Duration;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BaseClass {
+	protected static Properties prop;
+	protected static WebDriver driver;
+
+	public BaseClass() {
+		prop = new Properties();
+		String path = System.getProperty("user.dir") + "/src/main/java/ConfigurationLayer/config.properties";
+
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			prop.load(fis);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void initialization() {
+		// connect browser
+		// up casting
+		driver = new ChromeDriver();
+		// implicitlyWait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		// pageLoadTimeout
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		// maximize
+		driver.manage().window().maximize();
+		// delete all cookies
+		driver.manage().deleteAllCookies();
+		// capture url from Properties file
+		String url = prop.getProperty("URL");
+
+		// open a url
+		driver.get(url);
+
+	}
+
+}
+
+
+URL=https://ui.cogmento.com/
+
+USERNAME=prafulp1010@gmail.com
+
+PASSWORD=Pr@ful0812
+
+
+package PageLayer;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import BaseLayer.BaseClass;
+import UtilityLayer.Wait;
+
+public class LoginPage extends BaseClass {
+
+	// create Object Repository using POM with Page Factory
+	@FindBy(name = "email")
+	private WebElement username;
+
+	@FindBy(name = "password")
+	private WebElement password;
+
+	@FindBy(xpath = "//div[text()='Login']")
+	private WebElement loginbutton;
+
+	// initialize the OR using PageFactory.initElements() method
+	public LoginPage() {
+		PageFactory.initElements(driver, this);
+	}
+
+	// create non static assoicated method for each and every OR without entering
+	// test data
+	public void loginFunctionality(String Username, String Password) {
+		// TO operation on WebElement calls methods from UtilityLayer package
+		Wait.sendKeys(username, Username);
+		Wait.sendKeys(password, Password);
+		Wait.click(loginbutton);
+	}
+}
+
+
+
+package PageLayer;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import BaseLayer.BaseClass;
+import UtilityLayer.Wait;
+
+public class HomePage extends BaseClass {
+
+	// create OR using POM with Page Factory
+
+	@FindBy(xpath = "//div[@class='header item']")
+	private WebElement logo;
+
+	// initialize the OR using PageFactory.initElements() method
+	public HomePage() {
+		PageFactory.initElements(driver, this);
+	}
+
+	// create associated method for each and every OR without entering test data.
+	public boolean checkLogoStatus() {
+		return Wait.isDisplayed(logo);
+	}
+
+	public String getHomePageTitle() {
+		return driver.getTitle();
+	}
+
+	public String getHomePageUrl() {
+		return driver.getCurrentUrl();
+	}
+
+}
+
+
+
+
+package PageLayer;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
+
+import BaseLayer.BaseClass;
+import UtilityLayer.HandleDropDown;
+import UtilityLayer.Wait;
+
+public class ContactPage extends BaseClass {
+
+	@FindBy(xpath = "//a[@href='/contacts']")
+	private WebElement contactLink;
+
+	@FindBy(xpath = "//a[@href='/contacts/new']")
+	private WebElement createbutton;
+
+	@FindBy(name = "first_name")
+	private WebElement firstname;
+
+	@FindBy(name = "last_name")
+	private WebElement lastname;
+
+	@FindBy(xpath = "//label[text()='Email']/following-sibling::div/descendant::input[@name='value']")
+	private WebElement emailId;
+
+	@FindBy(xpath = "//label[text()='Status']/following-sibling::div")
+	private WebElement statusDropDown;
+
+	@FindBys(@FindBy(xpath = "//div[@name='status']/child::span"))
+	private List<WebElement> statusList;
+
+	@FindBy(xpath = "//button[text()='Save']")
+	private WebElement saveButton;
+
+	// initialize the OR using PageFactory.initElements() method
+	public ContactPage() {
+		PageFactory.initElements(driver, this);
+	}
+
+	public void createNewContact(String FirstName, String LastName, String Email, String Status)
+			throws InterruptedException {
+		Thread.sleep(2000);
+		Wait.click(contactLink);
+		Thread.sleep(2000);
+		Wait.click(createbutton);
+		Thread.sleep(2000);
+
+		Wait.sendKeys(firstname, FirstName);
+		Wait.sendKeys(lastname, LastName);
+		Wait.sendKeys(emailId, Email);
+		Thread.sleep(2000);
+		Wait.click(statusDropDown);
+		Thread.sleep(2000);
+
+		HandleDropDown.selectDropDown(statusList, Status);
+		Thread.sleep(2000);
+		Wait.click(saveButton);
+		Thread.sleep(2000);
+	}
+
+}
+
+
+package UtilityLayer;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import BaseLayer.BaseClass;
+
+public class Wait extends BaseClass {
+
+	// create visiblilityOf() static method with WebElement args and WebElement
+	// return type
+
+	public static WebElement visibilityOf(WebElement wb) {
+		// create Object of WebDriverWait by passing WebDriver instance and time in
+		// seconds
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		// use until() method and inside the Method use
+		// ExpectedConditions.visibilityOf() method by passing WebElement instance
+		WebElement wb1 = wait.until(ExpectedConditions.visibilityOf(wb));
+		return wb1;
+	}
+
+	// create click() static method with WebElement arg
+	public static void click(WebElement wb) {
+		// create Object of WebDriverWait by passing WebDriver instance and time in
+		// seconds
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		// use until() method and inside the Method use
+		// ExpectedConditions.elementToBeClickable() method by passing WebElement
+		// instance
+		wait.until(ExpectedConditions.elementToBeClickable(wb)).click();
+	}
+
+	// create sendKeys() static method with WebElement arg and String args
+	public static void sendKeys(WebElement wb, String value) {
+		Wait.visibilityOf(wb).sendKeys(value);
+	}
+
+	// create isDisplayed() static method with WebElement arg and boolean return
+	// type
+	public static boolean isDisplayed(WebElement wb) {
+		return Wait.visibilityOf(wb).isDisplayed();
+	}
+
+}
+
+
+package UtilityLayer;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+
+import BaseLayer.BaseClass;
+
+public class HandleDropDown extends BaseClass {
+
+	public static void selectDropDown(List<WebElement> lists, String ExpectedValue) {
+		for (WebElement value : lists) {
+			String actualValue = value.getText();
+			if (actualValue.equalsIgnoreCase(ExpectedValue)) {
+				value.click();
+				break;
+			}
+		}
+	}
+
+}
+
+
+package UtilityLayer;
+
+import java.io.FileInputStream;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelReader {
+	private static XSSFWorkbook workbook;
+
+	public ExcelReader(String Excelpath) {
+		try {
+			FileInputStream fis = new FileInputStream(Excelpath);
+			workbook = new XSSFWorkbook(fis);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getTotalRowCount(int sheetIndex) {
+		return workbook.getSheetAt(sheetIndex).getLastRowNum() + 1;
+	}
+
+	public int getTotalColumnCount(int sheetindex) {
+		return workbook.getSheetAt(sheetindex).getRow(0).getLastCellNum();
+	}
+
+	public Object getSheetTestData(int sheetindex, int rows, int cells) {
+		XSSFSheet sheet = workbook.getSheetAt(sheetindex);
+		String testdata = sheet.getRow(rows).getCell(cells).getStringCellValue();
+		return testdata;
+	}
+
+	public Object[][] getAllSheetTestData(int sheetIndex) {
+		int rows = getTotalRowCount(sheetIndex);
+		int cells = getTotalColumnCount(sheetIndex);
+
+		Object[][] data = new Object[rows][cells];
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cells; j++) {
+				data[i][j] = getSheetTestData(sheetIndex, i, j);
+			}
+		}
+
+		return data;
+
+	}
+
+}
+
+
+package TestLayer;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import PageLayer.LoginPage;
+
+public class LoginPageTest extends BaseClass {
+
+	@BeforeTest
+	public void setUp() {
+		BaseClass.initialization();
+	}
+
+	@Test
+	public void validateLoginFunctionality() {
+		// capture username and password from properties file
+		String username = prop.getProperty("USERNAME");
+		String password = prop.getProperty("PASSWORD");
+
+		LoginPage loginpage = new LoginPage();
+		loginpage.loginFunctionality(username, password);
+	}
+
+	@AfterTest
+	public void teardown() {
+//		driver.quit();
+	}
+}
+
+
+package TestLayer;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import PageLayer.HomePage;
+
+public class HomePageTest extends BaseClass {
+	private static HomePage homepage;
+
+	@Test(priority = 1)
+	public void validateHomePageLogo() {
+		homepage = new HomePage();
+		boolean actualStatus = homepage.checkLogoStatus();
+		Assert.assertTrue(actualStatus);
+	}
+
+	@Test(priority = 2)
+	public void validateHomePageTitle() {
+		String actualTitle = homepage.getHomePageTitle();
+		Assert.assertEquals(actualTitle, "Cogmento CRM");
+	}
+
+	@Test(priority = 3)
+	public void validateHomePageUrl() {
+		boolean actualdomainName = homepage.getHomePageUrl().contains("ui.cogmento");
+		Assert.assertEquals(actualdomainName, true);
+	}
+}
+
+
+package TestLayer;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import PageLayer.ContactPage;
+import UtilityLayer.ExcelReader;
+
+public class ContactPageTest extends BaseClass {
+	private static ContactPage contactpage;
+
+	@Test(dataProvider = "TestData")
+	public void validateNewContact(String Fname, String Lname, String Email, String Status)
+			throws InterruptedException {
+		contactpage = new ContactPage();
+		contactpage.createNewContact(Fname, Lname, Email, Status);
+	}
+
+	@DataProvider(name = "TestData")
+	public Object[][] getTestData() {
+		String Path = System.getProperty("user.dir") + "/src/main/java/TestData/Cogmento CRM Test Data.xlsx";
+
+		ExcelReader excel = new ExcelReader(Path);
+
+		Object[][] data = excel.getAllSheetTestData(0);
+
+		return data;
+	}
+}
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+
+==========================================================================================================
+
+Rewards on documents Amount
+--------------------------------------------------------------------------------------------------------------------------------
+1 year:				9LPA						----> 35K discount on documents amount
+
+2 year				13LPA						----> 35K discount on documents amount
+
+3 year				18LPA						----> 35K discount on documents amount
+
+4 year				20LPA						----> 35K discount on documents amount
+
+above 20LPA									-------> 50K discount on documents amount
+
+above 25LPA									-----> 75K discount on documents amount 
+
+--------------------------------------------------------------------------------------------------------------------------------
+before : 30th Aug
+--------------------------------------------------------------------------------------------------------------------------------
+if any new student get 15LPA offer before 15 th Aug  the  we will 35K discount on documents amount
+--------------------------------------------------------------------------------------------------------------------------------
+if any new student get 11LPA offer before 15th Aug  the  we will 35K discount on documents amount		[but we have experience is 1year or 2 years]
+					1 and 2 year
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

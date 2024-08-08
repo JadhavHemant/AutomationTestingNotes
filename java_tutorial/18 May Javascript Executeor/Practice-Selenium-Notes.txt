@@ -1,0 +1,307 @@
+//Alert popup:
+
+     it is used to switch to alert popup window by using alert().
+     it is present into TargetLocater Interface.
+     return type is Alert interface.
+
+Alert alt = driver.switchTo.alert();
+
+
+//There are 4 method 
+1)alt.accept();
+	Click on OK button on Alert popup window.
+	This method present inside the Alert interface
+ 	Return type is void.
+2)alt.dismiss();
+        Click on Cancel button in Alert popup.
+	present inside the Alert interface.
+	Return type is void.
+3)alt.getText();
+  	It is used to capture the text from alert popup.
+	it present inside Alert Interface
+	return type is String.
+4)alt.sendKeys()
+    It is used to send the text inalert popup
+    Present inside the Alert Interface
+    return type is Void.
+---------------------------------------------------------------------------------
+
+Xpath:
+Single attribute Xpath
+		//tagName[@attibute='value']
+
+	text():
+		//tagName[text()='physical text value']
+	contains():
+		//tagName[contains(@attribute,'value')]
+		//tagName[conatins(text(),'value')]
+		//tagName[starts-with(text(),'value')]
+                //tagName[starts-with(@attribute,'value')
+	And operator
+		//tagName[contains(@attribute,'value')and text()='text value']
+		//tagName[contains(@attribute,'value')and @attribute='value']
+		//tagName[@attribute='value' and @attribute='value']
+	OR operator
+		//tagName[contains(@attribute,'value') or text()='text value']
+		//tagName[contains(@attribute,'value') or @attribute='value']
+		//tagName[@attribute='value' or @attribute='value']
+Xpath axes :
+
+ 	1)Following:
+		It is used to find all next element after current tag
+	 Syntax:
+		//tagName[@attribute='value']/following::tagName[@attribute='value']
+	       //tagName[@attribute='value']/following::tagName[text()='text value']
+
+	2)preceding: 
+              It is used to find all the previous element before current tag
+         Syntax:
+            //tagName[@attribute='value']/precending::tagName[conatins(@attribute,'value')]
+
+	3)parent keyword:
+		It is used to find immediately parent tag of current tag.
+          Syntax:
+ 			//tagName[@attribute='value']/parent::tagName
+	4)child:
+		It is used to find immediate child tag of current tag.
+ 		Syntax:
+			//tagName[@attribute='value']/child::tagName
+ 	5)ancestor 
+		it is used to find the parent tag, grand parent tag, grand of grand parent tag of cuurent tag
+ 		Syntax:
+ 			//tagName[@attribute='value']/ancestor::tagName
+	6)descendant:
+			It is used to find child tag ,grand child tag,grand of grand child tag of current tag
+  		Syntax:
+			//tagName[@attribute='value']/descendant::tagName
+       			//tagName[@attribute='value']/descendant::tagName[@attribute='value']
+	7)following-sibling:
+			It is used to find the cuurent tag of next sibling tag of same parent tag.
+		Syntax:
+			//tagName[@attribute='value']/following-sibling::tagName
+	8)preceding-sibling:
+			It is used to find current tag of previous sibling of same parent tag
+			Syntax:
+				//tagName[@attribute='value']/preceding-sibling::tagName
+---------------------------------------------------------------------------------------------------------------------------
+Frame in selenium
+        -it is used to divide the browser window into multiple sections where is section can hold seprate HTML web page.
+	-It is present inside the targetLocator
+	-return type is WebDriver interface
+
+	Syntax:
+		driver.switchTo().frame("frame name");
+There are 4 types 
+By using :
+1)Frame id
+  Syntax:
+		driver.switchTo().frame("frame id");
+2)frame name:
+       Syntax: 	
+		driver.switchTo().frame("frame name");
+3)frame using index position:
+     Syntax: 
+ 		driver.switchTo().frame(int frame index);
+4)By using frame webElement 
+ 	Syntax:
+ 		driver.switchTo().frame("frame element object");
+
+//switch focus from current frame to immediate parent frame:
+  	 driver.switchTo().parentFrame();
+
+//switch focus to main /top frame:
+ 	driver.switchTo().defaultContent();
+---------------------------------------------------------------------------------------------------------------------
+Web Table:
+			There are 2 types of table
+				1)static Table
+				2)Dynamic Table
+  1)static Table:
+  Syntax:
+         	1)capture of all coloum values:
+				List<WebElement> ls = driver.findElements(By.tagname("th"));
+		2)capture of all rows values
+                           List<WebElement> ls = driver.findElements(By.tagname("tr"));
+           	3)capture all table values:
+			List<WebElement> ab=driver.findElements(By.tagname("td"));
+
+2)Dynamic Table:
+       //step1: find the calender object and click on it
+                  WebElement wb=driver.findElement(By.xpath("xpath"));
+                  wb.click();
+     //step2:
+        infinte while loop
+         while(true)
+		{
+ 			//find and capture year and month 
+				WebElement monthyear =driver.findElement(By.xpath("xpath"));
+  				String s= monthyear.getText();
+                         //compare expected month and year
+				if(s.equals("expected monthyear")
+				{
+					//select the date 
+					WebElement date=driver.findElement(By.xpath("xpath"));
+					date.click();
+ 					//break the loop 
+					break;
+				}
+				else
+					{
+					 //click on next button
+						WebElemet button=driver.findElement(By.xpath("xpath"));
+						button.click();
+					}
+				}
+
+---------------------------------------------------------------------------------------------------------
+Actions class Event:
+ there are 2 events :
+1)mouse Event
+2)keyboard event
+
+	mouse event:
+		By using mouse we can perform different activity:
+	1)click();
+`	2)doubleClick();
+	3)contextClick();
+ 	4)dragAndDrop();
+	5)moveToElement();
+	6)clickAndHold();
+	7)release();
+	
+//create object of Actions class
+	Actions act = new Actions(driver);
+	act.click(wb).build().perform();
+        act.doubleClick(wb).build().perform();
+	act.contextClick(wb).build().perform();
+        act.moveToElement(wb).build().perform();
+        act.clickAndHold(wb).build().perform();
+        act.release(wb).perform();
+	act.dragAndDrop(wb, wb2).build().perform();
+
+2)Keyboard event:
+        1)keyDown()
+	2)keyUp()
+	3)sendKeys()
+	
+//create object of Actions class
+   Actions act = new Actions(driver);
+        act.keyDown(Keys.TAB).build().perform();
+	act.keyUp(Keys.DOWN).build().perform();
+	act.sendKeys(wb,"value").build().perform();
+======================================================================================
+TakesScreenShot:
+  	TakesScreenShot is an interface present inside the webDriver
+	Methods:
+		1)getScreenshotAs():
+				present inside the takesScreenShot interface.
+		Syntax:
+			TakesScreenshot ts =(TakesScreenshot)driver;
+				File src= ts.getScreenshotAs(outputType.FILE);
+				File dest=new File("dest1");
+
+		2)copyFile():
+			Present inside the FileUtils class
+		  Syntax:
+ 				FileUtils.copyFile(src,dest);
+
+				
+ FullScreenshot:
+	    //Step1: create object of Ashot class
+		AShot  a= new AShot();
+ 		//Step2:using shootingStratgymethod by passing (ShootingStrategies.viewportPasting inside the ViewPortPasting method pass the time miliseconds.
+                      a.shootingStrategy(ShootingStrategies.viewportPasting(1000));
+		//Step3: Use takeScreenshot()by passing webDriver instance
+			Screenshot s= a.takeScreenshot(driver);
+		//step4: capture the actual screenshot using getImage()
+
+			BufferedImage b=s.getImage();
+                //step5:store the screenshot in destination location
+                       File dest =new File("destination location");
+                //step6: capture the screenshot from src to dest location using write() by passing src loaction imageType and dest loaction
+                     ImageIO.Write(src,"PNG",dest);
+
+======================================================================================================================
+Windows: how to handle multiple windows?
+    ---> we use getWindowHandle() and getWindowHandles() 
+  1) getWindowHandle()
+ 			used to capture the current id number
+       			present inside the webDriver interface.
+			return type String.
+    Syntax:
+ 			String s=driver.getWindowHandle();
+
+2)getWindowhandles();
+			Used to capture all id numbers which is opened by selenium script.
+			present inside WebDriver Interface
+			return type is Set<String>
+
+		Syntax: 
+				Set<String> a=driver.getWindowHandles();
+3)switchTo().Window():
+         it is used to switch focus to the window by passing window id number
+	switchTo() present inside WebDriver Interface.
+	return type is targateLocator Interface.
+   window():present inside targateLoactor Interface 
+     return type is WebDriver Interface.
+ Syntax:
+     driver.switchTo().window(id number);
+
+===========================================================================================================================
+
+
+
+
+
+
+		
+
+
+
+
+
+               
+
+  
+
+
+  		
+
+			
+ 			
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+	
+
+
+
+				
+	
+
+ 			
+    
+		
+
+
+
+
+
+  
+		
+
+
+               
+
+
+			

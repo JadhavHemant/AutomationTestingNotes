@@ -1,0 +1,590 @@
+Non Static Methods
+		i) Non static method without return type and 0 arguments
+		ii) Non static method without return type and multiple arguments
+
+		iii) Non static method with return type and 0 arguments
+		iv) non static method with return type and multiple arguments
+-------------------------------------------------------------------------------------------------------------------------------------
+iii) Non static method with return type and 0 arguments
+	- 
+syntax:
+			AccessModifier ReturnDatatypeName methodName()
+			{
+						///statement
+
+				return variableName/value;
+			}
+
+what are the different access Modifier?		
+		i) public 			---> if we define any method as public then we can access this method anywhere in project
+		ii) private 			---> if we define any method as private then we can access this method only inside the same class,
+		iii) default			---> if we define any method as default then we can access this method only within the package.
+		iv) protected		---> if we define any method as protected then we can access this method within the package as well as outside package 
+								by using inheritance concept.
+
+what is return data type name?
+	- byte
+	- short
+	- int
+	- long
+	- float
+	- double
+	- char
+	- boolean
+	- String
+	- Arrays
+	- Own class
+	- interface
+
+
+we can give any method Name.
+
+where we write Non static method with return type and 0 arguments?
+	we write method before the main method or after the main method but inside the class.
+
+how to call non static method in main method?
+	-we have to create object of the class, 
+	- and then by using object name we can access the method
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+// non Static method with int return type and 0 arguments 
+		- write logic to find max value and return the max value
+
+
+public class Demo1
+{
+		
+			public int findMaxValue()
+			{
+					int [] abc = {100,200,300,40,500,7000};
+					
+					int max= abc[0];
+					for(int i=0;i<abc.length;i++)
+					{
+							if(abc[i]>max)
+							{
+								max=abc[i];
+							}
+					}
+
+					return max;
+			}
+			public static void main(String [] args)
+			{			
+					Demo1 obj =new Demo1();
+
+					int  a = obj.findMaxValue();
+					
+					System.out.println(a);
+			}
+}
+----------------------------------------------------------------------------------------------------------------------
+//create Non static method with String return type and 0 args
+		// write logic to return reverse the String
+
+public class Demo2
+{
+			public String reverseString()
+			{
+					String a="madam";
+					String abc="";//
+
+					int b = a.length()-1;
+
+					for(int i=b;i>=0;i--)
+						{
+									char c = a.chatAt(i);//j
+									abc=abc+c; 			//
+						}
+				
+					return abc;
+			}
+
+			public static void main(String [] args)
+			{
+						Demo2 obj = new Demo2();
+
+						//madam
+						String xyz = obj.reverseString();
+					
+						if(xyz.equals("madam"))
+						{
+								System.out.println("String is Palindrome");
+						}
+						else
+						{
+								System.out.println("String is not Palindrome");
+						}
+			}
+}
+--------------------------------------------------------------------------------
+package Tutorial8;
+
+public class Demo1 {
+		//create non static method with int return and 0 arguments
+			///find max value out from array and return the max value
+	
+		public int findMaxValue()
+		{
+			int [] abc = {100,2032,404,45,54545};
+			
+			int max = abc[0];
+			
+			for(int i=0;i<abc.length;i++)
+			{
+				if(abc[i]>max)
+				{
+					max= abc[i];
+				}
+			}
+			
+			return max;
+			
+		}
+	
+
+	public static void main(String[] args) {
+		System.out.println("Main method is started");
+		Demo1 obj = new Demo1();
+		int b = obj.findMaxValue();
+		System.out.println(b);
+		System.out.println("Main method is ended");
+		
+
+	}
+
+
+	
+}
+		
+
+package Tutorial8;
+
+public class Demo2 {
+
+	// create non static method with String return type
+	// write logic to reverse the String
+	
+	public String reverseString()
+	{
+		String a="java";
+		String rev = "";//avaj
+		
+		int b = a.length()-1;
+		
+		for(int  i=b;i>=0;i--)
+		{
+			char c = a.charAt(i);//j
+			
+			rev = rev+c;	// "ava" + 'j'  ="avaj"
+		}
+		
+		return rev;//avaj
+	}
+	
+
+
+	public static void main(String[] args) {
+		//in main method compare actual string and reverse string is same or not,if
+		// same then print String is palindrome or if not print String is not Palindrome
+
+		Demo2 obj =new Demo2();
+		
+		//avaj
+		String xyz = obj.reverseString();
+		
+		if(xyz.equals("java"))
+		{
+			System.out.println("String is Palindrome");
+		}
+		else
+		{
+			System.out.println("String is not Palindrome");
+		}
+		
+		
+	}
+
+}
+----------------------------------------------------------------------------------------------
+package Tutorial8;
+
+public class Demo2 {
+
+	// create non static method with String return type
+	// write logic to reverse the String
+	
+	public String reverseString()
+	{
+		String a="radar";
+		String rev = "";//radar
+		
+		int b = a.length()-1;
+		
+		for(int  i=b;i>=0;i--)
+		{
+			char c = a.charAt(i);//j
+			
+			rev = rev+c;	
+		}
+		
+		return rev;//radar
+	}
+	
+
+
+	public static void main(String[] args) {
+		//in main method compare actual string and reverse string is same or not,if
+		// same then print String is palindrome or if not print String is not Palindrome
+
+		Demo2 obj =new Demo2();
+		
+		//radar
+		String xyz = obj.reverseString();
+		
+		if(xyz.equals("radar"))
+		{
+			System.out.println("String is Palindrome");
+		}
+		else
+		{
+			System.out.println("String is not Palindrome");
+		}
+		
+		
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+iv) non static method with return type and multiple arguments
+
+syntax"
+			AccessModifier ReturnDatatypeName methodName(datatype variableName, datatype variableName, datatype variableName)
+			{
+					//statement
+					
+				return variableName/value;
+			}
+
+
+what are the different Access modifier in java
+	1) public			---> if we define any method is public then we can access this method anywhere in project.
+	2) private			---> if we define any method as private then we can access this method only within the same class.
+	3) default			----> if we define any method as default then we can access this method only within the same package
+	4) protected			---> if we define any method as protected then we can access this method within the package as well as outside the package by using 								inheritance concept.
+
+what is return datatype
+	byte
+	short
+	int
+	long
+	float
+	double
+	char
+	boolean
+	String
+	Arrays
+	own class
+	interface.
+
+
+we can give any method name
+
+where we declare the method
+	before the main method or after the main method but inside the class
+
+
+how to call non static method in main method
+	- we create object of class
+	- then by using object name we call non static methods
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//create non static method with String return and String arguments
+	//write logic to reverse the String  and return the reverse String
+
+
+public class Demo4
+{
+		
+			public String reverseString(String a)
+			{
+					String abc = "";
+
+					int b = a.length()-1;
+
+					for(int i=b; i>=0;i--)
+						{
+								char c = a.chatAt(i);	
+								abc= abc + c;
+						}
+
+					return abc;
+
+			}
+
+			public static void main(String [] args)
+			{
+					Demo4 obj =new Demo4();
+					String xyz = obj.reverseString("java");
+					if(xyz.equals("java"))
+					{
+							System.out.println("String is Palindrome");
+					}
+					else
+					{
+							System.out.println("String is not Palindrome");
+					}
+			}
+
+
+
+
+
+
+}
+
+
+package Tutorial8;
+
+public class Demo4 {
+	//create non static method with String return and String arguments
+	// write logic to reverse the String and return the reverse String
+
+	public String reverseString(String a)
+	{
+		String rev="";
+		int b = a.length()-1;
+		
+		for(int i=b;i>=0;i--)
+		{
+				char c = a.charAt(i);
+				rev= rev+c;
+		}
+		
+		return rev;	
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		Demo4 obj =new Demo4();
+		
+		String xyz = obj.reverseString("madam");
+		
+		if(xyz.equals("madam"))
+		{
+			System.out.println("String is Palindrome");
+		}
+		else
+		{
+			System.out.println("String is not Palindrome");
+		}
+		
+		
+
+	}
+
+}
+
+package Tutorial8;
+
+public class Demo7 {
+	
+	public String checkStringIsPalindrome(String a)
+	{
+		String rev="";//radar
+		int b = a.length()-1;
+		
+		for(int i=b;i>=0;i--)
+		{
+				char c = a.charAt(i);
+				rev = rev +c;
+		}
+		
+		if(rev.equals(a))
+		{
+			return "String is Palindrome";
+		}
+		else
+		{
+			return "String is not Palindrome";
+		}
+		
+	}
+	
+	
+
+	public static void main(String[] args) {
+		
+		Demo7 obj =new Demo7();
+		
+		String xyz = obj.checkStringIsPalindrome("radar");
+		System.out.println(xyz);
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------
+Ass:
+Declare the age variable
+			int age=values
+
+conditions
+		if age is between 0 to 11 then print child keyword
+		if age is between 12 to 17 then print teen keyword
+		if age is between 18 to 64 print adult keyword
+		if age is above 64 the print senior keyword
+
+package Tutorial8;
+
+public class Demo10 {
+
+//	Declare the age variable
+//	int age=values
+//
+//conditions
+//if age is between 0 to 11 then print child keyword
+//if age is between 12 to 17 then print teen keyword
+//if age is between 18 to 64 print adult keyword
+//if age is above 64 the print senior keyword
+
+	
+	//create non static method with String return type and int type of arguments
+	
+	public String checkAgeGroup(int age)
+	{
+		if((age>0)&&(age<=11))
+		{
+				return "child";
+		}
+		else if((age>=12)&&(age<=17))
+		{
+			return "Teen";
+		}
+		else if((age>=18)&&(age<=64))
+		{
+			return "Adult";
+		}
+		else
+		{
+			return "Senior";
+		}
+		
+	}
+	
+
+	public static void main(String[] args) {
+		
+		Demo10 obj =new Demo10();
+		
+		String xyz = obj.checkAgeGroup(1);
+		System.out.println(xyz);
+
+	}
+
+}
+
+
+
+------------------------------------------------------------------------------------------------
+Ass:
+declare the int variable
+				int a=1;
+conditions
+		i) if a number is between 1 to 100 then print a small number
+		ii) if a number is between 101 to 1000 then print a number is medium
+		iii) if a numbers is between 1001 to 10000 the print a number is large
+		iv) if a number is above 10001 then a number is biggest number
+		v) if a number is below 1 then a number is zero or negative number.
+
+------------------------------------------------------------------------------------------------
+declare the marks int variable
+		int marks=values;
+
+conditions
+		i) if marks is below 25 then display the grade as F
+		ii) if marks is  25 to 45 then display the grade as E
+		iii) if marks is  46 to 55 then display the grade as D
+		iv) if marks is  56 to 65 then display the grade as C
+		v) if marks is  66 to 75 then display the grade as B
+		vi) if marks is above 75 then display the grade as A
+
+
+------------------------------------------------------------------------------------------------
+		https://demoqa.com/buttons
+		//create non static method with String return type and String argument
+
+				- open application
+				- 
+
+---------------------------------------------------------------------------------------------------
+https://prafpawar11.github.io/emptable.html
+		- create non static method without return type and with 1 String arguments
+		- if we pass tr keyword it should print all table rows 
+		- if we pass th keyword it should print all table columns
+		-if we pass td keyword it should print all table data
+
+---------------------------------------------------------------------------------------------------
+https://demo.guru99.com/test/newtours/register.php
+		- create non static method with 1 String return type and 12 String arguments
+		- enter all information and click on submit button
+		- capture first name and last name return type same.
+
+---------------------------------------------------------------------------------------------------
+https://prafpawar11.github.io/multiplewindows.html
+		create a non static method with String return type and 1 String arguments
+			- open a application enter first name, last name and address
+	
+		conditions
+			- if click on  orange link name				
+							- switch to it and enter credentials
+							take screenshot
+							- return url
+
+			- of click on facebook reg link
+							- switch to it and enter firstname, last name, username, password and DOJ 
+							- take screenshot
+							- return type url
+
+			- if click on sauce demo link
+							- switch to it and enter credentials and run end to end flow
+							- return url
+
+---------------------------------------------------------------------------------------------------
+ 
+	 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+package BaseLayer;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BaseClass {
+
+	public static WebDriver driver;
+
+	public static void initialization() {
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().window().maximize();
+		driver.get("https://www.facebook.com/reg");
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------
+package PageLayer;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import BaseLayer.BaseClass;
+
+public class RegisterPage extends BaseClass {
+	// create Object Repistory usin Page Object model without Page Factory
+	private By firstName = By.name("firstname");
+
+	private By lastname = By.name("lastname");
+
+	private By username = By.name("reg_email__");
+
+	private By password = By.name("reg_passwd__");
+
+	// initialize the object repository using constructor
+	public RegisterPage(WebDriver driver) {
+		super.driver = driver;
+	}
+
+	// write associated method without entering the test data for each and every
+	// object Repository
+	
+	public void registerFunctionality(String Fname,String LName, String Uname, String Pass)
+	{
+		driver.findElement(firstName).sendKeys(Fname);
+		driver.findElement(lastname).sendKeys(LName);
+		driver.findElement(username).sendKeys(Uname);
+		driver.findElement(password).sendKeys(Pass);
+	}
+	
+	
+}
+---------------------------------------------------------------------------
+package TestLayer;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+import PageLayer.RegisterPage;
+
+public class RegisterPageTest extends BaseClass {
+
+	@BeforeTest
+	public void setUp() {
+		BaseClass.initialization();
+	}
+
+	@Test
+	public void validateRegisterFunctionality() {
+		RegisterPage registerPage = new RegisterPage(driver);
+
+		registerPage.registerFunctionality("Pooja", "Mane", "pooja@gmail.com", "Pooja@123");
+	}
+
+	@AfterTest
+	public void tearDown() {
+		// driver.quit();
+	}
+
+}

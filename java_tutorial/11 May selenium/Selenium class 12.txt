@@ -1,0 +1,527 @@
+Actions class Events
+---------------------------------------------------------------------------------------------------------------------------------
+	- Actions class is used to perform mouse over and keyboard events
+	- there are 2 main category in Actions class
+			1) Mouse Events
+			2) Keyboard Events
+---------------------------------------------------------------------------------------------------------------------------------
+1) Mouse Events
+	- By using mouse we can perform different activities as like
+		i) click on button/click								click(WebElement wb);
+		ii) double click										doubleClick(WebElement wb)
+		iii) scroll up and scroll down							------> by using java script Executor
+		iv) right click										contextClick(WebElement wb)					VVVVVVIMMPP
+		v) drag and drop										dragAndDrop(WebElement src, WebElement trg)
+		vi) mouse over on element							moveToElement(WebElement wb)				VVVVVVIMMPP
+		vii) click and hold element without drop				clickAndDrop(WebElement wb)					VVVVVVIMMPP
+---------------------------------------------------------------------------------------------------------------------------------
+How many ways we can click on element?								VVVVVVIMMMMMPPPPPPP
+		there are 5 ways we can click on element
+		1) by using WebElement interface click() method
+		2) by using WebElement interface submit() method
+		3) by using Actions class click() method
+		4) by using Actions class ENTER keyword
+		5) by using JavascriptExecutor interface click()method
+---------------------------------------------------------------------------------------------------------------------------------
+diff between build() method and perform() method						VVVVVVIMMMMMPPPPPPP
+	- build() method is used to combine the multiple actions in single statement
+	- perform() method is used to execute combined each and every actions.
+	- build() method is present inside the Actions class.
+	- perform() method is present inside the Action interface.
+	- return type of build() method is Action interface.
+	- return type of perform() method is void.
+---------------------------------------------------------------------------------------------------------------------------------
+i) click() method from Actions class
+		- it is used to click on element or object.
+		- return type of click() method is Actions class.
+		- click() method is present inside the Actions class.
+		- if u want to use Actions class click() method then 
+		- first we find the Element or object in webpage then we create Object of Actions class by passing WebDriver instance or object name.
+		- then we click() method by passing WebDriver instance and then build() method and perform() method.
+		- click() method is used to click on element 
+
+		- build() method is used to combine the multiple actions in single statements and this build  method is present inside the Actions class and 		return type of build() method is Action interface.
+		- perform() method is used to execute each and every combined actions and perform() method present inside the Action interface and 
+		return type is void.
+
+syntax:
+		WebElement wb = driver.findElement(By.id("id value"));
+		Actions act =new Actions(driver);
+		act.click(wb).build().perform();
+					or
+		act.click(wb).perform();
+				
+Scenario 1:
+		open a https://www.facebook.com/reg
+		click on forgot link using Actions class.
+
+Step 1: connect to browser code
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+step 3: open a url
+			driver.get("https://www.facebook.com/reg");
+
+step 4: find the element
+			WebElement wb = driver.findElement(By.xpath("//a[text()='Already have an account?']"));
+
+step 5: create object of Actions class by passing """WebDriver instance."""
+			Actions act =new Actions(driver);
+
+step 6: use click() method by passing WebDriver instance from Actions class then build() and perform() method
+			act.click(wb).build().perform();
+
+package Tutorial11;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://www.facebook.com/reg");
+
+		Thread.sleep(5000);
+		// step 4:find the forgot link
+		WebElement wb = driver.findElement(By.xpath("//a[text()='Already have an account?']"));
+
+		// step 5: create object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// step 6: use click() by passing WebElement instance from Actions class then
+		// use build() method and perform() method
+		act.click(wb).build().perform();
+
+	}
+
+}
+======================================================================
+2) doubleClick(WebElement wb) method
+	- doubleClick() method is used to double on click on element.
+	- doubleClick() method is present inside the Actions class
+	- return type of doubleClick() method is Actions class.
+	- if u want to use doubleClick()method then first we find the web element then we create object of Actions class by passing WebDriver instance.
+	- then use doubleClick() method by passing WebElement instance and then build() and perform() method
+	- doubleClick() method use to doubleClick() on element
+	- build() method is used to combine the multiple actions in single statement, and this build method is present inside the Actions class and return 
+	type is Action interface.
+	- perform() method is used to execute the combined each and every actions, this perform() method is present inside the Action interface and
+	return type is void.
+
+syntax:		
+	WebElement wb = driver.findElement(By.id("id value"));
+	Actions act =new Actions(driver);
+	act.doubleClick(wb).build().perform();
+
+Scenario:
+	https://demoqa.com/buttons
+	find the double click button and double click on it.
+
+
+Step 1: connect to browser code
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+			driver.get("https://demoqa.com/buttons");
+
+step 4: find the double click button 
+			WebElement wb = driver.findElement(By.id("doubleClickBtn"));
+
+step 5: create object of Actions class by passing WebDriver instance
+			Actions act =new Actions(driver);
+
+step 6: use doubleClick() method by passing WebElement instance from Actions class and then build() and perform() method
+			act.doubleClick(wb).build().perform();
+
+package Tutorial11;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://demoqa.com/buttons");
+
+		Thread.sleep(5000);
+		// step 4: find the double click button/ element or object
+		WebElement wb = driver.findElement(By.id("doubleClickBtn"));                                                                
+
+		// step 5: create object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// step 6: use doubleClick() method by passing WebElement instance from Actions
+		// class and then use build() and perform() method
+
+		act.doubleClick(wb).build().perform();
+
+		// find the message text
+		WebElement wb1 = driver.findElement(By.id("doubleClickMessage"));
+		String a = wb1.getText();
+		System.out.println(a);
+	}
+
+}
+===================================================================================
+3) contextClick(WebElement wb) method						VVVVVVVVIMMMMPPPP
+	- contextClick() method is used to right click on element
+	- contextClick() method is present inside the Actions class and return type is Actions class.
+	- if u want to use contextClick() method then first we have to find Object or element in webpage, then
+	we create Object of Actions class by passing WebDriver instance.
+	then we use contextClick() method by passing WebElement instance from Actions class then we use build() and perform() method.
+	-contextClick() method is used to right click on element
+	- build() method is used combine the multiple actions in single statement and this build() method is present inside Actions class  and 
+	return type is Action interface.
+	- perform() method is used to execute the combined each and every actions and perform()method is present inside the Action interface and 
+	return type is void.
+	
+syntax:
+	WebElement wb = driver.findElement(By.id("id value"));
+	Actions act =new Actions(driver);
+	act.contextClick(wb).build().perform();
+
+
+Scenario 3:
+		open https://demoqa.com/buttons
+		find the right click button and right click on it.
+
+Step 1: connect to browser code
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+			driver.get("https://demoqa.com/buttons");
+
+step 4: find the right click button 
+			WebElement wb = driver.findElement(By.id("rightClickBtn"));
+
+step 5: create object of Actions class by passing WebDriver instance
+			Actions act =new Actions(driver);
+		
+step 6: use contextClick() method by passing WebElement instance from Actions class and then use build().perform() method
+			act.contextClick(wb).build().perform();
+
+package Tutorial11;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo3 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://demoqa.com/buttons");
+
+		Thread.sleep(5000);
+		// step 4: find the right click button/ element or object
+		WebElement wb = driver.findElement(By.id("rightClickBtn"));
+
+		// step 5: create object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// step 6: use contextClick() method by passing WebElement instance from Actions
+		// class and then build() and perform() method
+		act.contextClick(wb).build().perform();
+
+		// step 7: find the right click message and capture it
+		String a = driver.findElement(By.id("rightClickMessage")).getText();
+		System.out.println(a);
+
+	}
+
+}
+================================================================================
+Ass:
+	open a https://swisnl.github.io/jQuery-contextMenu/demo.html
+	find and right click on right click me button
+	find and click on copy button
+	switch focus to alert pop up, capture the text and click on ok button
+
+================================================================================
+4) moveToElement(WebElement wb)											VVVVVVVVVVIMMMMMPPPPPPP
+		- moveToElement() method is used to mouse over on element without click.
+		- moveToElement() method present inside the Actions class and return type is Actions class.
+		- if u want to use moveToElement() method then first we have find the element and then we have to create object of Actions class by passing
+		WebDriver instance, then we use moveToElement() method by passing WebElement instance from Actions class and then we use build() and 		perform() method.
+		- moveToElement() method is used to mouse over on element and
+		build() method is used to combine the multiple actions in single statement and build() method is present inside the Actions class and 
+		return type is Action interface.
+		- perform() method is used to execute the combine each and every actions and perform() method is present inside the Action interface and		return type is void,
+	
+syntax;
+		WebElement wb = driver.findElement(By.id("id value"));
+		Actions act = new Actions(driver);
+		act.moveToElement(wb).build().perform();
+
+Scenario 4:
+		open a https://www.amazon.com/
+		find and mouse on Account and Lists
+		click on Orders link
+
+
+Step 1: connect to browser code
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+			driver.get("https://www.amazon.com/");
+
+step 4: find the Account and List link
+			WebElement wb = driver.findElement(By.id("nav-link-accountList"));
+
+step 5: create object of Actions class by passing WebDriver instance
+			Actions act =new Actions(driver);
+
+step 6: use moveToElement() method by passing WebElement instance from Actions class and then build() and perform() method
+			act.moveToElement(wb).build().perform();
+
+step 7: find and click on Orders link
+		WebElement wb1 = driver.findElement(By.xpath("//span[text()='Orders']"));
+		wb1.click();
+
+
+package Tutorial11;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo4 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().window().maximize();
+
+		// step 3: open a url
+		driver.get("https://www.amazon.in");
+
+		Thread.sleep(5000);
+		// step 4: find the Account and Lists link
+		WebElement wb = driver.findElement(By.id("nav-link-accountList"));
+
+		// step 5: create Object of Actions class by passing WebDriver instance
+		Actions act = new Actions(driver);
+
+		// step 6: use moveToElement() method by passing WebElement instance from
+		// Actions class and build and perform method
+		act.moveToElement(wb).build().perform();
+
+		Thread.sleep(5000);
+
+		// step 7: find and click on Order links
+		WebElement wb1 = driver.findElement(By.xpath("//span[text()='Your Orders']"));
+		wb1.click();
+
+	}
+
+}
+package Tutorial11;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Demo5 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().window().maximize();
+
+		// step 3: open a url
+		driver.get("https://www.amazon.in");
+
+		Thread.sleep(5000);
+
+		// step 4: find the Account and Lists link
+		WebElement wb1 = driver.findElement(By.id("nav-link-accountList"));
+
+		// step 5: find Orders link
+		WebElement wb2 = driver.findElement(By.xpath("//span[text()='Your Orders']"));
+
+		// step 6: create Object of Actions class by passing WebDriver instance
+
+		Actions act = new Actions(driver);
+
+		// step 7: use moveToElement() by passing WebElement from Actions class and use
+		// click() method by passing WebElement instance from Actions class and then
+		// build() and perform() method
+
+		act.moveToElement(wb1).click(wb2).build().perform();
+
+	}
+
+}
+===================================================================================
+Ass:
+Open a https://www.flipkart.com/
+	mouse over on Electronics
+	mouse over on Laptop and Desktop
+	and click on Laptop
+	Mouse on Login button
+	click on SignUp link
+		
+===================================================================================
+Ass:
+open a https://www.tanishq.co.in/#home
+	Mouse over on GOLD
+	Click on Rings
+	click on sort drop down and select high to low price
+	click on first item
+	click on I am interested
+	enter name, email , mobile number, and
+		 select city
+				- click on city drop down
+				- find all list 
+				- capture all city name
+						then use if condition, and if value is present then click on it break the loop
+
+===================================================================================
+Ass:
+	open a https://www.firstcry.com/
+	- mouse over on ALL CATEGORIES
+	- Mouse over on toys
+	- click on Coloring, Sequencing & Engraving Art
+	- select sort by top rated
+	- select 1t product and click on add to cart
+	- click on cart button
+
+=================================================
+
+handle window/tab/window pop up
+
+wait in selenium
+take screenshot
+
+upload files - using AutoIT dependency
+xpath
+---------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

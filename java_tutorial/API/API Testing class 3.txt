@@ -1,0 +1,584 @@
+What is use of RequestSpecification Interface in Rest Assured?												VVVVVVVIMMMPPPPPPPPPPPPP
+	-  RequestSpecification Interface is 
+							1) used to add Base Path
+							2) used to add Path Parameter
+							3) used to query parameter
+							4) used to add request headers
+							5) used to add request body
+							6) used to add authorization
+							7) used to upload the files or images 
+							8) used to add request cookies
+							9) used to generate request logs
+							10) used to select the different HTTP Requests.
+
+What is use of Response Interface in Rest Assured?													VVVVVVVIMMMPPPPPPPPPPPPP
+	- Response Interface is 
+							1) used to capture the status code
+							2) used to capture the status line
+							3) used to capture the response time
+							4) used to capture response size
+							5) used to capture the response body or response payload
+							6) used to capture the specific value from response body
+							7) used to capture response cookies
+							8) used to capture response headers
+							9) used to add assertion for status code, status line, response time, response size, response body, response cookies, response headers 
+---------------------------------------------------------------------------------------------------------------------------------
+Start your JSON Server
+		json-server --watch db.json
+---------------------------------------------------------------------------------------------------------------------------------
+API Automation
+---------------------------------------------------------------------------------------------------------------------------------
+POST Request:
+	- it used to create a new entity (Employees) in server (database)
+	- We have to add request payload [Request Body Test Data in JSON Format] to create the new entity in server.
+	- it generate Id number.
+
+Verification
+	1) status code					201
+	2) Status Line					HTTP/1.1 201 Created
+	3) response time
+	4) response size
+	5) response body
+	6) response headers
+	7) response cookies
+
+Swagger documentation
+		URI					http://localhost:3000/employees
+		Request Type		POST 
+		Request Header		Content-Type	Application/json
+		Request Body		JSON (JavaScript Object Notation)
+							{
+								"firstName" : "{string}",
+								"lastName" : "{string}",
+								"address" : "{string}",
+								"mobileNumber" : {long},
+								"gender" : "{string}" 
+							}
+						
+	Verification
+							Status code				201
+							Status Line				201 Created
+							Response time
+							Response size
+							Response Cookies
+							Response Headers
+
+=====================================================================================================
+Postman tool
+
+		1) open a postman tool
+		2) mouse over on postman collection and click on 3 dot symbol
+		3) click on add new request
+		4) Enter the URI							http://localhost:3000/employees
+		5) Select the POST Request
+		6) Click on Body -- Click on Raw -- Select JSON ---
+					enter Json format
+								{
+									"firstName" : "Kavita",
+									"lastName" : "Pagar",
+									"address" : "Pune",
+									"mobileNumber" : 909090909,
+									"gender" : "female" 
+								}
+		7) click on send button
+							
+		Verification
+		1) Status code				201
+		2) Status Line				201 Created
+		3) Response time
+		4) Response size
+		5) Response Cookies
+		6) Response Headers
+===================================================================================
+Rest Assured
+JSON Simple dependency
+
+<dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
+
+===================================================================================
+
+Rest Assured POST Request
+
+Step 1: Configure Base URI in Rest assured
+
+				RestAssured.baseURI="http://localhost:3000/employees";
+
+Step 2: get the RequestSpecification interface object so we can add request Header, Request body and We can select the HTTP POST Request
+			
+			RequestSpecification httpRequest = RestAssured.given();
+
+
+Step 3: add Request Header in JSON Format
+			httpRequest.header("Content-Type", "application/json");
+
+
+Step 4: create Request body
+				JSONObject json =new JSONObject();
+				json.put("firstName", "Rohit");
+				json.put("lastName", "Pandit");
+				json.put("address", "Pune");
+				json.put("mobileNumber", 9900999);
+				json.put("gender", "male");
+
+				String requestbody = json.toString();
+
+
+step 5: add request body to HTTP POST Request
+
+				httpRequest.body(requestbody);
+
+
+step 6: Select the HTTP POST Request
+			
+				Response response = httpRequest.post();
+
+
+step 7: capture status code
+				int a = response.getStatusCode();
+
+step 8: capture status line
+				String b = response.getStatusLine();
+
+step 9: capture response time
+				long c = response.getTime();
+
+step 10: capture response body
+			String d = response.getBody().asString();
+
+step 11: capture response headers
+
+			Headers allheader = response.getHeaders();
+
+step 12: iterate all headers key-value pair
+		
+			for(Header abc: allheader)
+			{
+				syso(abc.getName() + " :: "+abc.getValue)
+	
+			}
+
+====================================================================================
+package Tutorial3;
+
+import org.json.simple.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+	
+	public static void main(String[] args) {
+		//Step 1: Configure Base URI in Rest Assured
+		RestAssured.baseURI="http://localhost:3000/employees";
+		
+		//step 2: get the RequestSpecification interface object so we add request header, we can add request body and we can select HTTP POST Request
+		
+		RequestSpecification httpRequest = RestAssured.given();
+		
+		//step 3: add request header
+		httpRequest.header("Content-Type","application/json");
+		
+		//step 4: create Request Body in JSON Format
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Gauri");
+		json.put("lastName", "More");
+		json.put("address", "Pune");
+		json.put("mobileNumber", 980908998);
+		json.put("gender", "female");
+		
+		String requestBody = json.toString();
+		
+		//step 5: add request body to HTTP POST Request
+		httpRequest.body(requestBody);
+			
+		//step 6: select HTTP POST Request
+		Response response = httpRequest.post();
+		
+		//step 7: capture status code
+		int a  = response.getStatusCode();
+		System.out.println(a);
+		
+		//step 8: capture status line
+		String b = response.getStatusLine();
+		System.out.println(b);
+		
+		//step 9: capture response time
+		long c = response.getTime();
+		System.out.println(c);
+		
+		//step 10: capture response body
+		String d = response.getBody().asString();
+		System.out.println(d);
+		
+		//step 11: capture response headers
+		Headers allHeader = response.getHeaders();
+		
+		//step 12: iterate all header key-value
+		
+		for(Header abc: allHeader)
+		{
+			System.out.println(abc.getName() + "  ::  "+abc.getValue());
+		}
+		
+		System.out.println("--------------------------------------------");
+		
+		//step 14 : capture id number from response body
+		
+		String a1 = response.getBody().jsonPath().getString("id");
+		System.out.println(a1);
+		
+		String a2 = response.getBody().jsonPath().getString("firstName");
+		System.out.println(a2);
+		
+		JsonPath jsonPath = response.getBody().jsonPath();
+		
+		String a3 = jsonPath.getString("lastName");
+		System.out.println(a3);
+		
+		String a4 = jsonPath.getString("address");
+		System.out.println(a4);
+		
+		long a5 = jsonPath.getLong("mobileNumber");
+		System.out.println(a5);
+		
+		JsonPath path =new JsonPath(d);
+		String a6 = path.getString("gender");
+		System.out.println(a6);
+		
+		
+		
+		
+	}
+}
+============================================================================================
+Step 1: Configure Base URI in Rest Assured
+				
+			RestAssured.baseURI="http://localhost:3000/employees";
+
+Step 2; get the RequestSpecification interface obejct so we can add request header, request body and we can select HTTP POST Request
+
+			RequestSpecification httpRequest  = RestAssured.given();
+
+step 3: add request header
+				httpRequest.header("Content-Type","application/json");
+
+step 4: create request body using json simple library
+				
+				JSONObject json =new JSONObject();
+				json.put("firstName", "Dipali");
+				json.put("lastName", "Joshi");
+				json.put("address", "Mumbai");
+				json.put("mobileNumber", 9090900);
+				json.put("gender", "female");
+
+				String requestBody  = json.toString();
+
+step 5; add request body to HTTP POST Request
+
+			httpRequest.body(requestBody);
+			
+
+step 6 selec the POST Request
+
+			Response response =httpRequest.post();
+
+step 7: capture status code
+			int a = response.getStatusCode();
+
+step 8: capture status line
+			String b = response.getStatusLine();
+
+step 9: capture response time
+			long c = response.getTime();
+
+step 10: capture response body
+			String d = response.getBody().asString();
+
+step 11: capture id number from response body
+			
+		String e = response.getBody().jsonPath().getString("id");
+
+step 12: capture first name from response body
+		
+		Sring f = response.getBody().jsonPath().getString("firstName");
+
+step 13: capture last name from response body
+
+		JsonPath jsonpath = new JsonPath(d);
+
+		String g = jsonpath.getString("lastName");
+
+step 14: capture address from response body
+
+		String h = jsonpath.getString("address");
+
+step 15: capture mobile number from resonse body
+
+		long k = jsonpath.getLong("mobileNumber");
+
+step 16 : capture gender from response bodt
+
+		JsonPath path  = response.getBody().jsonPath();
+
+		Strig l = path.getString("gender");
+
+step 17: capture headers
+		
+		Headers allHeader = response.getHeaders();
+
+step 18; iterate all header key-value pair
+	
+		
+		for(Header abc: allHeader)
+		{
+				String key = abc.getName();
+				String value = abc.getValue();
+
+		}
+
+
+package Tutorial3;
+
+import org.json.simple.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// Configure Base URI in RestAssured
+		RestAssured.baseURI = "http://localhost:3000/employees";
+
+		// get the RequestSpecification interface object
+		RequestSpecification httpRequest = RestAssured.given();
+
+		// Step 3: add Request Header
+		httpRequest.headers("Content-Type", "application/json");
+
+		// Step 4: create Request Body
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Suraj");
+		json.put("lastName", "Pandit");
+		json.put("address", "Mumbai");
+		json.put("mobileNumber", 90090900);
+		json.put("gender", "male");
+		
+		String requestBody = json.toString();
+		
+		//step 5: add request body
+		httpRequest.body(requestBody);
+		
+		//step 6: select the HTTP POST Request
+		Response response = httpRequest.post();
+		
+		//step 7: capture status code
+		int a  = response.getStatusCode();
+		System.out.println(a);
+	
+		//step 8: capture status line
+		String b = response.getStatusLine();
+		System.out.println(b);
+		
+		//step 9: capture response time
+		long c = response.getTime();
+		System.out.println(c);
+		
+		//step 10: capture response body
+		String d = response.getBody().asString();
+		System.out.println(d);
+		
+		//step 11: capture id number from response body
+		
+		JsonPath jsonPath =new JsonPath(d);
+		
+		String id = jsonPath.getString("id");
+		System.out.println(id);
+		
+		//step 12: capture first name from response body
+		
+		String Fname = jsonPath.getString("firstName");
+		System.out.println(Fname);
+		
+		//step 13: capture lastname from response body
+		String LName = jsonPath.getString("lastName");
+		System.out.println(LName);
+		
+		//step 14: capture adddress from response body
+		
+		JsonPath jsonPath1 = response.getBody().jsonPath();
+		String add  = jsonPath1.getString("address");
+		System.out.println(add);
+		
+		//step 15: capture mobile number
+		long m = jsonPath1.getLong("mobileNumber");
+		System.out.println(m);
+		
+		//step 16: capture gender
+		System.out.println(jsonPath1.getString("gender"));
+		
+	}
+
+}
+===============================================================================
+	<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+	<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-path</artifactId>
+			<version>4.4.0</version>
+		</dependency>
+
+===============================================================================
+
+POST							201
+GET							200
+DELETE							204/200
+GET							404
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,545 @@
+how to find max value?															VVVVIMMPPPPPP
+how to find min value?															VVVVIMMPPPPPP
+how to find second max value?													VVVVIMMPPPPPP
+how to sort array without using sort() method?									VVVVIMMPPPPPP
+how to find duplicate value from array?											VVVVIMMPPPPPP
+
+how to find third max value?
+how to find non duplicate value from array?
+------------------------------------------------------------------------------------------------------------------------------------
+how to find max value?
+		
+	int [] abc = {10,20,45,70,50};
+
+	//step 1: imagine any number is max number
+	int max=0;//70
+
+	//step 2: iterate all array values
+
+		for(int i=0;i<abc.length;i++)
+		{
+			//step 3: check int [] array value is greater than max variable.
+					50>70
+				if(abc[i>max])
+				{	
+					//step 4: replace max to int [] array value
+					max= abc[i];//70
+				}	
+		}
+	
+	//step 5: print max variable
+	System.out.println(max);//70
+------------------------------------------------------------------------------------------------------------------------------------------------
+package Tutorial3;
+
+public class FindMaxValue1 {
+
+	public static void main(String[] args) {
+		
+		int abc [] = {10,30,45,70,50,25};
+		
+		//int max= Integer.MIN_VALUE;
+		//int max= abc[0];
+		
+		//step 1: declare max variable
+		int max= abc[0];//70
+		
+		//step 2: iterate all array value
+		
+		for(int i=0;i<abc.length;i++)
+		{
+			
+			// step 3: check int [] array is maximum than max value or not
+				//25 > 70
+			if(abc[i]>max)
+			{
+				//reassign value for max variable
+				max=abc[i];//70
+			}	
+		}
+		
+		//print max value in console
+		System.out.println(max);
+		
+
+		
+	}
+}
+=======================================================================
+Find max value using sort() method
+
+		int abc [] = {10,30,45,70,50,25};
+
+		//step 1: sort the array using sort() method
+		Arrays.sort(abc);//10 25 30 45 50 70
+	
+		//step 2: find last index position value
+		int max = abc[abc.length-1];
+	
+		//step 3: find max value in console
+		System.out.println(max);
+		
+
+package Tutorial3;
+
+import java.util.Arrays;
+
+public class FindMaxValue2 {
+
+	public static void main(String[] args) {
+		int abc[] = { 10, 30, 465, 700, 50, 25 };
+
+		// step 1: sort array using sort() method
+		Arrays.sort(abc);
+
+		// step 2: capture max value or last index position value
+		int max = abc[abc.length-1];
+		
+		//step 3: print max variable
+		System.out.println(max);
+	}
+}
+=====================================================================
+How to find minimum value using sort() method
+
+	int abc[] = { 10, 30, 465, 700, 50, 25 };
+
+	//step 1: sort the array using sort() method
+
+	Arrays.sort(abc);
+
+	//step 2: capture minimum value means index position 0
+	
+	int minimum = abc[0];
+
+	//step 3: print min variable
+		System.out.println(minimum);
+
+package Tutorial3;
+
+import java.util.Arrays;
+
+public class FindMinValue1 {
+
+	public static void main(String[] args) {
+		int abc[] = { 10, 30, 465, 700, 5, 25 };
+		
+		//step 1: sort array using sort() method
+		Arrays.sort(abc);
+		
+		//step 2: find min value [index position 0]
+		int min = abc[0];
+		
+		//step 3: print value
+		System.out.println(min);
+	}
+}
+=============================================================================
+find minimum value without using sort() method
+
+			int abc[] = { 10, 30, 465, 700, 5, 25 };
+
+		//step 1: declare the minimum variable
+		int min = abc[0];//5
+
+		//step 2: iterate for loop
+
+		for(int i=0;i<abc.length;i++)
+		{
+			//step 2: check int array value is less than min value or not
+			//25<5
+			if(abc[i]<min)
+			{	
+				//step 3: re-assign value for min variable
+				min = abc[i];	//5
+			}
+
+		}
+
+	//step 4: print min variable
+		System.out.println(min);
+
+package Tutorial3;
+
+public class FindMinValue2 {
+
+	public static void main(String[] args) {
+		int abc[] = { 10, 30, -465, 700, 5, 25,2 };
+
+		// step 1: declare min variable
+		int min = abc[0];//5
+		
+		//step 2: iterate all array values
+		for(int i=0;i<abc.length;i++)
+		{
+			//step 3: check int array value is less than min value or not
+				//25 < 5
+			if(abc[i]<min)
+			{
+				//step 4: re-assign value for min variable
+				min= abc[i];//5
+			}
+		}
+	
+		//step 5: print min variable
+		System.out.println(min);
+	}
+	
+
+}
+================================================================================
+find second max value using sort() method
+
+	int abc[] = { 10, 30, 465, 700, 5, 25 };
+
+	//step 1: sort array using sort() method
+		Arrays.sort(abc);	//5	10	25 30 465 700	
+
+	//step 2: capture second max value or second last index position
+	int secondMax = abc[abc.length-2];
+
+	//step 3: print second max array value
+	System.out.println(secondMax);
+
+package Tutorial3;
+
+import java.util.Arrays;
+
+public class FindSecondMaxValue1 {
+
+	public static void main(String[] args) {
+		int abc[] = { 10, 30, 45, 700, 15, 255 };
+
+		//step 1: sort array using sort() method
+		Arrays.sort(abc);
+		
+		//System.out.println(Arrays.toString(abc));
+		
+		//step 2: find second max value or second max index position value
+		int secondMax = abc[abc.length-2];
+		
+		//step 3: print second max array value
+		System.out.println(secondMax);
+		
+	}
+}
+=================================================================================
+find second max value without using sort() method
+
+		int abc[] = { 10, 30, 45, 700, 15, 255 };
+
+		//step 1: declare max variable
+			int max = 0;//700
+
+		//step 2: declare second max variable
+			int secondMax = 0;//255
+
+		//step 3: iterate the loop
+				
+			for(int i=0;i<abc.length;i++)
+			{
+				//step 4: check int array value is max or not than max variable 
+					//700 < 255
+					if(max<abc[i])
+					{
+						//step 5: re- assign value for secondMax variable to max
+						secondMax= max;//45
+						
+						//step 6: re- assign max variable value to abc [i]
+						max= abc[i];//700
+					}
+						//700 > 255 && 255 > 45
+					else if(max>abc[i]&&abc[i]>secondMax)
+					{
+						secondMax= abc[i];//255
+					}
+			}
+
+
+	//step 4: print second max value
+		System.out.println(secondMax);
+===============================================================================
+find second max value without using sort() method
+
+		int [] abc = {10,24,567,234,34};
+
+		//step 1: declare max variable
+		int max = 0; //567
+
+		//step 2: declare second max value
+		int secondMax = 0; //234
+
+		//step 3: iterate the int [] array
+		
+		for(int i=0;i<abc.length;i++)
+		{
+			//step 4: check max value is less than int [] array or not
+			   //567 < 34
+			if(max < abc[i])
+			{
+				//Step 5: re- assign value for secondmax variable to max value	
+				secondMax= max;//234
+
+				//step 6: re-assign value for max variable to int [] array
+				max = abc[i];//567
+			}
+			//check max value is greater than array value or not and check array value is greater then second max value or not
+			//567 > 34 && 34 > 234
+			else if((max> abc[i])&&(abc[i]>secondMax))
+			{
+				//step 7: re- assign value for secondMax variable to array value
+				secondMax = abc[i];//234
+			}
+		}
+			
+		
+	//step 8: print second max value
+
+	System.out.println(secondMax);
+
+
+package Tutorial3;
+
+public class FindSecondMaxValue2 {
+
+	public static void main(String[] args) {
+		int abc[] = { 10, 30, 45, 700, 15, 255,34,56 };
+		
+		int max=0; //700
+		
+		int secondMax=0;//255
+		
+		for(int i=0;i<abc.length;i++)
+		{
+			  //700 < 56
+			if(max<abc[i])
+			{
+				secondMax=max; //255
+				
+				max=abc[i];    //700
+			}
+				// 700 > 56 && 34 > 255
+			else if((max>abc[i])&&(abc[i]>secondMax))
+			{
+				secondMax=abc[i];//255
+			}
+			
+		}
+		
+		System.out.println(secondMax);
+
+	}
+}
+========================================================================================
+package Tutorial3;
+
+public class FindSecondMaxValue3 {
+
+	public static void main(String[] args) {
+		
+		int [] abc = {10,34,455,56,65,23,45};
+		
+		int max=0; //455
+		int secondmax=0;//65
+		
+		for(int i=0;i<abc.length;i++)
+		{
+			 //455 < 45
+			if(max<abc[i])
+			{
+				secondmax=max;//65
+				
+				max=abc[i]; //455
+			}
+			       //455 > 45 && 45 > 65
+			else if((max>abc[i])&&(abc[i]>secondmax))
+			{
+				secondmax=abc[i];//65
+			}
+		
+		}
+		
+		System.out.println(secondmax);
+		
+		
+		
+		
+	}
+}
+======================================================================================
+Sort the array without using sort() method										VVVVIMMPPP
+
+
+package Tutorial3;
+
+import java.util.Arrays;
+
+public class De1 {
+
+	public static void main(String[] args) {
+		int[] abc = { 5, 56, 1,35, 4, 7, 745 };
+
+		int temp = 0;
+
+		for (int i = 0; i < abc.length; i++) {
+
+			for (int j = i + 1; j < abc.length; j++) {
+
+				if (abc[i] > abc[j]) {
+					temp = abc[i];
+					abc[i] = abc[j];
+					abc[j] = temp;
+				}
+			}
+		}
+
+		System.out.println(Arrays.toString(abc));
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+

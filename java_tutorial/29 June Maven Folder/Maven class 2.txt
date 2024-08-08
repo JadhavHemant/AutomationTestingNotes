@@ -1,0 +1,239 @@
+Repository in maven
+	there are 3 types of repository in maven 
+	1) Local Repository
+	2) Central Repository
+	3) Remote Repository
+
+1) Local Repository
+	- once we add any dependency or jar file in project it store in local repository in .m2 folder
+
+e.g. local repository location
+		c://user/{PC name}/.m2/repository/....etc
+
+2) Central Repository
+	- organization / company store all dependency or jar files in central server or company server.
+	- it is Central repository server which is private.
+	- and it is used by the organization employee.
+
+e.g.
+	https://www.amdocs.com/repository
+
+3) Remote Repository
+	- it is official maven repository server, which is public.
+	- anybody can use these remote repository server.
+
+e.g.
+	https://mvnrepository.com/
+-------------------------------------------------------------------------------------------------------------------------------------
+if we want to use maven commands, then first we have to download the maven source files in local machine,
+then we have to set the maven source file location in environment variables.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+if we want to run the specific testng.xml file then we have to mention location of file in pom.xml file.
+
+<project  etc...>
+
+
+
+<dependencies>
+				<dependency>
+								<groupId></groupId>
+       								 <artifactId></artifactId>
+          							<version></version>
+								<scope> test </scope>
+				</dependency>
+
+</dependencies>
+
+<build>	
+		<plugins>
+					<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+       								 <artifactId>maven-surefire-plugin</artifactId>
+          							<version>3.3.0</version>
+								<configuration>
+											<suiteXmlFiles> 
+													<suiteXmlFile> testng.xml </suiteXmlFile>
+											</suiteXmlFiles>
+								</configuration>
+					<plugin>
+		<plugins>
+</build>
+</project>
+
+=====================================================================================
+Maven goal / phases in maven life cycle 
+
+1) maven clean
+						mvn clean
+2) maven install
+						mvn install
+3) maven validate
+						mvn validate
+4) maven compile
+						mvn compile
+5) maven package
+						mvn package
+6) maven verify
+						mvn verify
+7) maven test
+						mvn test
+
+------------------------------------------------------------------------------------------------------------
+	mvn clean install test
+	mvn tree
+
+------------------------------------------------------------------------------------------------------------
+how to run the test cases?
+how you are running test cases in previous company?
+		- we use maven commands to run the test cases.
+
+------------------------------------------------------------------------------------------------------------
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.orangehrm</groupId>
+	<artifactId>OrangeHRMApplication</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>OrangeHRMApplication</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.16.1</version>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<suiteXmlFiles>
+							<suiteXmlFile>testng.xml</suiteXmlFile>
+						
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+
+</project>
+
+
+=====================================================================================
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.orangehrm</groupId>
+	<artifactId>OrangeHRMApplication</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>OrangeHRMApplication</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.16.1</version>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

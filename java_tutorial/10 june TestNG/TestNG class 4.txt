@@ -1,0 +1,531 @@
+What are the different assertion in TestNG?								VVVVVIMMMPPPPPPPPP
+			or
+What is difference between Assert and Verify?								VVVVVIMMMPPPPPPPPPPPPPPPPPPPPPP
+		or
+What is difference between Hard Assert and Soft Assert?					VVVVVIMMMPPPPPPPPP
+-------------------------------------------------------------------------------------------------------------------------------------------------------	
+		there are 2 types of assertion in TestNG
+		1) Hard Assert
+		2) Soft Assert.
+
+1) Hard Assert
+	- Hard Assert is also called as Assert.
+	- Hard assert is type of assertion which throws exception immediately when assert statement are fail and it will execute next test cases.
+	- Hard assert is type of assertion which throws exception immediately when assert statement are fail and it will not going to execute remaining of line of code
+	after assertion failure.
+	- All Hard assert methods are static method,
+	- In Hard Assert we compare the byte, short, int, long, double ,float, boolean, char, String and Arrays.
+syntax:
+	Assert.assertEquals("ActualValue", "ExpectedValues");
+	
+
+2) Soft Assert.
+	- Soft Assert is also called as Verify.
+	- Soft Assert it collect the Exceptions during the executions,
+	- in Soft Assert if any assertion is fail, it will execute the remaining line of code after the assertion failure.
+	- Soft Assert it does not throws exception immediately, it collects the error/ exception during the execution.
+	- If u want to use Soft Assertion then we have to create object of SoftAssert class.
+	- and then by using SoftAssert object name we can assertEquals()method to compare the byte, int, short, long, float, double, char, boolean, String , arrays.
+	- if u want to throws the exception after assertion failure then we use assertAll() methods.						VVVVVIMMMMPPPPPP
+	- after using assertAll() method, if any exception occurs, it throws exception immediately.
+
+syntax:
+		SoftAssert soft=new SoftAssert();
+		soft.assertEquals("actualValue", "expectedValue");
+
+public class Demo2
+{
+		@Test
+		public void a1()
+		{
+				System.out.println("A1 Test cases is started");
+				SoftAssert soft = new SoftAssert();
+				soft.assertEquals(12,12);
+
+				System.out.println("A1 Test cases is Ended");
+		}
+		@Test
+		public void a2()
+		{
+				System.out.println("A2 Test cases is started");
+				SoftAssert soft = new SoftAssert();
+				soft.assertEquals("facebook", "amazon"); //Soft Assert does not throws Exception immediately it collects the exceptions during the execution.
+														//as well as it run remaining lines of code after assertion failure.
+			
+				System.out.println("A2 Test cases is Ended");
+				
+		}
+
+		@Test
+		public void a3()
+		{
+				System.out.println("A3 Test cases is started");
+				SoftAssert soft = new SoftAssert();
+				soft.assertEquals(12.34f, 12.34f);
+				System.out.println("A3 Test cases is Ended");
+		}
+}
+
+
+
+=============================================================================================================
+public class Demo1
+{
+		@Test
+		public void a1()
+		{
+				System.out.println("A1 Test cases is started");
+				Assert.assertEquals(12,12);
+				System.out.println("A1 Test cases is Ended");
+		}
+		@Test
+		public void a2()
+		{
+				System.out.println("A2 Test cases is started");
+				Assert.assertEquals("SauceDemo","OrangeHRM); //immediately it will throws exception and it goes to next test cases.
+				System.out.println("A2 Test cases is Ended");
+		}
+
+		@Test
+		public void a3()
+		{
+				System.out.println("A3 Test cases is started");
+				Assert.assertEquals(12.3f,12.3f);
+				System.out.println("A3 Test cases is Ended");
+		}
+}
+=============================================================================================================package Tutorial5;
+
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class Demo102 {
+
+	@Test
+	public void a1() {
+		System.out.println("A1 TC is started");
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals(12, 12);
+		System.out.println("A1 TC is ended");
+	}
+
+	@Test
+	public void a2() {
+		System.out.println("A2 TC is started");
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals("facebook", "google");
+		soft.assertAll();
+		System.out.println("A2 TC is ended");
+		//soft.assertAll();
+	}
+	
+	@Test
+	public void a3() {
+		System.out.println("A3 TC is started");
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals(122.23f, 122.23f);
+		System.out.println("A3 TC is ended");
+	}
+	
+	
+	
+	
+}
+==============================================================================================================
+package Tutorial5;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class Demo103 {
+
+	@Test
+	public void d1() {
+		System.out.println("D1 TC is started");//1
+		Assert.assertEquals(12, 12);//Hard assertion
+		System.out.println("D1 TC is Ended");//2
+	}
+
+	@Test
+	public void d2() {
+		System.out.println("D2 TC is started");//3
+		Assert.assertEquals("facebook", "google");//Hard Assert
+		System.out.println("D2 TC is Ended");
+	}
+
+	@Test
+	public void d3() {
+		System.out.println("D3 TC is started");//4
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals("gmail", "outlook");//Soft Assert
+		System.out.println("D3 TC is Ended");//5
+	}
+
+	@Test
+	public void d4() {
+		System.out.println("D4 TC is started"); //6
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals(12, 9099900);//Soft Assert
+		System.out.println("D4 TC is Running");//7
+		Assert.assertEquals(true, false);//Hard Assert
+		System.out.println("D4 TC is Ended");
+	}
+
+	@Test
+	public void d5() {
+		System.out.println("D5 TC is started");//8
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals(12, 9099900);	//Soft Assert
+		System.out.println("D5 TC is Running");//9
+		soft.assertAll();
+		System.out.println("D5 TC is Ended");
+	}
+
+}
+================================================================================================
+package Tutorial5;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class Demo104 {
+
+	@Test
+	public void a1() {
+		System.out.println("A1 TC is started");
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals("gmail", "outlook");
+		System.out.println("A1 Tc is running");
+		System.out.println("A1 TC is Ended");
+	}
+
+	@Test
+	public void a2() {
+		System.out.println("A2 TC is started");
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals("facebook", "google");
+		soft.assertAll();
+		System.out.println("A2 Tc is running");
+		System.out.println("A2 TC is Ended");
+	}
+
+	@Test
+	public void a3() {
+		System.out.println("A3 TC is started");
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals("selenium", "cucumber");
+		System.out.println("A3 Tc is running");
+		System.out.println("A3 TC is Ended");
+		soft.assertAll();
+	}
+
+	@Test
+	public void a4() {
+		System.out.println("A4 TC is started");
+		Assert.assertEquals("maven", "pom");
+		System.out.println("A4 Tc is running");
+		System.out.println("A4 TC is Ended");
+	}
+
+	@Test
+	public void a5() {
+		System.out.println("A5 TC is started");
+		SoftAssert soft = new SoftAssert();
+		Assert.assertEquals("abc", "abc");
+		System.out.println("A5 Tc is running");
+		System.out.println("A5 TC is Ended");
+	}
+
+}
+
+
+package Tutorial5;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Demo101 {
+
+	@Test
+	public void a1() {
+		System.out.println("A1 Test cases is started");
+		Assert.assertEquals(12, 12);
+		System.out.println("A1 Test cases is ended");
+	}
+
+	@Test
+	public void a2() {
+		System.out.println("A2 Test cases is started");
+		Assert.assertEquals("google", "facebook");
+		System.out.println("A2 test cases is ended");
+		System.out.println("A2 test cases is ended");
+		System.out.println("A2 test cases is ended");
+		System.out.println("A2 test cases is ended");
+	}
+
+	@Test
+	public void a3() {
+		System.out.println("A3 Test cases is started");
+		Assert.assertEquals(true, true);
+		System.out.println("A3 test cases is ended");
+	}
+}
+==========================================================================================
+If we have 100 test cases, and I want to run the only 80 Test cases.
+			or
+If we have 100 test cases, and I want to skip  the 20 Test cases.
+			or
+how to run the specific groups
+			or
+how to execute the groups
+			or
+how to skip specific group.
+----------------------------------------------------------------------------------
+how to create group for test cases?
+	- we use groups attribute by using group name in test level
+syntax:
+		@Test(groups={"SanityTesting"})
+		public void d1()
+		{
+
+		}
+
+can we mention 2 group name for same test cases?
+	Yes
+
+syntax:
+		@Test(groups={"SanityTesting" , "RegressionTesting"})
+		public void d2()
+		{
+
+		}
+
+How to the specific group test cases?
+		there are 2 ways we can run the groups test cases
+		1) by using Run Configuration
+		2) by using XML File
+
+
+1) by using Run Configuration
+	- if u want to run the group test cases using Run Configuration then we right click on class, go to Run Configuration Option then click in group name radio button and select the group name checkbox and click apply and run..
+
+
+
+2) by using XML File
+	- we use group tagname then run tagname and then include and exclude tags name after the test tags in xml file.
+			
+
+		<suite name="Suite name /project name">
+		<test name="test cases name">
+
+			<group>
+				<run>
+					<include name="group name" />
+				</run>
+			</group>	
+
+			<classes>
+					<class name="packagename.classname"/>
+			</classes>
+		</test>
+		</suite>
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+		<suite name="suite name or project name ">
+			<test name="test case name ">
+					<groups>
+							<run>
+									<include name="group name " />
+							</run>
+					</group>
+
+
+			<classes>
+					<class name="PackageName.className" />
+			</classes>
+			</test>
+
+		</suite>
+
+=====================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Test">
+		<groups>
+			<run>
+				<include name="SanityTesting"></include>
+			</run>
+		</groups>
+		<classes>
+			<class name="Tutorial5.Demo105" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+=================================================================
+package Tutorial5;
+
+import org.testng.annotations.Test;
+
+public class Demo105 {
+
+	@Test(groups = { "SanityTesting" })
+	public void a1() 
+	{
+		System.out.println("A1 TC Sanity Testing Group");
+	}
+
+	@Test(groups= {"SanityTesting","RegressionTesting"})
+	public void a2() {
+		System.out.println("A2 TC ::: Sanity and Regression Testing Group");
+	}
+	
+	@Test(groups= {"PIMPage"})
+	public void a3()
+	{
+		System.out.println("A3 TC :: PIMPage group");
+	}
+	
+	@Test(groups = {"Pranjali"})
+	public void a4()
+	{
+		System.out.println("A4 TC :: Pranjali Group");
+	}
+	
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Test">
+		<groups>
+			<run>
+				<exclude name="PIMPage"></exclude>
+			</run>
+		</groups>
+		<classes>
+			<class name="Tutorial5.Demo105" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+============================================================================
+Ass"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+				Test Cases 1			---: login Functionality
+				TC 2				---> verify the title
+								String actualTitle = driver.getTitle();
+								Assert.assertEquals(actualTitle, "OrangeHRM");
+
+				TC 3				-- verify the orangehrm keyword is present or not in URL
+
+								String actualUrl = driver.getCurrentUrl();
+
+								boolean actualResult = actualUrl.contains("orangehrm");
+
+								Assert.assertEquals(actualResult, true);
+
+
+				TC 	4			- verify the logo is displayed or not
+
+				
+				TC 5:			click on admin link and verify the admin keyword is present or not in url
+
+				TC 6:			click on pim link and verify the pim keyword is present or not in url
+	
+
+				TC 7:			click on add employee button 	
+								enter first name and last name and capture the entered name and store in globally 
+								click on save button.
+								select the gender
+								click on save button
+
+				TC 8:			click on employee list button.
+								enter first name and last name using global variables
+								click on search button
+								capture the result grid first name and last name and verify/compare with global variables.
+
+				TC 9: 			logout the application
+
+				
+				@AfterMethod
+							- take screenshot using date and time
+
+	
+									
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

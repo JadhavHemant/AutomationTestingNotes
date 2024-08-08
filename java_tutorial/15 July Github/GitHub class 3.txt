@@ -1,0 +1,438 @@
+Main GitHub Life Cycle
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Team Leader:
+			Step 1: 	Team Leader will create the BDD Framework
+
+			Step 2:   Team Leader will create Local Git Repository		
+								- Right click on Project ---- go to Team --- click on share project
+								- select all checkbox and click on create Repository		
+								- click on finish
+	
+			Step 3:	Team Leader will add all files to stagging area
+								- Right click on Project ---- go to Team ---  click on Add to index.
+
+			Step 4:	Team Leader will commit code to Git Local Repository by entering the commit message
+								- Right click on Project ---- go to Team --- click on commit -- Enter commit message -- click on commit
+
+			Step 5: 	Team Leader will create Remote GitHub Repository
+								- Login to GitHub Application --- go to home page
+								- click on + icon -- click on create Repository --- Enter Repository name --click on create button.
+
+			Step 6:	Team Leader will push code to master or main  branch.
+								- Right click on Project ---- go to Team --- click on push master.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Team Leader Will share Email to Teammates
+		
+		Hi Team,
+			I have created BDD Framework using Cucumber tools, and we have push code to GitHub,
+			please clone it and Start working on task
+			GitHub: https://github.com/prafulp1030/TestOrangeHRM.git
+
+		Thanks And Regards
+		Team Leader
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sonali Automation Tester
+		Step 1:  install Git
+		Step 2: clone project from GitHub
+				- Click on Clone GitHub Repository URL
+				- Select Clone URI
+				- Click on Next
+				- Enter URL 
+				- Click on Next and Click on Finish
+
+		Step 3: import the Project
+				- Right click on Local Git Repository project name and click on Import and click on Finish
+
+Suraj Automation Tester
+		Step 1:  install Git
+		Step 2: clone project from GitHub
+				- Click on Clone GitHub Repository URL
+				- Select Clone URI
+				- Click on Next
+				- Enter URL 
+				- Click on Next and Click on Finish
+
+		Step 3: import the Project
+				- Right click on Local Git Repository project name and click on Import and click on Finish
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sonali Automation Tester
+		Step 1: Automate the Login Page
+		Step 2: create Sonali Sub Branch
+					- Go to local git Repository
+					- click on branches
+					- Right click on local
+					- Click on switch to new Branch
+					- Enter Sonali Sub Branch
+					- click on Ok button
+
+		Step 3: Checkout to Sonali Sub Branch
+					- Go to local git Repository
+					- click on branches
+					- Click on local
+					- Right click on Sonali Sub branch
+					- click on Checkout
+
+		Step 4: add files to stagging area
+					- Right click on  Project name --- go to team --- click on add to index.
+
+		Step 5: commit code to Local Git Repository
+				- Right click on  Project name --- go to team --- click on commit ---- Enter commit message -- click on commit
+
+		Step 6: Push code to Remote Sonali Sub Branch
+				- Right click on  Project name --- go to team --- click on Push Sonali Sub Branch
+
+		Step 7: Review the code
+				- Sr Test Engineer will review the code.
+
+		Step 8: Merge Code to Master Branch in GitHub
+				- click on compare and pull Request
+				- verify from and to  branches
+				- Enter the Pull Request Message
+				- click on create pull Request
+				- Click on merge pull 
+				- click on confirm merge.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Suraj Automation Test Engineer
+		Step 1: pull latest code from Remote GitHub Master Branch to git local master branch
+				- right click on project -- go to team-- click on pull
+
+		Step 2: create test cases
+						
+		Step 3 create Suraj Automation tester Sub Branch
+				- Go to local Git Repository
+				- click on branches
+				- Right click on Local
+				- click on switch to new Branch
+				- Enter Suraj branch name
+				- click on ok button
+
+		Step 4: checkout to Suraj Sub Branch
+				- Go to local Git Repository
+				- click on branches
+				- Right click on Local
+				- Right click on Suraj Sub Branch 
+				- click on checkout
+
+		Step 5: add files to stagging area
+				- right click on project -- go to team-- click on add to index
+
+		step 6: commit code to local git repository
+				- right click on project -- go to team-- click on commit -- enter commit message -- click on commit
+
+		Step 7: push code to Remote Suraj Sub branch
+				- right click on project -- go to team-- click on push Suraj Sub Branch
+
+		Step 8: Review code
+				- Sr Test Engineer will review the code.
+
+		Step 9: Merge Code to master branch
+				- click on compare and pull 
+				- Verify the merge From and TO
+				- Enter the merge Request message
+				- click on create pull Request
+				- Click on merge pull Request
+				- click on confirm merge
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sonali automation Tester
+		- checkout to master branch
+				- go to git local repository
+				- click on branches
+				- click on local 
+				- right click on master
+				- click on  checkout
+
+		- Pull latest code from Master Remote GitHub branch to local master Git repository
+				- right click on project -- go to team -- click on pull.
+
+		- checkout to Sonali Sub branch
+				- go to git local repository
+				- click on branches
+				- click on local 
+				- right click on Sonali Sub branch
+				- click on  checkout
+
+		- Merge Master Git local Repository code to Sonali Local Git Repository
+				- right click on project -- go to team -- click on merge -- select the master local git repository and click on merge button.
+			
+		- Add to User PIM Page Test case
+		- Add files to stagging area
+				- right click on project -- go to team -- click on add to index
+
+		- commit code to local git repository
+				- right click on project -- go to team -- click on commit -- Enter commit message - click on commit
+
+		- push code to Sonali Sub Branch
+				- right click on project -- go to team -- click on push Sonali Sub Branch
+
+		- Review the code
+				- Sr test Engineer will review the code.
+
+		- Merge code to Master branch in GitHub
+				- go to Sonali sub branch in GitHub
+				- click on compare and pull Request	/ This branch is 1 commit ahead of master click on link
+				- verify merge from and To
+				- Enter the merge message
+				- click on create pull request			
+				- click on merge pull request
+				- click on confirm merge
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Suraj Automation Test Engineer
+		Step 1: checkout to master branch
+				- go to git local repository
+				- click on branches
+				- click on local
+				- Right click on master
+				- click on checkout
+
+		Step 2: pull latest code from Master GitHub Remote Repository to local Git Master Repository
+				- right click on project --- go to team -- click on pull
+
+		Step 3: checkout to Suraj Sub Branch
+				- go to git local repository
+				- click on branches
+				- click on local
+				- Right click on Suraj Sub Branch
+				- click on checkout
+
+		Step 4: Merge Code from master local Git repository to Suraj local Sub Branch
+				- right click on project --- go to team --click on merge -- select local Master git repository -- click on merge
+
+		Step 5: create the test cases
+				
+		Step 6: add files to stagging area
+				- right click on project --- go to team --click on add to index
+
+		Step 7; commit code to local git repository
+				- right click on project --- go to team --click on commit - enter commit message -- click on commit
+ 
+		Step 8: push code to Suraj Sub branch
+				- right click on project --- go to team --click on push Suraj Sub branch
+
+		Step 9: review the code
+				
+		Step 10; merge code to master branch in GitHub
+				- Go to Remote Suraj Sub Branch
+				- click on This branch is 1 commit ahead of master.
+				- click on create pull request
+				- verify the From and To pull merge Request
+				- click on create pull request
+				- click on merge pull request
+				- click on confirm merge
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sonali Automation Tester
+		Step 1: checkout to master
+				- go to git local repository
+				- click on branches
+				- click on local
+				- right click on master
+				- click on checkout
+
+		Step 2: pull latest code from Remote GitHub Master branch to local git master branch
+				- right click on project -- go to team -- click on pull
+
+		Step 3: checkout to Sonali sub branch
+				- go to git local repository
+				- click on branches
+				- click on local
+				- right click on Sonali sub branch
+				- click on checkout
+
+		Step 4: merge code from local Git Master branch to Sonali Sub branch git local repository
+				- right click on project -- go to team -- click on merge -- click on local git master repository -- click on merge
+
+		Step 5: write the test cases
+
+		Step 6: add files to stagging area
+				- right click on project -- go to team -- click on add to index
+
+		Step 7; commit code to local git repository
+				- right click on project -- go to team -- click on commit --- enter commit message -- click on commit
+
+		Step 8: push code to remote Sonali Sub branch
+				- right click on project -- go to team -- click on push Sonali Sub branch
+
+		Step 9: review the code
+				
+		Step 10: Merge code to master branch from Sonali Sub branch
+				- go to Sonali Sub Branch
+				- click on this branch 1 commit ahead of master link'
+				- click on create pull request
+				- verify the from and To merge branch name'
+				- enter merge pull request message				
+				- click on create pull request
+				- click on merge pull request
+				- click on confirm pull
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Suraj Automation Test Engineer
+		Step 1: checkout to master branch
+				- go to git local repository
+				- click on branches
+				- click on local
+				- Right click on master
+				- click on checkout
+
+		Step 2: pull latest code from Master GitHub Remote Repository to local Git Master Repository
+				- right click on project --- go to team -- click on pull
+
+		Step 3: checkout to Suraj Sub Branch
+				- go to git local repository
+				- click on branches
+				- click on local
+				- Right click on Suraj Sub Branch
+				- click on checkout
+
+		Step 4: Merge Code from master local Git repository to Suraj local Sub Branch
+				- right click on project --- go to team --click on merge -- select local Master git repository -- click on merge
+
+		Step 5: create the test cases
+				
+		Step 6: add files to stagging area
+				- right click on project --- go to team --click on add to index
+
+		Step 7; commit code to local git repository
+				- right click on project --- go to team --click on commit - enter commit message -- click on commit
+ 
+		Step 8: push code to Suraj Sub branch
+				- right click on project --- go to team --click on push Suraj Sub branch
+
+		Step 9: review the code
+				
+		Step 10; merge code to master branch in GitHub
+				- Go to Remote Suraj Sub Branch
+				- click on This branch is 1 commit ahead of master.
+				- click on create pull request
+				- verify the From and To pull merge Request
+				- click on create pull request
+				- click on merge pull request
+				- click on confirm merge
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sonali Automation Tester
+		Step 1: checkout to master
+				- go to git local repository
+				- click on branches
+				- click on local
+				- right click on master
+				- click on checkout
+
+		Step 2: pull latest code from Remote GitHub Master branch to local git master branch
+				- right click on project -- go to team -- click on pull
+
+		Step 3: checkout to Sonali sub branch
+				- go to git local repository
+				- click on branches
+				- click on local
+				- right click on Sonali sub branch
+				- click on checkout
+
+		Step 4: merge code from local Git Master branch to Sonali Sub branch git local repository
+				- right click on project -- go to team -- click on merge -- click on local git master repository -- click on merge
+
+		Step 5: write the test cases
+
+		Step 6: add files to stagging area
+				- right click on project -- go to team -- click on add to index
+
+		Step 7; commit code to local git repository
+				- right click on project -- go to team -- click on commit --- enter commit message -- click on commit
+
+		Step 8: push code to remote Sonali Sub branch
+				- right click on project -- go to team -- click on push Sonali Sub branch
+
+		Step 9: review the code
+				
+		Step 10: Merge code to master branch from Sonali Sub branch
+				- go to Sonali Sub Branch
+				- click on this branch 1 commit ahead of master link'
+				- click on create pull request
+				- verify the from and To merge branch name'
+				- enter merge pull request message				
+				- click on create pull request
+				- click on merge pull request
+				- click on confirm pull
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

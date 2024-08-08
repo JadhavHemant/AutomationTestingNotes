@@ -1,0 +1,616 @@
+1) remove duplicate character from String using collection
+---------------------------------------------------------------------------------------------------------------
+			String a="java";
+
+Step 1: convert String into the char [] array using toCharArray() method
+				char [] abc = a.toCharArray();
+
+step 2: create object of LinkedHashSet class beacuse LinkedHashSet does not accept duplicate values and also it maintain the insertion order.
+				LinkedHashSet hs = new LinkedHashSet();
+
+step 3: iterate char [] array value by using for loop and add values to LinkedHashSet object by using add() method
+			
+				for(int i=0;i<abc.length;i++)
+					{
+						hs.add(abc[i]);
+					}
+
+step 4: iterate the LinkedHashSet object  values using  for loop
+				Syso(hs);				
+
+step  4: iterate the LinkedHashSet object  values using Iterator interface and while loop
+
+				Iterator it = hs.iterator();
+
+				while(it.hasNext())
+					{
+							syso(hs.next());
+					}
+
+
+package Tutorial2;
+
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+
+public class RemoveDuplicateCharacter1 {
+
+	public static void main(String[] args) {
+		String a = "java";
+		// step 1 : convert the String into the char[] array using toCharArray() method
+
+		char[] abc = a.toCharArray();
+
+		// step 2: create Object of LinkedHashSet class beacuse LinkedHashSet does not
+		// accept the duplicate values and it will insert the values as per index
+		// position
+
+		// LinkedHashSet hs = new LinkedHashSet();
+		// or
+		LinkedHashSet<Character> hs = new LinkedHashSet<Character>();
+
+		// step 3: iterate all char [] array values using for loop and add values to the
+		// LinkedHashSet object using add() method
+
+//		for (int i = 0; i < abc.length; i++) {
+//			hs.add(abc[i]);
+//		}
+		// or
+		for (Character b : abc) {
+			hs.add(b);
+		}
+
+		// step 4: print values in console
+
+		// System.out.println(hs);
+		// or
+
+		//Iterator it = hs.iterator();
+		// or
+		 Iterator<Character> it = hs.iterator();
+		// it will check object/element is present or not in LinkedHashSet if present it
+		// will execute while loop
+		while (it.hasNext()) {
+			// next() method it capture the values from LinkedHashSet
+			System.out.println(it.next());
+		}
+
+	}
+}
+===================================================================
+package Tutorial2;
+
+import java.util.*;
+
+public class RemoveDuplicateCharacter2 {
+
+	public static void main(String[] args) {
+		String a = "java";
+
+		// step 1: convert String into the char [] array using toCharArray() method
+		char[] abc = a.toCharArray();
+
+		// step 2: create Object of LinkedHashSet class because LinkedHashSet it does
+		// not accept the duplicate values and also it maintain the insertion order
+		LinkedHashSet<Character> hs = new LinkedHashSet<Character>();
+
+		// Why u have not used HashSet class or TreeSet class?
+		// HashSet class or TreeSet class it does not maintain the insertion order.
+
+		// step3: iterate all the values using enhance for loop from char [] array and
+		// add values to the LinkedHashSet object
+		for (Character b : abc) {
+			hs.add(b);
+		}
+
+		// step 4:use Iterator interface to iterate all values from the LinkedHashSet
+		// object and print values in console using while loop
+		Iterator<Character> it = hs.iterator();
+
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
+
+	}
+
+}
+===================================================================================================
+2) Remove duplicate values from String and print occurance  (Each and every Character should  be repeat only one time).
+
+		String a="java";
+
+Step 1: convert the String into the char [] array using toCharArray() method
+		char  [] abc = a.toCharArray();
+
+step 2: create Object of  LinkedHashMap class beacuse LinkedHashMap it does not accept the duplicate key and also it maintain insertion order for key.
+			//we are storing key as character and values as occurance.
+		LinkedHashMap<Character,Integer> hs = new LinkedHashMap<Character,Integer>();
+		
+step 3: iterate all the values using for loop and add values to LinkedHashMap using put() method
+		
+		for(Character b : abc)
+		{
+				hs.put(b,1);
+		}		
+
+
+step 4: print the the LinkedHashMap object.
+				or
+		syso(hs);
+	
+step 4: print values using Entry interface 
+
+		for(Entry<Character,Integer> c: hs.entrySet())
+		{
+				syso(c.getKey());
+				syso(c.getValues());
+				or
+				syso(c.getkey() + "    :    "+c.getValue());
+		}
+
+
+package Tutorial2;
+
+import java.util.*;
+import java.util.Map.*;
+
+public class RemoveDuplicateCharacterAndPrintOccurance1 {
+
+	public static void main(String[] args) {
+		String a = "java";
+
+		// step 1: convert String into char [] array using toCharArray() method
+		char[] abc = a.toCharArray();
+
+		// step 2: create Object of LinkedHashMap class beacuse LinkedHashMap class does
+		// not accept the duplicate key and also it will insert the values as per the
+		// index position
+		// we storing key as character and values as its occurance
+		LinkedHashMap<Character, Integer> hs = new LinkedHashMap<Character, Integer>();
+
+		// step 3: iterate char [] array values and add values to LinkedHashMap object
+
+		for (Character b : abc) {
+			hs.put(b, 1);
+		}
+
+		// step 4: iterate the LinkedHashMap by using enhance for loop and print
+		// key-value pair
+		// System.out.println(hs);
+
+		for (Entry<Character, Integer> c : hs.entrySet()) {
+			System.out.println(c.getKey() + " : " + c.getValue());
+		}
+
+	}
+
+}
+===================================================================================
+3) Occurence of character in string 
+			or
+3) Count how many times each and every character is repeated in string
+
+			String a="java";
+
+
+step 1; convert String into the char [] array using toCharArray() method
+			char [] abc = a.toCharArray();
+		
+step 2: create Object of LinkedHashMap class beacuse LinkedHashMap it does not accept the duplicate key  and it maintain the insertion order for key.
+		
+		//we storing key as Character and value as its occurance
+		LinkedHashMap<Character,Integer> hs = new LinkedHashMap<Character,Integer>();
+
+
+step 3: iterate the char [] array 
+
+			for(Character b: abc)
+			{
+					step 3a: check specific key is present or not in LinkedHashMap, if key is present increment the values by 1
+						if(hs.containsKey(b))
+						{
+							hs.put(b,hs.get(b)+1);
+						}
+				
+					step 3b: if key is not present then add key and values in LinkedHashMap
+						else
+						{
+							hs.put(b,1);
+						}						
+
+			}
+step 4: print all LinkedHashMap values using enhance for loop
+			syso(hs);
+	
+				or
+
+		for(Entry<Character,Integer> c: hs.entrySet())
+			{
+						syso(c.getKey() + "  :  "+c.getValues());
+			}
+
+----------------------------------
+online java compiler
+
+we have import utils package and also Map interface
+
+import java.util.*;
+import java.util.Map.*;
+
+================================================
+package Tutorial2;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+public class CharacterOccurance1 {
+
+	public static void main(String[] args) {
+		String a = "cucumrrtreeeeber";
+
+		// step 1; convert the String into char [] array using toCharArray() method
+		char[] abc = a.toCharArray();
+
+		// step 2: create Object of LinkedHashMap class because LinkedHashMap class does
+		// not accept the duplicate key and also it maintain the insertion order for key
+
+		// we storing key as character and values as occurrence
+		LinkedHashMap<Character, Integer> hs = new LinkedHashMap<Character, Integer>();
+
+		// step 3: iterate the char [] array
+		for (Character b : abc) {
+			// step 3a: check specific key is present or not, and if present then increment
+			// the value by 1
+			if (hs.containsKey(b)) 
+			{			//hs.get(b) it will capture values for that key.
+				hs.put(b, hs.get(b)+1);
+			}
+			// step 3b: if key is not present then add the key-value
+			else
+			{
+				hs.put(b, 1);
+			}
+		}
+
+		// step 4: print LinkedHashMap object key-value using enhance for loop
+
+				//System.out.println(hs);
+		
+		for(Entry<Character,Integer> c: hs.entrySet())
+		{
+			System.out.println(c.getKey() + " : "+c.getValue());
+		}
+		
+		
+
+	}
+	
+}
+package Tutorial2;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+public class CharacterOccurance2 {
+
+	public static void main(String[] args) {
+
+		String a = "java";
+
+		char[] abc = a.toCharArray();
+		
+		LinkedHashMap<Character,Integer> hs = new LinkedHashMap();
+
+		for(Character b: abc)
+		{
+			if(hs.containsKey(b))
+			{
+				hs.put(b, hs.get(b)+1);
+			}
+			else
+			{
+				hs.put(b, 1);
+			}
+		}
+		
+		
+		for(Entry<Character,Integer> c: hs.entrySet())
+		{
+			System.out.println(c.getKey() + " :: "+c.getValue());
+		}
+		
+		
+		
+	}
+}
+============================================================================================
+4) Find duplicate character from string and print its occurence
+					or
+print occurence of only duplicate character from String
+	
+
+		String a="cucumber";
+
+Step 1: convert String into the char [] array using toCharArray() method
+			char [] abc = a.toCharArray();
+			
+step 2: create Object of LinkedHashMap class bacusee LinkedHashMap class does not accept the duplicate key and it will add the key as per the index position
+	
+		LinkedHashMap<Character,Integer> hs = new LinkedHashMap<Character,Integer>();
+	
+step 3: iterate the char [] array
+			
+		for(Character b: abc)
+		{
+			step 3a: check key is present or not , if key is present then increment the value by 1
+				if(hs.containsKey(b))
+					{
+						hs.put(b,hs.get(b)+1);
+					}
+					
+			step 3b: if key is not present then add the key - value
+				else
+					{
+						hs.put(b,1);
+					}
+		}
+
+ste4: iterate the LinkedHashMap object values using enhace for loop
+	
+	for(Entry<Character,Integer> c: hs.entrySet())
+	{
+		step 4a: check value is above is 1 or not ,if value is above 1 then print its key- value pair
+
+			if(c.getValue()>1)
+			{
+							Syso(c.getKey() + " :  "+c.getValue());
+			}
+	}
+
+==============================================================================
+package Tutorial2;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+public class FindDuplicateCharacterAndPrintItsOccurence {
+
+	public static void main(String[] args) {
+		String a = "cucumcccmrtttrrrber";
+
+		char[] abc = a.toCharArray();
+
+		LinkedHashMap<Character, Integer> hs = new LinkedHashMap<Character, Integer>();
+
+		for(Character b : abc)
+		{
+			if(hs.containsKey(b))
+			{
+				hs.put(b, hs.get(b)+1);
+			}
+			else
+			{
+				hs.put(b, 1);
+			}
+		}
+		
+		for(Entry<Character,Integer> c: hs.entrySet())
+		{
+			if(c.getValue()>1)
+			{
+				System.out.println(c.getKey() + " : "+c.getValue());
+			}
+		}
+		
+	}
+
+}
+==================================================================
+package Tutorial2;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+public class FindDuplicateWordsFromStringAndPrintitsOccurance {
+
+	public static void main(String[] args) {
+		String a = "java selenium java selenium cucumber java";
+
+		String[] abc = a.split(" ");
+
+		LinkedHashMap<String, Integer> hs = new LinkedHashMap<String, Integer>();
+
+		for(String b : abc)
+		{
+			if(hs.containsKey(b))
+			{
+				hs.put(b, hs.get(b)+1);
+			}
+			else
+			{
+				hs.put(b, 1);
+			}
+		}
+		
+		for(Entry<String,Integer> c: hs.entrySet())
+		{
+			if(c.getValue()>1)
+			{
+				System.out.println(c.getKey() + " : "+c.getValue());
+			}
+		}
+		
+	}
+
+}
+====================================================================
+package Tutorial2;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+public class CountWordsFromStringAndPrintitsOccurance {
+
+	public static void main(String[] args) {
+		String a = "java selenium java selenium cucumber java";
+
+		String[] abc = a.split(" ");
+
+		LinkedHashMap<String, Integer> hs = new LinkedHashMap<String, Integer>();
+
+		for (String b : abc) {
+			if (hs.containsKey(b)) {
+				hs.put(b, hs.get(b) + 1);
+			} else {
+				hs.put(b, 1);
+			}
+		}
+
+		for (Entry<String, Integer> c : hs.entrySet()) {
+
+			System.out.println(c.getKey() + " : " + c.getValue());
+
+		}
+
+	}
+
+}
+
+=================================================================
+
+Apple is fruit with 2 seeds. Grapes may have seed or may not have seed. 
+Papaya and watermelon have multiple seeds. Seeds are integral part for growing plant.
+
+package Tutorial2;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		String a = "Apple is fruit with 2 seeds. Grapes may have seed or may not have seed Papaya and watermelon have multiple seeds. Seeds are integral part for growing plant.";
+		
+		
+		
+		String [] abc = a.split(" ");
+		
+		String c="";
+		
+		for(String b: abc)
+		{
+			if(b.equalsIgnoreCase("seeds"))
+			{
+				c=c+b;
+				break;
+			}
+		}
+		
+		char [] xyz = c.toCharArray();
+		
+		LinkedHashMap<Character,Integer> hs =new LinkedHashMap<Character,Integer>();
+		
+		for(Character b: xyz)
+		{
+			if(hs.containsKey(b))
+			{
+				hs.put(b, hs.get(b)+1);
+			}
+			else
+			{
+				hs.put(b, 1);
+			}
+		}
+		
+		for(Entry<Character, Integer> d: hs.entrySet())
+		{
+			System.out.println(d.getKey() + " : "+d.getValue());
+		}
+		
+		
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

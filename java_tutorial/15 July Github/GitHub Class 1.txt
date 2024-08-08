@@ -1,0 +1,172 @@
+GitHub
+-----------------------------------------------------------------------------------------------------------------------------
+	- GitHub is website or cloud based service that helps developer and tester to store and manage their code.
+	- GitHub is also called as Version Control System tool or source control tool.
+	- GitHub is process that helps to tracking and managing the changing in code over a an time.
+	- in GitHub we store or maintain  the all the test script code.
+-----------------------------------------------------------------------------------------------------------------------------
+Git
+	- Git is free local source distributed version control system,
+	- It help to keep track of projects activity as we made changes over a time with the help of different contributors (Teammates)
+	- Git helps to keep track of change made in code.
+	- If any made any mistake at the time of doing the changes then git allows to revert back changes to stable state.
+	- Git helps to see what changes made over a time.
+-----------------------------------------------------------------------------------------------------------------------------
+Basic GitHub Life cycle:
+-----------------------------------------------------------------------------------------------------------------------------
+Team Leader or Senior Test Engineer
+		Step 1: BDD Framework is created in Working space (Eclipse IDE)
+
+		Step 2: Team Will create local Git Repository
+						- Right click on Project  ----> go to team ---> click on share project.
+						- Select all checkbox 
+						- click on create repository
+						- click on finish button
+	
+
+		step 3: Add all files to stagging area
+						- Right click on project --> go to team ---> click on add to index.	
+
+
+		step 4: commit code to local git repository
+						- Right click on project ---> go to team ---> click on commit ----> Enter commit message ----> click on commit.
+
+
+		Step 5: create Remote GitHub Repository
+						- Open a https://www.github.com
+						- login a GitHub application using valid credentials
+						- GitHub Home page
+						- Click on plus icon.
+						- Click on create Repository
+						- Enter the Repository name or project name
+						- click on create button
+						- It will remote GitHub Repository URL
+				----------------------------------------------------------------------------------------------------------------------------------------
+				Generate Access Token
+						- Click on profile icon
+						- go to setting
+						- click on developer setting
+						- click on personal access token
+						- click on classic
+						- click on Generate token
+						- select classic token
+						- Enter token name
+						- select all checkbox
+						- click on finish 
+						- copy the access token and use as password at the time of pushing the code from Local to Remote GitHub Repository.
+				----------------------------------------------------------------------------------------------------------------------------------------
+
+		Step 6: Push code to the Remote GitHub Repository from Local Git Repository (Working Space)
+						- Right click on project  ----> go to team--> click on push master
+						-  Enter Remote Repository GitHub URL
+						- Enter username and password (Access Token)		
+						- click on preview
+						 - click on finish button.
+
+====================================================================================================
+Team Leader will share email to teammates
+
+Hi team,
+		i have created BDD Framework using Cucumber on GitHub , please go ahead and clone it and continue with task.
+		GitHub https://github.com/prafulp1030/CogmentoApplication.git
+
+Thanks and Regards
+Team Leader
+====================================================================================================
+
+Sonali Automation Tester
+		Step 1: clone a GitHub Remote Repository to the git Local Repository
+				- install Git in Eclipse IDE
+				- click on git clone
+				- enter the Remote GitHub Remote Repository URL.
+				- click on finish button
+
+		Step 2: import project to Working space.
+				- right click on Git Local Repository and click on import and click on finish .
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Amit Automation Tester
+		Step 1: clone a GitHub Remote Repository to the git Local Repository
+				- install Git in Eclipse IDE
+				- click on git clone
+				- enter the Remote GitHub Remote Repository URL.
+				- click on finish button
+
+		Step 2: import project to Working space.
+				- right click on Git Local Repository and click on import and click on finish .
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sonali Automation Tester
+		Step 1: Write Test Scenario for PIM Page Add user
+					- created feature files and generated snippet and written a selenium code.
+
+		step 2: add all files to stagging area
+					- right click on project --- go to team ---- click on add to index.
+
+		step 3: commit code to the local git repository
+						- right click on project --- go to team ----  click on commit ---- enter commit message --- click on commit.
+
+		step 4:push code to the remote GitHub Repository
+		 					- right click on project --- go to team ----  click on push master -- click on finish
+
+
+Amit Automation Tester
+		Step 1: pull the latest code from Remote GitHub Repository
+				- right click on project name --- go to team -- click on pull 
+
+		Step 2: Write Test Scenario for PIM Page Search User
+				- created feature files and generated snippet and written a selenium code.
+
+		step 3: add all files to stagging area
+				- right click on project name --- go to team -- click on add to index
+
+		step 4: commit code to the local git repository
+				- right click on project name --- go to team -- click on commit -- enter commit message and click on commit.
+
+		step 5:push code to the remote GitHub Repository
+				- right click on project name --- go to team -- click on push master and click on finish button
+--------------------------------------------------------------------------------------------------------------------------------
+Sonali Automation Tester
+		Step 1: pull the latest code from Remote GitHub Repository
+		Step 2: write test scenario for Delete a new user.
+		step 3: add  all files to stagging area
+		step 4: commit code to local git repository
+		step 5: push code to remote GitHub repository
+--------------------------------------------------------------------------------------------------------------------------------
+Amit Automation tester
+		Step 1: pull the latest code from Remote GitHub Repository
+		Step 2: write test scenario to verify user is deleted or not
+		step 3: add  all files to stagging area
+		step 4: commit code to local git repository
+		step 5: push code to remote GitHub repository
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

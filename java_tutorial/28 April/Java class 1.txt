@@ -1,0 +1,36 @@
+Java
+---------------------------------------------------------------------------
+	- Java is programming language was developed by the sun microsystem in 1995, now it is part of oracle.
+	- Java is Object Oriented Programming language	
+	- In Java everything is an object.
+	- Java is platform independent languages (We can same programs in Window OS, Mac OS or Unix OS).
+	- Java is simple and easy to understand.
+	- Java is secure language
+	- Using Java we can developer different types of application
+					1) Desktop Based Application
+					2) Web Based application
+					3) Mobile Based Application
+					4) Embedded Based Application
+					5) Smart Carts
+					6) Games Application
+					7) Test Automation
+
+	- Java Syntax Rules
+			- Java is case Sensitive Language.
+			-  First letter of class name must be capital.
+			- Method name should be start with small letter
+			- Java program file name should be exactly match with class name.
+			- Java program execution starts with main method.
+			- Every java statement ends with semicolon (;)
+			- Every java code enclosed with { }
+=========================================================
+how to install Java in laptop
+
+							
+
+
+
+
+
+
+

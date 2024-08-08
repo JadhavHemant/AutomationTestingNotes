@@ -1,0 +1,282 @@
+What are the different operations we can perform on browser using selenium WebDriver?
+-----------------------------------------------------------------------------------------------------------------------------------
+		1) Open a chrome browser
+		2) Open a URL in browser
+		3) Navigate from One URL to another URL
+		4) Navigate back to previous page
+		5) Navigate forward 
+		6) Refresh the browser
+		7) Capture the browser URL
+		8) Capture title of browser window
+		9) minimize the browser
+		10) maximize the browser
+		11) full screen the browser
+		12) open a new tab
+		13) open a new window
+		14) close a single tab
+		15) close all tab/window
+		16) open a browser in incognito mode.
+-----------------------------------------------------------------------------------------------------------------------------------		
+		Selenium WebDriver 3.141.59 version.					VVVVVIMMMPPPP
+-----------------------------------------------------------------------------------------------------------------------------------
+how to connect to the actual browser?
+	- connect to the actual browser we use System.setProperty()method
+	- if we want to connect to the browser we need same browser driver of same version.
+	- just imagine we use chrome browser 124.0 version then we need same chrome driver version.
+	 - chrome browser and chrome driver version should be same otherwise we will get Runtime error.
+	
+syntax:
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+		
+e.g.
+		System.setProperty("webdriver.chrome.driver","‪C:\Users\praf0\OneDrive\Desktop\Automation Testing 27th April 2024 Batch\chromedriver-win64 (4)\chromedriver-win64\chromedriver.exe");
+
+-----------------------------------------------------------------------------------------------------------------------------------
+open a browser
+		//Up casting .
+		Reference of parent class and object of child class, this allowed to access all the methods from parent class.
+		Reference of WebDriver interface and Object of ChromeDriver class, this allowed to access all the methods from WebDriver interface.
+
+syntax:
+		WebDriver driver = new ChromeDriver();
+
+		it will open a blank browser means without any URL
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Selenium WebDriver methods										VVVIMMMPPPP
+
+1) get() method
+		- get() method is used to open specified URL in browser window.
+		- return type is void.
+		- get() method present inside the WebDriver interface.
+
+syntax:
+		webdriverobjectName.get("url");
+
+e.g.
+		driver.get("https://www.facebook.com");
+
+
+step 1: connect to the actual browser
+				System.setProperty("webdriver.chrome.driver","path of chromedriver");
+
+step 2: up casting concept
+				WebDriver driver = new ChromeDriver();
+
+step 3: open a url in browser
+				driver.get("https://www.facebook.com");
+-------------------------------------------------------------------------------------------------------
+package Tutorial1;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// step 1: connect to the actual browser.
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver-win64 (4)\\chromedriver-win64\\chromedriver.exe");
+
+		// Step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open facebook url in browser window
+
+		driver.get("https://www.facebook.com");
+
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------
+2) getTitle() method
+		- getTitle()method is used to capture the title of the browser window
+		- return type is string
+		- getTitle() method present inside the WebDriver interface.
+
+syntax:
+			webdriverobjectname.getTitle();
+
+e.g.
+			String a = driver.getTitle();
+
+	
+
+step 1: connect to the actual browser
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+
+			WebDriver driver = new ChromeDriver();
+
+step 3: open a url
+			driver.get("https://www.amazon.com");
+		
+step 4:capture the browser title
+
+			String a = driver.getTitle();
+
+			System.out.println(a);
+
+package Tutorial1;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		//step 1: connect to actual browser
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver-win64 (4)\\chromedriver-win64\\chromedriver.exe");
+		
+
+		//step 2: up casting
+		WebDriver driver = new ChromeDriver();
+		
+		
+		//step 3: open a url
+		driver.get("https://www.amazon.in");
+		
+		//step 4: capture the title
+		
+		String abc = driver.getTitle();
+		
+		System.out.println(abc);
+		
+	}
+
+}
+--------------------------------------------------------------------------------------------------------
+3) getCurrentUrl() method
+		- getCurrentUrl() method is used to capture the URL of browser window.
+		- return type string
+		- getCurrentUrl() method is present inside the WebDriver interface.
+
+syntax:
+		webdriverobjectname.getCurrentUrl();
+
+e.g.		
+		Sting abc = driver.getCurrentUrl();
+	
+
+step 1: connect to the actual browser
+				System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+				WebDriver driver = new ChromeDriver();
+
+step 3; open URL
+				driver.get("https://www.redbus.com");
+	
+step 4: capture the current url
+
+				String abc = driver.getCurrentUrl();
+
+
+
+package Tutorial1;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		//step 1: connect to the actual browser
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver-win64 (4)\\chromedriver-win64\\chromedriver.exe");
+		
+		//step 2: up casting
+		WebDriver driver = new ChromeDriver();
+		
+		//step 3: open a url
+		driver.get("https://www.redbus.com");
+		
+		
+		//step 4: capture the current url
+		
+		String abc = driver.getCurrentUrl();
+		
+		System.out.println(abc);
+
+	}
+
+}
+======================================================================
+Ass:
+		open a https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+		capture the title
+		and verify HRM keyword is present or not If present then print "Title test case is pass" otherwise print "Title test cases is fail".
+		capture the URL
+		and verify demo keyword is present or not If present then print "URL test case is pass" otherwise print "URL test cases is fail".
+
+======================================================================
+Ass:
+		open a https://www.facebook.com/
+		capture the title
+		reverse the captured title
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

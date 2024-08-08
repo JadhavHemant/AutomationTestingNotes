@@ -1,0 +1,469 @@
+Gherkin Keyword in feature files													VVVVVVIMMPPPPPPPPP										
+		1) Feature:
+		2) Scenario:	-------------------------------------->Example:
+		3) Given
+		4) When
+		5) Then
+		6) And
+		7) But
+		8) *
+		9) Scenario Outline:	-------------------------------------->Scenario Template:	
+		10) Examples:	-------------------------------------->Scenarios:
+		11) Background:
+
+Test Runner class keyword													VVVVVVIMMPPPPPPPPP
+		1) @RunWith() annotation
+		2) @CucumberOptions() annotation
+		3) features keyword
+		4) glue or extraGlue keyword
+		5) dryRun keyword
+		6) monochrome keyword
+		7) plugin
+		8) tags keyword
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to comments feature file steps?											VVVVVVIMMPPPPPPPPP
+		we use # symbol to comments the feature files.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is Parameterization in cucumber?													VVVVVVIMMPPPPPPPPP
+		or
+How to achieve Parameterization in cucumber?											VVVVVVIMMPPPPPPPPP
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+	- if we pass String test data within the double quote in feature file steps then automatically cucumber will consider as String parameter in snippets
+	- if we pass integer test data in feature file steps then automatically cucumber will consider as integer parameter in snippets
+	-and cucumber will generate snippets with parameters or arguments.
+	- and then we can use parameter or arguments within the scripts.
+
+
+Feature: Test Facebook application Functionality
+
+  Scenario: Validate Register Page Functionality
+    Given user open a "edge" browser
+    And user enter first name as "Dipali" and last name as "Patil"
+    And user select date as 25 and month as "Jun" and year 2010
+
+package StepDefinition;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.cucumber.java.en.Given;
+
+public class RegisterPageTestStep {
+	static WebDriver driver;
+
+	@Given("user open a {string} browser")
+	public void user_open_a_browser(String browsername) {
+
+		if (browsername.equalsIgnoreCase("chrome")) {
+			driver = new ChromeDriver();
+		} else if (browsername.equalsIgnoreCase("edge")) {
+			driver = new EdgeDriver();
+		} else if (browsername.equalsIgnoreCase("incognito")) {
+			ChromeOptions opt = new ChromeOptions();
+			opt.addArguments("--incognito");
+			driver = new ChromeDriver(opt);
+		} else {
+			System.out.println("Please Enter browser name");
+		}
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().window().maximize();
+		driver.get("https://www.facebook.com/reg");
+	}
+
+	@Given("user enter first name as {string} and last name as {string}")
+	public void user_enter_first_name_as_and_last_name_as(String FirstName, String LastName) {
+		driver.findElement(By.name("firstname")).sendKeys(FirstName);
+		driver.findElement(By.name("lastname")).sendKeys(LastName);
+	}
+
+	@Given("user select date as {int} and month as {string} and year {int}")
+	public void user_select_date_as_and_month_as_and_year(Integer Date, String Month, Integer Year) {
+
+		WebElement wbDate = driver.findElement(By.name("birthday_day"));
+		Select selDate = new Select(wbDate);
+
+		// convert Integer into String
+		String date = Date.toString();
+
+		selDate.selectByVisibleText(date);
+
+		WebElement wbMonth = driver.findElement(By.name("birthday_month"));
+		Select selMonth = new Select(wbMonth);
+		selMonth.selectByVisibleText(Month);
+
+		WebElement wbYear = driver.findElement(By.name("birthday_year"));
+		Select selYear = new Select(wbYear);
+
+		String year = Year.toString();
+		selYear.selectByVisibleText(year);
+
+	}
+}
+============================================================================================================
+
+Scenario						Example
+Scenario Outline					Scenario Template
+Examples						Scenarios
+
+============================================================================================================
+diff between Scenario and Scenario Outline keyword?													VVVVVIMMMPPPPPPPP
+		- we use Scenario and Scenario Outline keyword in feature file.
+		- Scenario keyword is used to mention what is exact requirements or plain requirements.
+		- and Scenario Outline keyword is used to achieve the data driven testing in cucumber and we maintain the set of Test Data in Examples keyword by using 
+		pipe symbol.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+diff between Scenario Outline and Scenario Template keyword?										VVVVVIMMMPPPPPPPP
+	-  we use Scenario Outline and Scenario Template keyword in feature file.
+	- Scenario Outline and Scenario Template keyword use for same purpose to achieve the data driven testing in cucumber.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+diff between Examples and Scenarios keyword?													VVVVVIMMMPPPPPPPP
+	- we use Examples and Scenarios keyword in feature file.
+	- Examples and Scenarios keyword use for same purpose to maintain the set of test data for Scenario Outline or Scenario Template.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+diff between Scenario and Scenarios keyword?														VVVVVIMMMPPPPPPPP
+	- we use Scenario and Scenarios keyword in feature file.
+	- Scenario keyword is used to mention the what is exact requirement or plain requirement.
+	- and Scenarios keyword is used to maintain the set of test data for Scenario Outline or Scenario Template.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Diff between Example and Examples keyword?														VVVVVIMMMPPPPPPPP
+	- we use Example and Examples keyword in feature file.
+	- Example keyword is similar as Scenario keyword and it is used to mention what is exact requirements or plain requirements.
+	- Examples keyword is similar as Scenarios keyword and it used to maintain the set of test data for Scenario Outline or Scenario Template.
+
+=======================================================================================================
+How to achieve data driven testing in cucumber?														VVVVVIMMMPPPPPPPP
+What is use of Scenario Outline keyword and Examples keyword in feature file?
+what is data table in feature file?
+	
+	- there are 2 ways we can achieve the data driven testing in cucumber
+	1) by using Scenario Outline: keyword 
+	2) by using DataTable keyword
+
+1) by using Scenario Outline: keyword 
+	- Scenario Outline: keyword  is used to achieve the data driven testing in cucumber.
+	- instead of using Scenario keyword we use Scenario Outline keyword and we maintain the test data in Examples keyword by using Pipe symbol.
+	- once we use Scenario Outline keyword it will run the same scenario (all steps) multiple times as per the test data.
+
+
+
+============================================================================================================
+Feature: Test Facebook application Functionality
+
+  Scenario Outline: Validate Register Page Functionality
+    Given user open a "<browsername>" browser
+    And user enter first name as "<firstname>" and last name as "<lastname>"
+    And user select date as "<date>" and month as "<month>" and year "<year>"
+
+    Examples: 
+      | browsername | firstname | lastname | date | month | year |
+      | chrome      | Dipali    | patil    |   21 | Feb   | 2010 |
+      | edge        | Rahul     | Patil    |   12 | Dec   | 2005 |
+      | chrome      | Kavita    | page     |   24 | Mar   | 2009 |
+      | incognito   | Kriti     | Patil    |   18 | Jun   | 2019 |
+      | edge        | Komal     | page     |   11 | Aug   | 2003 |
+
+package StepDefinition;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.cucumber.java.en.Given;
+
+public class RegisterPageTestStep {
+	static WebDriver driver;
+
+	@Given("user open a {string} browser")
+	public void user_open_a_browser(String browsername) {
+
+		if (browsername.equalsIgnoreCase("chrome")) {
+			driver = new ChromeDriver();
+		} else if (browsername.equalsIgnoreCase("edge")) {
+			driver = new EdgeDriver();
+		} else if (browsername.equalsIgnoreCase("incognito")) {
+			ChromeOptions opt = new ChromeOptions();
+			opt.addArguments("--incognito");
+			driver = new ChromeDriver(opt);
+		} else {
+			System.out.println("Please Enter browser name");
+		}
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().window().maximize();
+		driver.get("https://www.facebook.com/reg");
+	}
+
+	@Given("user enter first name as {string} and last name as {string}")
+	public void user_enter_first_name_as_and_last_name_as(String FirstName, String LastName) {
+		driver.findElement(By.name("firstname")).sendKeys(FirstName);
+		driver.findElement(By.name("lastname")).sendKeys(LastName);
+	}
+
+	@Given("user select date as {string} and month as {string} and year {string}")
+	public void user_select_date_as_and_month_as_and_year(String Date, String Month, String Year) {
+		WebElement wbDate = driver.findElement(By.name("birthday_day"));
+		Select selDate = new Select(wbDate);
+
+		selDate.selectByVisibleText(Date);
+
+		WebElement wbMonth = driver.findElement(By.name("birthday_month"));
+		Select selMonth = new Select(wbMonth);
+		selMonth.selectByVisibleText(Month);
+
+		WebElement wbYear = driver.findElement(By.name("birthday_year"));
+		Select selYear = new Select(wbYear);
+
+		selYear.selectByVisibleText(Year);
+
+	}
+}
+===============================================================================
+Feature: Test Guru99 Application
+
+  Scenario Outline: Validate Register Page Functionality
+    Given user is on register page
+    When user enter contact information as "<firstname>" and "<lastname>" and "<phone>" and "<email>"
+    And use enter Mailing information as "<address>", "<city>", "<state>", "<postalCode>" and "<country>"
+    And user enter user information as "<username>" and "<password>" and "<confirmPassword>"
+    And user click on submit button
+
+    Examples: 
+      | firstname | lastname | phone  | email            | address | city   | state | postalCode | country | username         | password   | confirmPassword |
+      | Anjali    | Gurav    | 909090 | Anjali@gmail.com | Pune    | Pune   | MH    |     221122 | INDIA   | anjali@gmail.com | Anjali@123 | Anjali@123      |
+      | Neha      | Gupta    | 808080 | Neha@gmail.com   | Mumbai  | Mumbai | MH    |     123456 | ERITREA | Neha@gmail.com   | Neha@123   | Neha@123        |
+
+    Examples: 
+      | firstname | lastname | phone    | email           | address | city  | state | postalCode | country        | username        | password  | confirmPassword |
+      | Rahul     | Durke    |  7070790 | Rahul@gmail.com | Delhi   | Delhi | DL    |     123456 | CANADA         | Rahul@gmail.com | Rahul@123 | Rahul@123       |
+      | Manoj     | Shah     | 12445555 | Manoj@gmail.com | Delhi   | Delhi | DL    |     132424 | AMERICAN SAMOA | Manoj@gmail.com | Manoj@123 | Manoj@123       |
+
+    Examples: 
+      | firstname | lastname | phone  | email            | address | city  | state | postalCode | country  | username         | password   | confirmPassword |
+      | Amar      | Salve    | 909090 | Amar@gmail.com   | Dubai   | Delhi | DL    |     910101 | MALDIVES | Amar@gmail.com   | Amar@123   | Amar@123        |
+      | Nikhil    | Patil    | 909090 | Nikhil@gmail.com | Dubai   | Delhi | DL    |     910101 | INDIA    | Nikhil@gmail.com | Nikhil@123 | Nikhil@123      |
+
+    Examples: 
+      | firstname | lastname | phone  | email          | address | city  | state | postalCode | country   | username        | password  | confirmPassword |
+      | Punam     | Mahajan  | 909090 | Amar@gmail.com | Dubai   | Delhi | DL    |     910101 | AMALDIVES | Punam@gmail.com | Punam@123 | Punam@123       |
+
+
+===============================================================================================
+Feature: Test Guru99 Application
+
+  # Scenario Outline	== Scenario Template
+  Scenario Template: Validate Register Page Functionality
+    Given user is on register page
+    When user enter contact information as "<firstname>" and "<lastname>" and "<phone>" and "<email>"
+    And use enter Mailing information as "<address>", "<city>", "<state>", "<postalCode>" and "<country>"
+    And user enter user information as "<username>" and "<password>" and "<confirmPassword>"
+    And user click on submit button
+
+    # Examples == Scenarios :
+    Scenarios: 
+      | firstname | lastname | phone  | email            | address | city   | state | postalCode | country | username         | password   | confirmPassword |
+      | Anjali    | Gurav    | 909090 | Anjali@gmail.com | Pune    | Pune   | MH    |     221122 | INDIA   | anjali@gmail.com | Anjali@123 | Anjali@123      |
+      | Neha      | Gupta    | 808080 | Neha@gmail.com   | Mumbai  | Mumbai | MH    |     123456 | ERITREA | Neha@gmail.com   | Neha@123   | Neha@123        |
+
+    Examples: 
+      | firstname | lastname | phone    | email           | address | city  | state | postalCode | country        | username        | password  | confirmPassword |
+      | Rahul     | Durke    |  7070790 | Rahul@gmail.com | Delhi   | Delhi | DL    |     123456 | CANADA         | Rahul@gmail.com | Rahul@123 | Rahul@123       |
+      | Manoj     | Shah     | 12445555 | Manoj@gmail.com | Delhi   | Delhi | DL    |     132424 | AMERICAN SAMOA | Manoj@gmail.com | Manoj@123 | Manoj@123       |
+
+    Examples: 
+      | firstname | lastname | phone  | email            | address | city  | state | postalCode | country  | username         | password   | confirmPassword |
+      | Amar      | Salve    | 909090 | Amar@gmail.com   | Dubai   | Delhi | DL    |     910101 | MALDIVES | Amar@gmail.com   | Amar@123   | Amar@123        |
+      | Nikhil    | Patil    | 909090 | Nikhil@gmail.com | Dubai   | Delhi | DL    |     910101 | INDIA    | Nikhil@gmail.com | Nikhil@123 | Nikhil@123      |
+
+    Examples: 
+      | firstname | lastname | phone  | email          | address | city  | state | postalCode | country   | username        | password  | confirmPassword |
+      | Punam     | Mahajan  | 909090 | Amar@gmail.com | Dubai   | Delhi | DL    |     910101 | AMALDIVES | Punam@gmail.com | Punam@123 | Punam@123       |
+
+
+package Features;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+
+public class RegisterPageTestStep {
+	static WebDriver driver;
+
+	@Given("user is on register page")
+	public void user_is_on_register_page() {
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().window().maximize();
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+	}
+
+	@When("user enter contact information as {string} and {string} and {string} and {string}")
+	public void user_enter_contact_information_as_and_and_and(String fname, String lname, String phone, String email) {
+		driver.findElement(By.name("firstName")).sendKeys(fname);
+		driver.findElement(By.name("lastName")).sendKeys(lname);
+		driver.findElement(By.name("phone")).sendKeys(phone);
+		driver.findElement(By.name("userName")).sendKeys(email);
+
+	}
+
+	@When("use enter Mailing information as {string}, {string}, {string}, {string} and {string}")
+	public void use_enter_mailing_information_as_and(String address, String city, String state, String pincode,
+			String country) {
+
+		driver.findElement(By.name("address1")).sendKeys(address);
+		driver.findElement(By.name("city")).sendKeys(city);
+		driver.findElement(By.name("state")).sendKeys(state);
+		driver.findElement(By.name("postalCode")).sendKeys(pincode);
+
+		WebElement wbCountry = driver.findElement(By.name("country"));
+		Select selCountry = new Select(wbCountry);
+		selCountry.selectByVisibleText(country);
+
+	}
+
+	@When("user enter user information as {string} and {string} and {string}")
+	public void user_enter_user_information_as_and_and(String uname, String pass, String cpass) {
+		driver.findElement(By.name("email")).sendKeys(uname);
+		driver.findElement(By.name("password")).sendKeys(pass);
+		driver.findElement(By.name("confirmPassword")).sendKeys(cpass);
+	}
+
+	@When("user click on submit button")
+	public void user_click_on_submit_button() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.findElement(By.name("submit")).click();
+
+		Thread.sleep(5000);
+		driver.quit();
+
+	}
+
+}
+
+====================================================================================
+			Orange HRM Application
+
+Scenario: validate login functionality
+
+Scenario: validate Home functionality
+
+Scenario Outline: validate PIM functionality
+		- click on pim link
+		- click on add employee
+		- enter firstname , lastName, middleName and capture the employee id
+		- click on save button
+		- enter Country and select gender
+		- click on save button
+		- click on employee list button
+		- enter the employee id
+		- click on search button
+		- delete employee and confirm delete
+
+	Examples:
+			| firstname | lastName | middleName | Country | gender |
+		
+	Examples:
+			| firstname | lastName | middleName | Country | gender |
+
+Scenario: validate logout functionality
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

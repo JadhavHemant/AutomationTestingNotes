@@ -1,0 +1,497 @@
+Polymorphism
+	there are 2 types of Polymorphism
+	1) Method overloading
+	2) Method Overriding
+----------------------------------------------------------------------------------------------------------------------------------------------
+2) Method Overriding													VVVVIMMMPPPPPPPPPPP
+----------------------------------------------------------------------------------------------------------------------------------------------
+	- Method Overriding is also called as run time polymorphism or dynamic binding or late binding.
+	- if parent class and child class have same method with same signature and with same return type is called method overriding.
+	- same signature means 			
+							I) numbers of arguments is same for method in child and parent class.
+							2) type of arguments is same for method in child class and parent class.						
+							3) order or sequence of arguments is same for method in child class and parent class.
+
+	- we achieve the method overriding concept by using inheritance concept.
+	- to achieve the method overriding 2 or more classes.
+	- we can achieve the method overriding for 
+								1) public non static method 
+								2) protected non static method
+								3) default non static method, 
+								4) abstract method
+
+	- we can not achieve the method overriding for 
+								1) private method
+								2) static method
+								3) main method
+								4) final method
+								5) constructor 
+---------------------------------------------------------------------------------------------------------------------------
+1) public non static method 
+package Tutorial2;
+
+public class Demo1 {
+
+	public void abc() {
+		System.out.println("abc method with 0 args");
+
+	}
+
+	public void xyz(int a, int b) {
+		System.out.println("xyz method with 2 int args " + (a + b));
+	}
+
+}
+
+
+package Tutorial2;
+
+public class Sample1 extends Demo1 {
+
+	public void abc() {
+		System.out.println("abc method in Sample1 class");
+
+	}
+
+	public void xyz(int p, int s) {
+		System.out.println("xyz method in sample1 classs");
+	}
+
+	public static void main(String[] args) {
+		Sample1 obj =new Sample1();
+		obj.abc();
+		obj.xyz(10, 100);
+	}
+	
+	
+}
+=========================================================================
+package Tutorial2;
+
+public class Demo2 {
+
+	public void d1() {
+		System.out.println("D1 method in Demo2 class");
+	}
+
+	public int d2() {
+		System.out.println("D2 method in Demo2 class");
+		return 100;
+	}
+
+	public void d3(String a, String b) {
+		System.out.println("D3 method in Demo2 class");
+	}
+
+	public String d4(int a, int b) {
+		System.out.println("D3 method in Demo2 class");
+
+		return "selenium";
+	}
+
+}
+
+package Tutorial2;
+
+public class Sample2 extends Demo2{
+
+	public void d1()
+	{
+		System.out.println("D1 method in Sample2 class");
+	}
+	
+	public int d2()
+	{
+		System.out.println("D2 method in Sample2 class");
+		return 1000;
+	}
+	
+	public void d3(int a, int b, String c)
+	{
+		System.out.println("D3 method in Sample2 class");
+	}
+	
+	public void d4()
+	{
+		System.out.println("D4 method in Sample2 class");
+	}
+	
+	public static void main(String[] args) {
+		Sample2 obj =new Sample2();
+		obj.d1();
+		obj.d2();
+		obj.d3(10, 10, "abc");
+		obj.d4(100, 100);
+	}
+	
+	
+	
+}
+=============================================================================
+2) protected non static method
+package Tutorial2;
+
+public class Demo3 {
+	
+	protected void abc(int a)
+	{
+		System.out.println("abc method in demo3 class");
+	}
+	
+	
+	protected int pqr()
+	{
+		System.out.println("PQR method in demo3 class");
+		return 1000;
+	}
+	
+	protected void xyz(int a,String b)
+	{
+		System.out.println("XYZ method in demo3 class");
+	}
+	
+	
+	
+
+}
+
+
+package Tutorial2;
+
+public class Sample3 extends Demo3 {
+
+
+	public void abc(int a) {
+		System.out.println("abc method in Sample3 class");
+	}
+	
+
+	public int pqr() {
+		System.out.println("PQR method in Sample3 class");
+
+		return 19090;
+	}
+
+	
+	public void xyz(int b,String p) {
+		System.out.println("XYZ method in Sample3 class");
+	}
+	
+	public static void main(String[] args) {
+		Sample3 obj =new Sample3();
+		obj.abc(100);
+		obj.pqr();
+		obj.xyz(100, "selenium");
+	}
+	
+
+}
+=================================================================
+3) default non static method
+	package Tutorial2;
+
+public class Demo4 {
+
+	void abc(String a) {
+		System.out.println("abc method in Demo4 class");
+	}
+
+	String pqr(int a, int b) 
+	{
+		System.out.println("PQR method in Demo4 class");
+		return "Selenium";
+	}
+
+	void xyz(float a)
+	{
+		System.out.println("XYZ method in Demo4 class");
+	}
+	
+	
+}
+package Tutorial2;
+
+public class Sample4 extends Demo4 {
+
+	protected void abc(String p)
+	{
+		System.out.println("Abc method in Sample4 class");
+	}
+	
+	
+	String pqr(int a, int b)
+	{
+		System.out.println("PQR method in Sample4 class");
+		
+		return "selenium";
+	}
+
+	void xyz(float a)
+	{
+		System.out.println("XYZ method in Sample4 class");
+	}
+	
+	public static void main(String[] args) {
+		Sample4 obj =new Sample4();
+		obj.abc("selenium");
+		obj.pqr(10, 100);
+		obj.xyz(1900.34f);
+	}
+	
+	
+}
+================================================================================
+4) abstract method
+package Tutorial2;
+
+public abstract class Demo5 {
+
+	public abstract void abc();
+
+	public abstract void pqr(String a);
+
+	public abstract int xyz();
+
+}
+package Tutorial2;
+
+public class Sample5 extends Demo5 {
+
+	@Override
+	public void abc() {
+		System.out.println("abc method in Sample5");
+	}
+
+	@Override
+	public void pqr(String a) {
+		System.out.println("pqr method in Sample5");
+
+	}
+
+	@Override
+	public int xyz() {
+		System.out.println("XYZ method in Sample5");
+		return 100;
+	}
+
+	public static void main(String[] args) {
+		Sample5 obj =new Sample5();
+		obj.abc();
+		obj.pqr("selenium");
+		obj.xyz();
+	}
+	
+}
+===================================================================================
+can we override the static method in java?															VVVVVVIMMMPPPPPPPPPPPPPPPPPPP
+		No,
+
+why we can not override the static method in java?												VVVVVVIMMMPPPPPPPPPPPPPPPPPPP
+		- we cannot override the static method in java because method overriding is based on dynamic binding at run time and
+		static method are bonded using static binding at compile time by compiler, that is reason we can't override the static method in java
+		
+		- if we declare static method in parent class and child class with same signature then it is called method hiding concept.
+	
+--------------------------------------------------------------------------------------------------------------------------
+can we override the main method in java?
+	- No, because method it self as static method
+		
+why we can not override the main method in java?												VVVVVVIMMMPPPPPPPPPPPPPPPPPPP
+		- we cannot override the static method in java because method overriding is based on dynamic binding at run time and
+		static method are bonded using static binding at compile time by compiler, that is reason we can't override the static method in java
+		
+		- if we declare static method in parent class and child class with same signature then it is called method hiding concept.
+--------------------------------------------------------------------------------------------------------------------------------------------
+package Tutorial2;
+
+public class Demo7 {
+
+	
+	public static void abc()
+	{
+		System.out.println("abc method in Demo7 class");
+	}
+	
+	public static void xyz(String a, int b)
+	{
+		System.out.println("xyz method in Demo7 class");
+	}
+	
+}
+
+package Tutorial2;
+
+public class Sample7 extends Demo7 {
+
+	
+	public static void abc()
+	{
+		System.out.println("abc method in Sample7 class");
+	}
+	
+	public static void xyz(String a, int b)
+	{
+		System.out.println("xyz method in Sample7 class");
+	}
+	
+	
+	public static void main(String[] args) {
+		Sample7 obj =new Sample7();
+		obj.abc();
+		obj.xyz("cucumber", 1000);
+	}
+	
+}
+===========================================================================================
+can we override the final method?													VVVVVVIMMMPPPPP
+	No,
+
+why we cannot override the final method										VVVVVVIMMMPPPPP
+	final cannot method be override because final keyword is used for the in future we cannot change the method logic or we cannot the override the 	methods.
+	- once we declare any method as final, we cannot modify the method logic.
+	
+package Tutorial2;
+
+public class Sample8 extends Demo8{
+	
+	//compile time error or syntax error
+	final void abc()
+	{
+		System.out.println("abc method in Demo8 class");
+	}
+	
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+can we override the private method?											VVVVVVIMMMPPPPPPPPP
+	No,
+
+why we can not override the private method?								VVVVVVIMMMPPPPPPPPP
+	if we declare any method as private then access scope of this method is within the class, so we cannot override it.
+	because to achieve the overriding we need at least 2 or more classes
+
+
+package Tutorial2;
+
+public class Demo8 {
+
+	private void abc()
+	{
+		System.out.println("abc method in Demo8 class");
+	}
+
+}
+
+package Tutorial2;
+
+public class Sample8 extends Demo8 {
+
+	private void abc() {
+		System.out.println("abc method in Sample8 class");
+	}
+	
+	public static void main(String[] args) {
+		Sample8 obj =new Sample8();
+		obj.abc();
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------
+can we override the constructor in java?									VVVVVIMMMPPPPPPPPPPPPPPPp
+	No
+
+why we cannot override the constructor?								VVVVVIMMMPPPPPPPPPPPPPPPp
+	constructor cannot be override because constructor name should be same as class name.
+	and to achieve the method overriding we need 2 or classes. inside the java  we cannot create 2 classes with same name.
+
+package Tutorial2;
+
+public class Demo9 {
+
+	public Demo9()
+	{
+		System.out.println("Demo9 0 args cons");
+	}
+}
+==========================================================================================
+There we different method overriding
+
+1)	findElement()						---> this is present inside the WebDriver interface as well as WebElement interface
+2)	findElements()						---> this is present inside the WebDriver interface as well as WebElement interface
+3)	getScreenshotAs()					---> this is present inside the TakesScreenshot interface as well as WebElement interface
+4)	getText()							---> this is present inside the Alert interface as well as WebElement interface
+5)	sendKeys()							---> this is present inside the Alert interface as well as WebElement interface
+
+==========================================================================================
+diff between Method overriding and method hiding?
+	
+method hiding
+		- if we have same static method present inside the parent class as well as child class with same signature is called method hiding
+		- Method hiding is also called as static binding or compile time polymorphism or early binding
+		- Method resolution take care by compiler for static methods
+
+Method overriding
+		-if we have same non static method present inside the parent class and child class with same signature is called method overrding
+		- Method overriding is also called as dynamic binding or run time polymorphism or late binding
+		- Method resolution take by the JVM at run time
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Where we are using overloading in framework?											VVVVVVVVIMMMPPPPPP
+		- we use overloading concept in Page Layer package in src main java.
+		- in page layer package we create object repository as well as we write associated method for object repository.
+		- just take an example, we have to create new employee by entering firstname, middle name and last name, but middle name is optional.
+		in this case we create addEmployee() method with 2 String arguments as well as addEmployee() method with 3 string  arguments
+
+		- in Utility Layer package we create reusable script code with same method name with different signature.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Where we are using Overriding in framework?											VVVVVVVVIMMMPPPPPP
+		- We use overriding concept in Page Layer package in src/main/java.
+		- in page layer package we create object repository as well as we write associated method for object repository.
+		- just example in parent class we have created associated method to achieve the functionality and we have inherited same method in child 		classes to remodify the logic for methods.
+
+		- in Utility Layer package we create reusable script code with same method name with same signature in child class and parent class.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+									VVVVIMMMPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1) What is Polymorphism?
+
+2) diff between method overloading and method overriding
+3) diff between static binding and dynamic binding
+
+4) can we override the private method
+5) why we can't override the private method
+
+6) can we override the static method
+7) why we can't override the static method
+
+8) can we override the main method
+9) why we can't override the main method
+
+10) can we override the final method
+11) why we can't override the final method
+
+12) can we override the constructor
+13) why we can't override the constructor
+
+14) diff method hiding and method overriding
+15) where you have used method overloading concept in framework
+16) where you have used method overriding concept in framework
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1) what is inheritance
+2) where you have used inheritance concept in framework
+3) why we can't achieve the multiple inheritance
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1) what are the different variables in java
+2) what are the different types of access modifier in java and their access scope
+
+1) diff between == operator and equals() method
+
+
+
+
+
+

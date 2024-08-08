@@ -1,0 +1,319 @@
+how to read data from Excel sheet in cucumber BDD Framework?									VVVVVVIMMMPPPPP
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+		- if we have large set of test data we can't store these test data in features files.
+		- we store these test data in Excel sheet and then we read it as per the requirements wise.
+		- Read the test data we use apache poi dependency.
+		
+e.g.
+		//step 1: read the file content 
+			FileInputStream fis = FileInputStream("file path");
+
+		//step 2: load all excel sheets 
+			XSSFWorkbook workbook =new XSSFWorkbook(fis);
+
+		//step 3: focus on specific sheet by using sheet index
+			XSSFSheet sheets = workbook.getSheetAt(0);
+
+		//step 4: capture total numbers of rows present inside the sheet
+			int rowcount = sheets.getLastRowNum();
+		
+		//step 5: create object  of List<Map<String, String>  or ArrayList<Map<String, String> 	--> we store test data as per the row wise
+			List<Map<String, String> excelRowTestData = new ArrayList<Map<String, String>>();
+
+		//step 6: iterate all rows from excel sheet
+
+				for(int i=1; i<=rowcount; i++)
+				{
+						//step 7: count total columns in excel sheet		
+							int cellCount  = sheets.getRow(0).getLastCellNum();
+
+						//step 8: create object of LinkedHashMap<String, String>			---> we store the test data as per column wise
+						LinkedHashMap<String, String> excelColumnTestData = new LinkedHashMap<String, String>();
+
+						//step 9: iterate all the columns value
+						
+						for(int j=0; j<cellCount; j++)
+						{
+						
+								//step 10: capture column heading value 
+								String columnHeadingName = sheets.getRow(0).getCell(j).getStringCellValue();
+
+								//step 11: capture column cell values
+								String cellValue = sheets.getRow(i).getCell(j).getStringCellValue();
+
+								//step 12: add values inside the LinkedHashMap by using put() method
+								excelColumnTestData.put(columnHeadingName, cellValue);
+						}
+
+						//step 13: add values inside the List<Map<String, String>
+						excelRowTestData.add(excelColumnTestData);
+				}
+			
+				//capture the values  from List<Map<String, String> object
+				String a = excelRowTestData.get(2).get("FirstName");
+				
+=================================================================================
+package Tutorial1;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws Exception {
+		// check Excel file is present or not
+		File f = new File("C:\\Users\\praf0\\OneDrive\\Desktop\\TestData.xlsx");
+
+		// step 2: read all file content
+		FileInputStream fis = new FileInputStream(f);
+
+		//step 3: load all Excel Sheets
+		XSSFWorkbook workbook =new XSSFWorkbook(fis);
+		
+		//step4 : focus on specific sheet using sheet index or sheet name
+		XSSFSheet sheets = workbook.getSheet("PersonalInfo");
+		
+		//step 5: count total rows in excel sheet
+		int rowCount = sheets.getLastRowNum();
+		
+		//step 6: create object of List<Map<String, String>>
+		List<Map<String, String>> excelRowTestData = new ArrayList<Map<String,String>>();
+		
+		//step 7: iterate all rows from Excel sheet
+		for(int i=1;i<=rowCount;i++)
+		{
+			
+			//step 8: count total columns in excel sheet
+			int cellCount = sheets.getRow(0).getLastCellNum();
+			
+			//step 9: create object of LinkedHashMap<String, String>>
+			
+			LinkedHashMap<String,String> columnTestData = new LinkedHashMap<String,String>();
+			
+			//step 10: iterate the all columns
+			
+			for(int j=0;j<cellCount;j++)
+			{
+				
+				//step 11: capture the column name or heading name
+				String collumnHeading = sheets.getRow(0).getCell(j).getStringCellValue();
+			
+				//step 12: capture the column cell values
+				String cellValue = sheets.getRow(i).getCell(j).getStringCellValue();
+			
+				//step 13: put values inside the LinkedHashMap object
+				columnTestData.put(collumnHeading, cellValue);
+			}
+			
+			//step 14: add columns inside the List<Map<String, String>> object
+			excelRowTestData.add(columnTestData);
+		}
+		
+		
+		
+		///capture the values from Excel sheet /List<Map<String,String>>
+		
+		String a = excelRowTestData.get(3).get("LastName");
+		System.out.println(a);
+		
+		
+	}
+
+}
+=====================================================================================
+Feature: Test Facebook Application
+
+  Scenario Outline: Validate the Register Page Functionality
+    Given user is on register page
+    When user enter firstname and lastname from "<ExcelSheetName>" and <rownumber>
+
+    Examples: 
+      | ExcelSheetName | rownumber |
+      | PersonalInfo   |         0 |
+      | PersonalInfo   |         1 |
+      | PersonalInfo   |         2 |
+      | PersonalInfo   |         3 |
+
+
+
+
+package Steps;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import UitlityLayer.ExcelReader;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+
+public class RegisterSteps {
+	static WebDriver driver;
+
+	String ExcelSheetPath = "C:\\Users\\praf0\\OneDrive\\Desktop\\TestData.xlsx";
+
+	@Given("user is on register page")
+	public void user_is_on_register_page() {
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().window().maximize();
+		driver.get("https://www.facebook.com/reg");
+	}
+
+	@When("user enter firstname and lastname from {string} and {int}")
+	public void user_enter_firstname_and_lastname_from_and(String ExcelSheetName, Integer rownumber)
+			throws InterruptedException {
+
+		ExcelReader excel = new ExcelReader();
+		List<Map<String, String>> testData = excel.getAllSheetTestData(ExcelSheetPath, ExcelSheetName);
+
+		String fname = testData.get(rownumber).get("FirstName");
+		String lname = testData.get(rownumber).get("LastName");
+		String uname = testData.get(rownumber).get("username");
+		String pass = testData.get(rownumber).get("password");
+
+		driver.findElement(By.name("firstname")).sendKeys(fname);
+		driver.findElement(By.name("lastname")).sendKeys(lname);
+
+		driver.findElement(By.name("reg_email__")).sendKeys(uname);
+		driver.findElement(By.name("reg_passwd__")).sendKeys(pass);
+
+		Thread.sleep(7000);
+
+		driver.quit();
+
+	}
+
+}
+
+
+package UitlityLayer;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelReader {
+	static XSSFWorkbook workbook;
+	static XSSFSheet sheets;
+
+	public List<Map<String, String>> getAllSheetTestData(String excelSheetPath, String sheetName) {
+
+		try {
+			// read all file content
+			FileInputStream fis = new FileInputStream(excelSheetPath);
+			// load all excel sheet
+			workbook = new XSSFWorkbook(fis);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// focus on specific sheet
+		XSSFSheet sheets = workbook.getSheet(sheetName);
+
+		// capture total rows in sheet
+		int rowCount = sheets.getLastRowNum();
+
+		// create object of List<Map<String, String>.
+		List<Map<String, String>> rowTestData = new ArrayList<Map<String, String>>();
+
+		// iterate all rows
+		for (int i = 1; i <= rowCount; i++) {
+
+			// count columns
+			int cellCount = sheets.getRow(0).getLastCellNum();
+
+			// create object of LinkedHashMap<String, String>>
+			LinkedHashMap<String, String> columnTestData = new LinkedHashMap<String, String>();
+
+			// iterate columns value
+			for (int j = 0; j < cellCount; j++) {
+				// capture the column heading or headers value
+				String columnHeading = sheets.getRow(0).getCell(j).getStringCellValue();
+
+				// capture ghe column cell value
+				String cellValue = sheets.getRow(i).getCell(j).getStringCellValue();
+
+				// put all value inside the LinkedHashMap object
+				columnTestData.put(columnHeading, cellValue);
+			}
+
+			// add value inside the List<Map<String, String> object
+			rowTestData.add(columnTestData);
+		}
+
+		return rowTestData;
+	}
+
+}
+
+package TestRunner;
+
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions
+	(
+			features="src/test/java/Features",
+			glue="Steps")
+public class RunnerTest  extends AbstractTestNGCucumberTests{
+	
+}
+===============================================================================
+Feature: Test Cogmento CRM Application
+
+  Scenario: Validate login functionality
+    Given user is on login Page
+    When user enter valid credentails
+      | prafulp1010@gmail | Pr@ful0812 |
+    And user click on login button
+
+  Scenario: validate home page functionality
+    When user is on home page validate home page title as "Cogmento CRM"
+    And user validate home page url
+    And user validate home page logo
+
+  Scenario Outline: Validate contact page functionality
+    When user is on contact page and validate contact page url contains "contants"
+    And user click on create button
+    And user enter contact information from Excel Sheet using "<SheetName>" and <RowNumber>
+    And user click on save button
+    And user delete contanct
+
+  Scenario: validate logout functionality
+    When user click on profile icon
+    And user logout the application
+    And user close the session
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

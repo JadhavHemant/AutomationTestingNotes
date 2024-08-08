@@ -1,0 +1,324 @@
+package Tutorial4;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		// find numbers in String
+		String a = "java123#@$4SELENIUM";
+		// 1 way
+		String num1 = a.replaceAll("[^0-9]", "");
+		System.out.println(num1);
+
+		// 2 Way
+		Matcher m1 = Pattern.compile("[0-9]").matcher(a);
+		while (m1.find()) {
+			System.out.print(m1.group());
+		}
+
+		System.out.println();
+		// 3 Way
+		Matcher m2 = Pattern.compile("(\\d)").matcher(a);
+		while (m2.find()) {
+			System.out.print(m2.group());
+		}
+
+		System.out.println();
+		// 4 way
+		char[] abc = a.toCharArray();
+
+		for (int i = 0; i < abc.length; i++) {
+			if (abc[i] >= 48 && abc[i] <= 57) {
+				System.out.print(abc[i]);
+			}
+		}
+		System.out.println();
+		// 5. way
+		char[] xyz = a.toCharArray();
+
+		for (int i = 0; i < xyz.length; i++) {
+			if (Character.isDigit(xyz[i])) {
+				System.out.print(xyz[i]);
+			}
+		}
+		System.out.println();
+
+		// 6.way
+		ArrayList<Character> arr = new ArrayList<Character>();
+		char[] pqr = a.toCharArray();
+
+		for (int i = 0; i < pqr.length; i++) {
+			if (Character.isDigit(pqr[i])) {
+				arr.add(pqr[i]);
+			}
+		}
+
+		for (Character s : arr) {
+			System.out.print(s);
+		}
+
+	}
+
+}
+================================================================================
+package Tutorial4;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// find all Lower case letter
+		String a = "java123#@$4SELENIUM";
+
+		// 1 way
+		String lc1 = a.replaceAll("[^a-z]", "");
+		System.out.println(lc1);
+
+		// 2 way
+		Matcher m1 = Pattern.compile("[a-z]").matcher(a);
+		while (m1.find()) {
+			System.out.print(m1.group());
+		}
+		System.out.println();
+		// 2 way
+		Matcher m2 = Pattern.compile("[^\\W \\d (A-Z)]").matcher(a);
+		while (m2.find()) {
+			System.out.print(m2.group());
+		}
+		System.out.println();
+
+		// 3. way
+		char[] abc = a.toCharArray();
+
+		for (int i = 0; i < abc.length; i++) {
+			if (abc[i] >= 97 && abc[i] <= 122) {
+				System.out.print(abc[i]);
+			}
+		}
+		System.out.println();
+		// 4 way
+		char[] xyz = a.toCharArray();
+
+		for (int i = 0; i < xyz.length; i++) {
+			if (Character.isLowerCase(xyz[i])) {
+				System.out.print(xyz[i]);
+			}
+		}
+		System.out.println();
+		// 5 way
+		char[] lmn = a.toCharArray();
+		ArrayList<Character> arr = new ArrayList<Character>();
+
+		for (int i = 0; i < lmn.length; i++) {
+			if (Character.isLowerCase(lmn[i])) {
+				arr.add(lmn[i]);
+			}
+		}
+
+		for (Character s : arr) {
+			System.out.print(s);
+		}
+
+	}
+
+}
+=============================================================================
+package Tutorial4;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		// find all Lower case letter
+		String a = "java123#@$4SELENIUM";
+
+		// 1 way
+		String lc1 = a.replaceAll("[^A-Z]", "");
+		System.out.println(lc1);
+
+		// 2 way
+		Matcher m1 = Pattern.compile("[A-Z]").matcher(a);
+		while (m1.find()) {
+			System.out.print(m1.group());
+		}
+		System.out.println();
+		// 2 way
+		Matcher m2 = Pattern.compile("[^\\W \\d (a-z)]").matcher(a);
+		while (m2.find()) {
+			System.out.print(m2.group());
+		}
+		System.out.println();
+
+		// 3. way
+		char[] abc = a.toCharArray();
+
+		for (int i = 0; i < abc.length; i++) {
+			if (abc[i] >= 65 && abc[i] <= 90) {
+				System.out.print(abc[i]);
+			}
+		}
+		System.out.println();
+		// 4 way
+		char[] xyz = a.toCharArray();
+
+		for (int i = 0; i < xyz.length; i++) {
+			if (Character.isUpperCase(xyz[i])) {
+				System.out.print(xyz[i]);
+			}
+		}
+		System.out.println();
+		// 5 way
+		char[] lmn = a.toCharArray();
+		ArrayList<Character> arr = new ArrayList<Character>();
+
+		for (int i = 0; i < lmn.length; i++) {
+			if (Character.isUpperCase(lmn[i])) {
+				arr.add(lmn[i]);
+			}
+		}
+
+		for (Character s : arr) {
+			System.out.print(s);
+		}
+
+		System.out.println();
+		// 7. way
+		char[] abc1 = a.toCharArray();
+
+		for (int i = 0; i < abc1.length; i++) {
+			if (abc1[i] >= 'A' && abc1[i] <= 'Z') {
+				System.out.print(abc1[i]);
+			}
+		}
+		System.out.println();
+
+	}
+
+}
+=====================================================
+package Tutorial4;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		// find special character
+		String a = "java123#@$4SELENIUM";
+
+		// 1 way
+		String sp1 = a.replaceAll("[0-9a-zA-Z]", "");
+		System.out.println(sp1);
+
+		// 2 way
+		Matcher m1 = Pattern.compile("[^0-9a-zA-Z]").matcher(a);
+		while (m1.find()) {
+			System.out.print(m1.group());
+		}
+
+		System.out.println();
+		// 3 way
+		Matcher m2 = Pattern.compile("(\\W)").matcher(a);
+		while (m2.find()) {
+			System.out.print(m2.group());
+		}
+
+		System.out.println();
+		// 4 way
+		char[] abc = a.toCharArray();
+		for (int i = 0; i < abc.length; i++) {
+			if (!((abc[i] >= 65 && abc[i] <= 90) || (abc[i] >= 48) && (abc[i] <= 57)
+					|| ((abc[i] >= 97) && (abc[i] <= 122)))) {
+
+				System.out.print(abc[i]);
+			}
+		}
+
+		System.out.println();
+		// 5 way
+		char[] xyz = a.toCharArray();
+		for (int i = 0; i < xyz.length; i++) 
+		{
+			if (!
+					(
+							(xyz[i] >= 'A' && xyz[i] <= 'Z') 
+					|| (
+							(xyz[i] >= 48) && (xyz[i] <= 57))
+					|| (
+							(xyz[i] >= 'a') && (xyz[i] <= 'z'))
+					)
+				) 
+			{
+
+				System.out.print(xyz[i]);
+			}
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

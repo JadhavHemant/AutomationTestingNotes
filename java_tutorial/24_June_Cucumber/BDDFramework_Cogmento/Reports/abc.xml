@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="30.061" tests="4" skipped="0" failures="0" errors="0">
+<testcase classname="Test congmento application" name="validate login functionality" time="21.657">
+<system-out><![CDATA[
+Given user is on login page.................................................passed
+When user enter valid username and password.................................passed
+Then user click on login button.............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Test congmento application" name="validate home page functionality" time="2.675">
+<system-out><![CDATA[
+Then user validte home page title...........................................passed
+And user validate home page logo............................................passed
+And user validate home page url.............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Test congmento application" name="validate contact page" time="5.193">
+<system-out><![CDATA[
+When user click on contact link.............................................passed
+And click on create button..................................................passed
+Then user enters firstname, lastname, email and select status...............passed
+And user click on save button...............................................passed
+Then user delete the contact................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Test congmento application" name="validate logout functionality" time="0.151">
+<system-out><![CDATA[
+Then user click on profile icon.............................................passed
+And user click on logout....................................................passed
+]]></system-out>
+</testcase>
+</testsuite>

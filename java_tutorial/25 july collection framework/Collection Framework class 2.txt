@@ -1,0 +1,363 @@
+Collection interface Methods
+----------------------------------------------------------------------------------------------------------------------------
+	1) add(Object o)											boolean
+	2) addAll(Collection c)									boolean
+	3) remove(Object o)										boolean
+	4) removeAll(Collection c)								boolean
+	5) contains(Object o)										boolean
+	6) containsAll(Collection c)								boolean
+	7) clear()												void
+	8) size()													int
+	9) isEmpty()												boolean
+	10) toArrays()											Object []
+	11) iterator()											Iterator interface
+	12) retainAll(Collection c)								boolean
+----------------------------------------------------------------------------------------------------------------------------
+List Interface Methods
+	1) add(int index, Object o)								void
+	2) addAll(int index, Collection c)							boolean
+	3) remove(int index)										Object
+	4) get(int index)											Object
+	5) set(int index, Object)									Object
+	6) indexOf(Object o)										int
+	7) listIterator()											ListIterator interface
+----------------------------------------------------------------------------------------------------------------------------
+List Interface
+	there are 3 main implemented classes present in List interface
+	1) ArrayList
+	2) LinkedList
+	3) Vector
+----------------------------------------------------------------------------------------------------------------------------
+Vector class
+	- underlying data structure is ''"Growable array "" or "Resizable array".
+	- Vector class, maintain insertion order.
+	- Null insertion allowed multiple times
+	- duplicates are allowed
+	- Heterogeneous object are allowed.
+	- default capacity is 10
+	- all methods are synchronized in vector 
+	- multiple threads are not allowed or single thread is allowed at same time.
+	- performance is low 
+	- best choice retrieval operations.
+
+syntax:
+		Collection v1 =new Vector();
+
+		List v2 =new Vector();
+
+		Vector v3 =new Vector();
+
+package Tutorial6;
+
+import java.util.Collection;
+import java.util.Vector;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		Collection v1 =new Vector();
+		
+		v1.add("Selenium");
+		v1.add(100);
+		v1.add(124.454f);
+		v1.add(true);
+		v1.add(null);
+		v1.add("Selenium");
+		v1.add(null);
+		
+		int a = v1.size();
+		System.out.println(a);
+		
+		boolean b = v1.isEmpty();
+		System.out.println(b);//false
+		
+		boolean c = v1.contains(100);
+		System.out.println(c);//true
+		
+		boolean d = v1.remove("Selenium");
+		System.out.println(d);//true
+		
+		v1.clear();
+		
+		System.out.println(v1);
+		
+		
+	}
+
+}
+================================================================
+package Tutorial6;
+
+import java.util.Collection;
+import java.util.Vector;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		Collection v1 =new Vector();
+		v1.add("A");
+		v1.add("B");
+		v1.add("C");
+		v1.add("D");
+		
+		Collection v2 =new Vector();
+		v2.add(100);
+		v2.add(200);
+		v2.add(300);
+		
+		System.out.println(v1);// A B C D
+		
+		v1.addAll(v2);
+		System.out.println(v1);//A B C D  100 200 300
+		
+		v1.removeAll(v2);
+		System.out.println(v1);//A B C D
+		
+		v1.addAll(v2);
+		
+		System.out.println(v1);//A B C D 100 200 300
+		
+		v1.retainAll(v2);
+		System.out.println(v1);// 100 200 300
+		
+		
+		
+	}
+}
+=================================================================
+package Tutorial6;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Vector;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		Collection v1 = new Vector();
+		v1.add("A");
+		v1.add("B");
+		v1.add("C");
+		v1.add("D");
+
+		
+		Object [] abc = v1.toArray();
+		
+		for(Object o: abc)
+		{
+			System.out.println(o);
+		}
+		System.out.println("----------------------------");
+		Iterator it = v1.iterator();
+		
+		while(it.hasNext())
+		{
+			Object o= it.next();
+			System.out.println(o);
+		}
+		
+		
+		
+		
+	}
+
+}
+====================================================================================
+package Tutorial6;
+
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Vector;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+
+		List v1 =new Vector();
+		v1.add("A");
+		v1.add("B");
+		v1.add("C");
+		v1.add("D");
+		
+		System.out.println(v1);
+		
+		v1.add(2,"P");//it add new value on index position
+		System.out.println(v1);//A B P C D
+		
+		Object a2 = v1.set(2,"S");//Modify the value or update the value
+		System.out.println(v1);//A B S C D
+		
+		Object a = v1.get(3);
+		System.out.println(a);
+
+		Object a3 = v1.remove(1);
+		System.out.println(a3);//B
+		
+		System.out.println(v1);
+		
+		int a4 = v1.indexOf("C");
+		System.out.println(a4);//2
+		
+		
+		ListIterator it = v1.listIterator();
+		
+		while(it.hasNext())
+		{
+			Object o = it.next();
+			System.out.println(o);
+		}
+		
+
+		
+	}
+
+}
+==========================================================================
+package Tutorial6;
+
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Vector;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		
+		List<Integer> v1 = new Vector<Integer>();
+		
+		v1.add(100);
+		v1.add(200);
+		v1.add(300);
+		v1.add(400);
+		
+		System.out.println(v1);
+		
+		int a1 = v1.get(2);
+		
+		int a2 = v1.remove(2);
+		
+		ListIterator<Integer> it = v1.listIterator();
+		
+		while(it.hasNext())
+		{
+			int c = it.next();
+			System.out.println(c);
+		}
+		
+
+	}
+
+}
+============================================================================
+package Tutorial6;
+
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Vector;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		
+		List v1 = new Vector();
+		
+		v1.add(100);
+		v1.add(200);
+		v1.add(300);
+		v1.add(400);
+		
+		System.out.println(v1.isEmpty());//false
+		System.out.println(v1.size());//4
+		boolean a = v1.contains(300);
+		System.out.println(a);
+
+		v1.clear();
+		System.out.println(v1);
+		
+	}
+
+}
+=====================================================================
+package Tutorial6;
+
+import java.util.Vector;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+
+		Vector v1 = new Vector();
+		v1.add(100);
+		v1.add(100);
+		v1.add("selenium");
+		v1.add(100.34f);
+		v1.add(null);
+		v1.add(null);
+		
+		System.out.println(v1);
+		System.out.println(v1.isEmpty());//false
+		System.out.println(v1.size());//6
+		System.out.println(v1.get(3));//100.34
+		v1.clear();
+		System.out.println(v1);
+	}
+}
+======================================================================================
+diff between ArrayList and Vector												VVVVVVIMMMPPPPPPPPPPPPPPP
+	
+ArrayList
+		- all methods from ArrayList class is non synchronized
+		- ArrayList class performance is high
+		- at the same time multiple threads are allowed
+
+Vector
+		- all methods are synchronized
+		- Vector class performance is low
+		- at the same time only one thread is allowed.
+======================================================================================
+Stack Class
+		1) push()
+		2) pop()
+		3) peak()
+		4) empty
+		5) search()
+
+
+		Collection c1 = new Stack();
+		List c2 = new Stack();
+		Stack c3 = new Stack();
+
+======================================================================================
+
+LinkedList  class
+		
+		1) addFirst(Object o)
+		2) addLast(Object o )
+		3) getFirst()
+		4)getLast()
+		5) removeFirst()
+		6) removeLast()
+
+		Collection c1 = new LinkedList();
+		List c2 = new LinkedList();
+		LinkedList c3 = new LinkedList();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
