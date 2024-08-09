@@ -1,0 +1,24 @@
+{
+  "customers": [
+    {
+      "id": "1",
+      "cust_fName": "rajesh",
+      "cust_lName": "Patil",
+      "cust_billingAddress": "pune",
+      "product_Name": "IPhone",
+      "product_price": 199.23,
+      "product_Discount": 10,
+      "product_info": "Iphone 15"
+    },
+    {
+      "id": "2",
+      "cust_fName": "Rohini",
+      "cust_lName": "Shinde",
+      "cust_billingAddress": "Mumbai",
+      "product_Name": "IPhone",
+      "product_price": 299.23,
+      "product_Discount": 7,
+      "product_info": "Iphone 15 Pro Max 1TB"
+    }
+  ]
+}

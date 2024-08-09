@@ -1,0 +1,540 @@
+User End to End all APIs
+------------------------------------------------------------------------------------------------------------
+Swagger Documentation
+
+POST Request:
+				Base URI				http://localhost:5000/users
+				Request Type			POST
+				Request Header			Content-Type	application/json		
+				Request Body
+								{
+									"firstName": "{string}",
+									 "lastName": "{string}",
+							 		"username": "{string}",
+									 "age": {int}
+									 "address":
+												 {
+													 "city": "{string}",
+													 "state": "{string}",
+													 "country": "{string}",
+													 "pincode": int
+												}
+								}
+
+Note:
+	if any key contains if we have multiple key-value pair then we create POJO class with same key name.
+	and inside these class we write all key as nested json format.
+---------------------------------------------------------------------------------------------------
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class User
+{
+		private String firstName;
+		private String lastName;
+		private String username;
+		private int age;
+		private Address address;
+
+		//getter and setter method
+}
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Address
+{
+		private String city;
+		private String state;
+		private String country;
+
+		@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+		private int pincode;
+
+		//getter and setter method
+}
+
+==================================================================================
+Feature: Test End to End all User APIs
+
+  Scenario: create new User using POST Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    And user add request header as "Content-Type" key and "application/json" value
+    And user create request body using json node as "createUser"
+    And user add request body to HTTP Request
+    When user select HTTP "POST" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response header
+    And user capture id from Response body
+
+  Scenario: retrieve User using GET Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    When user select HTTP "GET" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response header
+
+  Scenario: update User using PUT Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    And user add request header as "Content-Type" key and "application/json" value
+    And user create request body using json node as "updateUser"
+    And user add request body to HTTP Request
+    When user select HTTP "PUT" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response header
+
+  Scenario: retrieve User using GET Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    When user select HTTP "GET" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response header
+
+  Scenario: partial update User using PATCH Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    And user add request header as "Content-Type" key and "application/json" value
+    And user create request body using json node as "PartialUpdateUser"
+    And user add request body to HTTP Request
+    When user select HTTP "PATCH" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response header
+
+  Scenario: retrieve User using GET Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    When user select HTTP "GET" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response header
+
+  Scenario: delete User using DELETE Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    When user select HTTP "DELETE" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response header
+
+  Scenario: retrieve User using GET Request
+    Given user get the Request Specification interface Object
+    And user configure Base URI
+    When user select HTTP "GET" Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+
+
+package Entity;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class User {
+
+	private String firstName;
+	private String lastName;
+	private String username;
+
+	@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+	private int age;
+
+	private Address address;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+}
+
+
+package Entity;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Address {
+
+	private String city;
+	private String state;
+	private String country;
+
+	@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+	private int pincode;
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+}
+
+
+package StepAPIs;
+
+import java.io.File;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import Entity.User;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class UserAPIs {
+
+	RequestSpecification httpRequest;
+	String requestBody;
+	Response response;
+	String responseBody;
+	static String userId;
+
+	@Given("user get the Request Specification interface Object")
+	public void user_get_the_request_specification_interface_object() {
+		httpRequest = RestAssured.given();
+	}
+
+	@Given("user configure Base URI")
+	public void user_configure_base_uri() {
+		httpRequest.baseUri("http://localhost:5000/");
+	}
+
+	@Given("user add request header as {string} key and {string} value")
+	public void user_add_request_header_as_key_and_value(String key, String value) {
+		httpRequest.headers(key, value);
+	}
+
+	@Given("user create request body using json node as {string}")
+	public void user_create_request_body_using_json_node_as(String jsonNodeName) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+
+		File file = new File(System.getProperty("user.dir") + "//src//test//resources//UserTestData.json");
+
+		JsonNode jsonNode = mapper.readTree(file);
+
+		User user = mapper.treeToValue(jsonNode.get(jsonNodeName), User.class);
+
+		requestBody = mapper.writeValueAsString(user);
+
+	}
+
+	@Given("user add request body to HTTP Request")
+	public void user_add_request_body_to_http_request() {
+		httpRequest.body(requestBody);
+	}
+
+	@When("user select HTTP {string} Request")
+	public void user_select_http_request(String RequestType) {
+
+		if (RequestType.equalsIgnoreCase("POST")) {
+			response = httpRequest.post("users");
+		} 
+		else if (RequestType.equalsIgnoreCase("PUT")) {
+			response = httpRequest.put("users/" + userId);
+		} 
+		else if (RequestType.equalsIgnoreCase("PATCH")) {
+			response = httpRequest.patch("users/" + userId);
+		}
+		else if (RequestType.equalsIgnoreCase("GET")) {
+			response = httpRequest.get("users/" + userId);
+		}
+		else if (RequestType.equalsIgnoreCase("DELETE")) {
+			response = httpRequest.delete("users/" + userId);
+		}
+	}
+
+	@Then("user capture status code")
+	public void user_capture_status_code() {
+		int a = response.statusCode();
+		System.out.println(a);
+	}
+
+	@Then("user capture status line")
+	public void user_capture_status_line() {
+		String b = response.statusLine();
+		System.out.println(b);
+	}
+
+	@Then("user capture response time")
+	public void user_capture_response_time() {
+		long c = response.time();
+		System.out.println(c);
+	}
+
+	@Then("user capture response body")
+	public void user_capture_response_body() {
+		responseBody = response.body().asString();
+		System.out.println(responseBody);
+	}
+
+	@Then("user capture response header")
+	public void user_capture_response_header() {
+		Headers allHeader = response.headers();
+
+	}
+
+	@Then("user capture id from Response body")
+	public void user_capture_id_from_response_body() {
+		JsonPath path = new JsonPath(responseBody);
+		userId = path.getString("id");
+		System.out.println(userId);
+
+	}
+
+}
+
+package TestRunner;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features="src/test/java/Features",
+		glue="StepAPIs",
+		dryRun=false
+		
+		)
+public class RunnerTest {
+
+}
+
+{
+	"createUser": {
+		"firstName": "Manoj",
+		"lastName": "Jadhav",
+		"username": "Manoj@gmail.com",
+		"age": 28,
+		"address": {
+			"city": "Pune",
+			"state": "MH",
+			"country": "IN",
+			"pincode": 334455
+		}
+	},
+	"updateUser": {
+		"firstName": "Rutuja",
+		"lastName": "Kale",
+		"username": "rutuja1111@gmail.com",
+		"age": 25,
+		"address": {
+			"city": "Delhi",
+			"state": "DL",
+			"country": "IN",
+			"pincode": 889900
+		}
+	},
+	"PartialUpdateUser": {
+			"username": "rahul123gmail.com"
+	}
+}
+===========================================================================================
+POST
+			http://localhost:7000/products
+GET
+			http://localhost:7000/products/1
+PUT
+			http://localhost:7000/products/1
+GET
+			http://localhost:7000/products/1
+PATCH
+			http://localhost:7000/products/1
+GET
+			http://localhost:7000/products/1
+DELETE
+			http://localhost:7000/products/1
+
+==============================================
+{
+    "products" :
+    [
+        {
+            "id" : 1,
+            "produt_Name" : "Mobile",
+            "product_price" : 1234.34,
+            "product_info" : "Samsung",
+            "product_sellerName" : "abc",
+            "order" : 
+                {
+                    "order_id" : 11010,
+                    "order_location" : "Pune",
+                    "order_type" : "COD",
+                    "order_tokeId" : 123
+                },
+            "BuyerFirstName" : "Akshay",
+            "BuyerLastName" : "Chavan",
+            "Buyer_DelivaryAddress" : "abc Pune",
+            "Buyer_EmailId" : "akshay@gmail.com",
+            "Buyer_MobileNumber" : 9090909090
+        },
+        {
+            "id" : 2,
+            "produt_Name" : "Watch",
+            "product_price" : 14434.34,
+            "product_info" : "Samsung",
+            "product_sellerName" : "xyz",
+            "order" : 
+                {
+                    "order_id" : 112233,
+                    "order_location" : "Mumbai",
+                    "order_type" : "COD",
+                    "order_tokeId" : 12344
+                },
+            "BuyerFirstName" : "Rahul",
+            "BuyerLastName" : "Kale",
+            "Buyer_DelivaryAddress" : "xyz Pune",
+            "Buyer_EmailId" : "Rahul@gmail.com",
+            "Buyer_MobileNumber" : 888888
+        }
+    ]
+}
+
+
+============================================================================
+{
+    "personalInformation" :
+    [
+    {
+        "id" : 1,
+        "fullName" : "Akshay Mankar",
+        "education" :
+            {
+                "graduation" : "BE",
+                "postGraduation" : "M.Tech"
+            },
+        "dob" : 
+        {
+            "date" : 10,
+            "month" : "Jan",
+            "year" : 2010
+        },
+        "address" :
+        {
+            "country" : "India",
+            "permanentAddress" : 
+                {
+                    "pincode" : 112233,
+                    "state" : "MH",
+                    "city" : "Pune"
+                },
+            "currentAddress" :
+            {
+                "pincode" : 332244,
+                "state" : "MH",
+                "city" : "Pune"
+            }
+        },
+        "gender" : true
+    }
+]
+}
+=====================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
