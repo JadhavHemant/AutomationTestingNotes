@@ -1,0 +1,659 @@
+Abstraction in java
+	- Abstraction is process of hiding the implementation details and showing only functionality to the suer.
+	there are 2 ways we can achieve the abstraction
+	1) by declaring the abstract class
+	2) by declaring the interface.
+-------------------------------------------------------------------------------------------------
+1) by declaring the abstract class
+	- by declaring the abstract class we can achieve the 0 to 100% abstraction.
+	- when we create abstract methods, if know the method name but don't know how to implement it.
+	- if java class contains we have one or more abstract method then mark class as abstract class by using abstract keyword.
+	- in abstract class, we declare abstract method as well as concrete method.
+	-  abstract method is also called as incomplete method, incomplete method means without method body.
+	-  concrete method is also called as complete method, complete method means we write body for the method.
+	- abstraction is built on method overriding concept, means once declare any method in abstract class compulsory we have 	override these methods in child class.
+	- we achieve abstraction using inheritance concept.
+	-  we achieve abstraction only for abstract non static methods.
+
+1) abstract method without return type and 0 args
+2) abstract method without return type and multiple args
+3) abstract method with return type and 0 args
+4) abstract method with return type and multiple args
+
+we can create abstract public method, abstract protected method and abstract default method only.
+
+
+syntax:
+			AccessModifier AbstractKeyword withoutReturntype methodName();
+e.g.
+			public abstract void abc();
+
+syntax:
+			AccessModifier AbstractKeyword withoutReturntype methodName(datatype variableName1, datatype variableName2);
+
+e.g.
+			public abstract void abc(int a, int b);
+
+syntax:
+			AccessModifier AbstractKeyword withReturntype methodName();
+e.g.
+			public abstract String xyz();
+
+
+syntax:
+			AccessModifier AbstractKeyword withReturntype methodName(datatype variableName1, datatype variableName2);
+
+e.g.
+			public abstract String xyz(int a, String b);
+=============================================================================
+public abstract class Demo1
+{
+		//abstract method without return type and 0 args
+
+		public abstract void abc();
+
+		//abstract method without return type and multiple arguments
+
+		public abstract void xyz(int a, int b);
+}
+
+public class Sample1 extends Demo1
+{
+	public void abc()
+	{
+				System.out.println("abc method");
+	}
+		
+	public void xyz(int a, int b)
+	{
+			System.out.println("xyz  method "+(a+b));
+	}
+	
+
+	public static void main(String [] args)
+	{
+			Sample1 obj =new Sample1();
+			obj.abc();
+			obj.xyz(100,100);
+	}
+
+}
+----------------------------------------------------------------------------------------
+package Tutorial8;
+
+public abstract class Demo1 {
+
+	//abstract method without return type and 0 args
+	public abstract void abc();
+	
+	//abstract method without return type and multiple args
+	
+	public abstract void xyz(int a, int b);
+
+}
+
+package Tutorial8;
+
+public class Sample1 extends Demo1 {
+
+	@Override
+	public void abc() {
+		System.out.println("abc Method");
+		
+	}
+
+	@Override
+	public void xyz(int a, int b) {
+		System.out.println("XYZ method "+(a+b));
+	}
+
+	
+	public static void main(String[] args) {
+		Sample1 obj =new Sample1();
+		obj.abc();
+		obj.xyz(10, 1000);
+		
+	}
+	
+	
+}
+============================================================
+package Tutorial8;
+
+public abstract class Demo2 {
+
+	// public abstract method without return type and 0 args
+	public abstract void d1();
+
+	// public abstract method without return type and multiple args
+	public abstract void d2(String a);
+
+	// public abstract method with return type and 0 args
+	public abstract int d3();
+
+	// public abstract method with return type and multiple args
+	public abstract int d4(int a, int b);
+
+}
+package Tutorial8;
+
+public class Sample2 extends Demo2 {
+
+	@Override
+	public void d1() {
+		System.out.println("D1 method");
+	}
+
+	@Override
+	public void d2(String a) {
+		System.out.println("D2 method "+a);
+	}
+
+	@Override
+	public int d3() {
+		System.out.println("D3 method ");
+		return 100;
+	}
+
+	@Override
+	public int d4(int a, int b) {
+		System.out.println("D4 method ");
+		return a+b;
+	}
+	
+	public static void main(String[] args) {
+		Sample2 obj =new Sample2();
+		obj.d1();
+		obj.d2("selenium");
+		obj.d3();
+		obj.d4(10, 100);
+	}
+
+}
+=================================================
+package Tutorial8;
+
+public abstract class Demo3 {
+	
+	//protected abstract method without return type and 0 args
+	protected abstract void d1();
+	
+	//protected abstract method without return type and multiple args
+	protected abstract void d2(int a);
+	
+	//protected abstract method with return type and 0 args
+	protected abstract int d3();
+	
+	//protected abstract method with return type and multiple args
+	
+	protected abstract String d4(String a);
+	
+}
+
+package Tutorial8;
+
+public class Sample3 extends Demo3{
+
+	@Override
+	protected void d1() {
+		System.out.println("D1 Method");
+	}
+
+	@Override
+	protected void d2(int a) {
+		System.out.println("D2 Method "+a);
+	}
+
+	@Override
+	protected int d3() {
+		System.out.println("D3 Method");
+		return 100;
+	}
+
+	@Override
+	protected String d4(String a) {
+		System.out.println("D4 Method "+a);
+		return a;
+	}
+
+	public static void main(String[] args) {
+		Sample3 obj = new Sample3();
+		obj.d1();
+		obj.d2(100);
+		obj.d3();
+		obj.d4("cucumber");
+	}
+	
+	
+}
+=================================================================
+package Tutorial8;
+
+public abstract class Demo4 {
+	
+	//default abstract method without return type and 0 args
+	abstract void d1();
+	
+	//default abstract method without return type and multiple args
+	abstract void d2(int a);
+	
+	//default abstract method with return type and 0 args
+	abstract int d3();
+	
+	//default abstract method with return type and multiple args
+	abstract String d4(String a);
+	
+	
+}
+package Tutorial8;
+
+public class Sample4 extends Demo4 {
+
+	@Override
+	void d1() {
+		System.out.println("D1 method");
+	}
+
+	@Override
+	void d2(int a) {
+		System.out.println("D2 method "+a);
+	}
+
+	@Override
+	int d3() {
+		System.out.println("D3 method");
+		return 23;
+	}
+
+	@Override
+	String d4(String a) {
+		System.out.println("D4 method "+a);
+		return a;
+	}
+	
+	public static void main(String[] args) {
+		Sample4 obj =new Sample4();
+		obj.d1();
+		obj.d2(100);
+		obj.d3();
+		obj.d4("pom");
+	}
+
+}
+===============================================================
+can we achieve the method overloading for abstract  method
+	yes.
+
+package Tutorial8;
+
+public abstract class Demo5 {
+
+	//Method overloading for abstract method.
+	
+	public abstract void abc();
+	
+	public abstract void abc(int a);
+	
+	public abstract void abc(String a);
+	
+	public abstract void abc(int a,String b);
+	
+	public abstract void abc(String a,int b);
+	
+}
+
+package Tutorial8;
+
+public class Sample5 extends Demo5 {
+
+	@Override
+	public void abc() {
+		System.out.println("abc method 0 args");
+	}
+
+	@Override
+	public void abc(int a) {
+		System.out.println("abc method 1 int args "+a);
+	}
+
+	@Override
+	public void abc(String a) {
+		System.out.println("abc method 1 String args "+a);
+	}
+
+	@Override
+	public void abc(int a, String b) {
+		System.out.println("abc method 1 int and 1 String args "+(a+b));
+	}
+
+	@Override
+	public void abc(String a, int b) {
+		System.out.println("abc method 1 String and 1 int args "+(a+b));
+	}
+
+	public static void main(String[] args) {
+		Sample5 obj =new Sample5();
+		obj.abc();
+		obj.abc(100);
+		obj.abc("jenkins");
+		obj.abc(10, "pom");
+		obj.abc("github", 1000);
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------
+can we override the abstract method?
+	yes, because abstraction concept it built on method overriding concept.
+-------------------------------------------------------------------------------------------------------------------------------
+can we create abstract static method in abstract class?
+	no
+
+why we can't create abstract static method?
+	- if u want to achieve the abstraction compulsory we have override the method in child class. and 
+	once we declare any abstract static method then these static method are bonded by static binding at compile time by compiler.
+	- and abstraction or overriding concept built on dynamic binding at run time.
+
+package Tutorial8;
+
+public abstract class Demo6 {
+
+	//syntax error 
+	public abstract static void abc();
+
+}
+-------------------------------------------------------------------------------------------------------------------------------
+can we create abstract main method in abstract class?
+	no,
+why we can't create abstract main method?
+	because main method itself is static method and static method are bonded by static binding at compile time by compiler and 
+	abstraction conception built on dynamic binding at run time.
+
+package Tutorial8;
+
+public abstract class Demo6 {
+
+	//syntax error 
+	public abstract static void main(String [] args);
+
+}
+-------------------------------------------------------------------------------------------------------------------------------
+can we create final abstract method in abstract class?
+	No
+
+why we can't create final abstract methods.
+	- because once we declare any method as final, we can't modify the logic in future or in child class or we can't override it.
+	and in abstraction compulsory we have override these methods in child class.
+
+package Tutorial8;
+
+public abstract class Demo6 {
+
+	// syntax error
+	final public abstract void abc();
+
+}
+-------------------------------------------------------------------------------------------------------------------------------
+can we create abstract constructor in abstract class?
+	no
+
+why we can't create abstract constructor?
+	- if u want to achieve the abstraction compulsory we have to override the constructor in child class. and but constructor name
+	should be same as class name and in java we can't 2 classes with same name.
+
+package Tutorial8;
+
+public abstract class Demo6 {
+
+	// syntax error
+	public abstract Demo6();
+	
+}
+-------------------------------------------------------------------------------------------------------------------------------
+can we create abstract private method in abstract class?
+	No
+
+why we can't create abstract private method?
+	- if u want to achieve the abstraction compulsory we have to override the private method in child class and access scope of 
+	private method is within the class, we can't access private method outside the class.
+
+package Tutorial8;
+
+public abstract class Demo6 {
+
+	// syntax error
+	private abstract void abc();
+	
+}
+========================================================================================
+can we declare constructor in abstract class?
+	Yes
+
+can we declare static method in abstract class
+	Yes
+
+can we declare main method in abstract class
+	Yes
+
+can we declare private method in abstract class
+	Yes
+
+can we declare final method in abstract class
+	Yes
+
+can we declare non static method in abstract class
+	Yes,
+
+package Tutorial8;
+
+public abstract class Demo6 {
+	// complete method means we write body for method.
+
+	// can we declare constructor in abstract class: YES
+	public Demo6() {
+		System.out.println("constructor in abstract clas ");
+	}
+
+	// can we declare private non static method in abstract class: YES
+	private void d2() {
+		System.out.println("Private non static method");
+	}
+
+	// can we declare final method in abstract class :YES
+	final public void d3() {
+		System.out.println("Final public method in abstract classs");
+	}
+
+	// can we declare non static method :Yes
+	public void d4() {
+		System.out.println("Non Static method in abstract class");
+	}
+
+	// can we declare static method: YES
+	public static void d6() {
+		System.out.println("Static method in abstract class");
+	}
+
+	// can we declare main method in abstract class :yes
+	public static void main(String[] args) {
+		System.out.println("Main method in Abstract class");
+	}
+
+}
+===================================================================
+package Tutorial8;
+
+public class Sample6 extends Demo6 {
+
+	public static void main(String[] args) {
+
+		Sample6 obj = new Sample6();
+		obj.d3();
+		obj.d4();
+		obj.d5();
+
+	}
+}
+====================================================================
+package Tutorial8;
+
+public abstract class Demo7 {
+
+	public abstract void d1();
+
+	public abstract void d2();
+
+	public abstract void d3();
+
+}
+
+package Tutorial8;
+
+public abstract class Sample7 extends Demo7 {
+
+	@Override
+	public void d1() {
+		System.out.println("D1 method");
+
+	}
+
+	@Override
+	public void d2() {
+		System.out.println("D2 method");
+	}
+
+}
+
+package Tutorial8;
+
+public class Pune7 extends Sample7{
+
+	@Override
+	public void d3() {
+		System.out.println("D3 method");
+	}
+
+	
+	public static void main(String[] args) {
+		
+		Pune7 obj =new Pune7();
+		obj.d1();
+		obj.d2();
+		obj.d3();
+	}
+	
+	
+}
+================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,236 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Sandip",
+      "lastName": "Shinde",
+      "username": "sandip@gmail.com",
+      "age": 23,
+      "address": {
+        "city": "Pune",
+        "state": "MH",
+        "country": "INDIA",
+        "pincode": 112233
+      }
+    },
+    {
+      "id": "2",
+      "firstName": "Anjali",
+      "lastName": "Patil",
+      "username": "anjali@gmail.com",
+      "age": 24,
+      "address": {
+        "city": "Gurgoan",
+        "state": "HR",
+        "country": "INDIA",
+        "pincode": 223344
+      }
+    },
+    {
+      "id": "044b",
+      "firstName": "Aboli",
+      "lastName": "Shinde",
+      "username": "aboli@gmail.com",
+      "age": 22,
+      "address": {
+        "city": "Pune",
+        "state": "MH",
+        "country": "IN",
+        "pincode": 112233
+      }
+    },
+    {
+      "id": "2a67",
+      "firstName": "Rutuja",
+      "lastName": "Pande",
+      "username": "Rutuja@gmail.com",
+      "age": 23,
+      "address": {
+        "city": "Mumbai",
+        "state": "MH",
+        "country": "IN",
+        "pincode": 223344
+      }
+    },
+    {
+      "id": "e968",
+      "firstName": "Rohit",
+      "lastName": "Jadhav",
+      "username": "rohit@gmail.com",
+      "age": 22,
+      "address": {
+        "city": "Pune",
+        "state": "MH",
+        "country": "IN",
+        "pincode": 112233
+      }
+    },
+    {
+      "firstName": "Rutuja",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "city": "Mumbai",
+        "state": "MH",
+        "country": "IN",
+        "pincode": 445566
+      },
+      "id": "6ad0"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "US"
+      },
+      "id": "dd41"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "US"
+      },
+      "id": "4d54"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "US"
+      },
+      "id": "7eaf"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "city": "Mumbai",
+        "state": "MH",
+        "country": "USA",
+        "pincode": 445566
+      },
+      "id": "3c4c"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "USA",
+        "pincode": 445566
+      },
+      "id": "069f"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "USA",
+        "pincode": 445566
+      },
+      "id": "ceed"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "USA",
+        "pincode": 445566
+      },
+      "id": "c76e"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "USA",
+        "pincode": 445566
+      },
+      "id": "5902"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "country": "USA",
+        "pincode": 445566
+      },
+      "id": "93fc"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "city": "Mumbai",
+        "state": "MH",
+        "country": "IN",
+        "pincode": 445566
+      },
+      "id": "d699"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "city": "USA"
+      },
+      "id": "9d6c"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "city": "USA"
+      },
+      "id": "1a9d"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "city": "USA"
+      },
+      "id": "63c1"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Kale",
+      "username": "rutuja@gmail.com",
+      "age": 25,
+      "address": {
+        "city": "Mumbai",
+        "state": "MH",
+        "country": "IN",
+        "pincode": 445566
+      },
+      "id": "4a7c"
+    }
+  ]
+}

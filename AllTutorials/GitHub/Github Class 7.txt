@@ -1,0 +1,132 @@
+Team Leader:
+			- create Framework
+			- create local git repository
+			- add files to stagging area
+			- commit code 
+			- create remote repository
+			- push code to remote repository in master branch
+
+Team leader will share to Team
+------------------------------------------------------------------------------
+Sonali Automation Tester
+			- clone a repository
+			- import the repository
+
+Amit Automation Tester
+			- clone a repository
+			- import the repository
+------------------------------------------------------------------------------
+Sonali Automation Tester
+		- create Sonali Sub Branch
+		- write test cases for home page functionality
+		- add files to stagging area
+		- commit code
+		- push code to Sonali remote sub branch
+		- review the code
+
+		- merge code to master branch
+
+Feature: Test Orange HRM Application
+
+  Scenario: Validate Login Page Functionality
+    Given user is on login page
+    When user enter valid credentails
+    Then user click on login button
+
+  Scenario: Validate Home page Functionality
+    When user is on home page and validate home page title
+    And user validate home page url
+    And user validate home page logo
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Amit Automation Tester
+		- create the Amit sub branch
+		- write test cases for PIM Page Functionality
+		- add files stagging area
+		- commit code 
+		- push code to Remote Amit Sub branch
+		- reviews
+
+		- merge code to master branch					-----> Conflict issue
+ 
+Feature: Test Orange HRM Application
+
+  Scenario: Validate Login Page Functionality
+    Given user is on login page
+    When user enter valid credentails
+    Then user click on login button
+
+  Scenario: Validate PIM Page Functionality
+    When user click on pim link
+    And user click on add  button
+    And user enter firstname and lastname
+    And user click on save button
+---------------------------------------------------------------------------------------------------------------------------------------
+both Tester have same file in Working directory
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Sonali Automation Tester
+	- write the test cases for Admin Page Functionality
+	- Add files to stagging area
+	- commit code
+	- push code to remote Sonali Sub Branch
+	- review the code
+	- merge code to master branch
+
+Amit Automation Tester
+	- Write the test cases for search  user in pim page 
+	- Add files to stagging area
+	- commit code
+	- push code to remote Amit Sub branch
+	- review the code
+	- merge the code
+
+
+
+=================================================================================
+When we get the conflict  issue?												VVVVVVVVVVVIMMPPPPPPPPPP
+	- if 2 or more tester work on same file and they are trying to merge code to the master branch and
+	they work on same file with same line but they have written different code on same line then we will the conflict issue.
+	---------------------------------------------------------------------------------------------------------------------------------------
+	IF we have 2 or more tester and they have different sub branches, and first tester have written some code and successfully merge to master branch.
+	- and 2nd tester have also work on same file, and 2nd tester have written different code on same file with same line and 2nd tester is trying to merge the code to master branch then 2nd tester will face the conflict issue.
+
+
+=================================================================================
+how to Resolve conflict?									VVVVVVVVVVVIMMPPPPPPPPPP
+	
+	- Git usually handle merge request automatically but sometimes while working on team there might be a cause of conflict issue
+
+	- When 2 or more tester work on same file and they made the changes in same line with different code and if we trying to merge the code from one branch to another branch then it cause the conflict issue.
+
+	- if any conflict issue is occur then we resolve the  conflict issue manually after the discuss with team.
+
+	- To Resolve the conflict issue we are discussing few points
+	1) identify the conflict issue file.
+
+	2) discuss with team, who have worked on same file and then we remove the unwanted code or modified the code, after modification we check required changes.
+
+	3) after the changing the code then we commit the code and then create pull request and we click on confirm pull request then it will merge code to the master branch.
+
+============================================================================
+Can we resolve the Conflict issue by Automation?				VVVVVVVVVVVIMMPPPPPPPPPP
+	No
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

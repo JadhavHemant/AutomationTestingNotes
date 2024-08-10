@@ -1,0 +1,571 @@
+Map Interface
+--------------------------------------------------------------------------------------------
+		- if u want to add group of Object of key-value pair then we can go for map.
+		- duplicate key are not allowed in Map Object
+		- duplicate values are allowed multiple times
+		- we can use key-value pair of any data types.
+		- there is no relationship between """"Collection and Map"""".
+		- Each key-value pair is allowed Entry
+	
+		there are 12 methods present inside the Map Interface
+		1) put(Object key, Object value)				
+					- it is used to add values is Map
+					- return type is Object
+
+		2) putAll(Map m)
+					- it is used to add one Map in another Map
+					- return type is void.
+
+		3) containsKey(Object key)
+					- it check specific key is present or not in Map
+					- return type is boolean
+	
+		4) containsValue(Object value)
+					- it check the specific value is present or not in Map
+					- return type is boolean
+
+		5) get(Object key)
+					- it used to capture the value for specific key
+					- return type is Object
+
+		6) remove(Object key)
+					- it is used to remove the key-value pair
+					- return type is Object
+
+		7) clear()
+					- it used to clear the map
+					- return type is void
+
+		8) size()
+					- it used to capture the size of Map
+					- return type is int
+			
+		9) isEmpty()
+					- it used to check Map is empty or not
+					- return type boolean
+
+		10) keySet()
+					- it is used to capture all only keys
+					 - return type is Set interface
+
+		11) values()
+					- it used to capture all only values
+					- return type is Collection interface
+
+		12) entrySet()
+					- it used to capture key-value pair 
+					- return type is Entry<Set>
+
+
+	there are different classes and interface present in Map
+	1) HashMap
+	2) LinkedHashMap
+	3) SortedMap interface
+	4) NavigableMap interface
+	5) TreeMap
+	6) HashTable
+	7) Properties
+-------------------------------------------------------------------------------------------------------
+1) HashMap
+	- Underlying data structure followed by HashMap is HashTable
+	- insertion order is not maintained
+	- duplicate keys are not allowed but we can add duplicate values
+	- null key allowed only once but we can add multiple null values
+	- Heterogeneous object are allowed for both key-value
+	- Default capacity is 16
+	- All methods are non synchronized hence performance is high
+	- At same time multiple threads are allowed
+	
+syntax:
+			Map m1 =new HashMap();
+
+			HashMap m2 =new HashMap();
+-------------------------------------------------------------------------------------------------------
+
+			HashMap m1 =new HashMap();
+
+			m1.put(101, "selenium");
+			m1.put(102,"selenium");
+			m1.put(102,"testng");
+			m1,put(null, "cucumber");
+			m1.put("JIRA", null);
+			m1.put(104,null);
+			m1.put('A', "POM");
+			m1.put(true, 1000);
+			m1.put(false, 134.45f);
+
+
+package Tutorial10;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+
+		Map m1 = new HashMap();
+
+		m1.put(101, "Selenium");
+		m1.put(101, "TestNG");
+		m1.put(null, null);
+		m1.put(null, "Cucumber");
+		m1.put('A', "POM");
+		m1.put(true, 1000);
+		m1.put(false, true);
+		m1.put('B', "RestAPI");
+		m1.put('C', "RestAPI");
+		m1.put('D', "RestAPI");
+
+		m1.put('P', "Jackson-DataBind");
+		m1.put('P', "Hamcrest");
+		m1.put('P', "POJO");
+
+		System.out.println(m1);
+
+	}
+
+}
+====================================================
+package Tutorial10;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+
+		Map m1 = new HashMap();
+
+		m1.put(101, "RestAPI");
+		m1.put(102, "Postman");
+		m1.put(103, "Rest Assured");
+		m1.put(104, "Hamcrest");
+		m1.put(105, "Jackson-Databind library/Dependency");
+		m1.put(106, "JsonValidator");
+
+		int a1 = m1.size();
+		System.out.println(a1);// 6
+
+		boolean a2 = m1.isEmpty();
+		System.out.println(a2);// false
+
+		boolean a3 = m1.containsKey(103);
+		System.out.println(a3); // true
+
+		boolean a4 = m1.containsValue("Hamcrest");
+		System.out.println(a4);// true
+
+		Object a5 = m1.get(105);
+		System.out.println(a5);// Jackson-Databind library
+
+		// System.out.println(m1);
+
+//		Object a6 = m1.remove(104);
+//		System.out.println(a6);
+//		
+//		System.out.println(m1);
+		System.out.println("---------------------------------------------");
+		// it will capture all keys
+		Set s1 = m1.keySet();
+
+		Iterator it = s1.iterator();
+
+		while (it.hasNext()) {
+			Object o = it.next();
+			System.out.println(o);
+		}
+
+		System.out.println("---------------------------------------------");
+
+		Collection c1 = m1.values();
+
+		Iterator it1 = c1.iterator();
+
+		while (it1.hasNext()) {
+			Object o = it1.next();
+			System.out.println(o);
+		}
+		
+		System.out.println("---------------------------------------------");
+
+		m1.clear();
+		System.out.println(m1);
+		
+
+	}
+
+}
+=======================================================================
+package Tutorial10;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+
+		Map m1 = new HashMap();
+		m1.put(101, "A");
+		m1.put(102, "B");
+		m1.put(103, "C");
+
+		Map m2 = new HashMap();
+		m2.put(1, "P");
+		m2.put(2, "Q");
+		m2.put(3, "R");
+
+		System.out.println(m1);
+		m1.putAll(m2);
+		System.out.println(m1);
+
+	}
+
+}
+=============================================================================
+package Tutorial10;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+
+		HashMap m1 = new HashMap();
+		m1.put(101, "A");
+		m1.put(102, "B");
+		m1.put(103, "C");
+		m1.put(104, "D");
+
+		int a1 = m1.size();
+		System.out.println(a1);
+
+		boolean a2 = m1.isEmpty();
+		System.out.println(a2);
+
+		boolean a3 = m1.containsKey(103);
+		System.out.println(a3);
+
+		boolean a4 = m1.containsValue("C");
+		System.out.println(a4);
+
+		Object a5 = m1.get(104);
+		System.out.println(a5);
+
+		Set s1 = m1.keySet();
+		Object[] abc = s1.toArray();
+		for (Object o : abc) {
+			System.out.println(o);
+		}
+
+		Collection c1 = m1.values();
+		Iterator it = c1.iterator();
+
+		while (it.hasNext()) {
+			Object o = it.next();
+			System.out.println(o);
+		}
+		System.out.println("------------------------");
+
+		Object a7 = m1.remove(102);
+		System.out.println(a7);// B
+
+		m1.clear();
+		System.out.println(m1);
+	}
+
+}
+======================================================================================================
+e.g.
+	
+	String a="Java Selenium Java Cucumber Java TestNG Cucumber";
+
+	String [] abc = a.split(" ");
+
+	//create Object of HashMap class
+
+	HashMap h1 =new HashMap();
+	
+	//iterate all arrays
+
+	for(String a: abc)
+	{
+			//add values in map
+			h1.put(a, 1);
+
+	}
+
+package Tutorial10;
+
+import java.util.HashMap;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		
+		String a = "Java Selenium Java Cucumber Java TestNG Cucumber";
+
+		String [] abc = a.split(" ");
+		
+		HashMap h1 =new HashMap();
+		
+		for(String b: abc)
+		{
+			h1.put(b, 1);
+		}
+		
+		System.out.println(h1);
+		
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------
+print occurrence of words from String
+	
+	String a="Java Selenium Java Cucumber Java TestNG Cucumber";
+
+	String [] abc = a.split(" ");
+
+	HashMap h1 =new HashMap();
+
+	for(String b: abc)
+	{
+			if(h1.containsKey(b))
+			{
+				h1.put(b, h1.get(b)+1);
+			}
+			else
+			{
+				h1.put(b,1);
+			}
+		
+	}
+
+	syso(h1);
+
+		java		3
+		selenium	1
+		cucumber	2
+		TestNG		1
+		
+package Tutorial10;
+
+import java.util.HashMap;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+		
+		String a = "Java Selenium Java Cucumber Java TestNG Cucumber TestNG Selenium POM Cucumber";
+
+		String [] abc = a.split(" ");
+		
+		HashMap<String,Integer> h1 =new HashMap<String,Integer>();
+		
+		for(String xyz: abc)
+		{
+			
+			if(h1.containsKey(xyz))
+			{
+				int CapturedValue =h1.get(xyz);//1
+				
+				h1.put(xyz, CapturedValue+1);//2
+			}
+			else
+			{
+				h1.put(xyz, 1);
+			}
+			
+			
+		}
+		//java 			3
+		//selenium		1
+		//cucumber		2
+		//TestNG		1
+	
+		System.out.println(h1);
+		
+		
+		
+		
+		
+	}
+
+}
+================================================================================
+find occurrence of character from String 								VVVVVVVIMMMPPPPPPPPPPPPPPPPPP
+
+			String a="cucumber";
+
+			char [] abc = a.toCharArray();
+
+			HashMap<Character, Integer> h1 =new HashMap<Character, Integer> ();
+
+
+			for(char b: abc)
+			{
+					if(h1.containsKey(b))
+					{
+							int capturedValue = h1.get(b);
+							h1.put(b, capturedValue+1);
+					}
+					else
+					{
+						h1.put(b,1);
+					}
+			
+
+			}
+
+================================================================================
+https://prafpawar11.github.io/statictable.html
+
+add key as student id
+add values as student name
+
+
+package Tutorial2;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://prafpawar11.github.io/statictable.html");
+
+		List<WebElement> listRows = driver
+				.findElements(By.xpath("//th[text()='Student Id']/parent::tr/following-sibling::tr"));
+
+		LinkedHashMap h1 = new LinkedHashMap();
+
+		for (int i = 1; i <= listRows.size(); i++) {
+
+			List<WebElement> listValues = driver
+					.findElements(By.xpath("//th[text()='Student Id']/parent::tr/following-sibling::tr[" + i + "]/td"));
+
+			String studentId = listValues.get(0).getText();
+			String studentname = listValues.get(1).getText();
+
+			h1.put(studentId, studentname);
+
+		}
+
+		System.out.println(h1);
+
+	}
+}
+
+
+==============================================================================
+find occurrence of character from String 								VVVVVVVIMMMPPPPPPPPPPPPPPPPPP
+		
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+	
+

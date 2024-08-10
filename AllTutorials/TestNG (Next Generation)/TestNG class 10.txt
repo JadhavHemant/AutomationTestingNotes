@@ -1,0 +1,668 @@
+1) how to run methods parallel?
+2) how to run classes parallel?
+--------------------------------------------------------------------------------------------------------------
+3) how to run test cases parallel?											VVVVVIMMPPPPPPPPPP
+--------------------------------------------------------------------------------------------------------------
+1) how to run methods parallel?
+
+	<suite name="project name" parallel="methods">
+		<test name="test case name">
+				<classes>
+						<class name="packagename.classname"/>
+				</classes>
+		</test>
+	</suite>
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class Demo1 {
+
+	@Test
+	public void facebookTestCase1() throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/reg");
+		Thread.sleep(3000);
+		driver.findElement(By.name("firstname")).sendKeys("Pooja");
+		driver.findElement(By.name("lastname")).sendKeys("Mane");
+		driver.findElement(By.name("reg_email__")).sendKeys("pooja@gmail.com");
+		driver.findElement(By.name("reg_passwd__")).sendKeys("Pooja@123");
+		WebElement daywb = driver.findElement(By.name("birthday_day"));
+		Select sel1 = new Select(daywb);
+		sel1.selectByVisibleText("21");
+
+		WebElement monthwb = driver.findElement(By.name("birthday_month"));
+		Select sel2 = new Select(monthwb);
+		sel2.selectByVisibleText("Aug");
+		Thread.sleep(5000);
+		driver.quit();
+	}
+
+	@Test
+	public void guru99TestCase2() throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+		Thread.sleep(3000);
+		driver.findElement(By.name("firstName")).sendKeys("rahul");
+		driver.findElement(By.name("lastName")).sendKeys("Shah");
+		driver.findElement(By.name("phone")).sendKeys("909090");
+		driver.findElement(By.name("userName")).sendKeys("rahul@gmail.com");
+		Thread.sleep(5000);
+		driver.quit();
+	}
+
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="methods">
+  <test name="Test">
+    <classes>
+      <class name="Tutorial7.Demo1"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+--------------------------------------------------------------------------------------------------------------
+2) how to run classes parallel
+
+	<suite name="project name" parallel="classes">
+		<test name="test case name">
+				<classes>
+						<class name="packagename.classname1"/>
+						<class name="packagename.classname2"/>
+				</classes>
+		</test>
+	</suite>
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class Demo2 {
+
+	@Test
+	public void facebookTestCase1() throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/reg");
+		Thread.sleep(3000);
+		driver.findElement(By.name("firstname")).sendKeys("Pooja");
+		driver.findElement(By.name("lastname")).sendKeys("Mane");
+		driver.findElement(By.name("reg_email__")).sendKeys("pooja@gmail.com");
+		driver.findElement(By.name("reg_passwd__")).sendKeys("Pooja@123");
+		WebElement daywb = driver.findElement(By.name("birthday_day"));
+		Select sel1 = new Select(daywb);
+		sel1.selectByVisibleText("21");
+
+		WebElement monthwb = driver.findElement(By.name("birthday_month"));
+		Select sel2 = new Select(monthwb);
+		sel2.selectByVisibleText("Aug");
+		Thread.sleep(5000);
+		driver.quit();
+	}
+}
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class Sample2 {
+
+	@Test
+	public void facebookTestCase1() throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/reg");
+		Thread.sleep(3000);
+		driver.findElement(By.name("firstname")).sendKeys("Pooja");
+		driver.findElement(By.name("lastname")).sendKeys("Mane");
+		driver.findElement(By.name("reg_email__")).sendKeys("pooja@gmail.com");
+		driver.findElement(By.name("reg_passwd__")).sendKeys("Pooja@123");
+		WebElement daywb = driver.findElement(By.name("birthday_day"));
+		Select sel1 = new Select(daywb);
+		sel1.selectByVisibleText("21");
+
+		WebElement monthwb = driver.findElement(By.name("birthday_month"));
+		Select sel2 = new Select(monthwb);
+		sel2.selectByVisibleText("Aug");
+		Thread.sleep(5000);
+		driver.quit();
+	}
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="classes">
+  <test name="Test">
+    <classes>
+      <class name="Tutorial7.Demo2"/>
+      <class name="Tutorial7.Sample2"></class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+--------------------------------------------------------------------------------------------------------------
+3) how to run test cases parallel								VVVVVIMMPPPPPPPPPP
+
+BaseLayer
+		BaseClass
+									-> static initialization method
+									--> create private static local thread of WebDriver
+TestLayer
+		@BeforeTest				--> call initialization() method
+
+		LoginPageTest				---->loginFunctionality test case
+
+		HomePageTest				----->
+										validate home page title
+										validate home page url
+										validate home page logo
+		ContactPageTest
+									-----> validate user is on contact page test case
+									-----> create user in contact page							
+									----> delete user in contact page
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+
+  <test name="Test case 1">
+    	<classes>
+     		 <class name="Tutorial7.LoginPageTest"/>
+      		<class name="Tutorial7.HomePageTest"></class>
+    		<class name="Tutorial7.ContactPageTest"></class>
+  	  </classes>
+  </test> 
+
+<test name="Test case 2">
+    	<classes>
+     		 <class name="Tutorial7.LoginPageTest"/>
+      		<class name="Tutorial7.HomePageTest"></class>
+    		<class name="Tutorial7.ContactPageTest"></class>
+  	  </classes>
+  </test> 
+
+</suite> 
+
+
+package BaseLayer;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class BaseClass {
+
+	private static ThreadLocal<WebDriver> td = new ThreadLocal<WebDriver>();
+
+	public WebDriver getDriver() {
+		return td.get();
+	}
+
+	public static void initialization() {
+		WebDriver driver = new EdgeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.get("https://ui.cogmento.com/");
+		td.set(driver);
+	}
+
+}
+
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class LoginPageTest extends BaseClass {
+
+	@BeforeTest
+	public void setUp() {
+		BaseClass.initialization();
+	}
+
+	@Test
+	public void loginFunctionality() throws InterruptedException {
+		Thread.sleep(5000);
+		getDriver().findElement(By.name("email")).sendKeys("prafulp1010@gmail.com");
+		getDriver().findElement(By.name("password")).sendKeys("Pr@ful0812");
+		Thread.sleep(5000);
+		getDriver().findElement(By.xpath("//div[text()='Login']")).click();
+	}
+
+	@AfterTest
+	public void tearDown() throws InterruptedException {
+		Thread.sleep(5000);
+		getDriver().quit();
+	}
+
+}
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class HomePageTest extends BaseClass {
+
+	@Test(priority = 1)
+	public void validateHomePageTitle() {
+		String actualTitle = getDriver().getTitle();
+		Assert.assertEquals(actualTitle, "Cogmento CRM");
+	}
+
+	@Test(priority = 2)
+	public void validateHomePageUrl() throws InterruptedException {
+		String actualUrl = getDriver().getCurrentUrl();
+		boolean actualResult = actualUrl.contains("cogmento");
+		Assert.assertTrue(actualResult);
+		Thread.sleep(4000);
+	}
+
+	@Test(priority = 3)
+	public void validateHomePageLogo() {
+		boolean actualLogo = getDriver().findElement(By.xpath("//div[@class='header item']")).isDisplayed();
+		Assert.assertEquals(actualLogo, true);
+	}
+
+}
+
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class ContactPageTest extends BaseClass {
+
+	@Test(priority = 1)
+	public void validateUserIsOnContactPage() throws InterruptedException {
+		getDriver().findElement(By.xpath("//a[@href='/contacts']")).click();
+		Thread.sleep(3000);
+		String actualUrl = getDriver().getCurrentUrl();
+		boolean actualResult = actualUrl.contains("contacts");
+		Assert.assertEquals(actualResult, true);
+	}
+
+	@Test(priority = 2)
+	public void createUserInContactPage() throws InterruptedException {
+		getDriver().findElement(By.xpath("//a[@href='/contacts/new']")).click();
+
+		getDriver().findElement(By.name("first_name")).sendKeys("Rohit");
+
+		getDriver().findElement(By.name("last_name")).sendKeys("Shah");
+
+		getDriver().findElement(By.name("value")).sendKeys("rohit@gmail.com");
+
+		Thread.sleep(7000);
+		getDriver().findElement(By.xpath("//button[text()='Save']")).click();
+
+	}
+
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+
+	<test name="Test case 1">
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+	<test name="Test case 2">
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+
+
+</suite>
+=========================================================================
+Cross browser Testing
+
+package BaseLayer;
+
+import java.time.Duration;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class BaseClass {
+
+	private static ThreadLocal<WebDriver> td = new ThreadLocal<WebDriver>();
+
+	public WebDriver getDriver() {
+		return td.get();
+	}
+
+	public static void initialization(String browsername) {
+		WebDriver driver = null;
+
+		if (browsername.equalsIgnoreCase("chrome")) {
+			driver = new ChromeDriver();
+			td.set(driver);
+		} else if (browsername.equalsIgnoreCase("edge")) {
+			driver = new EdgeDriver();
+			td.set(driver);
+		} else if (browsername.equalsIgnoreCase("incognito")) {
+			ChromeOptions opt = new ChromeOptions();
+			opt.addArguments("--incognito");
+			driver = new ChromeDriver(opt);
+			td.set(driver);
+		} else {
+			System.out.println("Please Enter valid browser name");
+		}
+
+		Dimension d = new Dimension(800, 800);
+		driver.manage().window().setSize(d);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.get("https://ui.cogmento.com/");
+
+	}
+
+}
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class LoginPageTest extends BaseClass {
+
+	@Parameters({"browsername"})
+	@BeforeTest
+	public void setUp(String browserName) 
+	{
+		BaseClass.initialization(browserName);
+	}
+
+	@Test
+	public void loginFunctionality() throws InterruptedException {
+		Thread.sleep(5000);
+		getDriver().findElement(By.name("email")).sendKeys("prafulp1010@gmail.com");
+		getDriver().findElement(By.name("password")).sendKeys("Pr@ful0812");
+		Thread.sleep(5000);
+		getDriver().findElement(By.xpath("//div[text()='Login']")).click();
+	}
+
+	@AfterTest
+	public void tearDown() throws InterruptedException {
+		Thread.sleep(5000);
+		getDriver().quit();
+	}
+
+}
+
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class HomePageTest extends BaseClass {
+
+	@Test(priority = 1)
+	public void validateHomePageTitle() {
+		String actualTitle = getDriver().getTitle();
+		Assert.assertEquals(actualTitle, "Cogmento CRM");
+	}
+
+	@Test(priority = 2)
+	public void validateHomePageUrl() throws InterruptedException {
+		String actualUrl = getDriver().getCurrentUrl();
+		boolean actualResult = actualUrl.contains("cogmento");
+		Assert.assertTrue(actualResult);
+		Thread.sleep(4000);
+	}
+
+	@Test(priority = 3)
+	public void validateHomePageLogo() {
+		boolean actualLogo = getDriver().findElement(By.xpath("//div[@class='header item']")).isDisplayed();
+		Assert.assertEquals(actualLogo, true);
+	}
+
+}
+
+package TestLayer;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import BaseLayer.BaseClass;
+
+public class ContactPageTest extends BaseClass {
+
+	@Test(priority = 1)
+	public void validateUserIsOnContactPage() throws InterruptedException {
+		getDriver().findElement(By.xpath("//a[@href='/contacts']")).click();
+		Thread.sleep(3000);
+		String actualUrl = getDriver().getCurrentUrl();
+		boolean actualResult = actualUrl.contains("contacts");
+		Assert.assertEquals(actualResult, true);
+	}
+
+	@Test(priority = 2)
+	public void createUserInContactPage() throws InterruptedException {
+		getDriver().findElement(By.xpath("//a[@href='/contacts/new']")).click();
+
+		getDriver().findElement(By.name("first_name")).sendKeys("Rohit");
+
+		getDriver().findElement(By.name("last_name")).sendKeys("Shah");
+
+		getDriver().findElement(By.name("value")).sendKeys("rohit@gmail.com");
+
+		Thread.sleep(7000);
+		getDriver().findElement(By.xpath("//button[text()='Save']")).click();
+
+	}
+
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" thread-count="10" parallel="tests">
+
+	<test name="End To End test case 1">
+		<parameter name="browsername" value="chrome"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+	<test name="End To End test case 2">
+		<parameter name="browsername" value="edge"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+	<test name="End To End test case 3">
+		<parameter name="browsername" value="incognito"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+	<test name="End To End test case 4">
+		<parameter name="browsername" value="incognito"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+	<test name="End To End test case 5">
+		<parameter name="browsername" value="chrome"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+	<test name="End To End test case 6">
+		<parameter name="browsername" value="edge"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+
+	<test name="End To End test case 7">
+		<parameter name="browsername" value="chrome"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+	<test name="End To End test case 8">
+		<parameter name="browsername" value="chrome"></parameter>
+		<classes>
+			<class name="TestLayer.LoginPageTest" />
+			<class name="TestLayer.HomePageTest" />
+			<class name="TestLayer.ContactPageTest" />
+		</classes>
+	</test>
+
+
+</suite>
+
+
+======================================================================================================
+TC:
+		open a fb
+
+
+-- run all test cases in parallel in chrome and edge and incognito
+
+======================================================================================================
+
+Ass:			Orange HRM
+
+		TC1: login
+		TC2: validate home page title
+		TC3" validate home page url
+		TC4: validate pim page
+		TC5: create 7employee or users			---> store test data in excel sheet
+				--> click on add employee button
+				--> enter first name, middle name and last name
+				---> capture the employee id and store globally
+				-- click on save button
+				--> click on employee list
+				--> enter the captured employee id in employee id search text box
+				--> click on search button
+										---> add assertion for validate first name and last name.
+										--->search displayed name should be equal to excel sheet name
+				-- > take the screenshot
+
+		TC6: logout application
+
+-- run all test cases in parallel in chrome and edge and incognito
+
+======================================================================================================
+Ass:		sauce demo
+		-TC login
+		-  verify the home  page title
+		- verify the home page url
+		- add the product to cart
+		-click on container				
+		- add personal details
+		- click finish
+-- run all test cases in parallel in chrome and edge and incognito
+======================================================================================================
+https://ui.cogmento.com/
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

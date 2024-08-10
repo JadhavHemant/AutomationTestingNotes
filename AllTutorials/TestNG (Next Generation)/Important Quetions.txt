@@ -1,0 +1,68 @@
+what are the different advantages of TestNG?
+
+what is annotations execution sequence in TestNG?
+
+how to run same test cases multiple times
+
+can we mention negative priority for test cases
+
+what are the different tags in xml file
+
+diff between @BeforeMethod and @BeforeClass
+
+diff between @BeforeClass and @BeforeTest?
+------------------------------------------------------------------
+
+how to provide timeout for test cases?
+
+how to achieve parameterization in TestNG
+
+how to ignore test cases in  TestNG?
+
+-------------------------------------------------------------------------------------------------
+how to handle frames in selenium?
+
+how to handle multiple window in selenium?
+
+how to handle calendar in selenium?
+
+-------------------------------------------------------------------------------------------------
+diff between in implicit wait and explicit wait
+
+diff between fluent wait and explicit wait
+
+when we get stale Element exception in selenium
+
+diff between absolute xpath and relative xpath
+
+tell me 5 different ways we can click on element?
+
+how many ways we can send text to text box
+
+diff between build and perform method
+
+how to perform right click on element
+
+diff between Actions class and Action interface.
+
+if drop down element is not start with select tags how you will handle it?
+
+diff between close and quit method
+
+
+diff between get and navigate().to() method
+
+------------------------------------------------------------------------------------------------------------
+how to call non static method in main method
+
+
+what are the different method present inside the String class?
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+

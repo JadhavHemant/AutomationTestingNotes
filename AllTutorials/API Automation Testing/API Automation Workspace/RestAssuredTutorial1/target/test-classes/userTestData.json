@@ -1,0 +1,17 @@
+{
+	"createUser" :
+	{
+			"firstName": "Rutuja",
+			 "lastName": "Pande",
+			 "username" : "Rutuja@gmail.com",
+			"age": 23,
+			"address": 
+						{
+							 "city": "Mumbai",
+							"state": "MH",
+							 "country": "IN",
+							 "pincode": 223344
+						}
+	}
+	
+}

@@ -1,0 +1,505 @@
+How to handle frames in selenium?									VVVVVVVVVVVVVIMPPPPPPPPPPPPPPPPPP
+			or
+how to handle multiple frames in selenium?							VVVVVVVVVVVVVIMPPPPPPPPPPPPPPPPPP
+		or
+can we switch from child frame to child frame?						VVVVVVVVVVVVVIMPPPPPPPPPPPPPPPPPP
+		or
+diff between parentFrame() method and defaultContent() method?		VVVVVVVVVVVVVIMPPPPPPPPPPPPPPPPPP	
+		or
+how many ways we can switch to child frame?						VVVVVVVVVVVVVIMPPPPPPPPPPPPPPPPPP
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Handle frames in Selenium							VVVVVVVVVVVVVIMPPPPPPPPPPPPPPPPPP
+		
+	- HTML frame are used to divide the browser window into the multiple sections where each section can hold separate HTML web page.
+	- frame are sections of web page displayed on top window, whenever we access the pages then we by default we focus on top window or frame.
+	- there are 4 different ways we can switch to child frame
+				1) by using frame id
+				2) by using frame name
+				3) by using frame index
+				4) by using frame web element
+
+	- if u want to switch to main frame or window to child frame then we use switchTo().frame() method by passing frame id or frame name or frame index 
+	position, or frame web element instance name.
+
+	- switchTo() method present inside the WebDriver interface and return type is TargetLocator interface.
+	- frame() method present inside the TargetLocator interface and """return type is WebDriver interface""".
+
+1) by using frame id
+		syntax:
+				driver.switchTo().frame("frame id");
+
+
+2) by using frame name
+		syntax:
+				driver.switchTo().frame("frame name");
+
+
+3) by using frame index position
+		syntax:
+				driver.switchTo().frame(int frame index);
+
+
+4) by using frame web element
+			syntax:
+				WebElement wb = driver.findElement(By.id("id values"));
+				driver.switchTo().frame(frame web Element);
+
+
+How to switch focus from child frame to main frame or main window?
+		- we use switchTo().defaultContent() method.
+		- switchTo() method present inside the WebDriver interface and return type is TargetLocator interface.
+		defaultContent() method is present inside the TargetLocator interface and return type is WebDriver interface.
+
+
+diff between parentFrame() method and defaultContent() method
+		- defaultContent() method is used to switch our focus to main frame or top frame.
+		- parentFrame() method is used to switch focus to immediate parent frame.
+		
+		- both method is present inside the TargetLocator interface and return type is WebDriver interface.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scenario 1:
+		open a https://prafpawar11.github.io/mainFrame.html
+		enter the text in name text box
+		select the TestNG and POM checkbox	
+		
+
+Step 1: connect to the browser code
+				System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2:up casting
+				WebDriver driver =new ChromeDriver();
+
+step 3 open a url
+				driver.get("https://prafpawar11.github.io/mainFrame.html");
+
+step 4: find the name text box and enter the values
+				WebElement wb = driver.findElement(By.id("name"));
+				wb.sendKeys("Ajit");
+
+step 5:switch focus to child frame or checkbox frame
+				driver.switchTo().frame("mainframe");
+
+step 6: find the TestNG and POM checkbox and click on it.
+				WebElement wb1 = driver.findElement(By.id("TestNG"));
+				wb1.click();
+			
+				WebElement wb2 = driver.findElement(By.id("POM"));
+				wb2.click();
+
+package Tutorial9;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: connect to the actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://prafpawar11.github.io/mainFrame.html");
+
+		Thread.sleep(5000);
+		// step 4: find the name text box and enter the values
+		WebElement wb = driver.findElement(By.id("name"));
+		wb.sendKeys("ajit");
+
+		// step 5: switch focus to checkbox frame or child frame
+		// driver.switchTo().frame("mainframe");
+		// driver.switchTo().frame(0);
+		WebElement framewb = driver.findElement(By.xpath("//iframe[@id='mainframe']"));
+		driver.switchTo().frame(framewb);
+
+		// step 6: find the TestNG and POM check box and click on it
+		WebElement wb1 = driver.findElement(By.xpath("//input[@id='TestNG']"));
+		wb1.click();
+
+		WebElement wb2 = driver.findElement(By.xpath("//input[@id='POM']"));
+		wb2.click();
+
+	}
+
+}
+===========================================================================================
+Scenario 2:
+		open a https://prafpawar11.github.io/twoFrame.html
+		enter the full name
+		select the Jenkins checkbox
+		select the BDD framework values from drop down
+		
+step 1: connect actual browser
+		System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+		WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+		driver.get("https://prafpawar11.github.io/twoFrame.html");
+
+step 4; find the full name text box and enter the values
+		WebElement wb = driver.findElement(By.id("name"));
+		wb.sendKeys("abc xyz");
+
+step 5: switch focus to checkbox frame or child frame1 
+		driver.switchTo().frame("chk");
+
+step 6: find the Jenkins checkbox and click on it
+	WebElement wb1 = driver.findElement(By.id("Jenkins"));
+	wb1.click();
+
+step 7: switch to the top frame or main frame or main window
+		driver.switchTo().defaultContent();
+
+step 8: switch to drop down frame or child frame 2
+		driver.switchTo().frame(1);
+
+step 9: find the drop down and select the BDD framework values
+		WebElement wb2 = driver.findElement(By.id("course"));
+		Select sel =new Select(wb2);
+		sel.selectByVisibleText("BDD Framework");
+
+
+package Tutorial9;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: connect to the actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://prafpawar11.github.io/twoFrame.html");
+
+		Thread.sleep(5000);
+		// step 4:find the full name text box and enter the values
+		WebElement wb1 = driver.findElement(By.id("name"));
+		wb1.sendKeys("abc xyz");
+
+		// step 5: switch focus to child frame1 or checkbox frame
+		driver.switchTo().frame("chk");
+
+		Thread.sleep(5000);
+		// step 6: find the Jenkins checkbox and click on it
+		WebElement wb2 = driver.findElement(By.id("Jenkins"));
+		wb2.click();
+
+		// step 7: switch focus to main frame or top frame or top window
+		driver.switchTo().defaultContent();
+
+		// step 8: switch to child frame 2 or drop down frame
+		driver.switchTo().frame(1);
+
+		Thread.sleep(5000);
+
+		// step 9: find the drop down and select the BDD Framework value
+		WebElement wb3 = driver.findElement(By.id("course"));
+		Select sel = new Select(wb3);
+		sel.selectByVisibleText("BDD Framework");
+
+	}
+
+}
+==============================================================================
+Scenario 3:
+	open a url https://prafpawar11.github.io/frame.html
+	find the name text box and enter the name
+	find address text box and enter the address
+	find the cucumber check box and select
+
+	capture the entered address
+	and enter new address
+
+	capture the enter name and clear the name
+	unselect the cucumber checkbox
+
+step 1: connect browser
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+step 3: open a url
+			driver.get("https://prafpawar11.github.io/frame.html");
+
+step 4: find the name text box and enter the name
+			WebElement wb = driver.findElement(By.id("name"));
+			wb.sendKeys("abc xyz");
+
+step 5: switch focus to address frame
+			driver.switchTo().frame("mainframe");
+
+step 6: find address text box and enter the address
+			WebElement wb1 = driver.findElement(By.id("add"));
+			wb1.sendKeys("Pune");
+
+step7:switch focus to checkbox frame
+			driver.switchTo().frame("child1");
+
+step 8: find the cucumber check box and select
+			WebElement wb3 = driver.findElement(By.id("Cucumber"));
+			wb3.click();
+
+step 9:switch focus to address frame
+			driver.switchTo().defaultContent();
+			driver.switchTo().frame("mainframe");
+					or
+			driver.switchTo().parentFrame();
+
+step 10: capture the entered address and enter new address
+			String a = wb1.getAttribute("value");
+			syso(a);
+			wb1.clear();
+			wb1.sendKeys("Mumbai");
+
+step 11: switch focus to top frame
+			driver.switchTo().defaultContent();
+
+step 12: capture the enter name and clear the name
+			String b = wb.getAttribute("value");
+			syso(b);
+			wb.clear();
+
+step 13: switch focus to address frame
+			driver.switchTo().frame(0);
+
+step 14: switch focus to checkbox frame
+			driver.switchTo().frame(0);
+
+step 15: unselect the cucumber checkbox
+			wb3.click();
+
+
+
+package Tutorial9;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo3 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// step 1: connect to the actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://prafpawar11.github.io/frame.html");
+
+		Thread.sleep(5000);
+		// step 4:find the full name text box and enter the values
+		WebElement wb = driver.findElement(By.id("name"));
+		wb.sendKeys("abc xyz");
+
+		// step 5: switch focus address frame
+		driver.switchTo().frame("mainframe");
+
+		// step 6: find the address text box and enter the values
+		WebElement wb1 = driver.findElement(By.id("add"));
+		wb1.sendKeys("Pune");
+		Thread.sleep(5000);
+		// step 7: switch focus to checkbox frame
+		driver.switchTo().frame("child1");
+
+		// step 8: find the Cucumber checkbox and click on it
+		WebElement wb2 = driver.findElement(By.id("Cucumber"));
+		wb2.click();
+
+		// step 9: switch focus to address frame
+//		driver.switchTo().defaultContent();
+//		driver.switchTo().frame("mainframe");
+		// or
+		driver.switchTo().parentFrame();
+		Thread.sleep(5000);
+		// step 10: capture the entered addres and enter new address
+		String a = wb1.getAttribute("value");
+		System.out.println(a);
+		wb1.clear();
+		wb1.sendKeys("Mumbai");
+
+		// step 11: switch focus to top frame
+		driver.switchTo().defaultContent();
+		Thread.sleep(5000);
+		// step 12:capture the entered text and clear it
+		String b = wb.getAttribute("value");
+		System.out.println(b);
+		wb.clear();
+
+		Thread.sleep(5000);
+		// step 13: switch focus to address frame
+		driver.switchTo().frame(0);
+
+		// step 14: switch focus to checkbox frame
+		driver.switchTo().frame(0);
+
+		// step 15: unselect the checkbox
+		wb2.click();
+
+	}
+
+}
+===================================================================================
+Ass:
+
+open a https://praf002.github.io/
+find the full name text box and enter the value
+find the GitHub checkbox and click on it
+find and select the Database Automation values from drop down
+find and Enter the mobile numbers 
+Find and Enter the address 
+unselect the GitHub checkbox
+click on selenium click
+capture the entered full name and enter new name
+select the Java Script Executor value
+capture entered address and enter new address
+
+===================================================================================
+Ass:
+	open a url https://chercher.tech/practice/frames-example-selenium-webdriver
+	enter the topic name
+	select the avatar
+	select the  checkbox
+	select the cat 
+	capture the entered text and enter new text
+	unselect the checkbox
+===================================================================================
+Ass:
+
+	open a url https://demo.automationtesting.in/Frames.html
+	- click on single iframe
+	enter text in text box
+	- click on iframe with  iframe button
+	- enter the text in text box
+	- click on single iframe
+	-- capture the entered text and enter new text
+	- click on iframe with  iframe button
+	- capture the entered text and enter new text
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

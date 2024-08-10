@@ -1,0 +1,486 @@
+Map Interface:
+--------------------------------------------------------------------------------------------------------
+1) HashMap class
+		- underlying data structure followed by HashMap is Hashtable
+		- insertion order is not maintained for keys
+		- duplicate key are not allowed but value can be duplicate.
+		- null key allowed only once but value can be allowed multiples times.
+		- Heterogeneous key-value are allowed
+		- default capacity is 16
+		- All methods are non synchronized hence performance is high
+		- Multiple threads are allowed at same time
+
+2) LinkedHashMap class
+		- underlying data structure followed by HashMap is Hashtable and LinkedList
+		- insertion order is maintained for keys
+		- duplicate key are not allowed but value can be duplicate	
+		- null key allowed only once but value can be allowed multiples times 
+		- Heterogeneous key-value are allowed
+		- default capacity is 16
+		- All methods are non synchronized hence performance is high
+		- Multiple threads are allowed at same time
+
+3) Hashtable class
+		- underlying data structure followed by HashMap is Hashtable
+		- insertion order is not maintained for keys but it will insert values as per the Hash Code.
+		- duplicate key are not allowed but value can be duplicate
+		- null key and value are not allowed.
+		- Heterogeneous key-value are allowed
+		- default capacity is 11
+		- All methods are synchronized hence performance is low
+		- single thread is allowed at same time
+----------------------------------------------------------------------------------------------------
+4)Properties class
+		- underlying data structure followed by HashMap is Hashtable
+		- insertion order is not maintained for keys but it will insert values as per the Hash Code.
+		- duplicate key are not allowed but value can be duplicate
+		- null key and value are not allowed.
+		- default capacity is 11
+		- Heterogeneous key-value are  not allowed, it accept only String type values.
+		- All methods are synchronized hence performance is low
+		- single thread is allowed at same time
+		-they define new 3 methods inside the Properties class
+
+			1) getProperty(Object key)
+					- it used to capture the property value by using key
+					- return type is Object
+
+			2) setProperty(Object key, Object value)
+					- used to set the new property
+					- return type is Object
+
+			3) load()									
+						it is used to load the properties
+						return type is void
+			4) store()
+						- it is used to store the new Properties in Properties file.
+						- return type is void.
+
+		- if u want to work on Properties file first we have create dot properties file and inside the these properties we store test data in key-value pair
+		- When we use Properties class?
+				when in our program if any things changes frequently as like Environment URL, Environment credentials then we store these test data in Properties file. never recommended to use these test data in actual code.
+		
+	
+	Syntax:
+				//we can access all methods from Map interface 
+				Map m1 =new Properties();
+
+				//we can access all methods from Map interface 
+				Hashtable m2 = new Properties(); 
+
+				//we can access all methods from Map interface  and Properties class
+				Properties m3 =new Properties();
+
+
+e.g.
+		config.properties
+					username=Admin
+					password=admin123
+
+		
+		public class Demo1
+		{
+			public static void main(String [] args)
+			{
+					Properties prop =new Properties();
+					FileInputStream fis =new FileInputStream("Properties file path");
+					prop.load(fis);
+
+					Object a1 = prop.get("username");
+					syso(a1);
+		
+					
+			}
+		}
+
+package Tutorial13;
+
+import java.io.FileInputStream;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws Exception {
+
+		Properties m1 = new Properties();
+		String path = System.getProperty("user.dir") + "//src//Tutorial13//config.properties";
+		FileInputStream fis = new FileInputStream(path);
+		m1.load(fis);
+
+		int a1 = m1.size();
+		System.out.println(a1);// 5
+
+		boolean a2 = m1.isEmpty();
+		System.out.println(a2);// false
+
+		boolean a3 = m1.containsKey("3");
+		System.out.println(a3);// true
+
+		boolean a4 = m1.containsValue("testng");
+		System.out.println(a4);// true
+
+		Object a5 = m1.get("3");
+		System.out.println(a5);// cucumber
+		System.out.println("----------------");
+		Set a6 = m1.keySet();
+
+		Iterator it = a6.iterator();
+
+		while (it.hasNext()) {
+			Object o = it.next();
+			System.out.println(o);
+		}
+
+		System.out.println("----------------");
+
+		Collection a7 = m1.values();
+
+		Iterator it1 = a7.iterator();
+
+		while (it1.hasNext()) {
+			System.out.println(it1.next());
+		}
+
+		System.out.println("----------------");
+
+		Set<Entry<Object, Object>> a8 = m1.entrySet();
+
+		for (Entry<Object, Object> abc : a8) {
+			System.out.println(abc.getKey() + "  ::   " + abc.getValue());
+		}
+
+	}
+}
+=========================================================
+package Tutorial13;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws Exception {
+		Properties m1 = new Properties();
+		String path = System.getProperty("user.dir") + "//src//Tutorial13//config.properties";
+		FileInputStream fis = new FileInputStream(path);
+		m1.load(fis);
+
+		Object a1 = m1.getProperty("2");
+		System.out.println(a1);
+		
+		Object a2 = m1.setProperty("8", "POJO");
+		System.out.println(a2);
+		
+		FileOutputStream out =new FileOutputStream(path);
+		
+		m1.store(out, "POJO Entry is added");
+		
+		
+		
+	}
+}
+
+
+
+#POJO Entry is added
+#Tue Jul 30 07:56:28 IST 2024
+1=selenium
+2=testng
+3=cucumber
+4=pom
+5=RestAPI
+7=Hamcrest
+8=POJO
+
+===============================================================================
+package Tutorial13;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Hashtable;
+import java.util.Properties;
+
+public class Demo3 {
+
+	public static void main(String[] args) throws Exception {
+
+		Properties prop = new Properties();
+		String path = System.getProperty("user.dir") + "//src//Tutorial13//SITEnvironmentconfig.properties";
+
+		FileInputStream fis = new FileInputStream(path);
+		prop.load(fis);
+		
+		Object a1 = prop.get("105");
+		System.out.println(a1);
+
+		prop.setProperty("120", "TestNG Framework");
+		
+		FileOutputStream out =new FileOutputStream(path);
+		
+		prop.store(out, "Entry is added");
+		
+		Object a2 = prop.getProperty("120");
+		System.out.println(a2);
+	}
+}
+
+#Entry is added
+#Tue Jul 30 08:07:14 IST 2024
+110=Cucumber BDD
+101=UI (User Interface) Automation
+102=API (Application Programming) Automation 
+103=DB (Database) Automation 
+104=Mobile Automation
+105=Selenium WebDriver
+106=Rest Assured
+107=JDBC (Java Database Connectivity) 
+120=TestNG Framework
+===========================================================================
+5) SortedMap interface
+	- it child interface of Map interface
+	- SortedMap define the 5 methods
+			1) firstKey()
+			2) lastKey()
+			3) headMap()
+			4) tailMap()
+			5) submap()
+
+
+6) NavigableMap interface
+	it is child interface of SortedMap interface
+	it define the 6 methods
+			1) lowerKey()
+			2) higherKey()
+			3) ceilingKey()
+			4) floorKey()
+			5) pollFirstKey()
+			6) pollLastKey()
+			7) descendingMap()
+
+
+
+7) TreeMap class
+		- underlying data structure followed by TreeMap is Red-Black tree
+		- insertion order is not maintained but it insert the values as per the ascending order
+		- duplicate keys are not allowed but values is allowed
+		- null key are not allowed but value can be null
+		-it accept the homogeneous key but value be heterogeneous
+		-default capacity is 16
+		- All methods are non synchronized hence multiple threads are allowed
+		- Performance is high
+
+
+syntax:
+		//we can access all methods from Map interface
+		Map m1 =new TreeMap();
+
+		//we can access all methods from Map interface and SortedMap interface
+		SortedMap m2 = new TreeMap();
+
+		//we can access all methods from Map interface and SortedMap interface and NavigableMap interface
+		NavigableMap m3 =new TreeMap();
+
+		//we can access all methods from Map interface and SortedMap interface and NavigableMap interface
+		TreeMap m4 =new TreeMap();
+
+
+package Tutorial13;
+
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		Map m1 = new TreeMap();
+		m1.put(102, "Selenium");
+		m1.put(101, "testng");
+		m1.put(105, null);
+		m1.put(103, "cucumber");
+		m1.put(104, "pom");
+		m1.put(110, 1000);
+		m1.put(1234, true);
+		m1.put(1, 234.4f);
+
+		System.out.println(m1.size());// 8
+		System.out.println(m1.isEmpty());// false
+		System.out.println(m1.containsKey(105));// true
+		System.out.println(m1.containsValue(1000));// true
+		System.out.println(m1.get(103));// cucumber
+		System.out.println(m1.remove(104));// pom
+		System.out.println("------------------------");
+		Iterator it = m1.keySet().iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
+
+		System.out.println("------------------------");
+
+		Object[] abc = m1.values().toArray();
+
+		for (Object o : abc) {
+			System.out.println(o);
+		}
+
+		System.out.println("------------------------");
+
+		Set<Entry> a8 = m1.entrySet();
+
+		for (Entry e : a8) {
+			System.out.println(e.getKey() + " ::  " + e.getValue());
+		}
+
+	}
+
+}
+================================================================================
+package Tutorial13;
+
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+
+		SortedMap m1 = new TreeMap();
+
+		m1.put(10, "Selenium");
+		m1.put(20, "TestNG");
+		m1.put(30, "Cucumber");
+		m1.put(40, "POM");
+		m1.put(50, "Jenkins");
+		m1.put(60, "RestAPI");
+
+		Object a1 = m1.firstKey();
+		System.out.println(a1);// 10
+
+		Object a2 = m1.lastKey();
+		System.out.println(a2);// 60
+
+		SortedMap a3 = m1.headMap(30);
+		System.out.println(a3);// {10=selenium, 20=TestNG}
+
+		SortedMap a4 = m1.tailMap(30);
+		System.out.println(a4);// {30=cucumber, 40=POM, 50=Jenkins, 60=RestAPI}
+
+		SortedMap a5 = m1.subMap(20, 40);
+		System.out.println(a5);// {20=TestNG,30=cucumber}
+
+	}
+
+}
+===================================================================================
+package Tutorial13;
+
+import java.util.NavigableMap;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class demo6 {
+
+	public static void main(String[] args) {
+		NavigableMap m1 = new TreeMap();
+
+		m1.put(10, "Selenium");
+		m1.put(20, "TestNG");
+		m1.put(30, "Cucumber");
+		m1.put(40, "POM");
+		m1.put(50, "Jenkins");
+		m1.put(60, "RestAPI");
+
+		Object a1 = m1.lowerKey(30);
+		System.out.println(a1);// 20
+
+		Object a2 = m1.higherKey(30);
+		System.out.println(a2);// 40
+
+		// if same is present then it return the same otherwise next value
+		Object a3 = m1.ceilingKey(30);
+		System.out.println(a3);// 30
+
+		// if same is present then it return the same otherwise previous value
+		Object a4 = m1.floorKey(30);
+		System.out.println(a4);// 30
+
+		Object a5 = m1.pollFirstEntry();
+		System.out.println(a5);
+
+		Object a6 = m1.pollLastEntry();
+		System.out.println(a6);
+
+		System.out.println(m1);
+
+		NavigableMap abc = m1.descendingMap();
+
+		System.out.println(abc);
+
+	}
+
+}
+==================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

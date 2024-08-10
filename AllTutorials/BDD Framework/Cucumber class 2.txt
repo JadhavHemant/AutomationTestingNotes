@@ -1,0 +1,355 @@
+Gherkin keywords and their use
+
+1) Feature:	it used to mention the main functionality name or main feature name
+2) Scenario: 	it used to mention the Scenario name.			
+			it used to mention what is exact requirement we have to test it.
+
+3) Given		it is used to mention the precondition for steps
+4) When	it is used to mention the actions or events
+5) Then		it is used to mention the expected outcome or result
+6) And		it is used to combine the 2 or more steps
+7) But		it is used to declare multiple conditions
+8) *			it is used to declare any above conditions
+			and it is also called as global keyword
+---------------------------------------------------------------------------------------------------------------------
+Test Runner 
+
+1) @RunWith(Cucumber.class) annotation			: it tells to Junit,  run the class as Cucumber Test class
+2) @CucumberOptions()							: it tells lots of things as like
+								i) features= "feature file location" where is feature file locations by using features keyword
+								ii) g;ue="StepDefinition" where is step definition file location by using glue or extraGlue keyword
+								iii) dryRun=true keyword it check the mapping between feature file steps vs implemented snippets inside the 
+											step definition package.
+								iv) monochrome=true keyword is used to display the output console in proper readable format
+								v) tags=@tagName keyword, is used to specific scenario or specific scenario group.
+								vi)plugins ="reports" keyword is used to generate the different types of reports.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+how to check mapping between feature file step and implemented steps inside the Step Definition package?				VVVVIMMMPPP
+what is use of dryRun keyword in cucumber?
+
+			
+	
+		- dryRun=true we use inside the @CucumberOptions annotation in Test Runner class.
+		dryRun=true keyword is used to check the mapping between feature steps and implemented snippets inside the Step definition package and once we use dryRun=true keyword it check mapping and if mapping is incorrect 			then it generate the snippet for feature file steps.
+		- once we use dryRun=true keyword it just check the mapping and it is not going to execute any scenario.
+		
+		- but if we use dryRun=false keyword , so first it run the scenario from feature and if mapping is incorrect then it generate the snippets for that scenario.
+Note:
+		---> as per the old version we use strict keyword to check mapping.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+iv) monochrome=true keyword is used to display the output console in proper readable format
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is use of plugin keyword in cucumber?											VVVVVIMMMMPPPPPP
+
+plugin keyword is used to generate the different types of reports in cucumber
+					1) json file report
+					2) xml file report
+					3) html report
+					4) txt file report
+
+
+plugin={
+		"json:Reports/abc.json",
+		"junit:Reports/abc.xml",
+		"html:Reports/abc.html",
+		"pretty:Reports/abc/txt"
+		}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+how to run specific scenario from Feature file?									VVVVVIMMMMPPPPPP
+		- first we define the tagname in feature file by using @ symbol then tagname.
+		- we can define tagname in scenario level as well as feature file.
+		- then we use tags keyword inside the @CucumberOptions annotation by passing @tagname.
+		and it will run the specific scenario.
+
+tags="@LoginPage"
+
+
+package TestRunner;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features="src/test/java/Features",
+		glue="StepDefinition",
+		dryRun=false,
+		monochrome=true,
+		plugin= { 
+				"html:Reports/abc.html",
+				"json:Reports/abc.json",
+				"junit:Reports/abc.xml",
+				"pretty:Reports/abc.txt"
+				},
+		tags="@LoginPage"
+		)
+public class RunnerTest {
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+how to skip specific scenario from feature file?							VVVVVIMMMMPPPPPP
+		- first we define the tagname in feature file by using @ symbol then tagname.
+		- we can define tagname in scenario level as well as feature file.
+		- then we use tags keyword inside the @CucumberOptions annotation by passing not @tagname.
+		and it will skip the specific scenario
+e.g.
+			tags="not @HomePage"
+
+package TestRunner;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features="src/test/java/Features",
+		glue="StepDefinition",
+		dryRun=false,
+		monochrome=true,
+		plugin= { 
+				"html:Reports/abc.html",
+				"json:Reports/abc.json",
+				"junit:Reports/abc.xml",
+				"pretty:Reports/abc.txt"
+				},
+		tags="not @HomePage"
+		)
+public class RunnerTest {
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to execute 2 scenarios from feature file?
+		- first we define the tagname in feature file by using @ symbol then tagname.
+		- we can define tagname in scenario level as well as feature file.
+		- then we use tags keyword inside the @CucumberOptions annotation by passing @tagname or @tagname
+		and it will run the 2  scenario
+
+e.g.
+		tags="@LoginPage or @PIMPage"
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package TestRunner;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features="src/test/java/Features",
+		glue="StepDefinition",
+		dryRun=false,
+		monochrome=true,
+		plugin= { 
+				"html:Reports/abc.html",
+				"json:Reports/abc.json",
+				"junit:Reports/abc.xml",
+				"pretty:Reports/abc.txt"
+				},
+		tags="@LoginPage or @PIMPage"
+		)
+public class RunnerTest {
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scenarios:
+	1) login functionality
+	2) home page functionality
+	3) PIM page functionality
+
+
+
+@EndToEndTesting
+Feature: Test the Orange HRM application
+
+  @LoginPage @RegressionTesting
+  Scenario: Validate login functionality
+    Given user is on login page
+    When user enter username and password
+    Then user click on login button
+
+  @HomePage @SanityTesting
+  Scenario: validate Home Page Functionality
+    When user is on home page and validate home page title
+    And user validate home page url
+    And user validate home page logo
+
+  @PIMPage @SystemTesting
+  Scenario: validate pim page functionality
+    Given user is on pim page and verify the url
+    When user click on add employee
+    And user enter first name, middle name and last name
+    And user click on save button
+
+
+
+package StepDefinition;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.Duration;
+
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class OrangeHRMSteps {
+	static WebDriver driver;
+
+	@Given("user is on login page")
+	public void user_is_on_login_page() {
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+	}
+
+	@When("user enter username and password")
+	public void user_enter_username_and_password() {
+		driver.findElement(By.name("username")).sendKeys("Admin");
+		driver.findElement(By.name("password")).sendKeys("admin123");
+
+	}
+
+	@Then("user click on login button")
+	public void user_click_on_login_button() {
+		driver.findElement(By.xpath("//button[text()=' Login ']")).click();
+
+	}
+
+	@When("user is on home page and validate home page title")
+	public void user_is_on_home_page_and_validate_home_page_title() {
+		String actualTitle = driver.getTitle();
+		Assertions.assertEquals(actualTitle, "OrangeHRM");
+	}
+
+	@When("user validate home page url")
+	public void user_validate_home_page_url() {
+		boolean actualResult = driver.getCurrentUrl().contains("orange");
+		Assertions.assertEquals(actualResult, true);
+	}
+
+	@When("user validate home page logo")
+	public void user_validate_home_page_logo() {
+		boolean actualLogo = driver.findElement(By.xpath("//img[@alt='client brand banner']")).isDisplayed();
+		Assertions.assertEquals(actualLogo, true);
+	}
+
+	@Given("user is on pim page and verify the url")
+	public void user_is_on_pim_page_and_verify_the_url() {
+		driver.findElement(By.xpath("//span[text()='PIM']")).click();
+		boolean actualResult = driver.getCurrentUrl().contains("pim");
+		Assertions.assertTrue(actualResult);
+	}
+
+	@When("user click on add employee")
+	public void user_click_on_add_employee() {
+		driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
+	}
+
+	@When("user enter first name, middle name and last name")
+	public void user_enter_first_name_middle_name_and_last_name() {
+
+		driver.findElement(By.name("firstName")).sendKeys("Rahul");
+		driver.findElement(By.name("middleName")).sendKeys("abc");
+		driver.findElement(By.name("lastName")).sendKeys("Shah");
+
+	}
+
+	@When("user click on save button")
+	public void user_click_on_save_button() {
+		driver.findElement(By.xpath("//button[text()=' Save ']")).click();
+
+	}
+
+}
+
+package TestRunner;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features="src/test/java/Features",
+		glue="StepDefinition",
+		dryRun=false,
+		monochrome=true,
+		plugin= { 
+				"html:Reports/abc.html",
+				"json:Reports/abc.json",
+				"junit:Reports/abc.xml",
+				"pretty:Reports/abc.txt"
+				},
+		tags="@EndToEndTesting"
+		)
+public class RunnerTest {
+
+}
+===============================================================================================
+
+https://ui.cogmento.com/
+					prafulp1010@gmail.com
+					Pr@ful0812
+
+Scenario:		login functionality
+
+
+Scenario		Home Page
+						url
+						title
+						logo
+
+Scenario:		Contact page
+						click on contact link
+						click on create button
+						enter first name, last name , email, select status
+						click on save button
+						delete the contact
+
+Scenario		logout
+					click on profile icon
+					click on logout
+		
+===============================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

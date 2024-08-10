@@ -1,0 +1,797 @@
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.14.3</version>
+</dependency>
+
+
+API Automation
+============================================================================================
+Serialization
+	- Serialization means converting java object into the byte stream (JSON Object) .
+	- we achieve Serialization using Jackson-databind library / dependency
+	- To achieve the Serialization we have to create Entity POJO Classes then we convert these POJO classes into the JSON of String format.
+---------------------------------------------------------------------------------------------------------------------------
+POST Request using Serialization 
+	-POST Request is used to create a new entity in server
+
+Swagger Documentations
+	- Base URI 					http://localhost:3000/employees
+	- Request Type				POST
+	- Request Header			Content-Type	application/json
+	- Request Body
+								{
+									"firstName" : "{string}",
+									"lastName" : "{string}",
+									"address" : "{string}",
+									"mobileNumber" : {long},
+									"gender" : "{string}",
+								}
+
+	Verification
+	Status code				201
+	Status line				HTTP/1.1 201 Created
+	Response time
+	Response size
+	Response body
+	Response Headers
+	Response cookies
+-------------------------------------------------
+Create Request Body using Serialization
+
+step 1: create POJO (Plain Old Java Object) Classes
+				- POJO classes are used to define the private Entity key
+	
+
+public class Employee
+{
+	private String firstName;
+
+	private String lastName;
+
+	private String address;
+
+	private long mobileNumber;
+
+	private String gender;
+
+	//create getter and setter method for firstname
+	
+	public String getFirstName()
+	{
+		return this.firstName;
+	}	
+
+	public void setFirstName(String firstName)
+	{
+		this.firstName= firstName;
+	}
+
+	//create getter and setter method for lastname
+	//create getter and setter method for address
+	//create getter and setter method for mobileNumber
+	//create getter and setter method for gender
+}
+
+Step 2; Set the value for private Entity variable in another classes
+
+		Employee emp =new Employee();
+		emp.setFirstName("Pooja");
+		emp.setLastName("shinde");
+		emp.setAddress("Pune");
+		emp.setMobileNumber(999999999l);
+		emp.setGender("female");
+
+Step 3;  covert the Java Object into JSON of String object
+			create Object of ObjectMapper class
+			
+		ObjectMapper mapper =new ObjectMapper();
+		
+		use writeValueAsString() method by passing POJO class object name.
+		
+		String PostRequestbody  = mapper.writeValueAsString(emp);
+
+===========================
+POST Request
+
+Step 1: configure Base URI in rest Assured
+		RestAssured.baseURI="http://localhost:3000/employees";
+
+step 2: get the Request Specification interface object
+
+		RequestSpecification httpRequest = RestAssured.given();
+
+step 3: add Request header
+		
+		httpRequest.header("Content-Type", "application");
+
+step 4:  create Request body using POJO Classes 
+
+		Employee emp =new Employee();
+		emp.setFirstName("Pooja");
+		emp.setLastName("shinde");
+		emp.setAddress("Pune");
+		emp.setMobileNumber(999999999l);
+		emp.setGender("female");
+		
+		ObjectMapper mapper =new ObjectMapper();
+		
+		String requestbody = mapper.writeValueAsString(emp);
+
+
+Step 5: add request body
+		httpRequest.body(requestbody);
+
+step 6: select the HTTP POST Request
+
+		Response response = httpRequest.post();
+
+step 7: capture status code
+		int a = response.statusCode();
+
+step 8: capture status line
+		String b = response.statusLine();
+	
+step 9: capture response time
+		long c = response.time();
+
+step 10: capture response body
+		String d = response.body().asString();
+
+step 11: capture response headers
+
+		Headers allHeader = response.headers();
+
+step 12: iterate all header key-value pair
+
+	for(Header abc: allHeader)
+		{
+				syso(abc.getName() + " "+abc.getValue());
+		}
+
+==================================================================================
+package Tutorial6;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws JsonProcessingException {
+		//step 1; configure BaseURI in Rest Assured
+		RestAssured.baseURI="http://localhost:3000/employees";
+		
+		//step 2: get the RequestSpecification interface object
+		RequestSpecification httpRequest = RestAssured.given();
+		
+		//step 3: add request header
+		httpRequest.header("Content-Type","application/json");
+		
+		//step 4: create Request body using Serialization
+		Employee emp =new Employee();
+		emp.setFirstName("Pooja");
+		emp.setLastName("Shinde");
+		emp.setAddress("Pune");
+		emp.setMobileNumber(99999999l);
+		emp.setGender("female");
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String postRequestBody = mapper.writeValueAsString(emp);
+		
+		//step 5; add request body
+		httpRequest.body(postRequestBody);
+		
+		//step 6: select HTTP POST Request
+		Response response = httpRequest.post();
+	
+		//step 7: capture status code
+		int a = response.statusCode();
+		System.out.println(a);
+		
+		//step 8; capture status line
+		String b = response.statusLine();
+		System.out.println(b);
+	
+		//step 9" capture respons time
+		long c = response.time();
+		System.out.println(c);
+	
+		//step 10;capture response body
+		String d = response.body().asString();
+		System.out.println(d);
+	
+		//step 11: capture response header
+		Headers allHeader = response.headers();
+		
+		//step 12: iterate all headers key-value pair
+		for(Header abc: allHeader)
+		{
+			System.out.println(abc.getName() + " :: "+abc.getValue());
+		}
+	
+	
+	
+	}
+}
+=============================================================================================
+
+PUT Request using Serialization
+
+package Tutorial6;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws JsonProcessingException {
+		//step 1; configure BaseURI in Rest Assured
+		RestAssured.baseURI="http://localhost:3000/employees/1";
+		
+		//step 2: get the RequestSpecification interface object
+		RequestSpecification httpRequest = RestAssured.given();
+		
+		//step 3: add request header
+		httpRequest.header("Content-Type","application/json");
+		
+		//step 4: create Request body using Serialization
+		Employee emp =new Employee();
+		emp.setFirstName("Pooja");
+		emp.setLastName("Shinde");
+		emp.setAddress("Pune");
+		emp.setMobileNumber(99999999l);
+		emp.setGender("female");
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String postRequestBody = mapper.writeValueAsString(emp);
+		
+		//step 5; add request body
+		httpRequest.body(postRequestBody);
+		
+		//step 6: select HTTP PUT Request
+		Response response = httpRequest.put();
+	
+		//step 7: capture status code
+		int a = response.statusCode();
+		System.out.println(a);
+		
+		//step 8; capture status line
+		String b = response.statusLine();
+		System.out.println(b);
+	
+		//step 9" capture respons time
+		long c = response.time();
+		System.out.println(c);
+	
+		//step 10;capture response body
+		String d = response.body().asString();
+		System.out.println(d);
+	
+		//step 11: capture response header
+		Headers allHeader = response.headers();
+		
+		//step 12: iterate all headers key-value pair
+		for(Header abc: allHeader)
+		{
+			System.out.println(abc.getName() + " :: "+abc.getValue());
+		}
+	
+	
+	
+	}
+}
+
+=====================================================================
+package Tutorial6;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Employee {
+
+	private String firstName;
+
+	private String lastName;
+
+	private String address;
+
+	@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+	private long mobileNumber;
+
+	private String gender;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public long getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+}
+
+package Tutorial6;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws JsonProcessingException {
+		//step 1; configure BaseURI in Rest Assured
+		RestAssured.baseURI="http://localhost:3000/employees/4";
+		
+		//step 2: get the RequestSpecification interface object
+		RequestSpecification httpRequest = RestAssured.given();
+		
+		//step 3: add request header
+		httpRequest.header("Content-Type","application/json");
+		
+		//step 4: create Request body using Serialization
+		Employee emp =new Employee();
+		emp.setFirstName("Anjali");
+	
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String postRequestBody = mapper.writeValueAsString(emp);
+		
+		//step 5; add request body
+		httpRequest.body(postRequestBody);
+		
+		//step 6: select HTTP PATCH Request
+		Response response = httpRequest.patch();
+	
+		//step 7: capture status code
+		int a = response.statusCode();
+		System.out.println(a);
+		
+		//step 8; capture status line
+		String b = response.statusLine();
+		System.out.println(b);
+	
+		//step 9" capture respons time
+		long c = response.time();
+		System.out.println(c);
+	
+		//step 10;capture response body
+		String d = response.body().asString();
+		System.out.println(d);
+	
+		//step 11: capture response header
+		Headers allHeader = response.headers();
+		
+		//step 12: iterate all headers key-value pair
+		for(Header abc: allHeader)
+		{
+			System.out.println(abc.getName() + " :: "+abc.getValue());
+		}
+	
+	
+	
+	}
+}
+=================================================================================
+POST
+PUT
+PATCH
+
+Swagger Documentations
+	- Base URI 					http://localhost:3000/employees
+	- Request Type				POST
+	- Request Header			Content-Type	application/json
+	- Request Body
+								{
+									"firstName" : "{string}",
+									"lastName" : "{string}",
+									"address" : "{string}",
+									"mobileNumber" : {long},
+									"gender" : "{string}",
+								}
+
+	Verification
+	Status code				201
+	Status line				HTTP/1.1 201 Created
+	Response time
+	Response size
+	Response body
+	Response Headers
+	Response cookies
+---------------------------------
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Employee
+{
+		private String firstName;
+
+		private String lastName;
+		
+		private String address;
+		
+		@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+		private long mobileNumber;
+
+		private String gender;
+	
+		//getter and setter method
+		right click on class --- go to source --- click on getter and setter and click on select all check box and click on ok button
+
+		//getter method
+
+		public String getFirstName()
+		{
+			return this.firstName;
+		}
+
+		//setter method
+		
+		public void setFirstName(String firstName)
+		{
+			this.firstName= firstName;
+		}
+
+
+		//getter for mobileNumber
+		
+		public long getMobileNumber()
+		{
+			return this.mobileNumber;
+		}
+
+		public void setMobileNumber(long mobileNumber)
+		{
+			this.mobileNumber= mobileNumber;
+		}
+
+
+}
+
+
+step 1: configure base URI in rest Assured
+	
+		RestAssured.baseURI="http://localhost:3000/employees";
+
+step 2: get the RequestSpecification interface object
+
+		RequestSpecification httpRequest = RestAssured.given();
+
+
+step 3: add request header
+		httpRequest.header("Content-Type", "application/json");
+
+
+step 4: create request body using serialization
+		
+		Employee emp1 =new Employee();
+
+		emp1.setFirstName("Rahul");
+		emp1.setLastName("Patil");
+		emp1.setAddress("Pune");
+		emp1.setMobileNumber(444444333l);
+		emp1.setGender("male");
+
+		ObjectMapper mapper1 = new ObjectMapper();
+		String postRequestBody = mapper1.writeValueAsString(emp1);
+
+step 5: add request body
+
+		httpRequest.body(postRequestBody);
+
+step 6: select the HTTP POST Request
+
+		Response response1 = httpRequest.post();
+
+step 7: capture status code
+		int a1 = response1.statusCode();
+
+step 8; capture status line
+		String b1 = response1.statusLine();
+
+step 9; capture response time
+		long c1 = response1.time();
+
+step 10: capture response  body
+		String d1 = response1.body().asString();
+
+step 11: capture response headers
+		Headers allHeader1 = response1.headers();
+
+step 11: capture id from response body
+
+		JsonPath jsonPath1 =new JsonPath(d);
+
+		String id = jsonPath1.getString("id");
+
+
+step 12: configure Base URI in Rest Assured
+		RestAssured.baseURI="http://localhost:3000/employees/"+id;
+
+step 13: get the Request Specification interface object
+
+		RequestSpecification httpRequest2 = RestAssured.given();
+
+
+step 14: add request header
+		httpRequest2.header("Content-Type", "application/json");
+
+step 15; create request body for PUT Request
+
+		Employee emp2 = new Employee();
+
+		emp2.setFirstName("Sujit");
+		emp2.setLastName("Shah");
+		emp2.setAddress("Delhi");
+		emp2.setMobileNumber(8888888l);
+		emp2.setGender("male");
+
+		ObjectMapper mapper2 =new ObjectMapper();
+
+		String putRequestBody = mapper2.writeValueAsString(emp2);
+
+step 16: add request body
+
+		httpRequest2.body(putRequestBody);
+
+step 17: select HTTP PUT request
+
+		Response response2 = httpRequest2.put();
+
+step 18: capture status code
+
+		int a2 =response2.statusCode();
+
+step 19: capture status line
+		String b2 = response2.statusLine();
+
+step 20: capture response time
+
+		long c2 = response2.time();
+
+step 21: capture response body 
+		String d4 = response2.body().asString();
+
+step 22: capture response headers
+		Headers allHeader = response2.headers();
+
+
+step 23: configure base URI in rest assured
+		RestAssured.baseURI="http://localhost:3000/employees/"+id;
+
+step 24 get the RequestSpecification interface object
+	
+		RequestSpecification httpRequest3 = RestAssured.given();
+
+		
+step 25: add request header
+		httpRequest3.header("Content-Type", "application/json");
+
+step 26: create request body
+		
+		Employee emp3 =new Employee();
+		emp3.setFirstName("Sachin");
+		
+		ObjectMapper mapper3 = new ObjectMapper();
+		String patchRequestBody = mapper3.writeValueAsString(emp3);
+
+
+step 27: add request body
+		httpRequest3.body(patchRequestBody);
+
+step 28: select the HTTP PATCH request
+		Response response3 = httpRequest3.patch();
+
+
+step 29: capture status code
+
+		int a3=response3.statusCode();
+
+step 30: capture status line
+		String b3 = response3.statusLine();
+
+step 31: capture response time
+
+		long c3 = response3.time();
+
+step 32: capture response body 
+		String d3 = response3.body().asString();
+
+step 33: capture response headers
+		Headers allHeader = response3.headers();
+		
+
+package Tutorial7;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws Exception {
+		RestAssured.baseURI = "http://localhost:3000/employees";
+		RequestSpecification httpRequest1 = RestAssured.given();
+		httpRequest1.header("Content-Type", "application/json");
+		Employee emp1 = new Employee();
+		emp1.setFirstName("Rahul");
+		emp1.setLastName("Patil");
+		emp1.setAddress("Pune");
+		emp1.setMobileNumber(9888999l);
+		emp1.setGender("male");
+
+		ObjectMapper mapper1 = new ObjectMapper();
+		String postRequestBody = mapper1.writeValueAsString(emp1);
+		httpRequest1.body(postRequestBody);
+
+		Response response1 = httpRequest1.post();
+		
+		System.out.println(response1.statusCode());
+		System.out.println(response1.statusLine());
+		System.out.println(response1.time());
+		String respBody1 = response1.body().asString();
+		System.out.println(respBody1);
+		
+		JsonPath jsonPath =new JsonPath(respBody1);
+		String id = jsonPath.getString("id");
+		
+		Thread.sleep(3000);
+		System.err.println("------------------------------");
+		
+		RestAssured.baseURI="http://localhost:3000/employees/"+id;
+		RequestSpecification httpRequest2 = RestAssured.given();
+		httpRequest2.header("Content-Type","application/json");
+		Employee emp2 = new Employee();
+		emp2.setFirstName("Sujit");
+		emp2.setLastName("Shah");
+		emp2.setAddress("Delhi");
+		emp2.setMobileNumber(555555l);
+		emp2.setGender("male");
+		
+		ObjectMapper mapper2 =new ObjectMapper();
+		String putRequestBody = mapper2.writeValueAsString(emp2);
+		
+		httpRequest2.body(putRequestBody);
+		Response response2 = httpRequest2.put();
+		System.out.println(response2.statusCode());
+		System.out.println(response2.statusLine());
+		System.out.println(response2.time());
+		System.out.println(response2.body().asString());
+		
+		Thread.sleep(3000);
+		System.err.println("------------------------------");
+		
+		RestAssured.baseURI="http://localhost:3000/employees/"+id;
+		RequestSpecification httpRequest3 = RestAssured.given();
+		httpRequest3.header("Content-Type","application/json");
+		Employee emp3 = new Employee();
+		emp3.setFirstName("Prasad");
+		emp3.setAddress("Dubai");
+		
+		ObjectMapper mapper3 =new ObjectMapper();
+		String patchRequestBody = mapper3.writeValueAsString(emp3);
+	
+		httpRequest3.body(patchRequestBody);
+		
+		Response response3 = httpRequest3.patch();
+		System.out.println(response3.statusCode());
+		System.out.println(response3.statusLine());
+		System.out.println(response3.time());
+		System.out.println(response3.body().asString());
+	}
+}
+======================================================================================================
+		using serialization with Rest Assured BDD
+
+POST
+GET
+PUT
+GET
+PATCH
+GET
+DELETE
+GET
+======================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

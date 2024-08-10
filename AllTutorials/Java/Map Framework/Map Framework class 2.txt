@@ -1,0 +1,649 @@
+Map Interface Methods
+============================================================================================
+	1) put(Object key, Object value)							Object
+	2) putAll(Map m)										void
+	3)  containsKey(Object key)								boolean
+	4) containsValue(Object value)							boolean
+	5) remove(Object key)									Object
+	6) get(Object value)										Object
+	7) size()												int
+	8) clear()												void
+	9) isEmpty()											boolean
+	10) keySet()												Set interface
+	11) values()												Collection interface
+	12) entrySet()											Set<Entry>
+--------------------------------------------------------------------------------------------------------------------------------------------------
+1) HashMap class
+2) LinkedHashMap class
+	- it child class of HashMap class
+	- underlying data structure is Hashtable and LinkedList
+	- insertion order is maintained as per the key
+	- duplicate keys are not allowed but values are allowed
+	- null key are allowed only once but values can be multiple times
+	- Heterogeneous values are allowed both key-value pair
+	- default capacity is 16
+	- all methods are non synchronized hence performance is high
+	- at same time multiple threads are allowed
+
+syntax:
+		Map m1 =new LinkedHashMap();
+	
+		HashMap m2 =new LinkedHashMap();
+
+		LinkedHashMap m3 =new LinkedHashMap();
+
+
+package Tutorial12;
+
+import java.util.LinkedHashMap;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		LinkedHashMap m1 =new LinkedHashMap();
+		m1.put("selenium", "TestNG");
+		m1.put(1, "cucumber");
+		m1.put(12.34f, 'A');
+		m1.put(true, 1000);
+		m1.put('B', 123.34f);
+		m1.put(null, "Rest");
+		m1.put(null, "Json");
+		m1.put(1, null);
+		m1.put(2, null);
+		m1.put(true, "Abc");
+		
+		System.out.println(m1);
+		
+
+	}
+
+}
+==================================================================
+package Tutorial12;
+
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+
+		LinkedHashMap m1 = new LinkedHashMap();
+		m1.put(1, "RestAPI");
+		m1.put(2, "POJO");
+		m1.put(3, "Hamcrest");
+		m1.put(4, "JSON");
+		m1.put(5, "XML");
+		m1.put(6, "Serilization");// convert java object into byte stream object
+		m1.put(7, "Deserilization"); // convert byte stream object into java object
+		m1.put(8, "Jackson-Databind dependency");
+		m1.put(9, "JsonPath dependency");
+
+		Object a1 = m1.get(4);
+		System.out.println(a1);
+
+		int a2 = m1.size();
+		System.out.println(a2);
+
+		boolean a3 = m1.isEmpty();
+		System.out.println(a3);
+
+		boolean a4 = m1.containsKey(7);
+		System.out.println(a4);
+
+		boolean a5 = m1.containsValue("xml".toUpperCase());
+		System.out.println(a5);
+
+		Object a6 = m1.remove(7);
+		System.out.println(a6);// Deserilization
+
+		System.out.println("-------------------------");
+
+		Iterator it = m1.keySet().iterator();
+
+		while (it.hasNext()) {
+			Object o = it.next();
+			System.out.println(o);
+		}
+
+		System.out.println("-------------------------");
+
+		Iterator it1 = m1.values().iterator();
+
+		while (it1.hasNext()) {
+			Object o = it1.next();
+			System.out.println(o);
+		}
+
+		System.out.println("-------------------------");
+
+		// Entry is sub interface of Map interface
+
+		Set<Entry> s1 = m1.entrySet();
+
+		for (Entry abc : s1) {
+			// capture key from Entry
+			Object key = abc.getKey();
+
+			// capture the values from Entry
+			Object value = abc.getValue();
+
+			System.out.println(key + "  ::   " + value);
+
+		}
+
+		System.out.println("-------------------------");
+		m1.clear();
+		System.out.println(m1);
+
+	}
+}
+=======================================================================================
+1) find occurrence  of character from String													VVVVIMMPPPPPPPPPPPPP
+2)  print only repeated character from String and occurrence									VVVVIMMPPPPPPPPPPPPP
+=======================================================================================
+1) find occurrence  of character from String													VVVVIMMPPPPPPPPPPPPP
+					
+					String a ="cucumber";
+
+					c		2
+					u		2
+					m		1
+					b		1
+					r		1
+
+Step 1: convert the String into char [] array
+				
+				char abc [] = a.toCharArray();
+
+step 2: create object of LinkedHashMap<Character, Integer>
+		
+			LinkedHashMap<Character, Integer> h1 =new LinkedHashMap<Character, Integer>();
+
+step 3: iterate all char [] array values 
+
+			for(int i=0;abc.length;i++)
+			{
+					//capture values from char [] array
+					char arrayValue = abc[i];
+
+					//step 31) check key is present or not in LinkedHashMap
+				
+					if(h1.containsKey(arrayValue))
+					{
+						//first capture the values from LinkedHashMap 
+						int capturedValue = h1.get(arrayValue);
+
+						// then increment the values by 1
+						h1.put(arrayValue, capturedValue+1);
+
+					}
+					else
+					{
+							//if value is not present then add values in LinkedHashMap
+							h1.put(arrayValue,1);
+					}
+					
+
+			}
+
+
+
+step 4): print key-value pair in console
+
+			Set<Entry<Character, Integer>>  allValues = h1.entrySet();
+
+			for(Entry<Character, Integer> abc: allValues)
+			{
+					char key= abc.getKey();
+		
+					int value = abc.getValue();
+			
+					System.out.println(key +"  ::: "+value);
+			}	
+
+
+package Tutorial12;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		String a = "abc abc aaa bb t";
+
+		// Step 1: convert String into char[] array
+		char[] abc = a.toCharArray();
+
+		// step 2: create object of LinkedHashMap<Character,Integer>
+
+		LinkedHashMap<Character, Integer> h1 = new LinkedHashMap<Character, Integer>();
+
+		// step 3: iterate all char [] array values
+
+		for (int i = 0; i < abc.length; i++) {
+
+			// step 3a) capture the values from char [] array
+			char captureArrayValue = abc[i];
+
+			// step 3b) check captured array value is present or not in LinkedHashMap
+			if (h1.containsKey(captureArrayValue)) {
+				// step 3c) capture the value from LinekdHashMap object
+				int capturedValue = h1.get(captureArrayValue);
+
+				// step 3d: increment value by1
+				h1.put(captureArrayValue, capturedValue + 1);
+			} else {
+				// step 3e) if value is not present in LinkedHashMap then put in Map
+				h1.put(captureArrayValue, 1);
+			}
+		}
+
+		// step 4): capture key-value pair from LinkedHashMap
+
+		Set<Entry<Character, Integer>> s1 = h1.entrySet();
+
+		// Step 5: iterate LinkedHashMap values
+		for (Entry<Character, Integer> xyz : s1) {
+			// capture the key
+			char key = xyz.getKey();
+
+			// capture values
+			int value = xyz.getValue();
+
+			System.out.println(key + "  ::   " + value);
+
+		}
+
+	}
+}
+===============================================================================================
+2)  print only repeated character from String and occurrence									VVVVIMMPPPPPPPPPPPPP
+			String a="cucumber";
+		
+			c		2
+			u		2
+
+step 1: convert the String into char [] array
+			char [] abc = a.toCharArray();
+
+
+step 2: create object of LinkedHashMap<Character, Integer>
+			
+			LinkedHashMap<Character, Integer> h1 =new LinkedHashMap<Character, Integer>();
+
+step 3: iterate all char [] array values
+
+			for(int i=0; i<abc.length;i++)
+			{
+				//capture value from char [] array
+				char captureArrayValue = abc[i];
+		
+				//check captureArrayValue is present or not in LinkedHashMap object
+				if(h1.containsKey(captureArrayValue))
+				{
+					//capture the values from LinkedHashMap object
+					int captureLinkedHashMapValue = h1.get(captureArrayValue);
+
+					//increment value by 1
+					h1.put(captureArrayValue, captureLinkedHashMapValue+1);
+				}
+				else
+				{
+					//value is not present then add/put value in LinkedHashMap
+					h1.put(captureArrayValue, 1);
+				}
+
+			}
+			
+	
+step 4: capture key-value pair
+		Set<Entry<Character, Integer>> s1 = h1.entrySet();
+
+step 5: iterate key-value pair
+
+		for(Entry<Character,Integer> xyz : s1)
+		{
+				//capture the values
+				int value = xyz.getValue();
+
+				//check if value is greater then 1 or not
+				if(value>1)
+				{
+					//capture the key
+					char key = 	xyz.getKey();
+				
+					System.out.println(key +"  "+value );
+				}
+		}
+
+====================================================================
+package Tutorial12;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		String a = "java selenium regression";
+
+		char[] abc = a.toCharArray();
+
+		LinkedHashMap<Character, Integer> h1 = new LinkedHashMap<Character, Integer>();
+
+		for (int i = 0; i < abc.length; i++) {
+			char capturedArrayValue = abc[i];
+
+			if (h1.containsKey(capturedArrayValue)) {
+				int captureLinkedHashMapValue = h1.get(capturedArrayValue);
+
+				h1.put(capturedArrayValue, captureLinkedHashMapValue + 1);
+			} else {
+				h1.put(capturedArrayValue, 1);
+			}
+
+		}
+
+		Set<Entry<Character, Integer>> s1 = h1.entrySet();
+
+		for (Entry<Character, Integer> xyz : s1) {
+			char key = xyz.getKey();
+
+			int value = xyz.getValue();
+
+			if (value > 1) {
+				System.out.println(key + " ::  " + value);
+			}
+		}
+
+	}
+}
+=============================================================================================
+find the occurrence of words
+
+String a="java selenium java cucumber java testng selenium";
+
+
+package Tutorial12;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		String a = "java selenium java cucumber java testng selenium";
+		
+		String [] abc= a.split(" ");
+		
+		LinkedHashMap<String,Integer> h1 = new LinkedHashMap<String,Integer>();
+		
+		for (int i = 0; i < abc.length; i++) 
+		{
+			String capturedArrayValue = abc[i];
+			
+			if(h1.containsKey(capturedArrayValue))
+			{
+				int captureLinkedHashMapValue = h1.get(capturedArrayValue);
+				
+				h1.put(capturedArrayValue, captureLinkedHashMapValue+1);
+			}
+			else
+			{
+				h1.put(capturedArrayValue, 1);
+			}
+		}
+		
+		Set<Entry<String,Integer>> s1 = h1.entrySet();
+		
+		for(Entry<String,Integer> xyz : s1)
+		{
+			String key = xyz.getKey();
+			
+			int value = xyz.getValue();
+			
+			System.out.println(key +"  ::   "+value);
+		}
+		
+
+		
+	}
+}
+==============================================================================
+package Tutorial12;
+
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		String a = "java selenium java cucumber java testng selenium";
+		
+		String [] abc= a.split(" ");
+		
+		LinkedHashMap<String,Integer> h1 = new LinkedHashMap<String,Integer>();
+		
+		for (int i = 0; i < abc.length; i++) 
+		{
+			String capturedArrayValue = abc[i];
+			
+			if(h1.containsKey(capturedArrayValue))
+			{
+				int captureLinkedHashMapValue = h1.get(capturedArrayValue);
+				
+				h1.put(capturedArrayValue, captureLinkedHashMapValue+1);
+			}
+			else
+			{
+				h1.put(capturedArrayValue, 1);
+			}
+		}
+		
+		Set<Entry<String,Integer>> s1 = h1.entrySet();
+		
+		for(Entry<String,Integer> xyz : s1)
+		{
+			String key = xyz.getKey();
+			
+			int value = xyz.getValue();
+			
+			if(value>1)
+			{
+				System.out.println(key +"  ::   "+value);
+			}
+			
+		}
+		
+
+		
+	}
+}
+==================================================================================
+3) Hashtable class
+	- it is implemented class of Map interface
+	- underlying data structure is HashTable
+	- insertion order is not maintained  but it will insert the values as per the Hash Code for key
+	- duplicate key are not allowed but value can be duplicate
+	- null key are not allowed
+	- null values are not allowed
+	- default capacity is 11
+	- All methods are synchronized hence performance is low
+	- at same time multiple threads are not allowed	[Single thread is allowed at same time]
+
+syntax;
+		Map m1 =new Hashtable();
+
+		Hashtable h1 =new Hashtable();
+
+
+package Tutorial12;
+
+import java.util.Hashtable;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+
+		Hashtable h1 = new Hashtable();
+		h1.put(101, "selenium");
+		h1.put(102, "selenium");
+		h1.put(102, "Testing");
+		h1.put(103, "RestAPI");
+		//h1.put(104, null);
+		h1.put('A', true);
+		h1.put(134.4f, 1000);
+
+		System.out.println(h1);
+
+	}
+}
+
+package Tutorial12;
+
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		Hashtable h1 = new Hashtable();
+
+		h1.put(1, "RestAPI");
+		h1.put(2, "Rest Assured");
+		h1.put(3, "JSON");
+		h1.put(4, "XML");
+		h1.put(5, "Jackson-databind");
+		h1.put(6, "Hamcrest");
+		h1.put(7, "Json Path");
+
+		Object a1 = h1.get(6);
+		System.out.println(a1);
+
+		int a2 = h1.size();
+		System.out.println(a2);
+
+		boolean a3 = h1.isEmpty();
+		System.out.println(a3);
+
+		Object a4 = h1.remove(3);
+		System.out.println(a4);
+
+		boolean a5 = h1.containsKey(4);
+		System.out.println(a5);
+
+		boolean a6 = h1.containsValue("XML");
+		System.out.println(a6);
+
+		Set s1 = h1.keySet();
+		Iterator it = s1.iterator();
+
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
+
+		Iterator it1 = h1.values().iterator();
+
+		while (it1.hasNext()) {
+			System.out.println(it1.next());
+		}
+
+		System.out.println("------------");
+
+		Set<Entry> s3 = h1.entrySet();
+
+		for (Entry abc : s3) {
+			System.out.println(abc.getKey() + " :: " + abc.getValue());
+		}
+
+	}
+}
+================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

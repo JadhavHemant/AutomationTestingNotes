@@ -1,0 +1,61 @@
+	json-server --watch customer.json --port=4000
+--------------------------------------------------------------------------------------------------------------------------------------
+Swagger documentation
+--------------------------------------------------------------------------------------------------------------------------------------
+Post
+		BaseURI				http://localhost:4000/customers
+		Request type			POST
+		Request Header			Content-Type		application/json
+		Request body
+							{
+								 "cust_fName" : "{string}",
+						            	"cust_lName" : "{string}",
+						           	 "cust_billingAddress" : "{string}",
+          						 	 "product_Name" : "{string}",
+						            	"product_price" : {long},
+						           	 "product_Discount" : {int},
+						           	 "product_info" :"{string}"
+							}
+--------------------------------------------------------------------------------------------------------------------------------------
+
+GET request
+		BaseURI				http://localhost:4000/customers/1
+		Request type			GET
+--------------------------------------------------------------------------------------------------------------------------------------
+PUT
+		BaseURI				http://localhost:4000/customers/1
+		Request type			PUT
+		Request Header			Content-Type		application/json
+		Request body
+							{
+								 "cust_fName" : "{string}",
+						            	"cust_lName" : "{string}",
+						           	 "cust_billingAddress" : "{string}",
+          						 	 "product_Name" : "{string}",
+						            	"product_price" : {long},
+						           	 "product_Discount" : {int},
+						           	 "product_info" :"{string}"
+							}
+--------------------------------------------------------------------------------------------------------------------------------------
+PATCH
+		BaseURI				http://localhost:4000/customers/1
+		Request type			PATCH
+		Request Header			Content-Type		application/json
+		Request body
+							{
+								 "cust_fName" : "{string}",
+						            	"cust_lName" : "{string}",
+						           	 "cust_billingAddress" : "{string}",
+          						 	 "product_Name" : "{string}",
+						            	"product_price" : {long},
+						           	 "product_Discount" : {int},
+						           	 "product_info" :"{string}"
+							}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+DELETE request
+		BaseURI				http://localhost:4000/customers/1
+		Request type			DELETE
+
+
+

@@ -1,0 +1,227 @@
+{
+  "employees": [
+    {
+      "firstName": "Amruta",
+      "lastName": null,
+      "address": null,
+      "mobileNumber": 0,
+      "gender": null,
+      "id": "1"
+    },
+    {
+      "firstName": "Aboli",
+      "lastName": "Shinde",
+      "address": "UK",
+      "mobileNumber": 777777777,
+      "gender": "female",
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "firstName": "Anjali",
+      "lastName": "More",
+      "address": [ "Pune", "mumbai","Delhi" ],
+      "gender": "female",
+      "mobileNumber": 0
+    },
+    {
+      "id": "4",
+      "firstName": "Anjali",
+      "lastName": "More",
+      "address": "Pune",
+      "gender": "female",
+      "mobileNumber": 980908998
+    },
+    {
+      "id": "2e91",
+      "firstName": "Suraj",
+      "lastName": "Pandit",
+      "address": "Mumbai",
+      "gender": "male",
+      "mobileNumber": 90090900
+    },
+    {
+      "id": "a0d8",
+      "firstName": "Suraj",
+      "lastName": "Pandit",
+      "address": "Mumbai",
+      "gender": "male",
+      "mobileNumber": 90090900
+    },
+    {
+      "id": "f15b",
+      "firstName": "Suraj",
+      "lastName": "Pandit",
+      "address": "Mumbai",
+      "gender": "male",
+      "mobileNumber": 90090900
+    },
+    {
+      "firstName": "Nikhil",
+      "lastName": "Patil",
+      "address": "Delhi",
+      "gender": "male",
+      "mobileNumber": 555555,
+      "id": "7916"
+    },
+    {
+      "firstName": "Nikhil",
+      "lastName": "Patil",
+      "address": "Delhi",
+      "gender": "male",
+      "mobileNumber": 555555,
+      "id": "2126"
+    },
+    {
+      "id": "4d4c",
+      "firstName": "Shrikant",
+      "lastName": "Kore",
+      "address": "Pune",
+      "gender": "male",
+      "mobileNumber": 9099999
+    },
+    {
+      "id": "1195",
+      "firstName": "Shrikant",
+      "lastName": "Kore",
+      "address": "Pune",
+      "gender": "male",
+      "mobileNumber": 9099999
+    },
+    {
+      "id": "b3bd",
+      "firstName": "Pooja",
+      "lastName": "Shinde",
+      "address": "Pune",
+      "mobileNumber": 99999999,
+      "gender": "female"
+    },
+    {
+      "firstName": "Sujit",
+      "lastName": "Shah",
+      "address": "Delhi",
+      "mobileNumber": 555555,
+      "gender": "male",
+      "id": "792a"
+    },
+    {
+      "firstName": "Prasad",
+      "lastName": "Shah",
+      "address": "Delhi",
+      "mobileNumber": 555555,
+      "gender": "male",
+      "id": "f92f"
+    },
+    {
+      "firstName": "Prasad",
+      "lastName": "Shah",
+      "address": "Delhi",
+      "mobileNumber": 555555,
+      "gender": "male",
+      "id": "6789"
+    },
+    {
+      "firstName": "Prasad",
+      "lastName": "Shah",
+      "address": "Dubai",
+      "mobileNumber": 555555,
+      "gender": "male",
+      "id": "ab39"
+    },
+    {
+      "id": "bb1f",
+      "firstName": "Shrikant",
+      "lastName": "Kore",
+      "address": "Pune",
+      "gender": "male",
+      "mobileNumber": 9099999
+    },
+    {
+      "id": "233a",
+      "firstName": "Rohini",
+      "lastName": "Mote",
+      "address": "Pune",
+      "mobileNumber": 7777777,
+      "gender": "female"
+    },
+    {
+      "id": "de65",
+      "firstName": "Rohini",
+      "lastName": "Mote",
+      "address": "Pune",
+      "mobileNumber": 7777777,
+      "gender": "female"
+    },
+    {
+      "firstName": "Sujata",
+      "lastName": "Kale",
+      "address": "Pune",
+      "mobileNumber": 4444444,
+      "gender": "female",
+      "id": "56bc"
+    },
+    {
+      "firstName": "Rutuja",
+      "lastName": "Kale",
+      "address": "Pune",
+      "mobileNumber": 4444444,
+      "gender": "female",
+      "id": "fbde"
+    },
+    {
+      "id": "a93f",
+      "firstName": "Amol",
+      "lastName": "Patil",
+      "address": "Pune",
+      "mobileNumber": 909090,
+      "gender": "male"
+    },
+    {
+      "id": "2508",
+      "firstName": "Shubhagi",
+      "lastName": "Kale",
+      "address": "Mumbai",
+      "mobileNumber": 888888,
+      "gender": "female"
+    },
+    {
+      "id": "a7b7",
+      "firstName": "Sneha",
+      "lastName": "More",
+      "address": "Pune",
+      "mobileNumber": 99999,
+      "gender": "female"
+    },
+    {
+      "id": "b6d9",
+      "firstName": "Sneha",
+      "lastName": "More",
+      "address": "Pune",
+      "mobileNumber": 99999,
+      "gender": "female"
+    },
+    {
+      "id": "71b9",
+      "firstName": "Sneha",
+      "lastName": "More",
+      "mobileNumber": 99999,
+      "gender": "female"
+    },
+    {
+      "id": "20d3",
+      "firstName": "Sneha",
+      "lastName": "More",
+      "address": null,
+      "mobileNumber": 99999,
+      "gender": "female"
+    },
+    {
+      "id": "3ccb",
+      "firstName": "Sneha",
+      "lastName": "More",
+      "address": "Pune",
+      "mobileNumber": 99999,
+      "gender": "female"
+    }
+  ]
+}

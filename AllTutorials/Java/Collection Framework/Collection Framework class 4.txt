@@ -1,0 +1,827 @@
+Collection interface method
+	1)add(Object o)												boolean
+	2) addAll(Collection c)										boolean
+	3) remove(Object o)											boolean
+	4) removeAll(Collection c)									boolean
+	5) contains(Object o)											boolean
+	6) containsAll(Collection c)									boolean
+	7) clear()													void
+	8) size()														int
+	9) isEmpty()													boolean		
+	10) toArray()												Object []
+	11) iterator()												Iterator interface
+	12) retainAll(Collection c)									boolean
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Set Interface in java
+-------------------------------------------------------------------------------------------------------------------------
+	- Set interface is child interface of Collection interface.
+	- If u want to represent group of individual object as single entity where
+			- insertion order is not maintained
+			- Duplicates are not allowed
+			- null insertion is not allowed multiple times
+
+		then we can go for Set interface.
+
+	- there is no new methods present inside the Set interface, so always we have to use methods from Collection interface.
+	- there are different classes and interface present inside the Set interface.
+	1) HashSet class
+	2) LinkedHashSet class
+	3) SortedSet interface
+	4) NavigableSet Interface
+	5) TreeSet class
+----------------------------------------------------------------------------------------------------------------------------------
+1) HashSet class
+	- underlying data structure followed by HashSet is HashTable
+	 - insertion order is not maintained
+	- duplicate are not allowed
+	- multiple null insertion is not allowed [we can add only one null value]
+	- Heterogeneous objects are allowed.
+	- Default capacity is 16
+	- All methods are non synchronized hence performance is high
+	- multiple threads are allowed
+	
+syntax:
+		//we can access all methods from Collection interface
+		Collection c1 =new HashSet();
+		
+		//we can access all methods only from Collection interface because there is no new method present inside Set interface.
+		Set c2 =new HashSet();
+		
+		//we can access all methods only from Collection interface because there is no new method present inside Set interface and HashSet class.
+		HashSet c3 = new HashSet();
+	
+	
+package Tutorial8;
+
+import java.util.HashSet;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		HashSet s1 =new HashSet();
+		boolean p = s1.add("selenium");
+		s1.add(100);
+		s1.add(2134.3f);
+		boolean s = s1.add("selenium");
+		System.out.println(p);//true
+		System.out.println(s);//false
+		
+		boolean a = s1.add(null);
+		boolean b = s1.add(null);
+		System.out.println(a);//true
+		System.out.println(b);//false
+		
+		System.out.println(s1);
+		
+		int c = s1.size();
+		System.out.println(c);//4
+		
+		boolean d = s1.isEmpty();
+		System.out.println(d);//false
+		
+		boolean e = s1.contains("selenium");
+		System.out.println(e);
+		
+		s1.clear();
+		System.out.println(s1);
+		
+	}
+
+}
+=============================================================================================
+
+package Tutorial8;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+
+		HashSet h1 = new HashSet();
+		h1.add("A");
+		h1.add("B");
+		h1.add("C");
+
+		HashSet h2 = new HashSet();
+		h2.add(100);
+		h2.add(200);
+		h2.add(3000);
+		h2.add(4000);
+
+		System.out.println(h1);
+		h1.addAll(h2);
+		System.out.println(h1);
+
+		boolean a = h1.containsAll(h2);
+		System.out.println(a);
+
+		// h1.removeAll(h2);
+		// h1.retainAll(h2);
+		System.out.println(h1);
+
+		Iterator it = h1.iterator();
+
+		while (it.hasNext()) {
+			Object o = it.next();
+			System.out.println(o);
+		}
+
+		System.out.println("--------------------");
+
+		Object[] abc = h1.toArray();
+
+		for (Object o : abc) {
+			System.out.println(o);
+		}
+
+	}
+
+}
+==================================================================================
+Remove Duplicates words from String using Collection Object.
+
+e.g.
+			String a = "Java Selenium Java Cucumber TestNG Java Cucumber";
+
+			String [] abc = a.split(" ");			
+
+			HashSet  h1 =new HashSet();
+
+			for(String p: abc)
+			{
+					h1.add(p);
+			}
+			
+
+			syso(h1)
+
+
+
+package Tutorial8;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		String a = "Java Selenium Java Cucumber Java Java Cucumber TestNG Java Cucumber";
+
+		// split the String using split() method
+		String[] abc = a.split(" ");
+
+		HashSet h1 = new HashSet();
+
+		// iterate String [] values
+
+		for (String p : abc) {
+			h1.add(p);
+		}
+
+		Iterator it = h1.iterator();
+
+		while (it.hasNext()) {
+			Object o = it.next();
+			System.out.println(o);
+		}
+
+	}
+
+}
+================================================================================
+remove duplicate character from String using Collection object
+
+e.g.
+				String a ="cucumber";
+
+				//convert string into char[] array
+
+				char [] abc = a.toCharArray();
+
+				HashSet h1 =new HashSet();
+
+				//iterate char [] values
+
+				for(char b: abc)
+				{
+						h1.add(b);
+				}
+				
+
+				syso(h1);
+
+package Tutorial8;
+
+import java.util.HashSet;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		String a="cucumber";
+		
+		char [] abc = a.toCharArray();
+		
+		HashSet h1 =new HashSet();
+		
+		for(char p: abc)
+		{
+			h1.add(p);
+		}
+		
+		
+		System.out.println(h1);
+		
+	}
+
+}
+============================================================================
+2) LinkedHashSet class
+	- underlying data structure is HashTable and LinkedList
+	- LinkedHashSet is child class of HashSet class
+	- insertion order is maintained
+	- duplicate are not allowed
+	- multiple times null insertion is not allowed
+	- default capacity is 16
+	- All methods are non synchronized hence performance is high
+	- multiple threads are allowed
+
+syntax:
+		//we can access all methods from Collection interface
+		Collection c1 =new LinkedHashSet();
+
+		//we can access all methods from Collection interface because there is no new methods present inside the Set interface
+		Set c2 = new LinkedHashSet();
+
+	//we can access all methods from Collection interface because there is no new methods present inside the Set interface and HashSet class
+		HashSet c3 =new LinkedHashSet();
+
+//we can access all methods from Collection interface because there is no new methods present inside the Set interface, HashSet class and LinkedHashSet class.
+		LinkedHashSet c4 =new LinkedHashSet();
+
+		
+package Tutorial8;
+
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+
+		LinkedHashSet h1 = new LinkedHashSet();
+
+		h1.add(100);
+		h1.add("selenium");
+		h1.add(true);
+		h1.add(null);
+		h1.add(null);
+		h1.add("selenium");
+
+		System.out.println(h1);
+		System.out.println(h1.isEmpty());// false
+		System.out.println(h1.size());// 4
+		System.out.println(h1.contains(100));
+		// h1.clear();
+		
+		System.out.println(h1.remove("selenium"));
+		
+		Object[] o = h1.toArray();
+
+		for (Object a : o) {
+			System.out.println(a);
+		}
+
+		Iterator it = h1.iterator();
+
+		while (it.hasNext()) {
+			Object b = it.next();
+			System.out.println(b);
+		}
+
+	}
+
+}
+
+=======================================================================================
+
+package Tutorial8;
+
+import java.util.LinkedHashSet;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+		LinkedHashSet h1 = new LinkedHashSet();
+		h1.add("A");
+		h1.add("B");
+		h1.add("C");
+
+		LinkedHashSet h2 = new LinkedHashSet();
+		h2.add("1000");
+		h2.add("2000");
+		h2.add("3000");
+
+		System.out.println(h1);// A B C
+		h1.addAll(h2);
+		System.out.println(h1);// A B C 1000 2000 3000
+
+		System.out.println(h1.containsAll(h2));// true
+
+		h1.removeAll(h2);
+		System.out.println(h1);// A B C
+		// h1.retainAll(h2);
+		// System.out.println(h2);//1000 2000 3000
+
+	}
+
+}
+===========================================================================================
+e.g.
+	remove duplicate words from String using Collection object
+
+				String a = "Java Selenium Java Cucumber Java Java Cucumber TestNG Java Cucumber";
+
+				String [] abc = a.split(" ");
+
+				LinkedHashSet<String> h1 =new LinkedHashSet<String>();
+
+				for(String p: abc)
+				{
+					h1.add(p);
+				}				
+
+
+
+package Tutorial8;
+
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		String a = "Java Selenium Java Cucumber Java Java Cucumber TestNG Java Cucumber";
+
+		String[] abc = a.split(" ");
+
+		LinkedHashSet<String> h1 = new LinkedHashSet<String>();
+
+		for (String p : abc) {
+			h1.add(p);
+		}
+
+		Iterator<String> it = h1.iterator();
+
+		while (it.hasNext()) {
+			String b = it.next();
+			System.out.println(b);
+		}
+
+	}
+
+}
+====================================================================================
+remove duplicate character from String using Collection object
+
+e.g.
+				String a ="cucumber";
+
+				char abc = a.toCharArray();
+
+				LinkedHashSet<Character> h1 =new LinkedHashSet<Character>();
+
+				for(char p: abc)
+				{
+						h1.add(p);
+				}
+
+				syso(h1);
+
+package Tutorial8;
+
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+
+public class Demo9 {
+
+	public static void main(String[] args) {
+		String a = "cucumber";
+
+		char[] abc = a.toCharArray();
+
+		LinkedHashSet h1 = new LinkedHashSet();
+
+		for (char p : abc) {
+			h1.add(p);
+		}
+
+		Iterator it = h1.iterator();
+
+		while (it.hasNext()) {
+			Object o = it.next();
+			System.out.print(o);
+		}
+
+	}
+
+}
+============================================================================
+https://demo.guru99.com/test/newtours/register.php
+
+	verify duplicate values in Country dropdown
+
+
+step 1: connect browser
+step 2: up casting
+step 3: implicit wait
+step 4: page load time
+step 5: maximize
+step 6: delete all cookies
+step 7: open a url
+step 8: find the drop down element
+			WebElement wb = driver.findElement(By.name(""));
+
+step 9: capture all values from drop down
+			Select sel =new Select(wb);
+			List<WebElement> ls = sel.getOptions();
+
+Step 10: create object of LinkedHashSet 
+			LinkedHashSet h1 =new LinkedHashSet();
+
+step 11: iterate all drop down values and capture actual values, and add values inside the LinkedHashSet object
+			
+			for(WebElement abc: ls)
+			{
+						String a = abc.getText();
+						h1.add(a);
+			}
+
+step 12: capture drop down size
+			int dropDownSize = ls.size();
+
+step 13: capture  LinkedHashSet size
+
+			int linkedHashSize = h1.size();
+
+	
+			Assert.assertEquals(dropDownSize,linkedHashSize);
+
+
+package Tutorial1;
+
+import java.time.Duration;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Demo1 {
+
+	@Test
+	public void abc() {
+
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+		WebElement wb = driver.findElement(By.name("country"));
+
+		Select sel = new Select(wb);
+
+		List<WebElement> ls = sel.getOptions();
+
+		LinkedHashSet h1 = new LinkedHashSet();
+
+		for (WebElement abc : ls) {
+			String actualValue = abc.getText();
+
+			h1.add(actualValue);
+		}
+
+		int dropDownSize = ls.size();
+
+		int linkedHashSize = h1.size();
+		
+		System.out.println(dropDownSize);
+		System.out.println(linkedHashSize);
+		
+		Assert.assertEquals(dropDownSize, linkedHashSize);
+
+	}
+
+}
+=====================================================================
+
+Step 1: up casting
+step 2 : open a url
+step 3: find all employee name
+		List<WebElement> ls = driver.findElements(By.xpath("//th[text()='Emp Name']/parent::tr/following-sibling::tr/child::td[2]"));
+
+step 4: create object of LinkedHashSet class
+			LinkedHashSet h1 =new LinkedHashSet();
+
+step 5: iterate all employee values, capture the values and add values to LinkedHashSet object and mention if-else condition
+
+			for(WebElement abc : ls)
+			{
+					String actualValue = abc.getText();
+				
+					if(h1.add(actualValue))
+					{
+							h1.add(actualValue);
+					}
+					else
+					{
+							System.out.println(actualValue);
+					}
+			}		
+
+
+package Tutorial1;
+
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://prafpawar11.github.io/emptable.html");
+
+		List<WebElement> ls = driver
+				.findElements(By.xpath("//th[text()='Emp Name']/parent::tr/following-sibling::tr/child::td[2]"));
+		
+		LinkedHashSet h1 = new LinkedHashSet();
+		
+		for(WebElement abc : ls)
+		{
+			
+			String actualValue  =abc.getText();
+			
+			if(!h1.add(actualValue))
+			{
+				System.out.println(actualValue);
+			}
+			else
+			{
+				h1.add(actualValue);
+			}
+			
+		}
+		
+		System.out.println(h1);
+		
+		
+	}
+
+}
+=============================================================================================
+package Tutorial1;
+
+import java.nio.file.spi.FileSystemProvider;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://prafpawar11.github.io/emptable.html");
+
+		List<WebElement> ls = driver.findElements(By.xpath("//th[text()='Emp Name']/parent::tr/following-sibling::tr"));
+
+		LinkedHashSet<Employee> h1 = new LinkedHashSet<Employee>();
+
+		for (int i = 1; i <= ls.size(); i++) {
+			List<WebElement> ls1 = driver
+					.findElements(By.xpath("//th[text()='Emp Name']/parent::tr/following-sibling::tr[" + i + "]/td"));
+
+			Employee emp = new Employee();
+
+			for (int j = 0; j < 5; j++) {
+				
+				emp.setEmpName(ls1.get(0).getText());
+				emp.setDesignation(ls1.get(1).getText());
+				emp.setDept(ls1.get(2).getText());
+				emp.setSalary(ls1.get(3).getText());
+				emp.setExp(ls1.get(4).getText());
+			}
+
+			if (!h1.add(emp)) {
+				
+				System.out.println(emp.getEmpName());
+				System.out.println(emp.getDesignation());
+				System.out.println(emp.getDept());
+				System.out.println(emp.getSalary());
+				System.out.println(emp.getExp());
+			} 
+			else {
+				h1.add(emp);
+			}
+		}
+		
+		int rowsCount = ls.size();
+		
+		int LinkedHashSize = h1.size();
+	
+		System.out.println(rowsCount);
+		System.out.println(LinkedHashSize);
+	}
+
+}
+
+================================================================================
+package Tutorial1;
+
+import java.nio.file.spi.FileSystemProvider;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://prafpawar11.github.io/emptable.html");
+
+		List<WebElement> ls = driver.findElements(By.xpath("//th[text()='Emp Name']/parent::tr/following-sibling::tr"));
+
+		LinkedHashSet<Employee> h1 = new LinkedHashSet<Employee>();
+
+		for (int i = 1; i <= ls.size(); i++) {
+			List<WebElement> ls1 = driver
+					.findElements(By.xpath("//th[text()='Emp Name']/parent::tr/following-sibling::tr[" + i + "]/td"));
+
+			Employee emp = new Employee();
+
+			for (int j = 0; j < 5; j++) {
+
+				emp.setEmpName(ls1.get(0).getText());
+				emp.setDesignation(ls1.get(1).getText());
+				emp.setDept(ls1.get(2).getText());
+				emp.setSalary(ls1.get(3).getText());
+				emp.setExp(ls1.get(4).getText());
+			}
+
+			h1.add(emp);
+
+		}
+
+		int rowsCount = ls.size();
+
+		int LinkedHashSize = h1.size();
+
+		System.out.println(rowsCount);
+		System.out.println(LinkedHashSize);
+	}
+
+}
+===========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

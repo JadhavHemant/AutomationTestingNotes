@@ -1,0 +1,242 @@
+Hybrid Framework
+----------------------------------------------------------------------------------------------------------
+src/main/java
+			BaseLayer Package
+						BaseClass
+										- create Object of ThreadLocal class by using generic WebDriver.
+										- create static getDriver() method with WebDriver return type.
+										- create static initialization method with String arguments
+												- check browsername conditions
+												- up casting for all browser name
+												- set browser to ThreadLocal class using set() method and by passing WebDriver instance
+												- implicitly Wait
+												- pageLoadTimeOut
+												-maximize 
+												-deleteAllCookies
+												- open a url
+
+			PageLayer Package
+						FramePage class
+										- find all Object repository using @FindBy() annotation 
+										- initialize the Object Repository using PageFactory.initElements() method
+										- create associated method for each and every object repository
+												- calls Handle frames methods from UtilityLayer package 
+												- and Perform operation on element using UtilityLayer package  method
+			UtilityLayer package		
+						Wait class
+						HandleDropDown class
+						HandleFrame class
+						DateAndTime
+						Screenshot class
+						ExtentReportsSetUp
+						Listener class
+						RetryAnalyzer class
+						AnnotationTransformer class
+								
+src/test/java
+			TestLayer Package			
+						FramePageTest
+										- call associated method from PageLayer package and at the time of calling method pass the test data.
+src/test/resources
+			create XML file 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+open a https://praf002.github.io/
+
+		Step 1: find the full name text box and enter the value
+		step 2: switch to mobile Number frame
+		step 3: switch to checkbox frame
+		Step 4:	find the GitHub checkbox and click on it
+		step 5:	find and select the Database Automation values from drop down
+		step 6: switch to mobile number frame or (Parent of checkbox frame)
+		step 7:find and Enter the mobile numbers 
+		step 8: switch focus to top frame
+		step 9: switch focus to address frame
+		step 10: find and Enter the address 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		step 11: switch focus to top frame
+		step 12: switch focus to mobile number frame
+		step 13:unselect the GitHub checkbox
+		step 14: switch focus to top frame
+		step 15: switch focus to address frame
+		step 16: switch focus to tools name frame
+		step 17: find click on selenium click
+		step 18: switch focus to top frame 
+		step 19:capture the entered full name and enter new name
+		step 20: switch to address frame
+		step 21: switch focus to tools name frame
+		step 22:Select the Java Script Executor value
+		step 23: switch focus to parent frame
+		step 24;capture entered address and enter new address
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import BaseLayer.BaseClass;
+
+public class HandleFrame extends BaseClass {
+
+	//create frame() static method with String arguments
+	public static void frame(String frameIdOrName)
+	{
+		//create object of WebDriverWait clas by passing driver instance and Duration in seconds
+		WebDriverWait wait =new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		
+		//use until() method from WebDriverWait class by passing ExpectedConditions.frameToBeAvailableAndSwitchToIt() by passing frame id or name
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameIdOrName));
+		
+	}
+	
+	
+	//create frame() static method with int arguments
+	public static void frame(int frameindex)
+	{
+		//create Object of WebDriverWait by passing driver instance and Duration in seconds
+		WebDriverWait wait =new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		//use until() method from WebDriverWait class by passing ExpectecConditions dot frameToBeAvailableAndSwitchToIt() by passing frame index
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameindex));
+		
+	}
+	
+	//create frame() static method with WebElement arguments
+	public static void frame(WebElement frameWb)
+	{
+		//create object of WebDriverWait class by passing driver instance and Duration in seconds
+		
+		WebDriverWait wait =new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		//use until() method from WebDriverWait class by passing ExpectedConditions dot frameToBeAvailableAndSwitchToIt() and by passing frame web element
+		
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameWb));
+		
+	}
+	
+	//create parentFrame() method 
+	public static void parentFrame()
+	{
+		driver.switchTo().parentFrame();
+	}
+	
+	//create defaultContent() method
+	public static void defaultContent()
+	{
+		driver.switchTo().defaultContent();
+	}
+
+	
+	
+}
+
+
+
+
+===================================================================================
+Ass:
+	open a url https://chercher.tech/practice/frames-example-selenium-webdriver
+	enter the topic name
+	select the avatar
+	select the  checkbox
+	select the cat 
+	capture the entered text and enter new text
+	unselect the checkbox
+===================================================================================
+Ass:
+
+	open a url https://demo.automationtesting.in/Frames.html
+	- click on single iframe
+	enter text in text box
+	- click on iframe with  iframe button
+	- enter the text in text box
+	- click on single iframe
+	-- capture the entered text and enter new text
+	- click on iframe with  iframe button
+	- capture the entered text and enter new text
+
+
+======================================================================
+https://prafpawar11.github.io/frame.html
+		- find name
+		- select Jenkins checkbox
+		- enter address
+		- capture entered name , clear name and enter new name
+		- capture address and clear address and enter new address
+		- unselect Jenkins checkbox and select TestNG checkbox
+
+
+step 1: find and enter name
+step 2: switch focus to address frame
+step 3: switch focus to checkbox frame
+step 4: click on Jenkins checkbox
+step 5: switch focus to parent frame
+step 6: find and enter address
+step 7:switch focus to top frame
+step 8: capture entered name , clear name and enter new name
+step 9:switch focus to address frame
+step 10: capture address and clear address and enter new address
+step 11: switch focus to checkbox frame 
+step 12: unselect the Jenkins checkbox
+step 13: select the TestNG checkbox
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,720 @@
+String Methods
+-----------------------------------------------------------------------------------------------------------------------------
+	- String of sequence of character written in double quote
+	- String may have numbers , character and special character.
+	- String class is immutable class.
+	- immutable means if we trying to change the String value/content then it will create the new String. 
+	- once we declare the string we cannot modify the String value/content.
+	
+String Methods
+
+1) length() method
+		- it used to capture the length of String
+		- return type is int
+syntax:
+		String a="selenium";
+		int b = a.length();
+
+-------------------------------------------------------------------------------------------------------------------
+2) toUpperCase() method
+		- it used to convert the String into Upper case
+		- return type is String
+
+syntax:
+		String a="selenium";
+		String b = a.toUpperCase();
+
+-------------------------------------------------------------------------------------------------------------------
+3) toLowerCase() method
+		- used to convert String into Lower Case
+		- return type is Sting
+
+syntax:
+		String a="JAVA";
+		String b = a.toLowerCase();
+
+-------------------------------------------------------------------------------------------------------------------
+4) contains() method
+		- used to check specific character is present or not in String
+		- return type is boolean
+
+syntax;
+			String a="selenium ui automation testing";
+
+			boolean b = a.contains("ui");
+
+-------------------------------------------------------------------------------------------------------------------
+5) startsWith() method
+		- used to check specific string start with specific character or not
+		- return type is boolean
+
+syntax;
+			String a="selenium ui automation testing";
+			
+			boolean b = a.startsWith("sele");
+-------------------------------------------------------------------------------------------------------------------
+6) endsWith() method
+		- used to check specific string ends with specific character or not
+		- return type is boolean
+
+syntax;
+			String a="selenium ui automation testing";
+			boolean b  = a.endsWith("ing");
+-------------------------------------------------------------------------------------------------------------------
+diff between equals() method and == operator
+-------------------------------------------------------------------------------------------------------------------
+
+7) equals() method
+		- compare the 2 different object.
+		- used to compare the actual content of the String /object
+		- return type is boolean 
+
+syntax:
+		String a="selenium";
+
+		boolean b = a.equals("selenium");
+
+-------------------------------------------------------------------------------------------------------------------
+8) == operator 
+		- used to compare the different Object
+		- used to compare the memory location of String or object.
+		- return type is boolean 
+syntax:
+		String a="selenium";
+		
+		system(a=="selenium");
+-------------------------------------------------------------------------------------------------------------------
+9) equalsIgnoreCase() method
+		- used to ignore upper and lower case character
+		- return type is boolean
+syntax:
+		String a="selenium";
+		boolean b = a.equalsIgnoreCase("selenium");
+-------------------------------------------------------------------------------------------------------------------
+10) concat() method
+		- used to combine the 2 different string
+		- return type is String
+syntax:
+		String a="selenium";
+		String b = a.concat(" testing");
+-------------------------------------------------------------------------------------------------------------------
+11) charAt() method
+		- used to capture the specific character as index position
+		- return type is char
+
+syntax:
+			String a="selenium";
+
+			char b = a.charAt(2);//l
+
+-------------------------------------------------------------------------------------------------------------------
+12) toCharArray() method
+		- used to convert the String into the char[] array
+		- return type is char [] array
+
+syntax:
+			String a="selenium";
+			
+			char [] abc = a.toCharArray();
+-------------------------------------------------------------------------------------------------------------------
+13) replace() method
+	- used to replace the one string into another string
+	- return type is String
+
+syntax:
+			String a="selenium";
+
+			String b= a.replace("sel","cucumber");	//cucumberenium
+
+-------------------------------------------------------------------------------------------------------------------
+14) replaceAll() method
+	- used to replace all character from string
+	- return type is String
+
+syntax:
+			String a="selenium";
+			String  = a.replaceAll("sel","cucumber");//cucumberenium
+
+-------------------------------------------------------------------------------------------------------------------
+15) subString() method
+	- used to return String based on start index position
+	- return type is String
+
+syntax;
+		String a="selenium";
+
+		String b = a.subString(3); //enium
+
+-------------------------------------------------------------------------------------------------------------------
+16) subString() method
+	- used to return String based on start index position and end index position
+	- return type is String
+
+syntax;
+		String a="selenium";
+
+		String b = a.subString(1,4);//ele
+
+-------------------------------------------------------------------------------------------------------------------
+17) trim() method
+	- used to remove start and ending string space
+	- return type is String
+
+
+syntax;
+		String a="		selenium		";
+
+		String  = a.trim();
+-------------------------------------------------------------------------------------------------------------------
+18) indexOf() method
+	-used to find the index of specific character
+	- return type is int
+
+syntax;
+		String a="selenium";
+
+		int  b = a.indexOf("n");//4
+
+-------------------------------------------------------------------------------------------------------------------
+19) lastIndexOf() method
+	- used to find last index of specific character
+	- return type is int
+
+syntax:
+		String a="java";
+
+		int b = a.lastIndexOf("a");//3
+-------------------------------------------------------------------------------------------------------------------
+20) valueOf() method
+	- used to convert any datatype value into String
+	- return type is String
+
+
+syntax:
+		int a=123445;
+
+		String b = String.valueOf(a);
+-------------------------------------------------------------------------------------------------------------------
+21) split() method
+	-used to split the  string as per the matching regex
+	- return type is String [] array
+
+	
+syntax:
+		String a="java-selenium";
+
+		String [] abc = a.split("-");
+-------------------------------------------------------------------------------------------------------------------
+package Tutorial15;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		//immutable - we can't modify the value for String variable in same memory location
+		
+		String a="selenium TESTING";
+		
+		int a1 = a.length();
+		System.out.println(a1);//16
+		
+		String a2 = a.toUpperCase();
+		System.out.println(a2);//SELENIUM TESTING
+		
+		String a3 = a.toLowerCase();
+		System.out.println(a3);//selenium testing
+		
+		boolean a4 = a.startsWith("sele");
+		System.out.println(a4);//true
+		
+		boolean a5 = a.contains("TEST");
+		System.out.println(a5);//true
+		
+		boolean a6 = a.endsWith("NG");
+		System.out.println(a6);//true
+		
+		boolean a7 = a.equals("selenium TESTING");
+		System.out.println(a7);//true
+		
+		boolean a8 = a=="selenium TESTING";
+		System.out.println(a8);//true
+		
+		boolean a9 = a.equalsIgnoreCase("selenium testing");
+		System.out.println(a9);//true
+		
+		String a10 = a.concat(" BDD");
+		System.out.println(a10);//selenium TESTING BDD
+		
+		char a11= a.charAt(10);
+		System.out.println(a11);//E
+		
+		String a12 = a.replace("TESTING", "Cucumber");
+		System.out.println(a12);//selenium Cucumber
+		
+		String a13 = a.replaceAll("TESTING", "Cucumber");
+		System.out.println(a13);//selenium Cucumber
+		
+		int a14 = a.indexOf("T");
+		System.out.println(a14);//9
+		
+		int a15 = a.lastIndexOf("T");
+		System.out.println(a15);//12
+		
+		String a16 = a.substring(5);
+		System.out.println(a16);//ium TESTING
+		
+		String a17 = a.substring(2, 7);
+		System.out.println(a17);//leniu
+
+		String a18 = String.valueOf(1123324);
+		System.out.println(a18);//1123324
+		
+		String a19 = a.trim();
+		System.out.println(a19);//selenium TESTING
+		
+		String [] a20 = a.split(" ");
+		
+		for(String p: a20)
+		{
+			System.out.println(p);//selenium  //TESTING
+		}
+		
+		char [] abc= a.toCharArray();
+		
+		for(char c: abc)
+		{
+			System.out.println(c);
+		}
+		
+		
+	}
+}
+==============================================================================================
+diff between String and StringBuffer											VVVVIMMMPPPP
+diff between String and StringBuilder											VVVVIMMMPPPP
+diff between StringBuilder and StringBuffer									VVVVIMMMPPPP
+diff between immutable and mutable											VVVVIMMMPPPP
+diff between == operator and equals()method									VVVVIMMMPPPP
+
+		equals
+==============================================================================================
+String class
+	- String class is immutable class means we can not modify the value for variable in same memory location.
+	- equals() method in String class used to compare the actual content of the String.
+	- in String class, All methods are non synchronized
+	- Performance is high
+	- at same time multiple threads are allowed
+	- it is not thread safe
+
+StringBuffer class
+	-  StringBuffer class is mutable class means we can modify the value for the variable in same memory location
+	- equals() method in StringBuffer class is used to compare the memory location of String.
+	- in StringBuffer class all method are synchronized.
+	- Performance is low
+	- at same time single thread is allowed
+	- it is thread safe
+
+StringBuilder class
+	-  StringBuilder class is mutable class means we can modify the value for the variable in same memory location
+	- equals() method in StringBuilder class is used to compare the memory location of String.
+	- StringBuilder class, all methods are non synchronized
+	- Performance is high
+	- at same time multiple threads are allowed
+	- it is not thread safe
+================================================================================
+StringBuffer and StringBuilder method
+
+1) length() method
+		- used to capture the length of String
+		-return type is int
+
+syntax;
+		StringBuffer sb1 =new StringBuffer("selenium");
+
+		int a1 = sb1.length();
+
+-----------------------------------------------------------------------------------------
+2) capacity() method
+		- used to check capacity of the String
+		- return type is int
+	
+syntax;
+		StringBuffer sb1 =new StringBuffer("selenium");
+		int b = sb1.capacity();
+
+-----------------------------------------------------------------------------------------
+3) equals() method
+		- used to compare the string memory location
+		- return type is boolean
+
+syntax;
+		StringBuffer sb1 =new StringBuffer("selenium");
+		boolean b = sb1.equals("selenium");
+-----------------------------------------------------------------------------------------
+4) indexOf() method
+		- used to check index position of specific String character
+		- return type is int
+syntax;
+		StringBuffer sb1 =new StringBuffer("selenium");
+	
+		int b = sb1.indexOf("ni");//4
+
+-----------------------------------------------------------------------------------------
+5) append() method
+		- used to add string at the end of string
+		- return type is StringBuffer or StringBuilder
+	
+syntax;
+		StringBuffer sb1 =new StringBuffer("selenium");
+		StringBuffer sb2 = sb1.append(" testing");
+
+
+package Tutorial15;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		StringBuffer sb1 = new StringBuffer("selenium");
+
+		int a1 = sb1.length();
+		System.out.println(a1);
+
+		int a2 = sb1.capacity();
+		System.out.println(a2);
+
+		boolean a3 = sb1.equals("selenium");
+		System.out.println(a3);// False
+
+		StringBuffer sb2 = sb1.append(" TesTing");
+
+		boolean a4 = sb1.equals(sb2);
+		System.out.println(a4);// true
+
+		System.out.println(sb1);// selenium Testing
+		System.out.println(sb2);// selenium Testing
+
+		int a5 = sb1.indexOf("T");
+		System.out.println(a5);// 9
+
+		int a6 = sb1.lastIndexOf("T");
+		System.out.println(a6);// 9
+
+		char a9 = sb1.charAt(5);
+		System.out.println(a9);// i
+
+		StringBuffer sb3 = sb1.deleteCharAt(5);
+		System.out.println(sb3);// selenum Testing
+
+		String a10 = sb1.substring(4);
+		System.out.println(a10);// num TesTing
+
+		String a11 = sb1.substring(1, 5);
+		System.out.println(a11);// elen
+
+		StringBuffer sb4 = sb1.delete(1, 5);
+		System.out.println(sb4);// sum TesTing
+
+		StringBuffer sb5 = sb1.replace(1, 4, "cucumber");
+		System.out.println(sb5);// scucumberTesTing
+
+		StringBuffer sb6 = sb1.reverse();
+		System.out.println(sb6);// gniTseTrebmucucs
+
+	}
+}
+
+=============================================================================
+package Tutorial15;
+
+public class Demo4 {
+	
+	public static void main(String[] args) {
+		
+		String a="Java123#@$#%SeleniuM124#$$";
+		
+		//find upper case character only
+		String b = a.replaceAll("[^A-Z]", "");
+		System.out.println(b);
+		
+		//find lower case character only
+		
+		String c = a.replaceAll("[^a-z]", "");
+		System.out.println(c);//avaeleniu
+		
+		//find only numbers
+		String d = a.replaceAll("[^0-9]", "");
+		System.out.println(d);//123124
+		
+		//find only special character
+		String e = a.replaceAll("[A-Za-z0-9]", "");
+		System.out.println(e);
+	}
+
+}
+===================================================
+package Tutorial15;
+
+public class Demo5 {
+	
+	
+	public static void main(String[] args) {
+		String a="jAvaTE";
+		
+		//do not replace A to Z with blank space 
+		//replace other all character with blank space 
+		String b = a.replaceAll("[^A-Z]", "");
+		System.out.println(b);//ATE
+		
+		
+	}
+
+}
+===================================================
+package Tutorial15;
+
+public class Demo5 {
+	
+	
+	public static void main(String[] args) {
+		String a="jAva444TE123";
+		
+		//do not replace a to z with blank space 
+		//replace other all character with blank space 
+		String b = a.replaceAll("[^a-z]", "");
+		System.out.println(b);//jva
+		
+		
+	}
+
+}
+===================================================
+
+package Tutorial15;
+
+public class Demo5 {
+	
+	
+	public static void main(String[] args) {
+		String a="jAva444TE123";
+		
+		//do not replace 0 to 9 with blank space 
+		//replace other all character with blank space 
+		String b = a.replaceAll("[^0-9]", "");
+		System.out.println(b);//444123
+		
+		
+	}
+
+}
+
+package Tutorial15;
+
+public class Demo5 {
+	
+	
+	public static void main(String[] args) {
+		String a="jAva!@#$444TE()*123";
+		
+		//replace 0 to 9 with blank space 
+		//A to Z with blank Space
+		//a to z with blank space
+		
+		String b = a.replaceAll("[0-9A-Za-z]", "");
+		System.out.println(b);//444123
+		
+		
+	}
+
+}
+===============================================================
+package Tutorial15;
+
+public class Demo5 {
+	// madam
+	// after reverse madam
+
+	public static void main(String[] args) {
+		String a = "Ma!@#$444dA()*M123";
+
+		// find upper case and lower case character
+
+		String c = a.replaceAll("[^A-Za-z]", "").toLowerCase();
+		System.out.println(c);//
+
+		String rev = "";
+
+		for (int i = c.length() - 1; i >= 0; i--) {
+			rev = rev + c.charAt(i);
+		}
+
+		if (c.equalsIgnoreCase(rev)) {
+			System.out.println("String is Palindrome");
+		} else {
+			System.out.println("String is not Palindrome");
+		}
+
+	}
+
+}
+========================================================================
+package Tutorial15;
+
+public class Demo7 {
+
+	public static void main(String[] args) {
+		//Swap 2 string 
+		String a="java";
+		
+		String b="selenium";
+		
+		//we assign a value to c variable
+		String c=a;//java
+		
+		//we assign b value to a variable
+		a=b;//selenium
+		
+		//we assign c value to b variable
+		b=c;//java
+		
+		System.out.println(a);
+		
+		System.out.println(b);
+	}
+}
+===================================================================================
+package Tutorial15;
+
+public class Demo8 {
+	
+	public static void main(String[] args) {
+		//String is immutable
+		String a="selenium ";
+		System.out.println(a);//selenium 
+		
+		String b = a.concat("Testing");
+		
+		System.out.println(a);//selenium
+		System.out.println(b);//selenium Testing
+		
+		System.out.println("----------------------------");
+		
+		//StringBuffer/StringBuilder is Mutable 
+		StringBuffer sb1 = new StringBuffer("selenium ");
+		
+		System.out.println(sb1);//selenium 
+		StringBuffer sb2 = sb1.append("Testing");
+		
+		System.out.println(sb1);//selenium Testing
+		System.out.println(sb2);//selenium Testing
+		
+		
+		
+	}
+
+}
+================================================================
+
+
+				File f =new File("");
+
+				boolean a = f.exist();
+
+-------------------------------------------------------------------------------------
+				Iterator it = h1.iterator();
+
+				while(it.hasNext())
+				{
+						Object o =it.next();
+				}
+-------------------------------------------------------------------------------------
+
+				String a=null;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+								

@@ -1,0 +1,29 @@
+{
+	"createUser": {
+		"firstName": "Manoj",
+		"lastName": "Jadhav",
+		"username": "Manoj@gmail.com",
+		"age": 28,
+		"address": {
+			"city": "Pune",
+			"state": "MH",
+			"country": "IN",
+			"pincode": 334455
+		}
+	},
+	"updateUser": {
+		"firstName": "Rutuja",
+		"lastName": "Kale",
+		"username": "rutuja1111@gmail.com",
+		"age": 25,
+		"address": {
+			"city": "Delhi",
+			"state": "DL",
+			"country": "IN",
+			"pincode": 889900
+		}
+	},
+	"PartialUpdateUser": {
+			"username": "rahul123gmail.com"
+	}
+}

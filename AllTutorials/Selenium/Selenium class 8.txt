@@ -1,0 +1,452 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+diff between Relative xpath and absolute xpath?											VVVVVVIMMMPPPPPPPPPPPPPPPP
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+at least 2 or 3 questions on real time website to find the xpath using Relative xpath?			VVVVVVIMMMPPPPPPPPPPPPPPPP
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Xpath																					VVVVVVIMMMPPPPPPPPPPPPPPPP
+	there are 2 types of xpath
+	1) absolute xpath
+	2) Relative xpath
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2) Relative xpath
+	- in relative xpath we never mention the long xpath
+	- relative xpath is starts with double forward slash (//).
+	- Relative xpath is also known as custom xpath or own xpath.
+	- we can start searching the element from middle of the DOM(Document Object Model) HTML structure.
+
+Single attribute Relative xpath
+syntax:
+			//tagname[@attribute='value']
+
+e.g.
+		//input[@name='firstname']
+
+	WebElement wb = driver.findElement(By.xpath("//input[@name='firstname']"));
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		WebDriver driver =new ChromeDriver();
+		
+		driver.get("https://www.facebook.com/reg");
+		
+		WebElement wb = driver.findElement(By.xpath("//input[@name='firstname']"));
+		
+		wb.sendKeys("selenium testing");
+
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Facebook year dropdown xpath
+					1) //select[@aria-label='Year']
+					2) //select[@name='birthday_year']
+					3) //select[@id='year']
+					4) //select[@title='Year']
+				
+		WebElement wb = driver.findElement(By.xpath("//select[@id='year']"));
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		WebDriver driver =new ChromeDriver();
+		
+		driver.get("https://www.facebook.com/reg");
+		
+		WebElement wb = driver.findElement(By.xpath("//select[@id='year']"));
+		
+		Select sel =new Select(wb);
+		
+		sel.selectByVisibleText("2001");
+		
+	}
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2) relative xpath using text() method
+		syntax;
+						//tagname[text()='text value']
+
+		e.g.
+						//div[text()='Login']
+		
+
+
+https://ui.cogmento.com/
+		login button
+					1) //div[@class='ui fluid large blue submit button']
+					2) //div[text()='Login']
+
+
+		WebElement wb = driver.findElement(By.xpath("//div[text()='Login']"));
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://ui.cogmento.com/");
+		
+		Thread.sleep(5000);
+		
+		WebElement wb = driver.findElement(By.xpath("//div[text()='Login']"));
+		
+		wb.click();
+	}
+
+}
+=================================================================================================
+forgot button link
+				1) //a[@href='https://register.cogmento.com/password/reset/request/?lang=en-GB']
+				2) //a[text()='Forgot your password?']
+				3) //a[contains(text(),'password')]
+
+3) relative xpath using contains() and text()method
+	syntax:
+				//tagname[contains(text(),'text value')]
+
+	e.g.
+				//a[contains(text(),'password')]
+
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://ui.cogmento.com/");
+		
+		Thread.sleep(5000);
+		
+		WebElement wb = driver.findElement(By.xpath("//a[contains(text(),'password')]"));
+		
+		wb.click();
+		
+	}
+
+}
+==============================================================================================
+https://demo.guru99.com/test/newtours/register_sucess.php
+
+		1) //a[@href='login.php']
+		2) //a[text()=' sign-in ']
+		3)//a[contains(text(),'sign-in')]
+
+	WebElement wb = driver.findElement(By.xpath("//a[contains(text(),'sign-in')]"));
+
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo3 {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://demo.guru99.com/test/newtours/register_sucess.php");
+
+		Thread.sleep(5000);
+
+		WebElement wb = driver.findElement(By.xpath("//a[contains(text(),'sign-in')]"));
+
+		wb.click();
+
+	}
+
+}
+=============================================================================
+Relative xpath with contains() method with attribute
+		//tagname[contains(@attribute,'value')]
+e.g.
+		//input[contains(@name,'email__')]
+		
+		Username text box in facebook register page
+		1) //input[contains(@name,'email__')]
+		2) //input[contains(@aria-label,'Mobile')]
+		3) //input[contains(@id,'u_0_g')]
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		WebDriver driver =new ChromeDriver();
+		
+		driver.get("https://www.facebook.com/reg");
+		
+		WebElement wb = driver.findElement(By.xpath("//input[contains(@id,'u_0_g')]"));
+		
+		wb.sendKeys("Selenium@test.com");
+		
+		
+	}
+
+}
+
+=============================================================================
+Relative xpath with 2 attribute
+		1) //tagname[@attribute='value'][@attribute='value']
+		2) //tagname[text()='value'][@attribute='value']
+		3) //tagname[@attribute='value'][text()='value']
+		4) //tagname[contains(@attribute,'value')][@attribute='value']
+		5) //tagname[contains(text(),'value')][@attribute='value']
+	
+Password text box  in fb Register page
+		1) //input[@id='password_step_input'][@name='reg_passwd__']
+		2) //input[@id='password_step_input'][@type='password']
+		3) //input[contains(@id,'password')][@name='reg_passwd__']
+		4) //input[contains(@id,'password')][contains(@name,'reg')]
+		
+
+
+forgot password link in fb register page
+		1) //a[@aria-label='Already have an account?'][text()='Already have an account?']
+		2) //a[contains(@aria-label,'Already')][text()='Already have an account?']
+		3) //a[contains(@aria-label,'Already')][contains(text(),'account')]
+		
+=============================================================================
+or operator:			if any one condition is true then result is true
+and operator		if both condition is true then result is true
+------------------------------------------------------------------------------------------------------------------
+Relative xpath with 2 attribute with OR operator
+		1)  //tagname[@attribute='value' or @attribute='value']
+		2) //tagname[@attribute='value' or text()='text value']
+		3) //tagname[text()='value' or @attribute='value']
+		4) //tagname[contains(@attribute,'value') or @attribute='value']
+		5) //tagname[contains(text(),'text value') or @attribute='value']
+		
+
+=============================================================================
+Relative xpath with 2 attribute with AND operator
+
+		1)  //tagname[@attribute='value' and @attribute='value']
+		2) //tagname[@attribute='value' and text()='text value']
+		3) //tagname[text()='value' and @attribute='value']
+		4) //tagname[contains(@attribute,'value') and @attribute='value']
+		5) //tagname[contains(text(),'text value') and @attribute='value']
+
+
+facebook register page last name text box
+		1)//input[@name='lastname' and @type='text']
+		2) //input[@name='lastname' or contains(@id,'u_0_d')]
+		3) //input[@name='lastname' and contains(@id,'u_0_d')]
+		4) //input[@name='lastname' and @class='inputtext _58mg _5dba _2ph-']
+		5) //input[@name='lastname' and @type='text']
+		6) //input[@aria-label='Surname' and contains(@name,'lastname')]
+		7) //input[@aria-label='Surname' or contains(@name,'lastname')]
+
+			
+	WebElement wb = driver.findElement(By.xpath("//input[@aria-label='Surname' and contains(@name,'lastname')]"));
+
+
+package Tutorial7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.facebook.com/reg");
+
+		WebElement wb = driver.findElement(By.xpath("//input[@aria-label='Surname' and contains(@name,'lastname')]"));
+
+		wb.sendKeys("Selenium@test.com");
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Relative xpath with starts-with() method
+syntax:		
+				//tagname[starts-with(@attribute,'value')]
+				//tagname[starts-with(text(),'value')]
+		
+			1) //a[starts-with(text(),'Already')]
+	
+
+			1) //div[starts-with(@class,'mbs')]
+			
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//div[@class='FPdoLc lJ9FBc']/descendant::input[@name='btnK']
+//div[@class='FPdoLc lJ9FBc']/child::center/input[@name='btnK']
+//div[@class='FPdoLc lJ9FBc']//child::input[@name='btnK']
+//div[@class='M8H8pb']/following::input[@name='btnK']
+//div[@class='M8H8pb']/following-sibling::div/center/input[1]
+//div[@class='M8H8pb']/following-sibling::div/center/input[@class='gNO89b']
+//div[@class='o3j99 qarstb']/preceding::div[@class='FPdoLc lJ9FBc']/descendant::input[@name='btnK']
+
+
+
+=====================================================================================================
+Relative Xpath axes													VVVVIMMMPPP
+		1) following keyword	
+		2) following-sibling keyword
+		3) preceding keyword
+		4) preceding-sibling keyword
+		5) parent keyword
+		6) child keyword
+		7) ancestor keyword
+		8) descendant keyword
+
+=========================================
+						Solve using only xpath
+https://www.saucedemo.com/
+enter valid credentials
+capture title and url
+click on add to cart
+click on cart button
+click on checkout button
+enter firstname  last name and zip code
+click on continue  button
+click on finish button
+click on back home
+click on menu icon
+click on logout
+=========================================
+						Solve using only xpath
+
+open a https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+enter valid credentials
+capture title and url
+click on PIM link
+click on add employee button
+enter firstname, last name and click on save button
+capture the employee id using getText() method
+select gender click on save button
+click on employee list
+enter the employee id
+click on search button
+select the checkbox
+click on delete selected button
+click on yes delete
+click on profile 
+click on logout
+==================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

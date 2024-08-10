@@ -1,0 +1,644 @@
+Interface in java
+--------------------------------------------------------------------------------------------------
+	- By declaring interface we can achieve the 100% abstractions.
+	- Abstraction is process of hiding the implementations details and showing the functionality to the users.
+	- Interface is type of definition block which contains  we can write 100% abstract method as well as concrete method.
+	- we implements interface abstract methods in another class by using implements keyword.
+
+	- We abstraction for interface abstract method for public non static abstract methods and default non static abstract method only.
+
+	- at the time of declaring abstract method in interface Abstract keyword is optional.
+	- interface all variables are final and static, once we declare any variable we can't modify values.
+
+
+syntax: how to declare interface with abstract method
+
+public interface interfaceName
+{
+		//abstract method without return type and 0 args
+		AccessModifier AbstractKeyword nonReturntype MethodName();
+
+		//abstract method without return type and multiple args
+		AccessModifier AbstractKeyword nonReturntype MethodName(Datatype variableName, Datatype variableName);
+
+		//abstract method with return type and 0 args
+		AccessModifier AbstractKeyword ReturnType MethodName();
+
+		//Abstract method with return type and multiple args
+		AccessModifier AbstractKeyword ReturnType MethodName(Datatype variableName, Datatype variableName);
+}
+
+
+
+				or
+public interface interfaceName
+{
+		//abstract method without return type and 0 args
+		AccessModifier nonReturntype MethodName();
+
+		//abstract method without return type and multiple args
+		AccessModifier nonReturntype MethodName(Datatype variableName, Datatype variableName);
+
+		//abstract method with return type and 0 args
+		AccessModifier ReturnType MethodName();
+
+		//Abstract method with return type and multiple args
+		AccessModifier ReturnType MethodName(Datatype variableName, Datatype variableName);
+}
+----------------------------------------------------------------------------------------
+package Tutorial9;
+
+public interface Demo1 {
+
+	//Abstract method without return type and 0 args
+	public abstract void d1();
+	
+	//abstract method without return type and multiple args
+	public abstract void d2(String a);
+	
+	//Abstract method with return type and 0 args
+	public abstract int d3();
+	
+	//abstract method with return type and multiple args
+	public abstract String d4(String a);
+	
+}
+
+package Tutorial9;
+
+public interface Demo1 {
+
+	//Abstract method without return type and 0 args
+	public abstract void d1();
+	
+	//abstract method without return type and multiple args
+	public abstract void d2(String a);
+	
+	//Abstract method with return type and 0 args
+	public abstract int d3();
+	
+	//abstract method with return type and multiple args
+	public abstract String d4(String a);
+	
+}
+=======================================================================
+package Tutorial9;
+
+public interface Demo2 {
+
+	//abstract method without return type and 0 args without using abstract keyword
+	public void d1();
+	
+	//abstract method without return type and multiple args without using abstract keyword
+	public void d2(int a,int b);
+	
+	//abstract method with return type and 0 args without using abstract keyword
+	public int d3();
+	
+	//abstract method with return type and multiple args without using abstract keyword
+	public String d4(String a);
+	
+
+}
+
+package Tutorial9;
+
+public class Sample2 implements Demo2 {
+
+	@Override
+	public void d1() {
+		System.out.println("D1 Method");
+	}
+
+	@Override
+	public void d2(int a, int b) {
+		System.out.println("D2 Method "+(a+b));
+	}
+
+	@Override
+	public int d3() {
+		System.out.println("D3 Method");
+		return 123;
+	}
+
+	@Override
+	public String d4(String a) {
+		System.out.println("D4 Method "+a);
+		return a;
+	}
+	
+	public static void main(String[] args) {
+		Sample2 obj =new Sample2();
+		obj.d1();
+		obj.d2(10, 20);
+		obj.d3();
+		obj.d4("pom");
+	}
+
+	
+	
+}
+===================================================================
+package Tutorial9;
+
+public interface Demo3 {
+	
+	//default abstract method without return type and 0 args
+	abstract void d1();
+	
+	//default abstract method without return type and multiple args
+	abstract void d2(String a);
+	
+	//default abstract method with return type and 0 args
+	abstract int d3();
+	
+	//default abstract method with return type and multiple args
+	abstract String d4(String a);
+}
+
+package Tutorial9;
+
+public class Sample3 implements Demo3{
+
+	@Override
+	public void d1() {
+		System.out.println("D1 method");
+	}
+
+	@Override
+	public void d2(String a) {
+		System.out.println("D2 method "+a);
+	}
+
+	@Override
+	public int d3() {
+		System.out.println("D3 method");
+		return 123;
+	}
+
+	@Override
+	public String d4(String a) {
+		System.out.println("D4 method "+a);
+		return a;
+	}
+	
+	public static void main(String[] args) {
+		Sample3 obj =new Sample3();
+		obj.d1();
+		obj.d2("pom");
+		obj.d3();
+		obj.d4("jenkins");
+	}
+
+	
+	
+}
+-------------------------------------------------------------------------------------------------------------------------
+can we create abstract protected non static method in interface?
+	No
+
+why we can't abstract protected method in interface?
+	- because access of protected method is within the package as well as outside the package but by using extends keyword,
+	and if want to implements interface we have to use implements keyword.
+	and we can't use implements as well as extends keyword for same interface.
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	///syntax Error
+	protected abstract void d1();
+	
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+can we create abstract private method in interface.
+	No,
+
+why we can't abstract private method in interface?
+	- because access scope of private method is within the class, and once we declare private abstract method in interface compulsory we have to
+	override in another class.
+	- we can't access the private method in another class.
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	///syntax Error
+	private abstract void d1();
+	
+}
+-------------------------------------------------------------------------------------------------------------------------
+can we create abstract static method in interface.
+	No,
+
+why we can't abstract static method in interface?
+	- because to achieve abstraction compulsory we have to override the methods in child class and static method are bonded by static binding at compile time by compiler, and abstraction is support for method overriding at run time.
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	///syntax Error
+	public abstract static void d1();
+	
+}
+-------------------------------------------------------------------------------------------------------------------------
+can we create abstract main method in interface.
+	No,
+
+why we can't abstract main method in interface?
+	- because main method itself is static  method and to achieve abstraction compulsory we have to override the methods in child class and static method are bonded by static binding at compile time by compiler, and abstraction is support for method overriding at run time.
+
+
+-------------------------------------------------------------------------------------------------------------------------
+can we create abstract final method in interface.
+	No,
+
+why we can't abstract final method in interface?
+	- because once we declare any method as final we can't modify the logic in future and abstraction is built on method overriding.
+	compulsory we have to override the methods in another class.
+	and once we declare any abstract method as final we can't modify it.
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	///syntax Error
+	final public abstract void d1();
+	
+}
+-------------------------------------------------------------------------------------------------------------------------
+can we create abstract constructor in interface.
+	- No,
+
+why we can't abstract constructor in interface?
+	- because constructor name should be same class name and to achieve the abstraction compulsory we have override the constructor in child class.
+	and in java we can't create 2 classes with same name.
+	
+package Tutorial9;
+
+public interface Demo4 {
+
+	///syntax Error
+	public abstract Demo4();
+	
+	
+}
+------------------------------------------------------------------------------------------------------
+can we create constructor in interface?
+	No
+
+why we can't create constructor in interface?
+	because we can't create object of the interface.
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	///syntax Error
+	public Demo4()
+	{
+		
+	}
+	
+	
+}
+------------------------------------------------------------------------------------------------------
+can we create final method in interface?
+	No,
+
+why we can't create final method in interface?
+	because once we declare any method as final we can't modify the logic as well as we can't override it.
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	///syntax Error
+	final public void a1()
+	{
+		
+	}
+	
+	final public static void a2()
+	{
+		
+	}
+	
+}
+----------------------------------------------------------------------------------------
+can we create private method in interface
+	yes
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	
+	private static void d1()
+	{
+		System.out.println("Private static method");
+	}
+	
+	private void d2()
+	{
+		System.out.println("Private non static method");
+	}
+	
+	
+}
+----------------------------------------------------------------------------------------
+can we create static method in interface
+		yes
+
+can we create main method in interface
+		yes
+
+package Tutorial9;
+
+public interface Demo4 {
+
+	
+	public static void d1()
+	{
+		System.out.println("public static method");
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+}
+-------------------------------------------------------------------------
+can we create non static method in interface
+	yes but we have to use default or private keyword to create non static method in interface
+package Tutorial9;
+
+public interface Demo4 {
+
+	default void d1() {
+		System.out.println("Default non static method");
+	}
+
+	private void d2() {
+		System.out.println("private non static method");
+	}
+
+}
+=============================================================================
+can we can't modify the value for interface variables
+
+package Tutorial9;
+
+public interface Demo4 {
+	
+	static String a="selenium";
+	
+	
+	private void abc()
+	{
+		a="cucumber";
+		System.out.println(a);
+	}
+	
+}
+=============================================================================
+package Tutorial9;
+
+public interface Demo5 {
+	
+	public void d1();
+	
+	public void d2();
+	
+	public void d3();
+	
+
+}
+
+package Tutorial9;
+
+public abstract class Sample5 implements Demo5{
+
+	@Override
+	public void d1() {
+		System.out.println("D1 method");
+	}
+
+	@Override
+	public void d2() {
+		System.out.println("D2 method");
+	}
+
+
+}
+
+package Tutorial9;
+
+public class Pune5 extends Sample5{
+
+	@Override
+	public void d3() {
+		System.out.println("D3 Method");
+	}
+
+	public static void main(String[] args) {
+		Pune5 obj =new Pune5();
+		obj.d1();
+		obj.d2();
+		obj.d3();
+		
+	}
+	
+	
+}
+====================================================================
+package Tutorial9;
+
+public interface Sample6 extends Demo6{
+
+	public void s1();
+	
+	public void s2();
+	
+}
+
+package Tutorial9;
+
+public interface Demo6 {
+	
+	public void d1();
+	
+	public void d2();
+	
+
+}
+
+package Tutorial9;
+
+public class Pune6 implements Sample6 {
+
+	@Override
+	public void d1() {
+		System.out.println("D1 method");
+
+	}
+
+	@Override
+	public void d2() {
+		System.out.println("D2 method");
+
+	}
+
+	@Override
+	public void s1() {
+		System.out.println("D3 method");
+
+	}
+
+	@Override
+	public void s2() {
+		System.out.println("D4 method");
+	}
+
+	public static void main(String[] args) {
+
+		Pune6 obj = new Pune6();
+		obj.d1();
+		obj.d2();
+		obj.s1();
+		obj.s2();
+
+	}
+
+}
+====================================================================
+package Tutorial9;
+
+public interface Demo7 {
+
+	public void d1();
+
+	public void d2();
+
+}
+package Tutorial9;
+
+public interface Sample7 {
+
+	public void s1();
+
+	public void s2();
+
+}
+
+package Tutorial9;
+
+//multiple inheritance using interface
+public class Pune7 implements Demo7, Sample7 {
+
+	@Override
+	public void s1() {
+
+		System.out.println("S1 method");
+	}
+
+	@Override
+	public void s2() {
+		System.out.println("S2 method");
+
+	}
+
+	@Override
+	public void d1() {
+		System.out.println("D1 method");
+
+	}
+
+	@Override
+	public void d2() {
+		System.out.println("D2 method");
+
+	}
+
+	public static void main(String[] args) {
+		Pune7 obj = new Pune7();
+		obj.d1();
+		obj.d2();
+		obj.s1();
+		obj.s2();
+	}
+
+}
+==================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

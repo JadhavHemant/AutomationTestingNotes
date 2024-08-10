@@ -1,0 +1,413 @@
+How to ignore exception in testng?													VVVVIMMPPPPPPPP
+				or
+How to handle exception in TestNG?													VVVVIMMPPPPPPPP
+
+		- we use expectedExceptions attribute to handle or ignore the exception in testng
+syntax:
+		@Test(expectedExceptions=exceptionClassName.class)
+		public void abc()
+		{
+				//statement
+		}
+
+e.g.
+		@Test(expectedExceptions=NullPointerException.class)
+		public void abc()
+		{
+				String a=null;
+				System.out.println(a.length());	//NullPointerException
+		}
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo1 {
+	
+	@Test(expectedExceptions=NullPointerException.class)
+	public void abc()
+	{
+		System.out.println("Abc TC is started");
+		String a=null;
+		System.out.println(a.length());
+		System.out.println("Abc test cases is ended");
+	}
+	
+	
+}
+-------------------------------------------------------------------------------------
+Handle Selenium Exception
+		
+		@Test(expectedExceptions=NoSuchElementException.class)
+		public void xyz()
+		{
+				WebDriver driver =new ChromeDriver();
+				driver.get("https://www.facebook.com");
+				driver.findElement(By.name("abc2342342435")).click();
+
+		}
+
+
+package Tutorial1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Demo2 {
+
+	@Test(expectedExceptions = NoSuchElementException.class)
+	public void xyz() {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/reg");
+		driver.findElement(By.name("aqbc21233432425562")).click();
+	}
+
+}
+package Tutorial1;
+
+import java.time.Duration;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+public class Demo2 {
+
+	@Test(expectedExceptions=TimeoutException.class)
+	public void xyz() {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/reg");
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("aqbc21233432425562"))).click();
+
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+how to write description for test cases?
+	- we use description attribute to write the description for test cases
+syntax:
+		@Test(description="test case description")
+		public void abc()
+		{
+				//statement
+		}
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo3 {
+
+	@Test(description = "Facebook Register Page test cases with validation")
+	public void validateRegister() 
+	{
+		System.out.println("validateRegister Test cases");
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+how to run same test cases multiple time?								VVVVIMMPPPPPPPP
+		- we use invocationCount attribute by passing count number
+	
+syntax:
+			@Test(invocationCount=10)
+			public void abc()
+			{
+					System.out.println("abc Test cases");
+			}
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo4 {
+	
+	@Test(invocationCount = 10)
+	public void abc()
+	{
+		System.out.println("abc test cases");
+	}
+	
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+how to run """"same test cases multiple time within the time""""?
+	- we use invocationTimeOut attribute by passing time in ms.
+	- if we are using invocationTimeOut attribute then compulsory we have to invocationCount attribute
+	- if we dont mention the invocationCount attribute then there is no use of using invocationTimeOut attribute.
+
+syntax:
+		@Test(invocationCount=10, invocationTimeOut=5000)
+		public void abc()
+		{
+					//statement
+		}
+
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo4 {
+
+	@Test(invocationCount = 5, invocationTimeOut = 4000)
+	public void abc() throws InterruptedException 
+	{
+		Thread.sleep(1000);
+		System.out.println("abc test cases");
+	}
+
+}
+
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo4 {
+
+	@Test(invocationTimeOut = 1000)
+	public void abc() throws InterruptedException 
+	{
+		Thread.sleep(2000);
+		System.out.println("abc test cases");
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+how to allocate multiple thread for test cases?							VVVVIMMPPPPPPPP
+	- we use threadPoolSize attribute to provide the multiple thread for the same invocation count test cases
+	- compulsory we have to use invocationCount attribute to create multiple thread for same test cases.
+	- if we dont mention the invocationCount attribute then it ignore the threadPoolSize attribute
+
+syntax;
+			@Test(invocationCount=5, threadPoolSize=3)
+			public void abc()
+			{
+				System.out.println("abc test cases");
+			}
+
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo5 {
+	
+	
+	@Test(invocationCount = 10, threadPoolSize = 5)
+	public void abc() throws InterruptedException
+	{	
+		System.out.println("abc test cases");
+		Thread.sleep(3000);
+	}
+		
+	
+}
+
+package Tutorial1;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Demo5 {
+
+	@Test(invocationCount = 10, threadPoolSize = 2)
+	public void abc() throws InterruptedException 
+	{
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com");
+		Thread.sleep(7000);
+		driver.quit();
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+how to run """""test cases within the time""""?
+	- we use timeOut attribute to run the test cases within the time
+
+syntax:
+		@Test(timeOut=2000)
+		public void abc()
+		{
+			Thread.sleep(3000);
+			System.out.println("abc test cases");
+		
+		}
+
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo6 {
+
+	@Test(timeOut = 2000)
+	public void abc() throws InterruptedException
+	{
+		Thread.sleep(3000);
+		System.out.println("abc test cases");
+	}
+}
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Demo6 {
+
+	@Test(invocationCount = 10 , timeOut = 2000)
+	public void abc() throws InterruptedException
+	{
+		Thread.sleep(1800);
+		System.out.println("abc test cases");
+	}
+}
+
+
+------------------------------------------------------------------------------------------------------------
+diff between timeOut and invocationTimeOut?
+	- timeOut is apply for single test cases
+	- and invocationTimeOut is apply for all invocationCount test cases.
+
+------------------------------------------------------------------------------------------------------------
+Attribute in Test
+			1) priority attribute
+			2) dependsOnMethods attribute
+			3) dependsOnGroups attribute
+			4) enabled=false attribute
+			5) alwaysRun=true attribute
+			6) invocationCount=10 attribute
+			7) timeOut=time in milliseconds  attribute
+			8) dataProvider= data provider name attribute
+			9) invocationTimeOut=time in milliseconds attribute
+			10) threadPoolSize=int number attribute
+			11) groups= group name attribute
+			12) expectedExceptions= exception name attribute
+			13) description= description of test cases attribute
+			14) retryAnalyzer= implemented class of IRetryAnalzyer interface attribute
+		
+Annotation in TestNG
+			1) @BeforeSuite
+			2) @BeforeTest
+			3) @BeforeClass
+			4) @BeforeMethod
+			5) @Test
+			6) @Ignore
+			7) @DataProvider
+			8) @Parameters
+			9) @AfterMethod
+			10) @AfterClass
+			11) @AfterTest
+			12) @AfterSuite
+---------------------------------------------------------------------------------------------------
+XML File structure with all XML tags
+		
+		<suite name="suite name or project name" thread-count=5 parallel="tests">
+			<groups>
+					<run>
+							<include name="group name" />
+					</run>
+			</groups>
+
+
+			<listeners>
+					<listener class-name="packagename.classname"/>
+			</listeners>
+
+			<parameter name="parametername " value ="parameter value" />
+
+			
+			<test name="test case name">
+				<classes>
+						<class name="packagename.classname"/>
+				</classes>
+			</test>
+		</suite>
+---------------------------------------------------------------------------------------------------
+XML File structure with all XML tags
+		
+		<suite name="suite name or project name" thread-count=5 parallel="tests">
+
+			<listeners>
+					<listener class-name="packagename.classname"/>
+			</listeners>
+
+			<test name="test case name">
+					<parameter name="parametername " value ="parameter value" />
+
+					<groups>
+							<run>
+									<include name="group name" />
+							</run>
+					</groups>
+					<classes>
+							<class name="packagename.classname"/>
+					</classes>
+			</test>
+		</suite>
+					
+============================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" thread-count="5" parallel="tests">
+
+	<groups>
+		<run>
+			<include name="regression"></include>
+		</run>
+	</groups>
+
+	<listeners>
+		<listener class-name="packagename.className"></listener>
+	</listeners>
+
+
+	<parameter name="browsername" value="chrome"></parameter>
+
+
+	<test name="Test">
+		<classes>
+			<class name="Tutorial1.Demo1" />
+		</classes>
+	</test>
+</suite> 
+===================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" thread-count="5" parallel="tests">
+
+	<listeners>
+		<listener class-name="packagename.className"></listener>
+	</listeners>
+
+	<test name="Test">
+		<parameter name="browsername" value="chrome"></parameter>
+		<groups>
+			<run>
+				<include name="regression"></include>
+			</run>
+		</groups>
+
+		<classes>
+			<class name="Tutorial1.Demo1" />
+		</classes>
+	</test>
+</suite> 
+===================================================
+
+
+
+
+
+
+
+
+
+
+

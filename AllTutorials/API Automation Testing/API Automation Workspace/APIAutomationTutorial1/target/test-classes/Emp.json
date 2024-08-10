@@ -1,0 +1,33 @@
+{
+	"firstName": "Sneha",
+	"lastName": "More",
+	"address": "Pune",
+	"mobileNumber": 99999,
+	"gender": "female"	
+	
+	//deserialization without JsonNode Structure
+	
+	//ObjectMapper mapper = new ObjectMapper();
+	//File f =new File("json file path"l)
+	//Employee emp = mapper.readValue(f, POJOClassName)
+
+}
+//--------------------------------------------------------------------------------
+{
+	"createEmployee"
+	{
+		"firstName": "Sneha",
+		"lastName": "More",
+		"address": "Pune",
+		"mobileNumber": 99999,
+		"gender": "female"		
+		
+		//deserialization with JsonNode Structure
+		
+		//ObjectMapper mapper = new ObjectMapper();
+		//File f =new File("json file path");
+		//JsonNode jsonNode = mapper.readTree(f);
+		//Employee emp = mapper.treeToValue(jsonNode.get(jsonNodeName), POJOclassname);
+
+	}
+}

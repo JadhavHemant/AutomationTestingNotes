@@ -1,0 +1,21 @@
+Hybrid framework, Actions class reusable script code
+
+Ass:
+open a https://www.tanishq.co.in/#home
+	Mouse over on GOLD
+	Click on Rings
+	click on sort drop down and select high to low price
+	click on first item
+	click on add to cart button
+
+----------------------------------------------------------------------------------
+Hybrid framework, Alert Interface reusable script code
+
+Scenario:
+	-open a https://demoqa.com/alerts
+	- find 3rd click me button and click me button	 													
+	- switch focus to alert window							
+	- enter the text in alert pop up text 					
+	- click on cancel										
+
+----------------------------------------------------------------------------------

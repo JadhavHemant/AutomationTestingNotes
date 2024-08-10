@@ -1,0 +1,43 @@
+{
+    "products" :
+    [
+        {
+            "id" : 1,
+            "produt_Name" : "Mobile",
+            "product_price" : 1234.34,
+            "product_info" : "Samsung",
+            "product_sellerName" : "abc",
+            "order" : 
+                {
+                    "order_id" : 11010,
+                    "order_location" : "Pune",
+                    "order_type" : "COD",
+                    "order_tokeId" : 123
+                },
+            "BuyerFirstName" : "Akshay",
+            "BuyerLastName" : "Chavan",
+            "Buyer_DelivaryAddress" : "abc Pune",
+            "Buyer_EmailId" : "akshay@gmail.com",
+            "Buyer_MobileNumber" : 9090909090
+        },
+        {
+            "id" : 2,
+            "produt_Name" : "Watch",
+            "product_price" : 14434.34,
+            "product_info" : "Samsung",
+            "product_sellerName" : "xyz",
+            "order" : 
+                {
+                    "order_id" : 112233,
+                    "order_location" : "Mumbai",
+                    "order_type" : "COD",
+                    "order_tokeId" : 12344
+                },
+            "BuyerFirstName" : "Rahul",
+            "BuyerLastName" : "Kale",
+            "Buyer_DelivaryAddress" : "xyz Pune",
+            "Buyer_EmailId" : "Rahul@gmail.com",
+            "Buyer_MobileNumber" : 888888
+        }
+    ]
+}

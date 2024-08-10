@@ -1,0 +1,210 @@
+
+		PassScreenshot
+					YearFolder
+							MonthandYearFolder
+									TestcaseName_DateAndTime.png
+
+
+		FailScreenshot
+					YearFolder
+							MonthAndYearFolder
+									TestCaseName_DateAndTime.png
+
+
+		ExtentReports
+					yearFolder
+							MonthAndYearFolder
+									projectName_DateAndTime.html
+---------------------------------------------------------------------------------------------------------------------
+How to capture current year?
+		
+		SimpleDateFormat simple =new SimpleDateFormat("yyyy");
+		String year = simple.format(new Date());
+
+public static String captureYear()
+{
+	return new SimpleDateFormat("yyyy").format(new Date());
+}	
+---------------------------------------------------------------------------------------------------------------------
+how to capture month and year?
+
+		SimpleDateFormat simple =new SimpleDateFormat("MMyyyy");
+		String monthAndYear = simple.format(new Date());
+
+public static String captureMonthAndYear()
+{
+	return new SimpleDateFormat("MMyyyy").format(new Date());
+}
+---------------------------------------------------------------------------------------------------------------------
+how to capture current date and time
+		
+		SimpleDateFormat simple =new SimpleDateFormat("ddMMyyyy_HHmmss");
+		String dateAndTime = simple.format(new Date());
+
+public static String captureDateAndTime()
+{
+	return new SimpleDateFormat("ddMMyyyy_HHmmss").format(new Date());
+}
+
+---------------------------------------------------------------------------------------------------------------------
+package UtitlityLayer;
+
+public class DateAndTime
+{
+		//capture year static method
+	public static String captureYear()
+	{
+		return new SimpleDateFormat("yyyy").format(new Date());
+	}
+
+		//capture month and year static method
+	public static String captureMonthAndYear()
+	{
+		return new SimpleDateFormat("MMyyyy").format(new Date());
+	}
+
+		//capture date and time static method
+	public static String captureDateAndTime()
+	{
+		return new SimpleDateFormat("ddMMyyyy_HHmmss").format(new Date());
+	}
+		
+}
+
+---------------------------------------------------------------------------------------------------------------------
+		PassScreenshot
+					YearFolder
+							MonthandYearFolder
+									TestcaseName_DateAndTime.png
+
+
+		FailScreenshot
+					YearFolder
+							MonthAndYearFolder
+									TestCaseName_DateAndTime.png
+
+package UtilityLayer;
+
+public class Screenshot extends BaseClass
+{
+	
+	public static String captureScreenshot(String folderName, String screenshotName)
+	{
+			TakesScreenshot ts =  (TakesScreenshot)driver;
+
+			File src = ts.getScreenshotAs(OutputType.FILE);
+		
+			String destinationPath= System.getProperty("user.dir")+"//"+folderName+"//"+DateAndTime.captureYear()+"//"+
+				DateAndTime.captureMonthAndYear()+"//"+screenshotName+DateAndTime.captureDateAndTime()+".png";
+	
+			File dest= new File(destinationPath);
+			FileUtils.copyFile(src, dest);
+
+			return destinationPath;
+	}
+	
+
+}
+---------------------------------------------------------------------------------------------------------------------
+		ExtentReports
+					yearFolder
+							MonthAndYearFolder
+									projectName_DateAndTime.html
+---------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+public class ExtentReportSetUp extends BaseClass
+{
+
+	//create static method with ExtentReports return type and 1 String arguments
+	public static ExtentReports setup(String reportName)
+	{
+			ExtentReports extentReports =new ExtentReports();
+			String destinationPath = System.getProperty("user.dir")+"\\ExtentReports\\"+DateAndTime.captureYear()+"\\"+
+			DateAndTime.captureMonthAndYear()+"\\"+reportName+DateAndTime.captureDateAndTime()+".html";
+
+			ExtentSparkReporter extentReporter =new ExtentSparkReporter(destinationPath);
+				
+			extentReports.attachReporter(extentReporter);
+
+			return extentReports;
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+public class ListenerSetUp extends ExtentReportSetUp implements ITestListener
+{
+		ExtentReports extentReports;
+		ExtentTest extentTest;
+
+		public void onStart(ITestContext context)
+		{
+			String projectname = context.getSuite().getName();
+			
+			extentReports = ExtentReportSetUp.setup(projectname);
+		}
+
+		public void onTestStart(ITestResult result)
+		{
+			String testcaseName = result.getMethod().getMethodName();
+			
+			extentTest = extentReports.createTest("Test Case Started Name is "+testcaseName);
+		}
+		
+		public void onTestSuccess(ITestResult result)
+		{
+			String testcaseName = result.getMethod().getMethodName();
+		
+			String destinationPath  = Screenshot.captureScreenshot("PassScreenshot", testcaseName);
+			
+			extentTest.log(Status.PASS, "Test case Pass name is "+testcaseName);
+
+			extentTest.addScreenCaptureFromPath(destinationPath);
+		}
+
+		public void onTestFailure(ITestResult result)
+		{
+				//capture the test case name
+			String testcaseName = result.getMethod().getMethodName();
+
+				//take the screenshot
+			String destinationPath = Screenshot.takeScreenshot("FailScreenshot", testcaseName);
+				//generate test case Fail log
+
+			extentTest.log(Status.FAIL, "test case fail name is "+testcaseName);
+				///add screenshot to reports
+
+			extentTest.addScreenCaptureFromPath(destinationPath);
+		}
+		
+
+		public void onTestSkipped(ITestResult result)
+		{
+			//capture the test case name
+				String testcaseName = result.getMethod().getMethodName();
+
+			// generate test case skip log
+				extentTest.log(Status.SKIP, "test case skip name is "+testcaseName);
+		}
+
+		public void onFinish()
+		{
+				extentReports.flush();
+		}
+
+} 
+=======================================================================================
+
+
+
+
+
+
+
+
+
+
+
+

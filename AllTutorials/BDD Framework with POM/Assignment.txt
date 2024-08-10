@@ -1,0 +1,50 @@
+Scenario: validate login functionality
+
+
+Scenario: validate home functionality
+		- title
+		- url
+		- logo
+
+Scenario: validate Add Employee in PIM functionality
+	- click on pim link and verify user is in pim page'		
+	- click on add button
+	- enter fname  and lname
+	- capture employee id and store globally
+	- click on save button
+
+Scenario: validate add more employee information functionality 
+	- select nationality
+	- select gender
+	- select marital status
+	-click on save button
+	- select blood group 
+	- click on save button
+
+Scenario: validate contact more information functionality 
+	- enter address , city and state , pincode and select country
+	enter mobile number and email id 
+	- click on save button
+
+Scenario: validate search employee functionality 
+	- click on employee list
+	- enter employee id
+	- click on search 
+	
+Scenario: validate delete employee functionality 
+	- click on delete button
+	- click on confirm delete
+
+Scenario: validate logout functionality
+	- click on profile icon
+	-click no logout
+
+--------------------------------------------
+BaseClass
+PageLayer
+UtilityLayer
+
+Features file
+Step Definitions
+Test Runner
+

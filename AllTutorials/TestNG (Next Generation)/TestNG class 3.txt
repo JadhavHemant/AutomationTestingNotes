@@ -1,0 +1,706 @@
+What is use of @Parameters Annotation in TestNG?						VVVIIMMMPPPPPPPPPP
+			or
+How to achieve parameterization in TestNG?								VVVIIMMMPPPPPPPPPP
+--------------------------------------------------------------------------------------------------------------------------------------
+	- we achieve parameterization in TestNG using """"@Parameters annotations.""""
+	- we can use @Parameters annotation in Test Cases Level as Precondition level.
+	- @Parameters annotation it fetch the values/input/test data from XML file, and we can use these values 
+	inside the test cases or inside the preconditions.
+	- we use @Parameters annotation to achieve the parallel testing as well as cross browser testing.
+	 - to achieve the cross browser testing or parallel testing we pass browser names/values from the XML file.
+
+syntax:
+		
+		@Parameters({"parametername"})
+		@Test
+		public void abc(String variableName)
+		{	
+				//statement
+		}
+e.g.
+		<suite name="suite name or project name">
+			<parameter name="parametername" value="parametervalue" />
+			<test name="test cases name">
+				<classes>
+						<class name="packagename.classname"/>
+				</classes>
+			</test>
+		</suite>	
+-------------------------------------------------------------------------------------------------------------------------------------
+e.g.		Pass username from xml file
+	
+			<suite name="orange HRM">
+				<parameter name="username" value="Admin" />
+				<parameter name="password" value="admin123" />
+				<test name="Login Test Cases">
+				<classes>
+						<class name="Tutorial3.Sample1"/>
+				</classes>
+			</test>
+			</suite>
+
+
+		@Parameters({"username","password"})
+		@Test
+		public void loginFunctionality(String abc, String xyz)
+		{
+				System.out.println(abc);
+				System.out.println(xyz);
+		}
+-------------------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+
+	<parameter name="username" value="Admin" />
+
+	<test name="Test">
+		<classes>
+			<class name="Tutorial3.Sample1" />
+		</classes>
+	</test>
+</suite> 
+
+package Tutorial3;
+
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Sample1 {
+
+	@Parameters({"username"})
+	@Test
+	public void loginFunctionality(String abc)
+	{
+		System.out.println(abc);
+	}
+	
+	
+}
+----------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+
+	<parameter name="username" value="Admin" />
+	<parameter name="password" value="admin123" />
+
+	<test name="Test">
+		<classes>
+			<class name="Tutorial3.Sample1" />
+		</classes>
+	</test>
+</suite> 
+
+
+package Tutorial3;
+
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Sample1 {
+
+	@Parameters({ "username", "password" })
+	@Test
+	public void loginFunctionality(String abc, String xyz) {
+		System.out.println(abc);
+		System.out.println(xyz);
+	}
+
+}
+=============================================================================
+Scenario:
+		open a orange sauce demo application
+		- pass username and password from XML File
+
+<suite name="Sauce Demo Application">
+	<parameter name="uname" value="standard_user" />
+	<parameter name="pass" value="secret_sauce"> </parameter>
+	
+	<test name="login Page Test Cases">
+		<classes>
+				<class name="Tutorial3.Sample3" />
+		</classes>
+	</test>
+</suite>
+
+public class Sample3
+{
+
+@Parameters({"uname", "pass"})
+@Test
+public void loginFunctionality(String uname, String pass)
+{
+		//Connect to actual browser
+		//Up Casting		
+		WebDriver driver =new ChromeDriver();
+		//open a url
+		driver.get("https://www.saucedemo.com/");
+		
+		//find and enter the value in username text box
+		WebElement unamewb = driver.findElement(By.id("user-name"));
+		unamewb.sendKeys(uname);
+
+		//find and enter value in password text box
+		WebElement passwb = driver.findElement(By.id("password"));
+		passwb.sendKeys(pass);
+
+		//find and click on login button
+		WebElement loginwb = driver.findElement(By.id("login-button"));
+		loginwb.click();
+}
+
+}
+------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+
+	<parameter name="uname" value="performance_glitch_user"></parameter>
+	<parameter name="pass" value="secret_sauce"></parameter>
+
+	<test name="Test">
+		<classes>
+			<class name="Tutorial3.Sample3" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+--------------------------------------------------------------------------------------------------------------------------
+Scenario:														https://ui.cogmento.com/
+		Open a application in chrome browser
+				or
+		Open a application in edge browser
+					or
+		Open a application in incognito browser
+
+		
+<suite name="Cogmento CRM Application">
+	<parameter name="browsername" value="incognito" />
+		<test name="Browser Functionality">
+			<classes>
+					<class name="Tutorial3.Sample4"/>
+			</classes>
+		</test>
+</suite>
+
+
+public class Sample4{
+
+	WebDriver driver;
+
+		@Parameters({"browsername"})
+		@Test
+		public void openBrowser(String browsername)
+		{
+				if(browsername.equals("chrome"))
+					{
+								//connect to chrome browser
+								//up casting
+								driver =new ChromeDriver();
+					}
+				else if(browsername.equals("edge"))
+					{
+								//connect to edge browser
+								//up casting
+								driver=new EdgeDriver();
+					}
+				else if(browsername.equals("incognito"))
+					{
+							//connect to actual chrome browser
+
+							//create object of ChromeOptions class
+								ChromeOptions opt =new ChromeOptions();
+							// use addArguments() method by passing --incognito keyword
+							opt.addArguments("--incognito");
+
+							//up casting by passing ChromeOptions object name.
+							driver =new ChromeDriver(opt);
+					}
+				else
+					{
+							System.out.println("Please Enter valid browser name");
+					}
+
+
+				driver.get("https://ui.cogmento.com/");
+		}
+
+}
+------------------------------------------------------------------------------
+package Tutorial3;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Sample4 {
+
+	WebDriver driver;
+
+	@Parameters({ "browsername" })
+	@Test
+	public void openBrowser(String browsername) {
+		if (browsername.equals("chrome")) {
+			// connect to chrome browser
+			// up casting
+			driver = new ChromeDriver();
+		} else if (browsername.equals("edge")) {
+			// connect to edge browser
+			// System.setProperty("webdriver.edge.driver", "path of edge driver");
+			// up casting
+			driver = new EdgeDriver();
+		} else if (browsername.equals("incognito")) {
+			// connect to actual browser
+			// create object of ChromeOptions class
+			ChromeOptions opt = new ChromeOptions();
+			// use addArguments()method by passing --incognito keyword
+			opt.addArguments("--incognito");
+			// up casting by passing ChromeOptions object name
+			driver = new ChromeDriver(opt);
+		} else {
+			System.out.println("Please Enter valid Browser name");
+		}
+
+		driver.get("https://ui.cogmento.com/");
+
+	}
+
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cogmento CRM">
+
+	<parameter name="browsername" value="edge"></parameter>
+
+	<test name="Browser Test Cases">
+		<classes>
+			<class name="Tutorial3.Sample4" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+===========================================================================
+@BeforeClass							
+			chrome / edge / incognito
+			add implicit wait
+			maximize browser
+			open a url					https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+
+
+Test Cases 1
+		Login Functionality
+Test case 2
+		Add new User in PIM Page
+test case 3	
+		Add More Personal Details
+
+test case 4
+		search Employee
+
+test cases 5
+		logout user
+	
+
+@AfterMethod
+		take screenshot
+
+@AfterClass
+		close session
+------------------------------------------------------------------------------------------------------------------
+<suite name="Orange HRM Application">
+		<parameter name="browsername" value="chrome"/>
+		<test name="PIM Page Test Cases" >
+			<classes>
+					<class name="TestLayer.PIMPageTest"/>
+			</classes>
+		</test>
+</suite>
+
+
+public class PIMPageTest
+{
+	WebDriver driver;
+	String employeeId;
+
+		@Parameters({"browsername"})
+		@BeforeClass
+		public void setup(String browsername)
+		{
+				if(browsername.equals("chrome"))
+				{
+						//connect to chrome browser
+						//up casting
+						 driver =new ChromeDriver();
+				}
+				else if(browsername.equals("edge"))
+				{
+						//connect to edge browser
+						//up casting
+						driver = new EdgeDriver();
+				}
+				else if(browsername.equals("incognito"))
+				{
+					//connect to actual browser
+					//create object of ChromeOptions class
+						ChromeOptions opt =new ChromeOptions();
+					//use addArguments() method by passing --incognito keyword
+						opt.addArguments("--incognito");
+					//up casting concept by passing ChromeOptions object name
+					driver =new ChromeDriver(opt);
+				}
+				else
+				{
+						System.out.println("Please enter valid browser name");
+				}
+
+			driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			driver.manage().window().maximize();
+		}
+
+
+		@Test(priority=1)
+		public void loginFunctionality()
+		{
+			Thread.sleep(7000);
+			driver.findElement(By.name("username")).sendKeys("Admin");
+			driver.findElement(By.name("password")).sendKeys("admin123");
+			driver.findElement(By.xpath("//button[text()=' Login ']")).click();
+		}
+
+		@Test(priority=2)
+		public void addNewEmployeeInPIMPage()
+		{
+			driver.findElement(By.xpath("//span[text()='PIM']")).click();
+			driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
+			driver.findElement(By.name("firstName")).sendKeys("Admin");
+			driver.findElement(By.name("lastName")).sendKeys("Admin");
+			driver.findElement(By.xpath("//button[text()=' Save ']")).click();
+		}
+
+		@Test(priority=3)
+		public void addMoreDetails()
+		{
+			 employeeId = driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/child::input")).getText();
+
+
+			driver.findElement(By.xpath("//label[text()='Nationality']/parent::div/following-sibling::div/descendant::div[@class='oxd-select-text-input']")).click();
+	
+			List<WebElement> ls = driver.findElements(By.xpath("//div[@class='oxd-select-option']/child::span"));
+
+			for(WebElement abc: ls)
+			{
+					String country = abc.getText();
+
+					if(country.equals("Indian"))
+					{
+							abc.click();
+							break;
+					}
+			}
+
+			driver.findElement(By.xpath("//label[text()='Gender']/parent::div/following-sibling::div/descendant::input[@value='1']")).click();
+		
+			driver.findElement(By.xpath("//p[text()=' * Required']/following-sibling::button")).click();
+
+		}
+		
+		@Test(priority=4)
+		public void searchEmployee()
+		{
+				driver.findElement(By.xpath("//a[text()='Employee List']")).click();
+				driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/child::input")).sendKeys(employeeId);
+
+				driver.findElement(By.xpath("//button[text()=' Search ']")).click();
+		}
+	
+		@Test(priority=5)
+		public void logOutFunctionality()
+		{
+			driver.findElement(By.xpath("//p[@class='oxd-userdropdown-name']")).click();
+			driver.findElement(By.xpath("//a[text()='Logout']")).click();
+		}
+		
+
+		@AfterMethod
+		public void abc()
+		{
+			TakesScreenshot ts = (TakesScreenshot)driver;
+			File src = ts.getScreenshotAs(OutputType.FILE);
+			String date = new SimpleDateFormat("ddMMyyyy_HHmmss").format(new Date());
+			
+			File dest =new File(System.getProperty("user.dir")+"\\MayPassScreenshot\\orangehrm"+date+".png");
+
+			FileUtils.copyFile(src,dest);
+		}
+		
+		@AfterClass
+		public void teardown()
+		{
+			driver.quit();
+		}
+		
+}
+
+
+======================================================================================================
+package Tutorial4;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class PIMPageTest {
+	WebDriver driver;
+	String employeeId;
+
+	@Parameters({ "browsername" })
+	@BeforeClass
+	public void setup(String browsername) {
+		if (browsername.equals("chrome")) {
+			// connect to chrome browser
+			// up casting
+			driver = new ChromeDriver();
+		} else if (browsername.equals("edge")) {
+			// connect to edge browser
+			// up casting
+			driver = new EdgeDriver();
+		} else if (browsername.equals("incognito")) {
+			// connect to actual browser
+			// create object of ChromeOptions class
+			ChromeOptions opt = new ChromeOptions();
+			// use addArguments() method by passing --incognito keyword
+			opt.addArguments("--incognito");
+			// up casting concept by passing ChromeOptions object name
+			driver = new ChromeDriver(opt);
+		} else {
+			System.out.println("Please enter valid browser name");
+		}
+
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().window().maximize();
+	}
+
+	@Test(priority = 1)
+	public void loginFunctionality() throws InterruptedException {
+		Thread.sleep(7000);
+		driver.findElement(By.name("username")).sendKeys("Admin");
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		driver.findElement(By.xpath("//button[text()=' Login ']")).click();
+	}
+
+	@Test(priority = 2)
+	public void addNewEmployeeInPIMPage() {
+		// Thread.sleep(7000);
+		driver.findElement(By.xpath("//span[text()='PIM']")).click();
+		driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
+		driver.findElement(By.name("firstName")).sendKeys("Ashwini");
+		driver.findElement(By.name("lastName")).sendKeys("Patil");
+		employeeId = driver
+				.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/child::input"))
+				.getAttribute("value");
+		System.out.println(employeeId);
+		driver.findElement(By.xpath("//button[text()=' Save ']")).click();
+	}
+
+	@Test(priority = 3)
+	public void addMoreDetails() throws InterruptedException {
+
+		
+
+		Thread.sleep(3000);
+		driver.findElement(By.xpath(
+				"//label[text()='Nationality']/parent::div/following-sibling::div/descendant::div[@class='oxd-select-text-input']"))
+				.click();
+
+		List<WebElement> ls = driver.findElements(By.xpath("//div[@class='oxd-select-option']/child::span"));
+
+		for (WebElement abc : ls) {
+			String country = abc.getText();
+			Thread.sleep(10);
+			if (country.equals("Indian")) {
+				abc.click();
+				break;
+			}
+		}
+
+		Thread.sleep(4000);
+		WebElement radioButton = driver.findElement(By
+				.xpath("//label[text()='Gender']/parent::div/following-sibling::div/descendant::label[text()='Male']"));
+
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", radioButton);
+
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//p[text()=' * Required']/following-sibling::button")).click();
+
+	}
+
+	@Test(priority = 4)
+	public void searchEmployee() throws InterruptedException {
+		driver.findElement(By.xpath("//a[text()='Employee List']")).click();
+		driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/child::input"))
+				.sendKeys(employeeId);
+
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//button[text()=' Search ']")).click();
+	}
+
+	@Test(priority = 5)
+	public void logOutFunctionality() throws InterruptedException {
+		driver.findElement(By.xpath("//p[@class='oxd-userdropdown-name']")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//a[text()='Logout']")).click();
+	}
+
+	@AfterMethod
+	public void abc() throws IOException, InterruptedException {
+		Thread.sleep(4000);
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		String date = new SimpleDateFormat("ddMMyyyy_HHmmss").format(new Date());
+
+		File dest = new File(System.getProperty("user.dir") + "\\MayPassScreenshot\\orangehrm" + date + ".png");
+
+		FileUtils.copyFile(src, dest);
+	}
+
+	@AfterClass
+	public void teardown() {
+		driver.quit();
+	}
+
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+
+	<parameter name="browsername" value="incognito" />
+	<test name="Test">
+		<classes>
+			<class name="Tutorial4.PIMPageTest" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+
+	

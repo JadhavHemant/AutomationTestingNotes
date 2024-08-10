@@ -1,0 +1,231 @@
+https://copyright.gov.in/UserRegistration/frmNewUser.aspx
+=============================================================================
+src/main/java
+	
+	BaseLayer
+					BaseClass
+								---> read data from Properties file.
+								---> Set driver in ThreadLocal class
+								---> initialization with String arguments
+								
+	ConfigurationLayer
+					config.properties
+
+	PageLayer
+					RegisterPage
+								---> Create Object Repository
+								---> initialize the OR
+								---> create Associated method for each and every Object Repository without entering test data as per the Features steps wise.
+
+
+	UtilityLayer
+					Wait class
+					HandleDropDown class
+					RadioButton class.
+
+
+
+src/test/java
+	Features
+				registerpage.feature
+
+	StepDefinition
+				RegisterPageStepTest
+
+	TestRunner
+				RunnerTest
+
+===============================================================================================================================
+package BaseLayer;
+
+public class BaseClass
+{
+		protected static Properties prop;
+
+		//create object of ThreadLocal by using WebDriver generic
+		private static ThreadLocal<WebDriver> td = new ThreadLocal<WebDriver>();
+
+		//capture the WebDriver from ThreadLocal class.
+
+		public static WebDriver getDriver()
+		{
+			return td.get();
+		}	
+
+		//create initialization method with string arguments
+		
+		public static void initialization(String browsername)
+		{
+			WebDriver driver=null;
+			if(browsername.equalsIgnoreCase("chrome"))
+			{
+				driver =new ChromeDriver();
+				//set WebDriver in ThreadLocalClass
+				td.set(driver);
+			}
+			else if(browsername.equalsIgnoreCase("edge"))
+			{
+				driver =new EdgeDriver();
+				//set WebDriver in ThreadLocalClass
+				td.set(driver);
+			}
+			else if(browsername.equalsIgnoreCase("incognito"))
+			{
+				ChromeOptions opt =new ChromeOptions();
+				opt.addArguments("--incognito");
+				driver =new ChromeDriver(opt);
+				//set WebDriver in ThreadLocalClass
+				td.set(driver);
+			}
+			else if(browsername.equalsIgnoreCase("headless"))
+			{
+				ChromeOptions opt =new ChromeOptions();
+				opt.addArguments("--headless");
+				driver =new ChromeDriver(opt);
+				//set WebDriver in ThreadLocalClass
+				td.set(driver);
+			}
+			else
+			{
+				System.out.println("Please Enter correct browser name");
+			}
+
+			getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+			getDriver().manage().timeouts().pageLoadTimeOut(Duration.ofSeconds(30));
+			getDriver().manage().window().maximize();
+			getDriver().manage().deleteAllCookies();
+
+			String url = prop.getProperty("url");
+
+			getDriver().get(url);
+
+
+		}	
+
+
+		public BaseClass()
+		{
+				prop =new Properties();
+				FileInputStream fis =new FileInputStream("file path");
+				prop.load(fis);
+			
+		}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+config.properties
+		
+	url=https://copyright.gov.in/UserRegistration/frmNewUser.aspx
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+package PageLayer;
+
+public class RegisterPage extends BaseClass
+{
+		//create OR with POM with Page Factory
+		
+		//initialize the OR
+
+		//create associated method for each and every OR without entering test data as per the feature file step wise
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------
+package UtilityLayer;
+
+public class Wait extends BaseClass
+{
+	///create static visibilityOf() method by passing WebElement args and return type is WebElement
+	
+	public static WebElement visibilityOf(WebElement wb)
+	{
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
+			return wait.until(ExpectedConditions.visibilityOf(wb));
+	}
+	//create static sendKeys method with WebElement arguments and string args
+	public static void sendKeys(WebElement wb, String ExpectedValue)
+	{
+		Wait.visibilityOf(wb).sendKeys(ExpectedValue);
+	}
+			
+
+	//create static click method with WebElement arguments
+	public static void click(WebElement wb)
+	{
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.elementToBeClickable(wb)).click();
+	}
+	
+
+	//create static selectRadioButton method with List<WebElement> arguments and string args
+
+	public static void selectRadioButton(List<WebElement> listRadio, String ExpectedValue)
+	{
+			//iterate all radio button values
+			for(WebElement list : listRadio)
+			{
+					//capture radio button values
+					String actualValue = list.getText();
+					
+					//compare actual value with expected value
+					if(actualValue.equalsIgnoreCase(ExpectedValue))
+					{
+							Wait.click(list);
+					}
+					
+			}
+	}
+
+}
+
+
+package UtilityLayer;
+
+public class HandleDropDown extends BaseClass
+{
+		
+	//create static selectByVisibleText() method with WebElement and String arguments
+	public static void selectByVisibleText(WebElement wb, String ExpectedValue)
+	{
+		//create object of Select class by passing WebElement instance and check element is visible or not?
+		Select sel = new Select(Wait.visibilityOf(wb));
+		sel.selectByVisibleText(ExpectedValue);
+	}
+
+	//create static selectByValue() method with WebElement and String arguments
+
+	public static void selectByValue(WebElement wb, String ExpectedValue)
+	{
+			//create object of Select class by passing WebElement instance and check element is visible or not
+			Select sel = new Select(Wait.visibilityOf(wb));
+			sel.selectByValue(ExpectedValue);
+	}
+
+	//create static selectByIndex() method with WebElement and int arguments
+	public static void selectByValue(WebElement wb, int ExpectedValue)
+	{
+			//create object of Select class by passing WebElement instance and check element is visible or not
+			Select sel = new Select(Wait.visibilityOf(wb));
+			sel.selectByIndex(ExpectedValue);
+	}
+	
+
+
+}
+
+===============================================================
+https://admin-demo.nopcommerce.com/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,562 @@
+How to handle drop down in selenium?									VVVVVIMMPPPPP
+===========================================================================================
+Select class Method
+	1) selectByVisibleText() method
+	2) selectByIndex() method
+	3) selectByValue() method
+	4) getOptions() method
+	5) getFirstSelectedOption() method
+
+1) selectByVisibleText() method
+		- selectByVisibleText() method used to select the values from drop down.
+		- return type is void.
+		- this method present inside the Select class.
+		- this method it accept the String type arguments.
+syntax:
+		WebElement wb = driver.findElement(By.id("id value"));
+		Select sel =new Select(wb);
+		sel.selectByVisibleText("drop down value");
+--------------------------------------------------------------------------------------------------------------------------------------
+2) selectByIndex() method
+		-selectByIndex() method is used to select the values from drop down
+		- return type is void
+		- this method is present inside the Select class.
+		- this method accept the int type of arguments.
+syntax:
+		WebElement wb = driver.findElement(By.id("id values"));
+		Select sel = new Select(wb);
+		sel.selectByIndex(index position);
+--------------------------------------------------------------------------------------------------------------------------------------
+3) selectByValue() method
+		-selectByValue() method is used to select the values from drop down
+		- return type is void
+		- this method is present inside the Select class.
+		- this method it accept the String type of arguments.
+syntax:
+		WebElement wb = driver.findElement(By.id("id values"));
+		Select sel = new Select(wb);
+		sel.selectByValue("drop down values from html code");
+--------------------------------------------------------------------------------------------------------------------------------------
+4) getOptions() method
+		- it is used to capture the all the drop down values.
+		- return type is List<WebElement>
+		-  this method present inside the Select class.
+
+syntax:
+		WebElement wb = driver.findElement(By.id("id values"));
+		Select sel = new Select(wb);
+		List<WebElement> ls = sel.getOptions();
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Scenario:
+	- Open a url https://demo.guru99.com/test/newtours/register.php
+	- find the country drop down
+	- capture all drop down values.
+	- print in console
+
+Step 1: connect to actual browser
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver = new ChromeDriver();
+
+step 3:open a url
+			driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+step 4: find the country drop down
+		WebElement wb = driver.findElement(By.name("country"));
+
+step 5: create object of Select class by passing WebElement instance name or object name
+		Select sel =new Select(wb);
+
+step 6: capture all drop down values
+		List<WebElement> ls = sel.getOptions();
+	
+step 7: iterate the loop and print all values in console.
+		
+		for(WebElement abc: ls)
+			{
+					String a = abc.getText();
+					System.out.println(a);
+			}			
+---------------------------------------------------------------------------------------
+package Tutorial6;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		// Step 1: connect browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+		// step 4: find the drop down web element
+		WebElement wb = driver.findElement(By.name("country"));
+
+		// step 5: create object of Select class by passing WebElement instance name or
+		// object name
+
+		Select sel = new Select(wb);
+
+		// step 6: capture all drop down values
+		List<WebElement> ls = sel.getOptions();
+
+		// step 7: iterate all drop down values and print in console
+
+		for (WebElement abc : ls) {
+			String a = abc.getText();
+			System.out.println(a);
+		}
+
+		// step 8: count how many values is present in drop down
+		int b = ls.size();
+		System.out.println(b);
+
+	}
+
+}
+==============================================================================
+https://demo.guru99.com/test/newtours/register.php
+verify the ""INDIA""" value is present or not in country drop down							VVVVVIMMMPPPP
+
+step 1: connect browser
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+step 2; up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+			driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+step 4: find the drop down
+			WebElement wb = driver.findElement(By.name("country"));
+
+step 5: create object of Select class by passing WebElement instance.
+			Select sel =new Select(wb);
+
+step 6: capture all drop down values
+			List<WebElement> ls = sel.getOptions();
+
+step 7: iterate all drop down values using for loop
+	
+		for(WebElement abc: ls)
+		{
+					String a = abc.getText();	
+						//step 7a) use if condition to verify the INDIA values.
+					
+					if(a.equals("INDIA"))
+						{			
+								System.out.println("Test cases is pass");
+						}		
+		}
+
+
+
+package Tutorial6;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// Step 1: connect browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+
+		// step 4: find the drop down web element
+		WebElement wb = driver.findElement(By.name("country"));
+
+		// step 5: create object of Select class by passing WebElement instance
+		Select sel = new Select(wb);
+
+		// step 6: capture the all drop down values
+		List<WebElement> ls = sel.getOptions();
+
+		// step 7: iterate all drop down value using for loop
+
+		for (WebElement abc : ls) {
+			String a = abc.getText();
+
+			// step 7a: verify the INDIA value is present or not
+			if (a.equals("INDIA")) {
+				System.out.println("test cases is pass " + a);
+			}
+
+		}
+
+	}
+
+}
+===================================================================
+5) getFirstSelectedOption() method
+	- it is used to capture the selected values from drop down
+	- return type is WebElement interface.
+	- this method present inside the Select class.
+
+syntax
+			WebElement wb = driver.findElement(By.name("name value"));
+			Select sel =new Select(wb);
+			sel.selectByVisibleText("text");
+					or
+			sel.selectByIndex(index);
+					or
+			sel.selectByValue("value");
+
+			WebElement abc = sel.getFirstSelectedOption();
+			String a = abc.getText();
+			System.out.println(a);
+
+Scenario:
+	open a fb register url
+	select the Oct month value.
+	capture the selected values.
+
+Step 1: connect to actual browser
+step 2: up casting
+step 3: open a url
+step 4: find the drop down using findElement() method and using given locator.
+				WebElement wb = driver.findElement(By.id("month"));
+
+step 5: create object of Select class by passing WebElement instance name
+				Select sel =new Select(wb);
+
+step 6: select the drop down
+				sel.selectByVisibleText("Oct");
+step 7: capture the selected values.
+				WebElement abc = sel.getFirstSelectedOption();
+
+				String a = abc.getText();
+				System.out.println(a);
+
+package Tutorial6;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		// Step 1: connect browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://www.facebook.com/reg");
+
+		// step4: find the drop down
+		WebElement wb = driver.findElement(By.id("month"));
+
+		// step 5: create Object of Select class by passing WebElement instance
+		Select sel = new Select(wb);
+
+		// step 6: select the drop down values
+		// sel.selectByVisibleText("Dec");
+		//sel.selectByIndex(7);
+		sel.selectByValue("9");
+		
+		// step 7: capture the selected values
+		WebElement abc = sel.getFirstSelectedOption();
+		String a = abc.getText();
+		System.out.println(a);
+
+	}
+
+}
+==============================================================================================
+How to handle alert Pop in selenium?									VVVVVVIMMMPPPPPPPPPP
+	- we can not inspect the alert pop up object / elements.
+	- if u want to handle alert pop in selenium then first we have switch our focus on alert pop using switchTo().alert() method.
+	- alert() method is present inside the TargetLocator interface.
+	- return type of alert() method is Alert interface.
+	- Alert interface it define the 4 method which is used to handle the alert pop up.
+					1) accept()
+							- if u want to click on ok button then we use accept method
+							- return type is void.
+							- this method present inside the Alert interface.
+					syntax:
+							Alert alt = driver.switchTo().alert();
+							alt.accept();
+
+
+					2) dismiss() method
+							- if u want to click on cancel button then we have to use dismiss() method.
+							- return type is void.
+							- this method present inside the Alert interface.
+					syntax:
+							Alert alt = driver.switchTo().alert();
+							alt.dismiss();
+
+					3) getText() method	
+							- if u want to capture the alert pop text then we use getText() method
+							- return type is String.	
+							- this method present inside the Alert interface.
+					syntax:
+							Alert alt = driver.switchTo().alert();
+							String a = alt.getText();
+
+					4) sendKeys() method
+							- if u want to enter the text in alert text box then we use sendKeys() method
+							- return type is void.
+							- this method is present inside the Alert interface.
+					syntax:
+							Alert alt = driver.switchTo().alert();
+							alt.sendKeys("enter text");
+
+							
+Scenario:
+	-open a https://demoqa.com/alerts
+	- find click me button								findElement() method							WebElement
+	-  click on click me button							click()											void
+	- switch focus to alert window						driver.switchTo().alert()							Alert interface
+	- capture the alert pop up text						getText()										String
+	- click on ok button									accept()											void.
+
+step 1: connect to actual browser
+step 2: up casting
+step 3: open a url
+			driver.get("https://demoqa.com/alerts");
+
+step 4: find the click on button
+			WebElement wb = driver.findElement(By.id("alertButton"));
+
+step 5: click on click me button
+			wb.click();
+
+step 6: switch focus to alert pop up
+			Alert alt = driver.switchTo().alert();
+
+step 7: capture the alert pop physical text
+			String a = alt.getText();
+			System.out.println(a);
+
+step 8: click on ok button 
+			alt.accept();
+
+package Tutorial6;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo4 {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		// Step 1: connect browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://demoqa.com/alerts");
+
+		Thread.sleep(5000);
+		// step 4: find the click me button
+		WebElement wb = driver.findElement(By.id("alertButton"));
+
+		// step 5: click on click me button
+		wb.click();
+
+		// step 6: switch focus to alert pop up window
+		Alert alt = driver.switchTo().alert();
+
+		/// step 7: capture the alert pop up physical text
+		String a = alt.getText();
+		System.out.println(a);
+
+		Thread.sleep(5000);
+
+		// step 8: click on ok button
+		alt.accept();
+
+	}
+
+}
+=======================================================================
+Scenario:
+	-open a https://demoqa.com/alerts
+	- find 4th click me button								findElement() method							WebElement
+	-  click on click me button								click()											void
+	- switch focus to alert window							driver.switchTo().alert()							Alert interface
+	- enter the text in alert pop up text 						sendKeys()										void
+	- click on cancel											dismiss() method								void
+
+Step 1: connect to actual browser
+step 2: up casting
+step 3: open a url
+			driver.get("https://demoqa.com/alerts");
+
+step 4: find the 4th click on button
+			WebElement wb = driver.findElement(By.id("promtButton"));
+
+step 5: click on 4th click on button
+			wb.click();
+
+step 6: switch focus to alert pop up  window
+			Alert alt = driver.switchTo().alert();
+
+step 7: enter the text in alert pop up window
+			alt.sendKeys("selenium");
+
+step 8: click on cancel button
+			alt.dismiss();
+
+	
+package Tutorial6;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo5 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Step 1: connect browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// step 2: up casting
+		WebDriver driver = new ChromeDriver();
+
+		// step 3: open a url
+		driver.get("https://demoqa.com/alerts");
+
+		// step 4: find the 4th click on button
+		WebElement wb = driver.findElement(By.id("promtButton"));
+
+		// step 5: click on 4th click on button
+		wb.click();
+
+		Thread.sleep(5000);
+		// step 6: switch focus to alert pop window
+		Alert alt = driver.switchTo().alert();
+
+		// step 7: enter the text in alert pop up text box
+		alt.sendKeys("selenium testing");
+
+		Thread.sleep(5000);
+		// step 8; click on cancel button
+		alt.dismiss();
+
+	}
+
+}
+========================================================
+Scenario: 							
+	open https://rahulshettyacademy.com/AutomationPractice/
+	enter name in text box
+	click on confirm button
+	- capture alert pop text
+	- and verify the name is present or not in captured text.
+	- click on ok button
+
+========================================================
+https://demo.automationtesting.in/Alerts.html
+========================================================
+1) get() method
+		- used to open a specified URL in browser window
+		- return type is void
+		- this method present inside the WebDriver interface,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

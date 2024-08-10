@@ -1,0 +1,643 @@
+API Automation
+------------------------------------------------------------------------------------------------------------------------------------------
+PATCH Request
+	- it is used to update partial entity in server
+
+Verification
+	1) Status code				200
+	2) status line				HTTP/1.1 200 OK
+	3) Response time
+	4) Response size
+	5) Response body
+	6) Response headers
+	7) Response cookies
+------------------------------------------------------------------------------------------------------------------------------------------
+Swagger Documentations
+
+			Base URI				http://localhost:3000/employees/1
+			Request Type			PATCH 
+			Request Header			Content-Type	application/json
+			Request Body/Payload	
+									{
+										"firstName" : "{string}",
+										"lastName" : "{string}",
+										"address" : "{string}",
+										"mobileNumber" : {long},
+										"gender" : "{string}"
+									}
+
+		Verification
+					Status Code
+					Status line
+					Response time
+					Response size
+					Response body/payload
+					Response headers
+					Response cookies
+------------------------------------------------------------------------------------------------------------------------------------------
+Start JSON Server
+		json-server --watch db.json
+------------------------------------------------------------------------------------------------------------------------------------------
+PATCH Request using Postman tool
+
+			1) Open a postman tool		
+			2) mouse over on postman collection and click on 3 dot symbol
+			3) click on add request
+			4) enter the URI
+			5) Select PATCH Request	
+			6) click on body ---> click on raw --> select JSON format
+						{
+							"firstName" : "Amruta"
+						}
+			7) click on send button
+		Verification
+					Status Code
+					Status line
+					Response time
+					Response size
+					Response body/payload
+					Response headers
+					Response cookies
+------------------------------------------------------------------------------------------------------------------------------------------
+PATCH Request using Rest Assured
+
+Step 1: Configure Base URI in Rest Assured
+			RestAssured.baseURI="http://localhost:3000/employees/3";
+
+Step 2: get the RequestSpecification interface object so we can add request header, body and we can select HTTP PATCH Request
+			
+			RequestSpecification httpRequest =RestAssured.given();
+
+step 3: add request header
+			httpRequest.header("Content-Type", "application/json");
+
+step 4: create request body
+			JSONObject json =new JSONObject();
+			json.put("firstName", "Komal");
+
+			String requestbody = json.toString();
+
+step 5: add request body to HTTP PATCH Request
+
+			httpRequest.body(requestbody);
+
+step 6: select the HTTP PATCH Request
+
+		Response response = httpRequest.patch();
+
+
+step 7: capture status code
+		int a = response.statusCode();
+
+step 8: capture status line
+		String b = response.statusLine();
+
+step 9: capture response time
+		long c = response.time();
+
+step 10: capture response body 
+		String d = response.body().asString();
+
+step 11: capture response headers
+
+		Headers allHeader = response.headers();
+
+step 12: iterate all headers key-value pair
+
+
+		for(Header abc: allHeader)
+		{
+				syso(abc.getName() + "  ::  "+abc.getValue());
+		}
+
+step 13: capture firstname from response body
+
+		JsonPath jsonPath =new JsonPath(d);
+
+		String fname = jsonPath.getString("firstName");
+		
+		syso(fname);
+		
+		
+package Tutorial5;
+
+import org.json.simple.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		// Step 1: Configure BaseURI in rest Assured
+		RestAssured.baseURI = "http://localhost:3000/employees/3";
+
+		// step 2: get the RequestSpecification interface object
+		RequestSpecification httpRequest = RestAssured.given();
+
+		// step 3: add request headers
+		httpRequest.header("Content-Type", "application/json");
+
+		// step 4: create request body
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Komal");
+
+		String requestBody = json.toString();
+		
+		//step 5: add request body to HTTP PATCH Request
+		httpRequest.body(requestBody);
+		
+		//step 6: select the HTTP PATCH Request
+		Response response = httpRequest.patch();
+		
+		//step 7: capture status code
+		int a = response.statusCode();
+		System.out.println(a);//200
+		
+		//step 8: capture status line
+		String b = response.statusLine();
+		System.out.println(b);
+		
+		//step 9: capture response time
+		long c = response.time();
+		System.out.println(c);
+		
+		//step 10: capture response body
+		String d = response.body().asString();
+		System.out.println(d);
+		
+		//step 11: capture response headers
+		Headers allHeader = response.headers();
+		
+		//step 12: capture first name from response body
+		JsonPath jsonPath = new JsonPath(d);
+		
+		String fname = jsonPath.getString("firstName");
+		System.out.println(fname);
+		
+	
+		
+	}
+
+}
+======================================================================================
+package Tutorial5;
+
+import org.json.simple.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		// Step 1: Configure BaseURI in rest Assured
+		RestAssured.baseURI = "http://localhost:3000/employees/3";
+
+		// step 2: get the RequestSpecification interface object
+		RequestSpecification httpRequest = RestAssured.given();
+
+		// step 3: add request headers
+		httpRequest.header("Content-Type", "application/json");
+
+		// step 4: create request body
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Suraj");
+		json.put("gender", "male");
+
+		String requestBody = json.toString();
+		
+		//step 5: add request body to HTTP PATCH Request
+		httpRequest.body(requestBody);
+		
+		//step 6: select the HTTP PATCH Request
+		Response response = httpRequest.patch();
+		
+		//step 7: capture status code
+		int a = response.statusCode();
+		System.out.println(a);//200
+		
+		//step 8: capture status line
+		String b = response.statusLine();
+		System.out.println(b);
+		
+		//step 9: capture response time
+		long c = response.time();
+		System.out.println(c);
+		
+		//step 10: capture response body
+		String d = response.body().asString();
+		System.out.println(d);
+		
+		//step 11: capture response headers
+		Headers allHeader = response.headers();
+		
+		//step 12: capture first name from response body
+		JsonPath jsonPath = new JsonPath(d);
+		
+		String fname = jsonPath.getString("firstName");
+		System.out.println(fname);
+		
+
+	}
+
+}
+=================================================================================
+package Tutorial5;
+
+import org.json.simple.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		// Step 1: Configure BaseURI in rest Assured
+		RestAssured.baseURI = "http://localhost:3000/";
+
+		// step 2: get the RequestSpecification interface object
+		RequestSpecification httpRequest = RestAssured.given();
+
+		// step 3: add request headers
+		httpRequest.header("Content-Type", "application/json");
+
+		// step 4: create request body
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Mukesh");
+		json.put("mobileNumber", 1111111);
+
+		String requestBody = json.toString();
+		
+		//step 5: add request body to HTTP PATCH Request
+		httpRequest.body(requestBody);
+		
+		//step 6: select the HTTP PATCH Request
+		Response response = httpRequest.patch("employees/3");
+		
+		//step 7: capture status code
+		int a = response.statusCode();
+		System.out.println(a);//200
+		
+		//step 8: capture status line
+		String b = response.statusLine();
+		System.out.println(b);
+		
+		//step 9: capture response time
+		long c = response.time();
+		System.out.println(c);
+		
+		//step 10: capture response body
+		String d = response.body().asString();
+		System.out.println(d);
+		
+		//step 11: capture response headers
+		Headers allHeader = response.headers();
+		
+		//step 12: capture first name from response body
+		JsonPath jsonPath = new JsonPath(d);
+		
+		String fname = jsonPath.getString("firstName");
+		System.out.println(fname);
+	
+		
+	}
+
+}
+=============================================================================================
+POST
+GET
+PUT
+GET
+PATCH
+GET
+DELETE
+GET
+
+
+Feature: Test All Employees APIs
+
+  Scenario: Create New Employee using POST Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    And user add content type request header
+    And user create request body for post request
+    And user add request body to http post request
+    When user select the HTTP Post Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response headers
+    And user capture id from response body
+
+  Scenario: Retrieve the Created new Entity using GET Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    When user select the HTTP GET Request
+    Then user capture status code
+    And user capture status line
+   And user capture response time
+    And user capture response body
+    And user capture response headers
+
+  Scenario: Update whole Entity using PUT Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    And user add content type request header
+    And user create request body for put request
+    And user add request body to http put request
+    When user select the HTTP put Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response headers
+
+  Scenario: Retrieve the Created new Entity using GET Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    When user select the HTTP GET Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response headers
+
+  Scenario: Update partial Entity using PATCH Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    And user add content type request header
+    And user create request body for patch request
+    And user add request body to http patch request
+    When user select the HTTP patch Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response headers
+
+  Scenario: Retrieve the Created new Entity using GET Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    When user select the HTTP GET Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response headers
+
+  Scenario: Delete Entity using DELETE Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    When user select the HTTP Delete Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response headers
+
+  Scenario: Retrieve the Created new Entity using GET Request
+    Given user configure Base URI
+    And user get the Request Specification object
+    When user select the HTTP GET Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+
+
+package Steps;
+
+import org.json.simple.JSONObject;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class EmployeesStepAPIs {
+	private RequestSpecification httpRequest;
+	private String postRequestBody;
+	private Response response;
+	private String d;
+	private static String id;
+	private String putRequestBody;
+	private String PatchRequestBody;
+
+	@Given("user configure Base URI")
+	public void user_configure_base_uri() {
+		RestAssured.baseURI = "http://localhost:3000/";
+
+	}
+
+	@Given("user get the Request Specification object")
+	public void user_get_the_request_specification_object() {
+		httpRequest = RestAssured.given();
+	}
+
+	@Given("user add content type request header")
+	public void user_add_content_type_request_header() {
+		httpRequest.header("Content-Type", "application/json");
+	}
+
+	@Given("user create request body for post request")
+	public void user_create_request_body_for_post_request() {
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Shrikant");
+		json.put("lastName", "Kore");
+		json.put("address", "Pune");
+		json.put("mobileNumber", 9099999);
+		json.put("gender", "male");
+
+		postRequestBody = json.toString();
+
+	}
+
+	@Given("user add request body to http post request")
+	public void user_add_request_body_to_http_post_request() {
+		httpRequest.body(postRequestBody);
+	}
+
+	@When("user select the HTTP Post Request")
+	public void user_select_the_http_post_request() {
+		response = httpRequest.post("employees");
+
+	}
+
+	@Then("user capture status code")
+	public void user_capture_status_code() {
+		int a = response.statusCode();
+		System.out.println(a);
+	}
+
+	@Then("user capture status line")
+	public void user_capture_status_line() {
+		String b = response.statusLine();
+		System.out.println(b);
+	}
+
+	@Then("user capture response time")
+	public void user_capture_response_time() {
+		long c = response.time();
+		System.out.println(c);
+	}
+
+	@Then("user capture response body")
+	public void user_capture_response_body() {
+		d = response.body().asString();
+		System.out.println(d);
+	}
+
+	@Then("user capture response headers")
+	public void user_capture_response_headers() {
+
+		Headers allHeader = response.headers();
+
+	}
+
+	@Then("user capture id from response body")
+	public void user_capture_id_from_response_body() {
+		JsonPath jsonPath = new JsonPath(d);
+		id = jsonPath.getString("id");
+		System.out.println(id);
+	}
+
+	@When("user select the HTTP GET Request")
+	public void user_select_the_http_get_request() {
+		response = httpRequest.get("employees/" + id);
+
+	}
+
+	@Given("user create request body for put request")
+	public void user_create_request_body_for_put_request() {
+
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Prasad");
+		json.put("lastName", "Sathe");
+		json.put("address", "Mumbai");
+		json.put("mobileNumber", 222222);
+		json.put("gender", "male");
+
+		putRequestBody = json.toString();
+
+	}
+
+	@Given("user add request body to http put request")
+	public void user_add_request_body_to_http_put_request() {
+		httpRequest.body(putRequestBody);
+
+	}
+
+	@When("user select the HTTP put Request")
+	public void user_select_the_http_put_request() {
+		response = httpRequest.put("employees/" + id);
+	}
+
+	@Given("user create request body for patch request")
+	public void user_create_request_body_for_patch_request() {
+		JSONObject json = new JSONObject();
+		json.put("firstName", "Abhijit");
+
+		PatchRequestBody = json.toString();
+
+	}
+
+	@Given("user add request body to http patch request")
+	public void user_add_request_body_to_http_patch_request() {
+		httpRequest.body(PatchRequestBody);
+
+	}
+
+	@When("user select the HTTP patch Request")
+	public void user_select_the_http_patch_request() {
+
+		response = httpRequest.patch("employees/" + id);
+
+	}
+
+	@When("user select the HTTP Delete Request")
+	public void user_select_the_http_delete_request() {
+
+		response = httpRequest.delete("employees/"+id);
+	}
+
+}
+
+
+package TestRunner;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features="src/test/java/Features",
+		glue="Steps",
+		dryRun=true,
+		monochrome=true
+		)
+public class RunnerTest {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

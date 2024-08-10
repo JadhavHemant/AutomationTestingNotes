@@ -1,0 +1,43 @@
+How to Handle window in selenium?
+		- if u want to handle window in selenium we use getWindowHandle() method and getWindowHandles() method.
+		- getWindowHandle() method is used to capture the window id number of current window, which is combination of character and integer number.
+		- and getWindowHandles() method is used to capture the window id of all window which is opened by selenium webdriver in current script.
+		- both method present inside the WebDriver interface,
+		- return type of getWindowHandle() method is String and return type of getWindowHandles() method is Set<String>.
+		- if u want to handle multiple window in selenium by using for loop we can handle 
+		- just example, if we are main window and if click on any link it open a new tab, i want to switch focus in new tab so the we use getWindowHandle() method 				and getWindowHandles() method,
+		- once we are in main window then capture the current window id number by using getWindowHandle() method and , once we click on link then
+		it open a  new tab, then we capture both window id number by using getWindowHandles()  methods.
+		- then  we iterate both id number using for loop and inside the for loop we write condition to capture seconds window id number by using if condition as like
+		- if parent id is not equal to allWindow id then run the if block of code, and then capture the window id number of seconds window,
+		- once we capture the window id number then we use switchTo().window() method by passing the captured window id number then it will switch focus to 				new window. and we perform task on new window.	
+		and if u want to switch focus to main window again we use switchTo().window() method by passing the parent window id numbers.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to Handle window in selenium?
+		- if u want to handle window in selenium we use getWindowHandle() method and getWindowHandles() method.
+		- getWindowHandle() method is used to capture the window id number of current window, which is combination of character and integer number.
+		- and getWindowHandles() method is used to capture the window id of all window which is opened by selenium webdriver in current script.
+		- both method present inside the WebDriver interface,
+		- return type of getWindowHandle() method is String and return type of getWindowHandles() method is Set<String>.
+		- if u want to handle multiple window in selenium by using ArrayList<String>
+		- just example, if we are main window and if click on any link it open a new tab, i want to switch focus in new tab so the we use getWindowHandle() method 				and getWindowHandles() method,
+		- once we are in main window then capture the current window id number by using getWindowHandle() method and , once we click on link then
+		it open a  new tab, then we capture both window id number by using getWindowHandles()  methods.
+		- return type of getWindowHandles() method is Set<String>.
+		and we convert the Set<String> into the Array<String>.
+		- if want to convert Set<String> into the Array<String> then we create object of the ArrayList<String> class by passing Set<String> object name or instance name.
+		- then we capture the second window id number by using ArrayList<String> object name dot get() method by passing window index position,
+		- once we capture the window id number then we switch focus to second window by using switchTo().window() method by passing captured window id number and 		we perform the task on second window,		
+		-and if u want to switch focus to parent window then again  we use switchTo().window() method by passing parent window id number.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

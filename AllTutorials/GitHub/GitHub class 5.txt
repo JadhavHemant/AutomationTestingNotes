@@ -1,0 +1,197 @@
+Alfiya Team Leader 
+-------------------------------------------------------------------------------------------------------
+	1) configure email id as well as password in Git Bash command line.
+	2) create BDD Framework using cucumber	for Cogmento CRM application.
+					I) create Base Layer Package
+					2) Configuration Layer
+					3) Page Layer Package
+								1) LoginPage
+					4) UtilityLayer
+					5) Features Package
+					6) Step Definitions
+					7) Test Runner 
+	3)create local git repository
+	4) add files to stagging area
+	5) commit code to local git repository
+	6) create remote GitHub Repository
+	7) Add teammates email id 
+	8) push code to remote Repository
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Alfiya Team Leader Will share Email to Teammates
+		
+		Hi Team,
+			I have created BDD Framework using Cucumber tools, and we have push code to GitHub,
+			please clone it and Start working on task
+			GitHub: https://github.com/sanadialfiya/CogmentoCRM.git
+
+		Thanks And Regards
+		Team Leader
+		Alfiya
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Anjali Automation Tester
+	1) Accept the invitation link of GitHub 
+	2) configure email id as well as password in Git Bash command line.
+	3) clone a GitHub Repository
+	4) Run the test cases using maven commands
+	5) Import the project to Working directory
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Pranjali Automation Tester
+	1) Accept the invitation link of GitHub 
+	2) configure email id as well as password in Git Bash command line.
+	3) clone a GitHub Repository
+	4) Run the test cases using maven commands
+	5) Import the project to Working directory
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Anjali Automation Tester
+	1) Create test cases for validate the Home Page 
+					1) create Home Page Scenario in feature file
+						Steps
+								When user is on home page then validate logo
+								Then user validate home page title
+								And user validate home page url
+
+	2) create sub branch	
+	3) checkout in sub branch
+	4) add files to stagging area
+ 	5) commit code to local git repository
+	6) push code to remote repository in GitHub in Sub branch
+
+	7) reviews the code
+	8) merge code to master branch	
+	9) push code to master branch
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Pranjali Automation Tester
+	0) delete all unwanted file by using git stash command
+	1) Download the latest code from Remote Repository master branch
+	2) Run the test cases
+	3) create Pranjali sub branch	
+	4) checkout in Pranjali sub branch
+	5) merge code to Pranjali Sub Branch from master branch
+	6) create test cases for Contacts Page Functionality
+			create contact in contact page
+	7) add files to stagging area
+ 	8) commit code to local git repository
+	9) push code to remote repository in GitHub in Pranjali Sub branch
+
+	10) pull all latest code
+	11) checkout to Pranjali Sub branch
+	12) reviews the code/ run the test cases using Pranjali Sub Branch
+	13) merge code to master branch	
+	14) push code to master branch
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Anjali Automation Tester
+	1) delete unwanted code using git stash
+	2) checkout to master branch
+	3) pull latest code
+	4) run the test cases
+	5) delete unwanted code using git stash
+	6) checkout to anjali sub branch
+	7) merge code to anjali sub branch from master branch
+	8) Write delete created contact test cases and click on confirm 
+	9) run test cases
+	10) Add files to stagging area
+	11) commit code to local  repository
+	12) push code to remote Anjali Sub Branch
+	
+	13) delete unwanted code using git stash
+	14) checkout to Anjali Sub branch
+	15) pull latest code
+	16) run the test cases / review the test cases
+	17)  merge code to master branch
+	18) push code to remote master branch
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Pranjali Automation Tester
+	1) delete all unwanted files
+	2) checkout to master branch
+	3) pull latest code from master branch
+	4) run the test cases
+	5) delete all unwanted files
+	6) checkout to Pranjali Sub Branch
+	7) merge code from Master branch to Pranjali Sub branch
+	8) write test cases for create new company as well as delete the created company TC
+	9) Add files to stagging area
+	10) commit code
+	11) push code to Pranjali Sub Branch
+	
+	12) delete all unwanted files
+	13) checkout to Pranjali Sub Branch
+	14) download latest from Pranjali Sub Branch
+	15) run the test cases
+	16) delete all unwanted files
+	17) checkout to master branch
+	18) merge code from  Pranjali Sub Branch to master branch
+	19) push code to master branch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,545 @@
+What are the different types of HTTP Request?
+	1) GET Request
+	2) DELETE Request
+	3) POST Request
+	4) PUT Request
+	5) PATCH Request
+---------------------------------------------------------------------------------------------------------------------
+first start your JSON server
+		json-server --watch db.json
+---------------------------------------------------------------------------------------------------------------------
+2) DELETE Request
+	- it is used to delete entity from the server (database).
+	- We verify the different things in delete Request
+		1) we will get Status code as 204 in real time server 					[in fake server or local host server we will get status code as 200]
+		2) we will get  status line as HTTP/1.1 204 No Content					[in fake server or local host server we will get status code as 200 OK]
+		3) we will get  response time
+		4) we will get  response size
+		5) we will get  response header
+		6) we will get response cookies
+
+Swagger Documentations
+		URI						http://localhost:3000/employees/4
+		Request Type		:	DELETE Request
+
+		Status Code			: 	204
+		Status Line			:	204 No Content
+		Response time		:	< 2 sec
+		Response size		:	< 1 MB
+		Response Headers	:		
+		Response cookies	:
+
+Postman tool
+		- open a postman tool
+		- mouse over on Postman collection and click on 3 dot symbol
+		- click on add request
+		- Enter the URI				http://localhost:3000/employees/4
+		- Select the Delete Request type
+		- click on send button
+
+Verify
+		- status code
+		- status line
+		- response time
+		- response size
+		- response headers
+		- response cookies
+=============================================================================
+Delete Swagger documentations
+	
+		URI						https://reqres.in/api/users/2
+		Request	Type			DELETE
+
+		Status code				204
+		Status line				204 No Content
+		Response time	
+		Response size
+		Response cookies
+		Response headers
+=============================================================================
+DELETE Request in API Automation
+
+step 1: Set / Configure Base URI in Rest Assured
+
+			RestAssured.baseURI="https://reqres.in/api/users/2";
+
+
+step 2: get the RequestSpecification interface object so we can select the HTTP DELETE Request
+						
+			RequestSpecification httpRequest = RestAssured.given();
+
+
+step 3: Select the HTTP DELETE Request
+	
+		Response response = httpRequest.delete();
+
+step 4: capture the status code
+		
+		int a = response.getStatusCode();
+
+step 5: capture status line
+		String b = response.getStatusLine();
+
+step 6: capture response time
+		
+		long c = response.getTime();
+
+step 7: capture response headers
+
+		Headers allHeader = response.getHeaders();
+
+
+		for(Header abc: allHeader)
+		{
+			String d = abc.getName();
+			String e = abc.getValue();
+
+		}
+
+package Tutorial2;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		// Step 1: Configure Base URI in Rest Assured
+
+		RestAssured.baseURI = "https://reqres.in/api/users/2";
+
+		// Step 2: get the RequestSpecification interface object so we can select HTTP
+		// DELETE Request
+
+		RequestSpecification httpRequest = RestAssured.given();
+
+		// step 3: select HTTP DELETE Request
+		Response response = httpRequest.delete();
+
+		// step 4: capture status code
+		int a = response.getStatusCode();
+		System.out.println(a); // 204
+
+		// step 5: capture status line
+		String b = response.getStatusLine();
+		System.out.println(b); // HTTP/1.1 204 No Content
+
+		// step 6: capture response time
+		long c = response.getTime();
+		System.out.println(c);
+
+		System.out.println("---------------------------");
+		// step 7: capture response headers
+		Headers allHeader = response.getHeaders();
+
+		for (Header abc : allHeader) {
+			String key = abc.getName();
+			String value = abc.getValue();
+
+			System.out.println(key + "  ::  " + value);
+		}
+
+	}
+
+}
+====================================================================================================
+GET Entity and DELETE Entity
+
+Swagger documentation
+				URI					:	https://reqres.in/api/users/2
+				Request type		: 	GET			it is used to retrieve the entity from the server
+				Verification
+									Status code			200
+									status line			HTTP/1.1 200 OK
+									Response time
+									Response size
+									Response body
+									Response headers
+									Response cookies
+
+			
+				URI					: 	https://reqres.in/api/users/2
+				Request Type		:	DELETE			it is used to delete entity from the server
+				Verification
+									: 	Status code		204 
+									Status Line			HTTP/1.1 204 No Content
+									Response time
+									Response size
+									Response headers
+									Response cookies
+	
+
+
+Step 1: Configure Base URI in Rest Assured
+
+		RestAssured.baseURI="https://reqres.in/api/users/2";
+
+step 2; get the RequestSpecification interface object so we can select the HTTP GET Request
+		RequestSpecification httpRequest1 = RestAssured.given();
+
+step 3: Select the HTTP GET Request
+
+		Response response1 = httpRequest1.get();
+
+step 4: capture status code
+		in a1 = response1.getStatusCode();
+
+step 5: capture status line
+		String a2 = response1.getStatusLine();
+
+step 6: capture response time
+		long a3 = response1.getTime();
+
+step 7": capture response body
+		String a4 = response1.getBody().asString();
+
+step 8: capture response headers
+		Headers allheader = response1.getHeaders();
+
+Step 9: iterate all headers
+		
+		for(Header abc: allheader)
+		{
+			String b1 = abc.getName();
+			String b2 = abc.getValue();
+		}
+
+
+step 10: Configure Base URl
+		RestAssured.baseURI="https://reqres.in/api/users/2";
+
+step 11: get the Request Specification interface object so we can select the HTTP DELETE Request
+		
+		RequestSpecification httpRequest2 = RestAssured.given();
+
+step 12: select the HTTP DELETE Request
+		
+		Response response2 = httpRequest2.delete();
+
+step 13: capture status code
+		int p2 = response2.getStatusCode();
+
+step 14: capture status line
+		String p3 = response2.getStatusLine();
+
+step 15: capture response time
+		long p4 =response2.getTime();
+
+step 16: captured headers
+
+		Headers allHeader = response2.getHeaders();
+
+step 17: iterate all headers values
+		
+		for(Header abc: allHeader)
+		{
+				String p1 = abc.getName();
+				String p2 = abc.getValue();
+		}
+		
+
+		
+package Tutorial2;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+		// Step 1: Configure Base URI
+		RestAssured.baseURI = "https://reqres.in/api/users/2";
+
+		// step 2: get RequestSpecification Interface object so we can select HTTP Request
+		RequestSpecification httpRequest1 = RestAssured.given();
+
+		//step 3: select the HTTP GET Request
+		Response response1 = httpRequest1.get();
+		
+		//step 4: capture status code
+		int a1 = response1.getStatusCode();
+		System.out.println(a1);
+		
+		//step 5: capture status line
+		String a2 = response1.getStatusLine();
+		System.out.println(a2);
+		
+		//step 6: capture response time
+		long a3 = response1.getTime();
+		System.out.println(a3);
+		
+		//step 7: capture response body
+		String a4 = response1.getBody().prettyPrint();
+		System.out.println(a4);
+		
+		//step 8": capture response headers
+		Headers allheader = response1.getHeaders();
+		
+		//step 9: iterate all headers key-value 
+		for(Header abc: allheader)
+		{
+			String p1 = abc.getName();
+			String p2 = abc.getValue();
+			System.out.println(p1 + "  :: "+p2);
+		}
+		
+		System.out.println("=====================================================");
+		
+		//Step 10: Configure Base URI
+		RestAssured.baseURI = "https://reqres.in/api/users/2";
+		
+		//step 11: get RequestSpecification interface object so we can select HTTP DELETE Request
+		RequestSpecification httpRequest2 = RestAssured.given();
+		
+		//step 12: select HTTP DELETE Request
+		Response response2 = httpRequest2.delete();
+		
+		//step 13: capture status code
+		int b1 = response2.getStatusCode();
+		System.out.println(b1);
+		
+		//step 14: capture status line
+		String b2 =  response2.getStatusLine();
+		System.out.println(b2);
+		
+		//step 15: capture response time
+		long b3 = response2.getTime();
+		System.out.println(b3);
+		
+		
+		//step 16: capture respons headers
+		Headers allHeaders2 = response2.getHeaders();
+		
+		//step 17: iterate all headers
+		for(Header abc: allHeaders2)
+		{
+			System.out.println(abc.getName() + " :::  "+abc.getValue());
+		}
+		
+		
+	}
+	
+
+}
+
+==============================================================================================
+1) Rest Assured
+2) Cucumber core
+3) cucumber java
+4) cucumber junit
+5) junit dependency
+
+====================================================================================================
+GET Entity and DELETE Entity
+
+Swagger documentation
+				URI					:	https://reqres.in/api/users/2
+				Request type		: 	GET			it is used to retrieve the entity from the server
+				Verification
+									Status code			200
+									status line			HTTP/1.1 200 OK
+									Response time
+									Response size
+									Response body
+									Response headers
+									Response cookies
+
+			
+				URI					: 	https://reqres.in/api/users/2
+				Request Type		:	DELETE			it is used to delete entity from the server
+				Verification
+									: 	Status code		204 
+									Status Line			HTTP/1.1 204 No Content
+									Response time
+									Response size
+									Response headers
+									Response cookies
+
+
+Feature: Test All User APIs
+
+
+Scenario: Test User GET Request APIs
+
+Given user Configure Base URI in Rest Assured
+And  user get the Request Specification Interface Object
+When user select HTTP GET Request
+Then user capture status code
+And user capture status line
+And user capture response time
+And user capture response body
+And user capture response headers
+
+Scenario: Test User DELETE Request APIs
+Given user Configure Base URI in Rest Assured
+And  user get the Request Specification Interface Object
+When user select HTTP DELETE Request
+Then user capture status code
+And user capture status line
+And user capture response time
+And user capture response headers
+
+
+===================================================================================
+Feature: Test User All APIs
+
+  Scenario: Test User GET Request APIs
+    Given user configure Base URI in Rest Assured
+    And user get the Request Specification object
+    When user select HTTP GET Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response body
+    And user capture response headers
+
+  Scenario: Test User DELETE Request APIs
+    Given user configure Base URI in Rest Assured
+    And user get the Request Specification object
+    When user select HTTP DELETE Request
+    Then user capture status code
+    And user capture status line
+    And user capture response time
+    And user capture response headers
+
+
+package Steps;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class UserStepAPIs {
+
+	private static RequestSpecification httpRequest;
+	private static Response response;
+
+	@Given("user configure Base URI in Rest Assured")
+	public void user_configure_base_uri_in_rest_assured() {
+		RestAssured.baseURI = "https://reqres.in/api/users/2";
+	}
+
+	@Given("user get the Request Specification object")
+	public void user_get_the_request_specification_object() {
+		httpRequest = RestAssured.given();
+
+	}
+
+	@When("user select HTTP GET Request")
+	public void user_select_http_get_request() {
+		response = httpRequest.get();
+	}
+
+	@Then("user capture status code")
+	public void user_capture_status_code() {
+		int a1 = response.getStatusCode();
+		System.out.println(a1);
+	}
+
+	@Then("user capture status line")
+	public void user_capture_status_line() {
+		String a2 = response.getStatusLine();
+		System.out.println(a2);
+	}
+
+	@Then("user capture response time")
+	public void user_capture_response_time() {
+		long a3 = response.getTime();
+		System.out.println(a3);
+	}
+
+	@Then("user capture response body")
+	public void user_capture_response_body() {
+		String a4 = response.getBody().asPrettyString();
+		System.out.println(a4);
+	}
+
+	@Then("user capture response headers")
+	public void user_capture_response_headers() {
+		Headers allHeader = response.getHeaders();
+		for(Header abc: allHeader)
+		{
+			System.out.println(abc.getName() + " ::   "+abc.getValue());
+		}
+		
+	}
+	
+	
+	@When("user select HTTP DELETE Request")
+	public void user_select_http_delete_request() {
+		response=httpRequest.delete();
+		
+
+		
+	}
+	
+
+}
+
+
+package TestRunner;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features= {"src/test/java/Features"},
+		glue= {"Steps"},
+		dryRun=false,
+		monochrome=true
+		)
+public class RunnerTest {
+
+}
+
+=================================================================================
+POST Request
+
+									Status code			201
+									status line			HTTP/1.1 201 Created
+									Response time
+									Response size
+									Response body
+									Response headers
+									Response cookies
+
+
+PUT Request
+
+									Status code			200
+									status line			HTTP/1.1 200 OK
+									Response time
+									Response size
+									Response body
+									Response headers
+									Response cookies
+
+
+PATCH Request
+
+
+									Status code			200
+									status line			HTTP/1.1 200 OK
+									Response time
+									Response size
+									Response body
+									Response headers
+									Response cookies
+========================================================================================
+
+
+

@@ -1,0 +1,23 @@
+{
+	"createCustomer": {
+		"cust_fName": "Mayuri",
+		"cust_lName": "Pande",
+		"cust_billingAddress": "UP",
+		"product_Name": "Mobile",
+		"product_price": 299.23,
+		"product_Discount": 12,
+		"product_info": "Iphone 15 Pro"
+	},
+	"updateCustomer": {
+		"cust_fName": "Sneha",
+		"cust_lName": "Kande",
+		"cust_billingAddress": "MH",
+		"product_Name": "IMobile",
+		"product_price": 499.23,
+		"product_Discount": 15,
+		"product_info": "Iphone 15 Pro Max"
+	},
+	"partialUpdateCustomer": {
+		"cust_fName": "Supriya"
+	}
+}

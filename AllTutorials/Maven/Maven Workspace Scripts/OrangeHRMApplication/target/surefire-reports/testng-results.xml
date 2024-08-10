@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-06-30T09:03:12 IST" name="Surefire suite" finished-at="2024-06-30T09:03:24 IST" duration-ms="12166">
+    <groups>
+    </groups>
+    <test started-at="2024-06-30T09:03:12 IST" name="Surefire test" finished-at="2024-06-30T09:03:24 IST" duration-ms="12166">
+      <class name="TestLayer.HomePageTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestLayer.HomePageTest@3c87521]" started-at="2024-06-30T09:03:14 IST" name="setup" finished-at="2024-06-30T09:03:17 IST" duration-ms="2860" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="validateLoginFunctionality()[pri:1, instance:TestLayer.HomePageTest@3c87521]" started-at="2024-06-30T09:03:18 IST" name="validateLoginFunctionality" finished-at="2024-06-30T09:03:22 IST" duration-ms="4221" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateLoginFunctionality -->
+        <test-method signature="validateHomePageTitle()[pri:2, instance:TestLayer.HomePageTest@3c87521]" started-at="2024-06-30T09:03:22 IST" name="validateHomePageTitle" finished-at="2024-06-30T09:03:22 IST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomePageTitle -->
+        <test-method signature="validateHomePageUrl()[pri:3, instance:TestLayer.HomePageTest@3c87521]" started-at="2024-06-30T09:03:22 IST" name="validateHomePageUrl" finished-at="2024-06-30T09:03:22 IST" duration-ms="14" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomePageUrl -->
+        <test-method signature="validatePIMPageURl()[pri:4, instance:TestLayer.HomePageTest@3c87521]" started-at="2024-06-30T09:03:22 IST" name="validatePIMPageURl" finished-at="2024-06-30T09:03:24 IST" duration-ms="1734" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePIMPageURl -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:TestLayer.HomePageTest@3c87521]" started-at="2024-06-30T09:03:24 IST" name="tearDown" finished-at="2024-06-30T09:03:24 IST" duration-ms="244" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- TestLayer.HomePageTest -->
+      <class name="TestLayer.FacebookTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestLayer.FacebookTest@2893de87]" started-at="2024-06-30T09:03:12 IST" name="setup" finished-at="2024-06-30T09:03:14 IST" duration-ms="2133" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="validateLoginFunctionality()[pri:1, instance:TestLayer.FacebookTest@2893de87]" started-at="2024-06-30T09:03:17 IST" name="validateLoginFunctionality" finished-at="2024-06-30T09:03:18 IST" duration-ms="430" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateLoginFunctionality -->
+        <test-method signature="validateHomePageTitle()[pri:2, instance:TestLayer.FacebookTest@2893de87]" started-at="2024-06-30T09:03:18 IST" name="validateHomePageTitle" finished-at="2024-06-30T09:03:18 IST" duration-ms="16" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomePageTitle -->
+        <test-method signature="validateHomePageUrl()[pri:3, instance:TestLayer.FacebookTest@2893de87]" started-at="2024-06-30T09:03:18 IST" name="validateHomePageUrl" finished-at="2024-06-30T09:03:18 IST" duration-ms="38" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomePageUrl -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:TestLayer.FacebookTest@2893de87]" started-at="2024-06-30T09:03:24 IST" name="tearDown" finished-at="2024-06-30T09:03:24 IST" duration-ms="437" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- TestLayer.FacebookTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

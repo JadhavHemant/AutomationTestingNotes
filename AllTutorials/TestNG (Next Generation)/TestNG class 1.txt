@@ -1,0 +1,579 @@
+TestNG (Next Generation)
+---------------------------------------------------------------------------------------------------------------------------------------------
+in """selenium using java""" there are 2 types of testing framework available.
+											1) TestNG
+											2) JUnit
+
+in """selenium using python"" there are 2 types of testing framework available.
+											1) py:unit
+											2) py:test
+
+in """selenium using PHP""" there are 2 types of testing framework available.
+											1) Behat
+											2) Mink
+
+in """selenium using C#""" there are 1 types of testing framework available.
+											1) Nunit
+
+in ""selenium using Ruby""" there are 2 types of testing framework available.		
+											1) Repect
+											2) Test:unit
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+TestNG (Next Generation)Testing Framework.
+		- TestNG is open source testing framework, anybody can download this tool free of cost.
+		- Initially TestNG is developed for unit Testing (White box testing) but now we use for functional and regression testing..
+		- TestNG is testing framework used from unit testing to system testing.
+		- TestNG is inspired tool from Junit and Nunit tool but introducing the new features in TestNG tool, and TestNG is more powerful tool in 			market.
+		- TestNG is easier to use as compared with other testing framework tools.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+Advantages of TestNG													VVVVVIMMMPPPPP
+	1) TestNG annotation  are used to create test cases.
+	2) by using TestNG annotation we can group the test cases.
+	3) by using TestNG can prioritized the test cases.
+	4)  by using TestNG we can run same test cases multiple times
+	5) by using TestNG we can run test cases within the time.
+	6) by using TestNG we can parametrization test cases
+	7) by using TestNG we can achieve the data driven testing.
+	8) TestNG automatically generate the HTML reports.
+	9) by using TestNG we can run test cases in parallel.
+	10) Easily we can integrate TestNG with maven build, Gradle build tool , ant build tool etc
+---------------------------------------------------------------------------------------------------------------------------------------------
+Note:
+	1) main method is not used in TestNG
+	2) TestNG class contains we have only methods that contains @Test Annotation and PreCondition annotation and PostCondition annotation
+	3) If we don't mention the TestNG annotation then the methods will not get executed.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+TestNG contains we have 3 types of annotations
+	1) PreCondition annotation
+						@BeforeSuite
+						@BeforeTest
+						@BeforeClass
+						@BeforeMethod
+	2) Test annotation
+						@Test
+
+	3) PostCondition annotation
+						@AfterMethod
+						@AfterClass
+						@AfterTest
+						@AfterSuite
+---------------------------------------------------------------------------------------------------------------------------------------------
+What is execution sequence of TestNG annotations?								VVVVVVVVVVVVVIMMMPPPPPPPPPPPP
+			
+				@BeforeSuite
+				@BeforeTest
+				@BeforeClass
+				@BeforeMethod
+				@Test
+				@AfterMethod
+				@AfterClass
+				@AfterTest
+				@AfterSuite
+---------------------------------------------------------------------------------------------------------------------------------------------
+@Test Annotation
+	- it is used to create the test cases in TestNG
+	- we define @Test Annotation above the non static method
+	- default priority for the @Test annotation is zero.
+	- if we mention multiple test cases by using @Test annotation then it will run test cases as per the alphabetical order.
+
+	- if we don't want to execute test cases as per the alphabetical order then we use priority attribute.	
+						or
+	- if u want to maintain test execution flow then we use priority attribute.
+
+syntax;
+
+				@Test
+				public void abc()
+				{
+							//code/statement
+				}
+------------------------------------------------------------------------------------------------------------------
+public class Demo1
+{
+			@Test
+			public void xyz()
+			{
+
+						System.out.println("xyz TC");
+			}
+
+			@Test
+			public void abc()
+			{
+					System.out.println("abc TC");
+			}
+
+			@Test
+			public void pqr()
+			{
+					System.out.println("pqr TC");
+			}
+
+	
+}
+------------------------------------------------------------------------------------------------------------
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Sample1 {
+	
+	@Test
+	public void pqr()
+	{
+		System.out.println("PQR Test Cases");
+	}
+	
+	@Test
+	public void abc()
+	{
+		System.out.println("ABC Test Cases");
+	}
+	
+	@Test
+	public void xyz()
+	{
+		System.out.println("XYZ Test Cases");
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------------
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Sample2 {
+	
+	@Test(priority = 1)
+	public void registerPage()
+	{
+		System.out.println("Register Page Test Cases");//1
+	}
+	
+	@Test(priority = 2)
+	public void loginPage()
+	{
+		System.out.println("Login Page Test Cases");//2
+	}
+	
+	@Test(priority = 3)
+	public void homePage()
+	{
+		System.out.println("Home Page  Test cases");//3
+	}
+	
+	
+}
+------------------------------------------------------------------------------------------------------------
+What is priority attribute?										VVVVVIMMMPPPP
+	- it is used to maintain the test execution flow.	
+	 - default priority for test cases is zero
+	- we can mention negative priority for test cases	
+	- we can mention same priority for multiple test cases.
+
+------------------------------------------------------------------------------------------------------------
+what is default priority for test cases?							VVVVVVVIMMMPPPPPP
+	-  default priority for test cases is zero	
+	
+can we mention negative priority for test cases					VVVVVVVIMMMPPPPPP
+	yes we can
+
+
+can we mention same priority for multiple test cases			VVVVVVVIMMMPPPPPP
+
+	yes we can mention then it will execute the test cases as per the alphabetical order.
+
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Sample3 {
+
+	@Test(priority = -2)
+	public void abc() {
+		System.out.println("ABC Test Cases");
+	}
+
+	@Test(priority = 1)
+	public void lmn() {
+		System.out.println("LMN Test Cases");
+	}
+
+	@Test(priority = -1)
+	public void pqr() {
+		System.out.println("PQR Test Cases");
+	}
+
+	@Test(priority = 1)
+	public void xyz() {
+		System.out.println("XYZ Test Cases");
+	}
+}
+
+
+------------------------------------------------------------------------------------------------------------
+How to run same test cases multiple times?							VVVVVIMMMMPPPPPP
+		- we can same test cases multiple times by using invocationCount attribute by passing count number
+
+------------------------------------------------------------------------------------------------------------
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Sample4 {
+	
+	
+	@Test(invocationCount = 10)
+	public void abc() {
+		System.out.println("ABC Test Cases");
+	}
+
+	@Test
+	public void pqr()
+	{
+		System.out.println("PQR Test Cases");
+	}
+
+}
+------------------------------------------------------------------------------------------------------------
+How to run test cases within the time?												VVVVVVVVVIMMMPPPPP
+		- we use timeout attribute to run the test cases within the time by passing time in milliseconds.
+
+------------------------------------------------------------------------------------------------------------
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Sample4 {
+
+	@Test(timeOut = 5000)
+	public void abc() throws InterruptedException {
+		Thread.sleep(8000);
+		System.out.println("ABC Test Cases");
+	}
+
+	@Test
+	public void pqr() {
+		System.out.println("PQR Test Cases");
+	}
+
+}
+------------------------------------------------------------------------------------------------------------
+there are 2 ways we can maintain the test cases execution flow
+		1) by using priority attribute
+		2) by using dependsOnMethods attribute
+
+
+2) by using dependsOnMethods attribute
+	
+
+	i) hard dependsOnMethods attribute
+					- just imagine we have  3 test cases login test cases, homepage test case and logout test cases.
+					and we have mentioned logout test cases is dependsOnMethods as homepage test cases.
+					and if homepage test cases is fail then it will skip the logout test cases in dependsOnMethods attribute
+
+	ii) soft dependsOnMethods attribute
+				- to define the dependsOnMethods attribute then we use alwaysRun attribute with dependsOnMethods attribute.
+				- just imagine we have  3 test cases login test cases, homepage test case and logout test cases.
+				and we have mentioned logout test cases is  soft dependsOnMethods as homepage test cases.
+				and if homepage test cases is fail then it will run the the logout test cases in soft dependsOnMethods attribute
+
+
+------------------------------------------------------------------------------------------------------------
+syntax:
+
+		public class Sample5
+		 {
+						@Test(dependsOnMethods={"pqr"})
+						public void abc() 
+							{
+									System.out.println("ABC Test Cases");
+							}
+
+						@Test
+						public void pqr() 
+							{
+										System.out.println("PQR Test Cases");
+							}
+
+						@Test(dependsOnMethods={"abc"})
+						public void xyz() 
+							{
+										System.out.println("xyz Test Cases");
+							}
+
+					}
+
+
+Execution sequence
+		PQR Test Cases
+		ABC test cases
+		XYZ test Cases
+
+
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Sample5 {
+
+	@Test(dependsOnMethods= {"pqr"})
+	public void abc() {
+		System.out.println("ABC Test Cases");
+	}
+
+	@Test
+	public void pqr() {
+		System.out.println("PQR Test Cases");
+	}
+
+
+	@Test(dependsOnMethods= {"abc"})
+	public void xyz() {
+		System.out.println("xyz Test Cases");
+	}
+	
+}
+------------------------------------------------------------------------------------------------------
+package Tutorial1;
+
+import org.testng.annotations.Test;
+
+public class Sample5 {
+
+
+	@Test
+	public void pqr() {
+		System.out.println("PQR Test Cases");//1
+	}
+
+	@Test(dependsOnMethods= {"pqr"})
+	public void home() {
+		System.out.println("Home Test Cases");//2
+	}
+
+
+	@Test(dependsOnMethods= {"pqr"})
+	public void login() {
+		System.out.println("login Test Cases");//3
+	}
+	
+}
+-----------------------------------------------------------------------------------------
+package Tutorial1;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Sample5 {
+
+
+	@Test
+	public void pqr() {
+		Assert.assertEquals(12, 3455);
+		System.out.println("PQR Test cases");
+	}
+
+	//Soft dependsOnMethods
+	@Test(dependsOnMethods= {"pqr"},alwaysRun=true)
+	public void home() {
+		System.out.println("Home Test Cases");//2
+	}
+
+	//hard dependsOnMethods
+	@Test(dependsOnMethods= {"home"})
+	public void login() {
+		System.out.println("login Test Cases");//3
+	}
+	
+}
+
+------------------------------------------------------------------------------------------------------------
+Sauce Demo application
+		- Test case 1
+							open a  browser and url
+		- test cases 2
+							login  functionality
+		Test cases 3
+							add product to cart and click on cart container
+							click on continue button
+		test cases 4
+							Enter personal information
+							and click on continue
+
+		test cases 5;
+							click on finish button
+							capture order message
+------------------------------------------------------------------------------------------------------------
+
+public class Demo1
+{
+WebDriver driver;
+
+	@Test(priority=1)
+	public void openBrowserAndUrl()
+	{		
+			//connect browser 
+			//up casting
+		driver =new ChromeDriver();
+
+			//open a url
+		driver.get("https://www.saucedemo.com/");
+	}
+
+	@Test(priority=2)
+	public void loginFunctionality()
+	{
+			driver.findElement(By.id("user-name")).sendKeys("standard_user");
+			driver.findElement(By.id("password")).sendKeys("secret_sauce");
+			driver.findElement(By.id("login-button")).click();
+	}
+
+	@Test(priority=3)
+	public void addToCart()
+	{
+			driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+			driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+			driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+			driver.findElement(By.id("checkout")).click();
+	}
+
+	@Test(priority=4)
+	public void enterPersonalInformation()
+	{
+		driver.findElement(By.id("first-name")).sendKeys("abc");
+		driver.findElement(By.id("last-name")).sendKeys("pqr");
+		driver.findElement(By.id("postal-code")).sendKeys("112211");
+		driver.findElement(By.id("continue")).click();
+	}
+
+	@Test(priority=5)
+	public void captureOrderDetails()
+	{
+		driver.findElement(By.id("finish")).click();
+		String a = driver.findElement(By.id("//h2[@class='complete-header']")).getText();
+	}
+
+}
+------------------------------------------------------------------------------------------------------------
+Orange HRM application
+		Test cases 1
+					- open a browser and url
+		test Cases 2
+					- login functionality
+
+		test cases 3
+					- click on pim link
+					click on add employee button
+					enter firstname, last name, and click on save button
+
+		test cases 4
+					- capture the employee id 					-------------> store employee id globally
+					- Enter SSN Number
+					- Select DOJ
+					- select country 
+					- select gender
+					- click on save button
+
+		test cases 5:
+					- click on employee list
+					- enter captured employee id
+					- click on  search  button
+					- take the screenshot
+
+		test cases 6:
+					click on profile image
+					click on logout
+
+------------------------------------------------------------------------------------------------------------
+
+@Test
+
+
+@Test(priority=1)
+
+
+@Test(priority=-5)
+
+
+@Test(invocationCount=10)
+
+
+@Test(timeOut=500)
+
+
+@Test(dependsOnMethods={"methodName"})
+
+
+@Test(dependsOnMethods={"methodName"},alwaysRun=true)
+
+------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

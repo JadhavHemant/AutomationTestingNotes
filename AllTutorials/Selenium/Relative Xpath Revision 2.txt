@@ -1,0 +1,128 @@
+descendant keyword:
+---------------------------------------------------------------------------------------------------------------------
+syntax:
+			//tagname[@attribute='value']/descendant::tagname[@attribute='value']
+			//tagname[@attribute='value']/descendant::tagname
+
+	
+		WebElement wb1 = driver.findElement(By.xpath("//div[@class='personal']/descendant::input[@placeholder='Enter first Name']"));
+
+		
+		WebElement wb2 = driver.findElement(By.xpath("//div[@class='personal']/child::div/preceding-sibling::div/descendant::input[@type='text']"));
+
+	
+		WebElement wb3  = driver.findElement(By.xpath("//div[@class='_1lch']/descendant::button"));
+
+
+		WebElement wb4 = driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']/descendant::input[@name='btnK']"));
+
+		WebElement wb4 = driver.findElement(By.xpath("//div[@class='FPdoLc lJ9FBc']/descendant::input/preceding-sibling::input"));
+
+
+		WebElement wb5 = driver.findElement(By.xpath("//p[text()=' * Required']/following-sibling::button"));
+
+			
+ancestor keyword:
+---------------------------------------------------------------------------------------------------------------------
+
+syntax:
+			//tagname[@attribute='value']/ancestor::tagname[@attribute='value']
+			//tagname[@attribute='value']/ancestor::tagname
+
+
+
+	WebElement wb6 = driver.findElement(By.xpath("//input[@type='text']/ancestor::div[@class='personal']/child::div/preceding-sibling::div/descendant::input[@type='text']"));
+
+
+WebElement wb7 =driver.findElement(By.xpath("//span[@class='a-price-whole']/ancestor::div[@data-asin='B0BZCWLJHK']/descendant::span[@class='a-price-whole']"));
+
+
+WebElement wb8 = driver.findElement(By.xpath("//div[@data-asin='B0BZCWLJHK']/descendant::span[@class='a-price-whole']"));
+
+
+WebElement wb8 = driver.findElement(By.xpath("//span[@class='a-size-base s-underline-text']/ancestor::div[@data-index='7']"));
+
+
+---------------------------------------------------------------------------------------------------------------------
+WebElement wb8 = driver.findElement(By.xpath("//label[text()='Nationality']/parent::div/following-sibling::div/descendant::div[@class='oxd-select-text-input']"));
+
+
+
+	List<WebElement> ls = driver.findElements(By.xpath("//div[@class='oxd-select-option']/child::span"));
+
+
+	for(WebElement abc: ls)
+		{
+				String a = 	abc.getText();
+				
+				if(a.equals("Indian"))
+				{
+						abc.click();
+						break;
+				}
+		}
+
+---------------------------------------------------------------------------------------------------------------------
+following-sibling keyword
+				- next sibling
+
+preceding-sibling keyword
+			- previous sibling
+
+parent keyword
+		- immediate parent
+
+child keyword
+		- immediate child
+
+descendant keyword
+		- immediate child, child of child, child of child of child etc.....................
+	
+
+ancestor keyword
+		- immediate parent, parent of parent , grand parent of parent etc......................
+
+
+following keyword
+		- find all next tags 
+
+
+preceding keyword 
+		- find all previous tags
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+https://prafpawar11.github.io/
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+//span[text()='Flights']/ancestor::ul/following-sibling::div/descendant::input[@name='depart']
+
+
+
+(//div[@class='datepicker dropdown-menu']/following-sibling::div)[2]
+
+
+//div[@class='datepicker dropdown-menu']/preceding-sibling::div[@class="datepicker dropdown-menu"]/descendant::div[@class='datepicker-days']/descendant::th[@class='switch']
+
+
+========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+Git reset command
+------------------------------------------------------------------------------------------------------------------------
+	- it is used to remove the files from stagging area as well as from local commit history
+	- git reset commands is used to undo the changes
+	- git reset command works only for local git commits.
+
+Scenario:
+		If we add any file by mistakenly to stagging area and if u want remove the files from stagging area then we use reset command
+		
+			git reset
+
+Scenario: If we commit any file by mistakenly to local git repository and I want undo the local commit then we use reset command
+
+			1) git reset --mixed commitId 
+											it  removed the file from local git repository and pushes the same files to working directory.
+					
+			2) git reset --soft commitid
+											it removed the file from local git repository and pushed same file to stagging area.
+
+			3) git reset --hard commitid		
+											it removed the files from local git repository as well from working directory and staging area.
+
+------------------------------------------------------------------------------------------------------------------------
+git revert command
+	- git revert command is used to remove the files from local commit as well as remote commits.
+	- 
+
+Scenario: If we push code to remote repository mistakenly  and I want undo the changes then we use revert command
+	
+
+------------------------------------------------------------------------------------------------------------------------
+1) add files to stagging
+2) commit code to local git repository
+3) push code to remote repository
+4) check log
+5) revert to latest log using revert command
+6) use reset hard  command on before commit id number
+7) push code to remote repository
+		git push --force origin master
+
+------------------------------------------------------------------------------------------------------------------------
+	
+1) add files to stagging
+2) commit code to local git repository
+3) push code to remote repository
+4) check log
+5) revert to latest log using revert command
+6) use reset mixed  command on before commit id number
+7) push code to remote repository
+		git push --force origin master
+
+------------------------------------------------------------------------------------------------------------------------
+merge command
+		- it used to merge one branch in another branch
+		-merge command preserve the history
+
+rebase command
+		- it used to merge one branch in another branch
+		-rebase command does not preserve the history
+
+cherry-pick command
+		- if we dont want to merge whole branch , and we want merge only some commits then we use cherry-pick command 
+		cherry-pick command is work same like rebase command
+
+
+
+
+
+
+
+
+
+
+
+

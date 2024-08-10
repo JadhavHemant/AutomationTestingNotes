@@ -1,0 +1,836 @@
+diff between final, finally and finalize method						VVVVIMMPPPPPPPPPP
+how to handle exception in java									VVVVIMMPPPPPPPPPP
+Diff between checked and unchecked exception					VVVVIMMPPPPPPPPPP
+diff between throw and throws keyword.							VVVVIMMPPPPPPPPPP
+scenario base questions on try catch and finally block				VVVVIMMPPPPPPPPPP
+
+--------------------------------------------------------------------------------------------------------------------------
+Exception Handling in java											VVVVIMMPPPPPPPPPP
+	- Exception is an event that occurs during execution of program when program is interrupted.
+	- We handle Exception to make the program execute properly without any halt.
+	- There are some exceptions are minor but cause on the execution of program.
+	- if we handle exception properly then all statement of code get executed and flow of program is maintained.
+	- there are 2 types of exception in java
+				I) compile time Exception / checked exception
+				2) run time exception / unchecked exception
+
+	- Parent class of Exception class is """Throwable class"""
+
+	I) compile time Exception / checked exception
+			- checked exception are checked at compile time by compiler.
+			- if we have not handle the checked exception then program will not get executed.
+			- we can handle the checked by using throws keyword and try-catch block.
+			- all checked exception are child classes of Exception class.
+			- e.g. IOException , FileNotFoundException, ClassNotFoundException, SQLException, InterruptedException e
+		
+
+	2) run time exception / unchecked exception
+			- unchecked Exception that are checked at run time  by JVM.
+			- Once the program at run time we will get run time exceptions,
+			- run time exception can not handle by the compiler.
+			- We can not handle the run time exception by using throws keywords.
+			- we can handle run the time exception by using try-catch block.
+			- Run time exception classes have different child classes.
+			- ArithemeticException, NullPointerException, NumberFormatException, ArrayOutOfBoundException are unchecked Exceptions.
+
+
+1) ArithemeticException
+		- if we try to devide any values by zero then we will get arithemetic Exception
+			e.g.
+					int a=100;
+					int b=0;
+					int c=a/b;
+package Tutorial3;
+
+public class Demo1 {
+
+	public static void main(String[] args) 
+	{	
+		int a=100;
+		
+		int b=0;
+		
+		int c=a/b;
+		
+		System.out.println(c);
+	}
+
+}
+------------------------------------------------------------------
+2) NullPointerException
+		if we have nothing values for variable and still we are trying to perform operation on variables then we will get null pointer 				exception.
+		e.g.
+					String a=null;
+
+					int b = a.length();
+
+
+package Tutorial3;
+
+public class Demo2 {
+
+	
+	public static void main(String[] args) {
+		
+		String a=null;
+		
+		int b = a.length();
+		
+		System.out.println(b);
+		
+	}
+}
+
+package Tutorial3;
+
+public class Demo2 {
+
+	Demo2 obj;
+	
+	public void abc()
+	{
+		System.out.println("abc method");
+	}
+	
+	public void xyz()
+	{
+		obj.abc();
+		System.out.println("xyz method");
+	}
+
+
+	public static void main(String[] args) {
+		
+		Demo2 obj= new Demo2();
+		obj.abc();
+		obj.xyz();
+	
+	}
+}
+-------------------------------------------------------------------------------------------------------------
+3) NumberFormatException
+		- if we have wrong formatting for variables still we are trying to perform some operations
+
+	e.g.
+			String a="selenium";
+
+			int b = Integer.parseInt(a);
+
+package Tutorial3;
+
+public class Demo3 {
+	
+	
+	public static void main(String[] args) {
+		//String a="12345";
+		String a="selenium";
+		
+		int b = Integer.parseInt(a);
+		
+		System.out.println(b);
+	}
+
+}
+---------------------------------------------------------------------------------
+4) ArrayIndexOutOfBoundException
+	- if we assign any values for wrong array index then ArrayIndexOutOfBoundException
+
+	int [] a = new int[5];
+
+	a[0]=100;
+	a[8]=200;
+		
+
+package Tutorial3;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+
+		int[] abc = new int[5];
+
+		abc[1] = 244;
+
+		abc[0] = 10;
+
+		abc[3] = 20;
+
+		abc[11] = 100;
+
+		abc[4] = 34;
+
+		abc[2] = 3000;
+
+		abc[1] = 4000;
+
+		System.out.println(abc[1]);
+
+	}
+
+}
+==================================================================================
+try-catch block
+	- try catch block is used to handle the checked as well as unchecked exceptions.
+	- in try block we mention the risky code and in catch we handle the exception
+	- if try block execute 100 percent then it will ignore the catch block of code.
+	- if get any exceptions in try then it ignore remaining of code from try block and it execute catch block of code.
+
+syntax:
+			try
+				{
+						//risky code
+				}
+			catch(ExceptionClassName variablename)
+				{
+							//statement.
+				}
+
+
+1) Arithmetic Exception
+	
+
+package Tutorial3;
+
+public class Demo5 {
+
+	public static void main(String[] args) {
+		
+		System.out.println("MMS");
+		int a=100;
+		
+		int b=0;
+		
+		try
+		{
+			System.out.println("try block is started");
+			int c=a/b;
+			System.out.println(c);
+			System.out.println("try block is ended");
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Arithmetic Exception occurs");
+		} 
+		
+		System.out.println("MME");
+		
+		
+
+	}
+
+}
+----------------------------------------------------------------------------------------------
+2) NullPointerException
+	- if we have nothing values for variables and still we are trying to perform some operation on variables
+
+	package Tutorial3;
+
+public class Demo6 {
+
+	public static void main(String[] args) {
+		System.out.println("MMS");
+		
+		String a=null;
+		
+		try
+		{
+			System.out.println("try block started");
+			boolean b = a.contains("java");
+			System.out.println(b);
+			System.out.println("try block is ended");
+		}
+		catch(NullPointerException e) 
+		{
+			System.err.println("catch block ::::: Null Pointer Exception Occur");
+		}
+		
+		System.out.println("MME");
+		
+
+	}
+
+}
+=======================================================================
+try catch finally block
+
+1) if try block execute 100 percent then it ignore the catch block of code and it execute the finally block of code.
+
+2) if we get any exception in try block then it execute the catch block of code and then it execute finally block of code.
+
+
+syntax:
+			try
+				{
+						//risky code
+				}
+			catch(ExceptionClassName  variablename)
+				{
+							//statement
+				}
+			finally
+				{
+							//statement
+				}
+
+
+package Tutorial3;
+
+public class Demo7 {
+	
+	public static void main(String[] args) {
+		System.out.println("MMS");
+		
+		String a="12345";
+		
+		try
+		{
+			System.out.println("try block is started");
+			int b = Integer.parseInt(a);
+			System.out.println(b);
+			System.out.println("try block is ended");
+		}
+		catch(NumberFormatException e)
+		{
+			System.err.println("catch block ::: Number Format Exception Occur");
+		}
+		finally
+		{
+			System.out.println("finally block of code");
+
+		}
+		
+		System.out.println("MME");
+		
+	}
+	
+}
+
+package Tutorial3;
+
+public class Demo7 {
+	
+	public static void main(String[] args) {
+		System.out.println("MMS");
+		
+		String a="selenium";
+		
+		try
+		{
+			System.out.println("try block is started");
+			int b = Integer.parseInt(a);
+			System.out.println(b);
+			System.out.println("try block is ended");
+		}
+		catch(NumberFormatException e)
+		{
+			System.err.println("catch block ::: Number Format Exception Occur");
+		}
+		finally
+		{
+			System.out.println("finally block of code");
+
+		}
+		
+		System.out.println("MME");
+		
+	}
+	
+}
+==============================================================================
+package Tutorial3;
+
+public class Demo8 {
+	
+	public static void main(String[] args) {
+		int [] abc = new int[4];
+		
+		abc[0]=100;
+		abc[3]=300;
+		abc[2]=200;
+		abc[1]=100;
+		
+		try
+		{
+			abc[8]=900;
+			System.out.println(abc[8]);
+		}
+		catch(RuntimeException e)
+		{
+			System.err.println("Run time Exception Occur");
+		}
+		finally
+		{
+			System.out.println("Finally block of code");
+		}
+		
+		
+		
+	}
+
+}
+====================================================================
+package Tutorial3;
+
+public class Demo9 {
+
+	public static void main(String[] args) {
+		int a=10;
+		
+		try
+		{
+			System.out.println("try block is started");
+			int b=a/0;
+			System.out.println(b);
+			System.out.println("try block is ended");
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("catch :: Null Pointer Exception");
+		}
+		catch(ArithmeticException e)
+		{
+			System.err.println("catch :: Arithmetic Exception Occur");
+		}
+		catch(RuntimeException e)
+		{
+			System.err.println("catch :: Run time Exception");
+		}
+		finally
+		{
+			System.out.println("Finally block of code");
+		}
+
+	}
+
+}
+==================================================================================
+package Tutorial3;
+
+public class Demo9 {
+
+	public static void main(String[] args) {
+		int a=10;
+		
+		try
+		{
+			System.out.println("try block is started");
+			int b=a/0;
+			System.out.println(b);
+			System.out.println("try block is ended");
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("catch :: Null Pointer Exception");
+		}
+		catch(RuntimeException e)
+		{
+			System.err.println("catch :: Run time Exception");
+		}
+		
+		finally
+		{
+			System.out.println("Finally block of code");
+		}
+
+	}
+
+}
+===============================================================
+														VVVVVVIMMMMPPPPPPPPPPPPPPPPPPPPPPP
+package Tutorial3;
+
+public class Demo9 {
+
+	public static void main(String[] args) {
+		int a=10;
+		
+		try
+		{
+			System.out.println("try block is started");
+			int b=a/0;
+			System.out.println(b);
+			System.out.println("try block is ended");
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("catch :: Null Pointer Exception");
+		}
+		catch(ArithmeticException e)
+		{
+			System.err.println("catch :: Arithmetic Exception");
+		}
+		catch(RuntimeException e)
+		{
+			System.err.println("catch :: Run time Exception");
+		}
+		catch(Exception e)
+		{
+			System.err.println("catch :: Exception");
+		}
+		catch(Throwable t)
+		{
+			System.err.println("catch :: Throwable");
+		}
+		finally
+		{
+			System.out.println("Finally block of code");
+		}
+
+	}
+
+}
+=====================================================================		
+																		VVVVIMMMPPPPPPPPPPPPPP
+can we mention try catch block							yes			
+can we mention try catch finally block					yes
+can we mention try finally block							yes
+can we mention catch finally block						NO
+
+can we mention multiple  try block						NO
+can we mention multiple catch block after try			Yes but we have mention child to parent exception class name.
+can we mention multiple finally block					No
+
+
+
+
+
+package Tutorial3;
+
+public class Demo10 {
+
+	public static void main(String[] args) {
+		
+		try
+		{
+			System.out.println("try block Started");
+			
+			System.out.println(10/2);
+			
+			System.out.println("Try block ended");
+		}
+		finally
+		{
+			System.out.println("finally block");
+		}
+		
+
+	}
+
+}
+=======================================================================================
+
+package Tutorial3;
+
+public class Demo11 {
+	//Req: if person age is above 21 then print access is granted if not print Access Is Not granted.
+	
+	public static void checkAge(int age) throws Exception
+	{
+		if(age<=21)
+		{
+			throw new Exception("Access Is Not Granted for Person");
+		}
+		else
+		{
+			System.out.println("Access Is Granted for Person");
+		}
+	}
+	
+	
+	public static void main(String[] args) 
+	{
+		try
+		{	
+			Demo11.checkAge(14);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}
+===============================================================
+package Tutorial3;
+
+public class PersonAgeCheckException extends RuntimeException{
+
+	public PersonAgeCheckException(String ExceptionName)
+	{
+		super(ExceptionName);
+	}
+	
+}
+
+
+package Tutorial3;
+
+public class Demo11 {
+	// Req: if person age is above 21 then print access is granted if not print
+	// Access Is Not granted.
+
+	public static void checkAge(int age) {
+		if (age <= 21) 
+		{
+			throw new PersonAgeCheckException("Access Is Not Granted for Person");
+		} else {
+			System.out.println("Access Is Granted for Person");
+		}
+	}
+
+	public static void main(String[] args) {
+
+		Demo11.checkAge(24);
+
+	}
+
+}
+=====================================================================
+diff between throw and throws keyword											VVVVVVIMMMPPPPPP
+
+throw keyword
+		- throw keyword is used to throw an exception explicitly
+		- by using throw keyword we can throw checked as well as unchecked exception.
+		- we can specify the class name for exception with the help of throw keyword.
+		- if any exception is occur then throw statement get execute and it checks nearest catch block of code and it throws the exception.
+		- throw is used to create the custom exception
+
+
+throws keyword
+		- by using throws keyword we can handle only checked exception
+		- we use throws keyword in method level or signature level.
+		- throws keyword is used to declare the multiple exceptions
+		- by using throws keyword we can handle the compile time exceptions.
+
+
+
+
+=====================================================================
+package Tutorial3;
+
+public class FileException extends RuntimeException{
+
+	
+	public FileException(String ExceptionName)
+	{
+		super(ExceptionName);
+	}
+	
+}
+
+package Tutorial3;
+
+import java.io.File;
+
+public class Demo12 {
+
+	public static void checkFile(File filePath)
+	{
+		if(!filePath.exists())
+		{
+			throw new FileException("File is not Present in Desktop Location");
+		}
+		else
+		{
+			System.out.println("File is Present");
+		}
+		
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		File f = new File("C:\\Use\\P Status Code Series.docx");
+		
+		Demo12.checkFile(f);
+
+	}
+
+}
+=========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

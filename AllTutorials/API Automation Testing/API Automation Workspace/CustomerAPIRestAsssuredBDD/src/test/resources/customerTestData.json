@@ -1,0 +1,29 @@
+{
+	"createCustomer" :
+		{
+			"cust_fName": "Dipali",
+			"cust_lName": "Joshi",
+			"cust_billingAddress": "Pune",
+			"product_Name": "Mobile Phone",
+			"product_price": 1299.344,
+			"product_Discount": 5,
+			"product_info": "Samsung"
+		},
+		
+	"updateCustomer" :
+			{
+				"cust_fName": "Punam",
+				"cust_lName": "Jadhav",
+				"cust_billingAddress": "Mumbai",
+				"product_Name": "Mobile Phone",
+				"product_price": 333.333,
+				"product_Discount": 15,
+				"product_info": "IPhone"
+			},
+	"partialUpdateCustomer" :
+	{
+		"product_price": 999.123,
+		"product_info": "Vivo Mobile Phone"
+	}
+	
+}

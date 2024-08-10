@@ -1,0 +1,237 @@
+Diff between absolute xpath and relative xpath								VVVVVIMMMPPPPP
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+absolute xpath
+	- absolute xpath is complete path from root node to desired node/element
+	- absolute xpath it starts from single forward slash.
+	- in absolute xpath failure chances are more because if there is any changes made in middle of the element then it changes the path or xpath.
+	- absolute xpath is faster than relative xpath.
+	- in  absolute xpath we can not use HTML tag name attribute.
+	- in  absolute xpath we can not navigate to backward direction,
+	-in absolute xpath we find the xpath in forward direction only
+
+e.g.			/html/body/div/div[1]/span[2]/input[4]			after adding new tags it changes the absolute xpath
+			/html/body/div/div[1]/span[2]/input[3]			previous absolute xpath
+
+
+Relative xpath
+	- In relative xpath, we can simply start referencing the element middle of the html code or DOM structure.
+	- Relative xpath it starts with double forward slash
+	- in Relative xpath we don't mention long xpath.
+	- failure changes are less in Relative xpath because we search element middle of the points.
+	- Relative xpath is slower than Absolute xpath.
+	- in Relative xpath we can use any HTML tag name attribute.
+	- in Relative xpath we can navigate forward as well as backward direction.
+	- in Relative xpath we can use multiple keywords or methods to locate the element.
+	- examples we can use 		contains() method, text() method, starts-with() method, or keyword, and keyword, following keyword, preceding keyword, following-sibling keyword, preceding-sibling keyword, parent keyword, child keyword, ancestor keyword and descendant keyword.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ass 1:
+why we don't use absolute xpath?
+	- 
+
+Ass 2:
+why we use Relative xpath
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			//input[@id="state"]/following::span
+										Result
+												span class b3
+												span class b4
+												span class b5 
+												span class b6
+
+			//input[@id="state"]/following::div
+										Result
+													div class a2,
+													div class a3,
+													div class a4
+
+			//input[@id="state"]/following::input
+										Result
+													Country input tag
+													degree input tag
+													branch input tag
+													university input tag
+													project input tag
+													team input tag
+													domain input tag
+													agree input tag
+													submit input tag
+													cancel input tag
+
+		//input[@id="state"]/following::a
+									Result
+													google a tag link
+													facebook a tag link
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+following-sibling keyword
+		it is used to find the sibling of next tag in same parent tag
+
+		//input[@id='state']/following-sibling::input
+									Result
+												country input tag
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+preceding-sibling keyword
+		it is used to find the sibling of previous tag in same parent tag
+								
+		//input[@id='state']/preceding-sibling::input
+								Result 	
+											city input tag
+
+		//input[@id='state']/preceding-sibling::span
+								Result		
+									Nothing tag found
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+preceding keyword
+	it is used to find the previous all tags 
+		
+	//input[@id='state']/preceding::input
+						Result
+
+										first name input tag
+										middle name input tag
+										last name input tag
+										city input tag
+									
+					
+	//input[@id='state']/preceding::div
+						Result		
+									Nothing tag found
+
+	//input[@id='state']/preceding::span
+					Result
+										span b1 class
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+parent keyword
+	it used to find the immediate parent tag
+
+
+	//input[@id='state']/parent::span
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ancestor keyword
+		it used to find the immediate parent tag, parent of parent tag and grand parent of parent tag etc.
+
+
+	//input[@id='state']/ancestor::div
+			Result			
+							div class a2
+							div class main
+
+	//input[@id='state']/ancestor::span
+			Result
+							span class b2
+	
+	//input[@id='state']/ancestor::*
+			Result		
+							html 
+							body
+							div main class tag
+							div a1 tag
+							span b2 tag
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+child keyword:
+	it is used to find the immediate child
+	
+	//div[@class='a2']/child::span
+			Result
+						span b4 class
+						span b5 class
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+descendant keyword
+	it is used to find the child, grand child, grand of grand child etc
+
+	//div[@class='a2']/descendant::span
+					Result
+						span b4 class
+						span b5 class
+
+	//div[@class='a2']/descendant::input
+
+				Result
+						 project input tag
+						team input tag
+						domain input tag
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main
+        {
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-right: 20px;
+            margin-left: 300px;
+            margin-right: 70px;
+            border: 2px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="main">
+
+
+
+    <div class="a1">
+        <span class="b1">
+            First Name<input type="text" id="fname" /> <br> <br>
+            Middle Name<input type="text" id="mname" /><br> <br>
+            Last Name<input type="text" id="lname" /> <br> <br>
+        </span>
+        <span class="b2">
+            Area <input type="text" id="area"/> <br>
+            <br>
+            City <input type="text" id="city" /> <br> <br>
+            <label for="state">State</label>
+            <input type="text" id="state" name="state"></input> <br> <br>
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" /><br> <br>
+        </span>
+        <span class="b3">
+            Degree <input type="text" id="degree" /><br> <br>
+            Branch <input type="text" id="branch" /><br> <br>
+            University <input type="text" id="university" /><br> <br>
+        </span>
+    </div>
+    <div class="a2">
+        <span class="b4">
+            project name <input type="text" id="pname" /><br> <br>
+            Team Name <input type="text" id="tname" /><br> <br>
+        </span>
+        <span class="b5">
+            Domain name <input type="text" id="dname" /><br> <br>
+        </span>
+    </div>
+    <div class="a3">
+        Agree <input type="checkbox" id="agree" /><br> <br>
+        <input type="button" id="btn"> Submit </input>
+        <input type="button" id="cancel"> Cancel </input><br> <br>
+    </div>
+    <div class="a4">
+        <span class="b6">
+            <a href="https://www.google.com"> Google Link </a><br> <br>
+            <a href="https://www.facebook.com"> Facebook Link </a><br> <br>
+        </span>
+    </div>
+
+</div>
+</body>
+
+</html>
+
+
+
+
+

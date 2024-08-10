@@ -1,0 +1,469 @@
+Selenium WebDriver methods
+-------------------------------------------------------------------------------------------------------------------
+1) get() method
+2) getTitle() method
+3) getCurrentUrl() method
+4) close() method
+5) quit() method
+6) switchTo() method
+7) navigate() method
+-------------------------------------------------------------------------------------------------------------------
+Navigation interface
+1) to() method
+2) back()method
+3) forward() method
+4) refresh() method
+-------------------------------------------------------------------------------------------------------------------
+TargetLocator interface
+1) newWindow(WindowType.TAB)
+2) newWindow(WindowType.WINDOW)
+-------------------------------------------------------------------------------------------------------------------
+
+1) maximize() method
+			- it is used to maximize the window
+syntax:
+			driver.manage().window().maximize();
+
+		manage() method present inside the WebDriver interface.
+					return type of manage() method is Options interface.
+
+		window() method present inside the Options interface.
+					return type of window()method is Window interface.
+			
+		maximize() method present the Window interface.			
+					return type of maximize()method is void.
+-------------------------------------------------------------------------------------------------------------------
+2) minimize() method					-------> this method present inside the selenium 4 and above version.
+			-it is used to minimize the window
+
+syntax:
+			driver.manage().window().minimize();
+
+		manage() method present inside the WebDriver interface.
+					return type of manage() method is Options interface.
+
+		window() method present inside the Options interface.
+					return type of window()method is Window interface.
+			
+		minimize() method present the Window interface.			
+					return type of minimize()method is void.
+
+-------------------------------------------------------------------------------------------------------------------
+3) fullScreen() method
+			-it is used to full screen the window
+syntax:
+			- driver.manage().window().fullScreen();
+
+		manage() method present inside the WebDriver interface.
+					return type of manage() method is Options interface.
+
+		window() method present inside the Options interface.
+					return type of window()method is Window interface.
+			
+		fullScreen() method present the Window interface.			
+					return type of fullScreen()method is void.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Scenario:
+			open application
+			maximize the window
+
+Step 1; connect to actual browser
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver = new ChromeDriver();
+
+step 2: open a url
+			driver.get("https://www.google.com");
+
+step 3: maximize the window
+			driver.manage().window().maximize();
+
+package Tutorial3;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a google url
+		driver.get("https://www.google.com");
+		
+		Thread.sleep(5000);
+		//maximize
+		driver.manage().window().maximize();
+		
+		Thread.sleep(7000);
+		
+		//fullScreen
+		driver.manage().window().fullscreen();
+		
+		Thread.sleep(7000);
+		//minimize
+		driver.manage().window().minimize();
+		
+		Thread.sleep(7000);
+		driver.manage().window().maximize();
+		
+		Thread.sleep(7000);
+		
+		driver.quit();
+	}
+
+}
+==============================================================================
+How to change the browser dimension?						VVVVIMMMPPPP
+	if we want to change the browser dimension then we use Dimension class.
+	we have to create object of Dimension class by passing width and height of the browser
+		syntax;
+				Dimension d = new Dimension(400,500);
+
+	then we use setSize()method by passing Dimension class object name.				
+				syntax;
+						driver.manage().window().setSize(d);
+
+			manage() method present inside the WebDriver interface
+						return type is Options interface.
+
+			window() method present inside the Options interface
+						return type is Window interface
+			
+			setSize() method present inside the Window interface
+						return type is void.
+
+
+Scenario;
+Step 1: connect to actual browser
+			System.setProperty("webdriver.chrome.driever","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open google url
+			driver.get("https://www.google.com");
+
+step 4: change the browser dimension
+			Dimension d =new Dimension(400,500);
+
+			driver.manage().window().setSize(d);
+
+package Tutorial3;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open a google url
+		driver.get("https://www.google.com");
+
+		Thread.sleep(5000);
+
+		// change browser dimension
+		Dimension d = new Dimension(2000, 500);
+
+		driver.manage().window().setSize(d);
+
+	}
+
+}
+===========================================================================
+How to open browser in incognito mode?					VVVVVIMMMPPPPPPPPPPP
+	 	first we have to create object of ChromeOptions class.
+		we use addArguments() method from ChromeOptions class by passing --incognito keyword
+		then we have pass ChromeOptions class object name inside the ChromeDriver  constructor.
+
+syntax:
+			ChromeOptions opt =new ChromeOptions();
+
+			opt.addArguments("--incognito");
+
+			WebDriver driver =new ChromeDriver(opt);
+
+step 1:connect to actual browser
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: Create Object ChromeOptions class
+			ChromeOptions opt =new ChromeOptions();
+
+step 3: use addArguments() method
+			opt.addArguments("--incognito");
+
+step 4: up casting concept by passing ChromeOptions class instance name / object name
+			WebDriver driver =new ChromeDriver(opt);
+
+step 5: open a facebook url
+			driver.get("https://www.facebook.com");
+
+package Tutorial3;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Demo3 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// Step 2: create Object of ChromeOptions class
+		ChromeOptions opt = new ChromeOptions();
+
+		// step 3: use addArguments() method and by passing --incognito keyword
+
+		opt.addArguments("--incognito");
+
+		// step 4: up casting and by passing ChromeOptions class object name in
+		// ChromeDriver constructor
+		WebDriver driver = new ChromeDriver(opt);
+
+		driver.get("https://www.facebook.com");
+	}
+
+}
+================================================================================
+5) findElement() method
+		- it is used to find the element/object in webpage by using given locator.
+		- return type of findElement() method is WebElement interface.
+		- findElement() method present inside the WebDriver interface as well as WebElement interface.
+
+syntax;
+		WebElement wb = driver.findElement(By.id("id value"));
+		WebElement wb = driver.findElement(By.name("name value"));
+		WebElement wb = driver.findElement(By.className("className value"));
+		WebElement wb = driver.findElement(By.linkText("linkText value"));
+		WebElement wb = driver.findElement(By.partialLinkText("partialLinkText value"));
+		WebElement wb = driver.findElement(By.xpath("xpath value"));
+		WebElement wb = driver.findElement(By.cssSelector("cssSelector value"));
+		WebElement wb = driver.findElement(By.tagName("tagName value"));
+
+----------------------------------------------------------------------------------
+WebElement Interface
+1) sendKeys() method
+		- it used to send text to the text box
+		- return type is void
+		- this method present inside the WebElement interface.
+
+Scenario:
+	open a facebook login page url
+	find the username text box using findElement() method and name locator
+	enter the text in text box
+
+step 1: connect to actual browser
+			System.setProperty("webdriver.chrome.driver","path of chrome driver");
+
+step 2: up casting
+			WebDriver driver =new ChromeDriver();
+
+step 3: open a url
+			driver.get("https://www.facebook.com");
+
+step 4: find the username text box using findElement() method and using name locator
+		
+		WebElement wb = driver.findElement(By.name("email"));
+
+step 5: enter the text using sendKeys() method
+
+		wb.sendKeys("rahul@gmail.com");
+
+package Tutorial3;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo4 {
+
+	public static void main(String[] args) {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// up casting
+		WebDriver driver = new ChromeDriver();
+
+		// open facebook url
+		driver.get("https://www.facebook.com");
+
+		//find the username text box using findElement() method and using name locator
+		
+		WebElement wb = driver.findElement(By.name("email"));
+		
+		//enter the text using sendKeys()method
+		
+		wb.sendKeys("dhanshri@gmail.com");
+		
+	}
+
+}
+=======================================================================
+1) Open a https://demo.guru99.com/test/newtours/register.php
+2) find the first name text box by using findElement() method and using name locator
+3) enter the first name
+
+4) find the last name text box by using findElement() method and using name locator
+5) enter the last name
+
+6) find the phone text box by using findElement() method and using name locator
+7) enter the phone
+
+
+8) find the email text box by using findElement() method and using name locator
+9) enter email id
+
+10) find the address text box by using findElement() method and using name locator
+11) enter the address
+
+12) find the city text box by using findElement() method and using name locator
+13) enter the city
+
+14) find the state text box by using findElement() method and using name locator
+15) enter the state
+
+16) find the pincode text box by using findElement() method and using name locator
+17) enter the pincode
+
+
+18) find the username text box by using findElement() method and using name locator
+19) enter the username
+ 
+20) find the password text box by using findElement() method and using name locator
+21) enter the password
+
+22) find the submit text box by using findElement() method and using name locator
+			WebElement wb1 = driver.findElement(By.name("submit"));
+
+23) click on  submit
+			wb1.click();
+
+package Tutorial3;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo5 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Connect to actual browser
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\praf0\\OneDrive\\Desktop\\Automation Testing 27th April 2024 Batch\\chromedriver.exe");
+
+		// up casting
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+		
+		WebElement wb1 = driver.findElement(By.name("firstName"));
+		wb1.sendKeys("Alfiya");
+		
+		WebElement wb2 = driver.findElement(By.name("lastName"));
+		wb2.sendKeys("Shaikh");
+		
+		Thread.sleep(5000);
+		
+		WebElement wb3 = driver.findElement(By.name("submit"));
+		wb3.click();
+		
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------------------
+1) Open facebook url	https://www.facebook.com/						----->		don't share code in group--->
+2) find the username text box using findElement() method and by using name locator 
+3) enter the username 
+4) find the password text box using findElement() method and by using name locator 
+5) enter the password 
+6) find the login button using findElement() method and by using name locator 
+7) click on login button 
+------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+	

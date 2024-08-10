@@ -1,0 +1,226 @@
+What is BDD Framework?													VVVVVVVVIMMMMMPPPPPPPPPP
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+	- BDD stands for Behavior Driven Development framework
+	- BDD Framework is extension of TDD (Test Driven Development) framework.
+	- BDD Framework focus on scenario not in Test Cases
+	- BDD Framework focus on What to Test not on how to test.
+	- in BDD Framework  we use plain English language to write the requirements
+	- we use gherkin keyword to write feature file with plain English language
+
+
+there are different tools available in BDD
+	1) Cucumber
+	2) JBehave
+	3) SpecFlow 
+
+
+BDD framework support different languages
+	1) Java
+	2) Java script
+	3) Perl
+	4) Python
+	5) PHP
+	6) Groovy script
+	7) Ruby
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+in my current company we use Cucumber with java platform
+
+In cucumber we have 3 most important files
+	1) Feature file
+	2) Step Definition
+	3) Test Runner 
+
+
+1) Feature file
+	- we create feature file with dot feature extension
+	- inside the Feature file first keyword must be the Feature followed by colon (:) then short description of functionality
+	- then next we can use Scenario followed by colon then short description of scenario or we can use Background keyword followed by colon and 	then short description of Backgrounds or we can use Scenario Outline keyword followed by colon symbol then short description of scenarios.
+	- Once we declare the Scenario then we write different Steps in Scenario by using different keyword
+				I) Given
+				2) When
+				3) Then
+				4) And
+				5) But
+				6) *
+
+	- above all keyword is used to create the steps in feature files.
+	- Given is used to mention the preconditions
+	- When keyword is used to mention the actions or events
+	- Then keyword is used to mention expected condition or result
+	- And keyword is used to combine the two or more steps
+	- But keyword is used to declare the multiple conditions
+	-* keyword is used to declare any above conditions, 
+	* keyword is also called as global keyword
+
+	- by using Examples keyword followed by colon (:) is used to mention the test data from Scenario Outline
+
+===================================================================================
+2) Step Definition file
+	-Step Definition file means java class
+	- inside the Step Definition file we write selenium script code as the snippets
+	
+===================================================================================
+3) Test Runner file
+	- inside the Test Runner class we define location of feature by using features keyword and 
+	- location of Step Definition file by using glue  keyword or extraGlue keyword
+
+===================================================================================
+Feature: Test Orange HRM application
+
+  Scenario: validate login functionality
+    Given user is on login page
+    When user enter valid username and valid password
+    Then user click login button
+
+package StepDefinition;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class LoginSteps {
+	static WebDriver driver;
+
+	@Given("user is on login page")
+	public void user_is_on_login_page() {
+		// connect browser
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+	}
+
+	@When("user enter valid username and valid password")
+	public void user_enter_valid_username_and_valid_password() {
+		driver.findElement(By.name("username")).sendKeys("Admin");
+		driver.findElement(By.name("password")).sendKeys("admin123");
+
+	}
+
+	@Then("user click login button")
+	public void user_click_login_button() {
+		driver.findElement(By.xpath("//button[text()=' Login ']")).click();
+	}
+}
+
+
+package RunnerTest;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+		features={"src/test/java/Features"},
+		extraGlue={"StepDefinition"}
+		
+		)
+public class TestRunner {
+
+}
+
+
+
+
+
+
+
+
+
+
+<dependencies>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>7.14.0</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>7.14.0</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>7.14.0</version>
+		</dependency>
+
+
+		<!--
+		https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.16.1</version>
+		</dependency>
+
+
+	</dependencies>
+</project>
+===================================================================
+Ass:
+
+	- open a sauce demo
+	- enter credentials
+	- add 3 product on add to cart
+	- click add to cart container
+	- click continue
+	- enter firstname, lastName and pin code
+	- click on finish button
+	- take screenshot
+	- logout the  application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
