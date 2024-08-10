@@ -1,5 +1,0 @@
-# Created at 2024-07-01T14:42:45.802
-Boot Manifest-JAR contains absolute paths in classpath 'D:\Softech Class 2024\Automation Testing _27April\BDD Cucumber\BDD_Cucumber_Workspace\PushpaTheRise_BDDWithPOM_JUNIT\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-
